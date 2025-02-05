@@ -1018,10 +1018,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""id"": ""c03b5e02-e910-4bc0-bff5-f0fac1d1c4f9"",
             ""actions"": [
                 {
-                    ""name"": ""ZoomInOut"",
-                    ""type"": ""Button"",
-                    ""id"": ""7d793120-7f57-4b5a-89ce-26e35b411173"",
-                    ""expectedControlType"": """",
+                    ""name"": ""Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""88b4780d-7eb2-490f-af5c-a3535a3ce307"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1039,12 +1039,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""92983627-a9b2-4856-86aa-71e2091e5bb1"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""c51083b7-1fef-4755-97d3-5f6f13b5087a"",
+                    ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ZoomInOut"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1271,7 +1271,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
-        m_Camera_ZoomInOut = m_Camera.FindAction("ZoomInOut", throwIfNotFound: true);
+        m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
     }
 
@@ -1569,13 +1569,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     // Camera
     private readonly InputActionMap m_Camera;
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
-    private readonly InputAction m_Camera_ZoomInOut;
+    private readonly InputAction m_Camera_Zoom;
     private readonly InputAction m_Camera_Move;
     public struct CameraActions
     {
         private @InputActions m_Wrapper;
         public CameraActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ZoomInOut => m_Wrapper.m_Camera_ZoomInOut;
+        public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
         public InputAction @Move => m_Wrapper.m_Camera_Move;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
@@ -1586,9 +1586,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_CameraActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_CameraActionsCallbackInterfaces.Add(instance);
-            @ZoomInOut.started += instance.OnZoomInOut;
-            @ZoomInOut.performed += instance.OnZoomInOut;
-            @ZoomInOut.canceled += instance.OnZoomInOut;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -1596,9 +1596,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(ICameraActions instance)
         {
-            @ZoomInOut.started -= instance.OnZoomInOut;
-            @ZoomInOut.performed -= instance.OnZoomInOut;
-            @ZoomInOut.canceled -= instance.OnZoomInOut;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -1691,7 +1691,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     }
     public interface ICameraActions
     {
-        void OnZoomInOut(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
     }
 }

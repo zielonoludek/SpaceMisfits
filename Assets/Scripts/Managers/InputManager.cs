@@ -17,14 +17,14 @@ public class InputManager : MonoBehaviour
 
         inputActions.Camera.Enable();
 
-        inputActions.Camera.ZoomInOut.performed += OnZoomPerformed;
+        inputActions.Camera.Zoom.performed += OnZoomScroll;
         inputActions.Camera.Move.performed += OnMovePerformed;
         inputActions.Camera.Move.canceled += OnMoveCanceled;
     }
 
     private void DisableInputActions()
     {
-        inputActions.Camera.ZoomInOut.performed -= OnZoomPerformed;
+        inputActions.Camera.Zoom.performed -= OnZoomScroll;
         inputActions.Camera.Move.performed -= OnMovePerformed;
         inputActions.Camera.Move.canceled -= OnMoveCanceled;
 
@@ -33,7 +33,11 @@ public class InputManager : MonoBehaviour
 
     //=============== INPUT CALLBACKS ===============//
 
-    private void OnZoomPerformed(InputAction.CallbackContext context) => GameManager.Instance.CameraManager.ToggleCamera();
+    private void OnZoomScroll(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<Vector2>().y > 0) GameManager.Instance.CameraManager.ZoomInCamera();
+        else if (context.ReadValue<Vector2>().y < 0) GameManager.Instance.CameraManager.ZoomOutCamera();
+    }
     private void OnMovePerformed(InputAction.CallbackContext context) => currentInput = context.ReadValue<Vector2>();
     private void OnMoveCanceled(InputAction.CallbackContext context) => currentInput = Vector2.zero;
 

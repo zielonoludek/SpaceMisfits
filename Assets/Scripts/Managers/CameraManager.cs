@@ -19,6 +19,16 @@ public class CameraManager : MonoBehaviour
         UpdateCameraPriority();
     }
 
+    public void ZoomInCamera()
+    {
+        zoomed = true;
+        UpdateCameraPriority();
+    }
+    public void ZoomOutCamera()
+    {
+        zoomed = false;
+        UpdateCameraPriority();
+    }
     private void UpdateCameraPriority()
     {
         if (zoomed) zoomCamera.Priority = 20;
