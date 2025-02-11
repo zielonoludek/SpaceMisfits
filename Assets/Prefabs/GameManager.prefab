@@ -60,3 +60,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f25f516a36388b4fb1c50d65c6fc457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position:
+    m_Name: Position
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: b45bb700-2c31-4e06-855c-bb708b27ed4f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 27b6561c-b977-4d0b-b424-b4ae94c0b480
+      m_Path: <Touchscreen>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Position
+      m_Flags: 0
+    m_Flags: 0
+  press:
+    m_Name: Press
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 59cd9ca3-c389-4087-8685-8edc3ef95e56
+    m_Processors: 
+    m_Interactions: Press
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c09d4b70-94cc-42b4-803e-2d1b23e48c40
+      m_Path: <Touchscreen>/Press
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    m_Flags: 0
+  swipeResistance: 100
+  pinchZoomSpeed: 0.01
