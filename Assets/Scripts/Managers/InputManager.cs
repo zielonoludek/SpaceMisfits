@@ -1,47 +1,31 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private InputAction position, press;
-    [SerializeField] private float swipeResistance = 100;
-
     private InputActions inputActions;
     public static InputManager instance;
     public delegate void Swipe(Vector2 direction);
-    private Vector2 currentPos => position.ReadValue<Vector2>();
 
-    private float smoothTime = 0.1f;
+    private bool isDragging = false;
     public float pinchZoomSpeed = 0.01f;
     private float prevMagnitude = 0;
     private int touchCount = 0;
 
-    private Vector2 initialPos;
-    private Vector2 currentInput;       
-    private Vector2 smoothInput;        
-    private Vector2 smoothInputVelocity;
+    private Vector2 initialPos = Vector2.zero;
 
     private void Awake()
     {
         inputActions = new InputActions();
-
         inputActions.Camera.Enable();
 
         inputActions.Camera.Zoom.performed += OnZoomScroll;
-        inputActions.Camera.Move.performed += OnMovePerformed;
-        inputActions.Camera.Move.canceled += OnMoveCanceled;
+
+        inputActions.Camera.Drag.started += OnDrag;
+        inputActions.Camera.Drag.performed += OnDrag;
+        inputActions.Camera.Drag.canceled += OnDrag;
 
         SetupPinchZoom();
-        SetupSwipe();
-    }
-
-    private void SetupSwipe()
-    {
-        position.Enable();
-        press.Enable();
-        press.performed += _ => { initialPos = currentPos; };
-        press.canceled += _ => DetectSwipe();
-        instance = this;
     }
     private void SetupPinchZoom()
     {
@@ -80,8 +64,23 @@ public class InputManager : MonoBehaviour
         if (context.ReadValue<Vector2>().y > 0) GameManager.Instance.CameraManager.ZoomInCamera();
         else if (context.ReadValue<Vector2>().y < 0) GameManager.Instance.CameraManager.ZoomOutCamera();
     }
-    private void OnMovePerformed(InputAction.CallbackContext context) => currentInput = context.ReadValue<Vector2>();
-    private void OnMoveCanceled(InputAction.CallbackContext context) => currentInput = Vector2.zero;
+
+    private void OnDrag(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            initialPos = GameManager.Instance.CameraManager.GetMousePosition;
+            isDragging = true;
+            return;
+        }
+
+        
+        if (context.canceled)
+        {
+            isDragging = false;
+        }
+    }
+
 
     private void ApplyPinchZoom(float increment)
     {
@@ -90,31 +89,13 @@ public class InputManager : MonoBehaviour
         else if (increment < 0)
             GameManager.Instance.CameraManager.ZoomInCamera();
     }
-    private void DetectSwipe()
+    private void LateUpdate()
     {
-        Vector2 delta = currentPos - initialPos;
-        Vector2 direction = Vector2.zero;
+        if (!isDragging) return;
+        Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
+        Vector2 diff = currentPos - initialPos; 
+        
+        GameManager.Instance.CameraManager.MoveCamera(diff.normalized);
 
-        if (Mathf.Abs(delta.x) > swipeResistance)
-        {
-            direction.x = Mathf.Clamp(delta.x, -1, 1);
-        }
-        if (Mathf.Abs(delta.y) > swipeResistance)
-        {
-            direction.y = Mathf.Clamp(delta.y, -1, 1);
-        }
-        if (direction != Vector2.zero)
-            GameManager.Instance.CameraManager.MoveCamera(direction);
-    }
-
-    void Update()
-    {
-        smoothInput = Vector2.SmoothDamp(
-            smoothInput,        
-            currentInput,        
-            ref smoothInputVelocity,
-            smoothTime           
-        );
-        GameManager.Instance.CameraManager.MoveCamera(smoothInput);
     }
 }

@@ -1012,6 +1012,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TouchMovement",
+                    "type": "PassThrough",
+                    "id": "5bf89426-b70e-4542-a887-9a0c9eb6eee8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Drag",
+                    "type": "Button",
+                    "id": "ed3fe220-5bc9-467b-8395-633beb214898",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1155,6 +1173,61 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "844071c7-cff6-431d-940f-f82b956046af",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "TouchMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88c9823c-9a3e-4455-a26a-e6f720adf0be",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "TouchMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d68b47c-7082-4fe7-b40a-1446fc7fdfd8",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "090c8447-3174-4de9-9819-e2e2fb8df452",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc5a9656-6e2d-44ee-90c0-8d7243f8c570",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch;Keyboard&Mouse",
+                    "action": "Drag",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -76,6 +76,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Position
       m_Flags: 0
+    - m_Name: 
+      m_Id: f08a6e0c-5b15-4c3d-9d93-d18fa43698b0
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Position
+      m_Flags: 0
     m_Flags: 0
   press:
     m_Name: Press
@@ -88,6 +96,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: c09d4b70-94cc-42b4-803e-2d1b23e48c40
       m_Path: <Touchscreen>/Press
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Press
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 6d9f49bc-af53-4881-80ba-805243aa7b30
+      m_Path: <Mouse>/press
       m_Interactions: 
       m_Processors: 
       m_Groups: 

@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c317d8098e68a5d4fa5ca189d1287876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1230858710650642281}
   zoomCamera: {fileID: 48908624815502522}
   normalCamera: {fileID: 8587639039913569339}
   movementSpeed: 10

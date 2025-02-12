@@ -1034,6 +1034,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TouchMovement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5bf89426-b70e-4542-a887-9a0c9eb6eee8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed3fe220-5bc9-467b-8395-633beb214898"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1179,6 +1197,61 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""844071c7-cff6-431d-940f-f82b956046af"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""TouchMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88c9823c-9a3e-4455-a26a-e6f720adf0be"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""TouchMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d68b47c-7082-4fe7-b40a-1446fc7fdfd8"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""090c8447-3174-4de9-9819-e2e2fb8df452"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc5a9656-6e2d-44ee-90c0-8d7243f8c570"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch;Keyboard&Mouse"",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1273,6 +1346,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
+        m_Camera_TouchMovement = m_Camera.FindAction("TouchMovement", throwIfNotFound: true);
+        m_Camera_Drag = m_Camera.FindAction("Drag", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1571,12 +1646,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
     private readonly InputAction m_Camera_Zoom;
     private readonly InputAction m_Camera_Move;
+    private readonly InputAction m_Camera_TouchMovement;
+    private readonly InputAction m_Camera_Drag;
     public struct CameraActions
     {
         private @InputActions m_Wrapper;
         public CameraActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
         public InputAction @Move => m_Wrapper.m_Camera_Move;
+        public InputAction @TouchMovement => m_Wrapper.m_Camera_TouchMovement;
+        public InputAction @Drag => m_Wrapper.m_Camera_Drag;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1592,6 +1671,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @TouchMovement.started += instance.OnTouchMovement;
+            @TouchMovement.performed += instance.OnTouchMovement;
+            @TouchMovement.canceled += instance.OnTouchMovement;
+            @Drag.started += instance.OnDrag;
+            @Drag.performed += instance.OnDrag;
+            @Drag.canceled += instance.OnDrag;
         }
 
         private void UnregisterCallbacks(ICameraActions instance)
@@ -1602,6 +1687,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @TouchMovement.started -= instance.OnTouchMovement;
+            @TouchMovement.performed -= instance.OnTouchMovement;
+            @TouchMovement.canceled -= instance.OnTouchMovement;
+            @Drag.started -= instance.OnDrag;
+            @Drag.performed -= instance.OnDrag;
+            @Drag.canceled -= instance.OnDrag;
         }
 
         public void RemoveCallbacks(ICameraActions instance)
@@ -1693,5 +1784,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnZoom(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnTouchMovement(InputAction.CallbackContext context);
+        void OnDrag(InputAction.CallbackContext context);
     }
 }
