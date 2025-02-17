@@ -9,9 +9,9 @@ public class PauseGame : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.pKey.wasPressedThisFrame)
         {
-            Pause();
+            Pause();        
         }
 
     }
