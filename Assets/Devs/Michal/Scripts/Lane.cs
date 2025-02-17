@@ -5,6 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Lane : MonoBehaviour
 {
+    // =============== LANE APPEARANCE ===============
     [Header("Lane appearance")]
     
     [Tooltip("Number of points in the curve, the more the smoother")]
@@ -16,13 +17,17 @@ public class Lane : MonoBehaviour
     [Tooltip("Controls horizontal curvature intensity")]
     [SerializeField] private float curveWidth = 0f;
     
+    // ==============================
     
+    // =============== LANE SETTINGS ===============
     [Header("Lane settings")]
     
     [SerializeField][Range(1, 5)] private int laneSpeed = 1;
-    
-    private enum LaneType {Lane, SpiralLane, HyperLane}
     [SerializeField] private LaneType laneType = LaneType.Lane;
+    public int GetLaneSpeed() => laneSpeed;
+    private enum LaneType {Lane, SpiralLane, HyperLane}
+    
+    // ==============================
     
     // Connected sectors
     [SerializeField][HideInInspector] public Sector sectorA;
@@ -65,7 +70,7 @@ public class Lane : MonoBehaviour
             return;
         }
         
-        // Update lane position only if nodes have moved
+        // Update lane position only if sectors have moved
         if (sectorA.transform.position != lastPosA || sectorB.transform.position != lastPosB)
         {
             UpdateLane();
@@ -138,5 +143,17 @@ public class Lane : MonoBehaviour
         sectorA = firstSector.GetComponent<Sector>();
         sectorB = secondSector.GetComponent<Sector>();
         UpdateLane();
+    }
+    
+    public Vector3[] GetLanePath()
+    {
+        if (sectorA == null || sectorB == null) return new Vector3[0];
+
+        Vector3 start = sectorA.transform.position;
+        Vector3 end = sectorB.transform.position;
+        Vector3 midPoint = (start + end) / 2;
+        Vector3 control = midPoint + new Vector3(curveWidth, curveHeight, 0);
+
+        return CalculateBezierCurve(start, control, end);
     }
 }

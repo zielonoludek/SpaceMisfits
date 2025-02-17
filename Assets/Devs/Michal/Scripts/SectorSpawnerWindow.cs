@@ -60,7 +60,7 @@ public class SectorSpawnerWindow : EditorWindow
             
             // Set sector name
             string finalName = string.IsNullOrWhiteSpace(sectorName) ? "Unnamed" : sectorName;
-            newSector.name = "Sector " + finalName;
+            newSector.name = $"Sector ({finalName})";
             
             Undo.RegisterCreatedObjectUndo(newSector, "Spawn Sector");
             Selection.activeGameObject = newSector;
@@ -93,7 +93,7 @@ public class SectorSpawnerWindow : EditorWindow
             // Extract sector names and format the lane name
             string sector1Name = selectedSectors[0].name.Replace("Sector (", "").Replace(")", "").Trim();
             string sector2Name = selectedSectors[1].name.Replace("Sector (", "").Replace(")", "").Trim();
-            lane.name = "Lane (" + sector1Name + " - " + sector2Name + ")";
+            lane.name = $"Lane ({sector1Name} - {sector2Name})";
             
             // Initialize the lane script with the selected sectors
             Lane laneScript = lane.GetComponent<Lane>();
