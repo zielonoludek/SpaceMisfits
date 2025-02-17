@@ -152,3 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d5ce1b3ec282a4d828017cbafe38c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curveResolution: 10
+  curveHeight: 0
+  curveWidth: 0
+  laneSpeed: 1
+  laneType: 0
+  sectorA: {fileID: 0}
+  sectorB: {fileID: 0}
