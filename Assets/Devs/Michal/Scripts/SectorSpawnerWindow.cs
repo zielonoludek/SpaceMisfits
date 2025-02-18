@@ -7,8 +7,8 @@ public class SectorSpawnerWindow : EditorWindow
 {
     private GameObject sectorPrefab;
     private GameObject lanePrefab;
-    private string sectorName = "";
-
+    private SectorEventSO sectorEvent;
+    
     [MenuItem("Tools/Sector Spawner")]
     public static void ShowWindow()
     {
@@ -22,8 +22,8 @@ public class SectorSpawnerWindow : EditorWindow
         // Field to assign Sector prefab
         sectorPrefab = (GameObject)EditorGUILayout.ObjectField("Sector Prefab", sectorPrefab, typeof(GameObject), false);
         
-        // Input field for naming sectors
-        sectorName = EditorGUILayout.TextField("Sector Name", sectorName);
+        // Field to assign Sector event
+        sectorEvent = EditorGUILayout.ObjectField("Select Sector Event", sectorEvent, typeof(SectorEventSO), false) as SectorEventSO; 
         
         // Button to spawn sector
         if (GUILayout.Button("Spawn Sector") && sectorPrefab != null)
@@ -57,16 +57,15 @@ public class SectorSpawnerWindow : EditorWindow
         {
             newSector.transform.position = Vector3.zero;
             newSector.transform.SetParent(sectorsParent);
-            
-            // Set sector name
-            string finalName = string.IsNullOrWhiteSpace(sectorName) ? "Unnamed" : sectorName;
-            newSector.name = $"Sector ({finalName})";
+
+            Sector sectorScript = newSector.GetComponent<Sector>();
+            if (sectorScript != null)
+            {
+                sectorScript.SetSectorEvent(sectorEvent);
+            }
             
             Undo.RegisterCreatedObjectUndo(newSector, "Spawn Sector");
             Selection.activeGameObject = newSector;
-
-            // Clear input field for next spawn
-            sectorName = "";
         }
     }
 

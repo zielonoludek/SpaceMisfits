@@ -42,4 +42,12 @@ public class Sector : MonoBehaviour
     {
         return neighbors.Contains(sector);
     }
+
+    public void SetSectorEvent(SectorEventSO newEvent)
+    {
+        sectorEvent = newEvent;
+        
+        string finalName = newEvent != null ? newEvent.eventTitle : "Unnamed Event";
+        gameObject.name = $"Sector ({finalName})";
+    }
 }
