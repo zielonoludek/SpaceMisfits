@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 5643176279949095266}
   - component: {fileID: 6242438850052290503}
   - component: {fileID: 2836110503772724050}
+  - component: {fileID: 1176499082054525678}
+  - component: {fileID: 997204994073023449}
+  - component: {fileID: 1276556340548977776}
+  - component: {fileID: 6132163913427565303}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -60,55 +64,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f25f516a36388b4fb1c50d65c6fc457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: b45bb700-2c31-4e06-855c-bb708b27ed4f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 27b6561c-b977-4d0b-b424-b4ae94c0b480
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    - m_Name: 
-      m_Id: f08a6e0c-5b15-4c3d-9d93-d18fa43698b0
-      m_Path: <Mouse>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 59cd9ca3-c389-4087-8685-8edc3ef95e56
-    m_Processors: 
-    m_Interactions: Press
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: c09d4b70-94cc-42b4-803e-2d1b23e48c40
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 6d9f49bc-af53-4881-80ba-805243aa7b30
-      m_Path: <Mouse>/press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
   pinchZoomSpeed: 0.01
+--- !u!114 &1176499082054525678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439418321fd26ad4aa27d0fac542ea04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hullText: {fileID: 0}
+  sailsText: {fileID: 0}
+  cannonText: {fileID: 0}
+--- !u!114 &997204994073023449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817cc741110b19e499879f3f72ab19a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1276556340548977776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6132163913427565303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b790ea23c1cac824db3c1d1b00e8210f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootyText: {fileID: 0}
+  notorietyText: {fileID: 0}

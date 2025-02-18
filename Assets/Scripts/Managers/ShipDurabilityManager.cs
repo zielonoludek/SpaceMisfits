@@ -76,22 +76,22 @@ public class ShipDurabilityManager : MonoBehaviour
 
     public void DamageSails()
     {
-        DamagePart("Sails", 10);
+        DamagePart("Sails", 20);
     }
 
     public void RepairSails()
     {
-        RepairPart("Sails", 10);
+        RepairPart("Sails", 20);
     }
 
     public void DamageCannon()
     {
-        DamagePart("Cannon", 10);
+        DamagePart("Cannon", 30);
     }
 
     public void RepairCannon()
     {
-        RepairPart("Cannon", 10);
+        RepairPart("Cannon", 30);
     }
 
     //Use the below in other scripts to apply damage or repair to ship parts
