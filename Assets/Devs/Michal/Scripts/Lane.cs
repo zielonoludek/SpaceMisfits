@@ -17,7 +17,6 @@ public class Lane : MonoBehaviour
     [Tooltip("Controls horizontal curvature intensity")]
     [SerializeField] private float curveWidth = 0f;
     
-    // ==============================
     
     // =============== LANE SETTINGS ===============
     [Header("Lane settings")]
@@ -27,7 +26,6 @@ public class Lane : MonoBehaviour
     public int GetLaneSpeed() => laneSpeed;
     private enum LaneType {Lane, SpiralLane, HyperLane}
     
-    // ==============================
     
     // Connected sectors
     [SerializeField][HideInInspector] public Sector sectorA;

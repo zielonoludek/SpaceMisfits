@@ -10,6 +10,8 @@ public class SectorManager : MonoBehaviour
     private static Sector playerCurrentSector;
     private static SectorManager Instance;
 
+    private static bool bIsPlayerMoving = false;
+
     private void Awake()
     {
         Instance = this;
@@ -18,6 +20,11 @@ public class SectorManager : MonoBehaviour
     private void Start()
     {
         SpawnPlayerAtStartingSector();
+    }
+
+    private void Update()
+    {
+        Debug.Log(bIsPlayerMoving);
     }
 
     private void SpawnPlayerAtStartingSector()
@@ -65,6 +72,7 @@ public class SectorManager : MonoBehaviour
         int index = 0;
         while (index < path.Length - 1)
         {
+            bIsPlayerMoving = true;
             Vector3 start = path[index];
             Vector3 end = path[index + 1];
 
@@ -85,6 +93,7 @@ public class SectorManager : MonoBehaviour
 
         playerInstance.transform.position = targetSector.transform.position;
         playerCurrentSector = targetSector;
+        bIsPlayerMoving = false;
     }
 
     private static Lane FindLaneBetween(Sector sectorA, Sector sectorB)
@@ -104,5 +113,10 @@ public class SectorManager : MonoBehaviour
     public static Sector GetPlayerCurrentSector()
     {
         return playerCurrentSector;
+    }
+
+    public static bool IsPlayerMoving()
+    {
+        return bIsPlayerMoving;
     }
 }

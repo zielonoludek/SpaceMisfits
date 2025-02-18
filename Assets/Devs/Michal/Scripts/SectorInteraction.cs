@@ -36,6 +36,6 @@ public class SectorInteraction : MonoBehaviour
     private bool CanBeInteracted()
     {
         if (SectorManager.GetPlayerCurrentSector() == null) return false;
-        return SectorManager.GetPlayerCurrentSector().IsNeighbor(sector);
+        return SectorManager.GetPlayerCurrentSector().IsNeighbor(sector) && !SectorManager.IsPlayerMoving();
     }
 }
