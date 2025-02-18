@@ -22,11 +22,6 @@ public class SectorManager : MonoBehaviour
         SpawnPlayerAtStartingSector();
     }
 
-    private void Update()
-    {
-        Debug.Log(bIsPlayerMoving);
-    }
-
     private void SpawnPlayerAtStartingSector()
     {
         Sector startingSector = Sector.GetCurentStartingSector;
@@ -53,7 +48,7 @@ public class SectorManager : MonoBehaviour
         if(lane == null) return;
 
         Vector3[] path = lane.GetLanePath();
-        float speed = lane.GetLaneSpeed();
+        float speed = lane.GetLaneLength();
         
         // reverse the path if moving from sectorB to sectorA
         if (lane.sectorB == playerCurrentSector && lane.sectorA == newSector)
@@ -94,6 +89,7 @@ public class SectorManager : MonoBehaviour
         playerInstance.transform.position = targetSector.transform.position;
         playerCurrentSector = targetSector;
         bIsPlayerMoving = false;
+        TriggerSectorEvent(targetSector);
     }
 
     private static Lane FindLaneBetween(Sector sectorA, Sector sectorB)
@@ -108,6 +104,15 @@ public class SectorManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void TriggerSectorEvent(Sector sector)
+    {
+        SectorEventSO eventSO = sector.GetSectorEvent();
+        if (eventSO != null)
+        {
+            Debug.Log($"Event triggered:  {eventSO.eventTitle}");
+        }
     }
 
     public static Sector GetPlayerCurrentSector()

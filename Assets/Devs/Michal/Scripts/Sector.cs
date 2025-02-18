@@ -6,10 +6,12 @@ using UnityEngine;
 public class Sector : MonoBehaviour
 {
     [SerializeField] private bool isStartingSector;
-    private static Sector currentStartingSector;
-
-    public static Sector GetCurentStartingSector => currentStartingSector;
+    [SerializeField] private SectorEventSO sectorEvent;
     
+    public static Sector GetCurentStartingSector => currentStartingSector;
+    public SectorEventSO GetSectorEvent() => sectorEvent;
+    
+    private static Sector currentStartingSector;
     private HashSet<Sector> neighbors = new HashSet<Sector>();
 
 #if UNITY_EDITOR
