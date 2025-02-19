@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     [Header("MANAGERS")]
 
     [SerializeField] CameraManager cameraManager;
-    [SerializeField] InputManager inputManager ;
+    [SerializeField] InputManager inputManager;
+    [SerializeField] ResourceManager resourceManager;
 
     //========SCRIPTABLES======//
     [Space]
