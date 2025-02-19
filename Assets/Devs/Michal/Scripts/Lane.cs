@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class Lane : MonoBehaviour
@@ -33,6 +32,9 @@ public class Lane : MonoBehaviour
     [SerializeField][HideInInspector] public Sector sectorA;
     [SerializeField][HideInInspector] public Sector sectorB;
 
+    public Sector GetSectorA() => sectorA;
+    public Sector GetSectorB() => sectorB;
+
     private LineRenderer lineRenderer;
     
     // Previous position of connected sectors
@@ -47,6 +49,7 @@ public class Lane : MonoBehaviour
         {
             UpdateLane();
             RegisterNeighbors();
+            UpdateLaneName();
         }
     }
 #endif
@@ -59,6 +62,7 @@ public class Lane : MonoBehaviour
     private void Start()
     {
         RegisterNeighbors();
+        UpdateLaneName();
     }
 
     private void Update()
@@ -111,8 +115,8 @@ public class Lane : MonoBehaviour
     {
         if (sectorA != null && sectorB != null)
         {
-            sectorA.AddNeighbor(sectorB);
-            sectorB.AddNeighbor(sectorA);
+            sectorA.AddNeighbor(sectorB, this);
+            sectorB.AddNeighbor(sectorA, this);
         }
     }
 
@@ -138,11 +142,28 @@ public class Lane : MonoBehaviour
         }
     }
 
+    // Updates the lane name to match the connected sectors events
+    private void UpdateLaneName()
+    {
+        if (sectorA == null || sectorB == null) return;
+
+        string sectorAName = sectorA.GetSectorEvent() != null ? sectorA.GetSectorEvent().eventTitle : "Unnamed";
+        string sectorBName = sectorB.GetSectorEvent() != null ? sectorB.GetSectorEvent().eventTitle : "Unnamed";
+
+        gameObject.name = $"Lane ({sectorAName} - {sectorBName})";
+    }
+
     public void Initialize(Transform firstSector, Transform secondSector)
     {
         sectorA = firstSector.GetComponent<Sector>();
         sectorB = secondSector.GetComponent<Sector>();
         UpdateLane();
+        UpdateLaneName();
+    }
+
+    public void NotifySectorEventChanged()
+    {
+        UpdateLaneName();
     }
     
     public Vector3[] GetLanePath()

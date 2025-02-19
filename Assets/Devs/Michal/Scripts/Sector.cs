@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Sector : MonoBehaviour
 {
+    [Tooltip("Determines if this sector is the one where player starts the game")]
     [SerializeField] private bool isStartingSector;
     [SerializeField] private SectorEventSO sectorEvent;
     
@@ -13,10 +14,15 @@ public class Sector : MonoBehaviour
     
     private static Sector currentStartingSector;
     private HashSet<Sector> neighbors = new HashSet<Sector>();
+    private Dictionary<Sector, Lane> connectedLanes = new Dictionary<Sector, Lane>();
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
+        // Ensures sector event and name are updated when changed in editor
+        SetSectorEvent(sectorEvent);
+        
+        // Ensures only one sector is the starting sector
         if (isStartingSector)
         {
             if (currentStartingSector != null && currentStartingSector != this)
@@ -30,11 +36,12 @@ public class Sector : MonoBehaviour
     }
 #endif
     
-    public void AddNeighbor(Sector sector)
+    public void AddNeighbor(Sector sector, Lane lane)
     {
-        if (sector != null && !neighbors.Contains(sector))
+        if (sector != null && lane != null && !connectedLanes.ContainsKey(sector))
         {
             neighbors.Add(sector);
+            connectedLanes[sector] = lane;
         }
     }
 
@@ -49,5 +56,15 @@ public class Sector : MonoBehaviour
         
         string finalName = newEvent != null ? newEvent.eventTitle : "Unnamed Event";
         gameObject.name = $"Sector ({finalName})";
+        
+        NotifyLane();
+    }
+
+    private void NotifyLane()
+    {
+        foreach (var lane in connectedLanes.Values)
+        {
+            lane.NotifySectorEventChanged();
+        }
     }
 }

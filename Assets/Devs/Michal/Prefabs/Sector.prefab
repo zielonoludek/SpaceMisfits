@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6028753984423885856}
   - component: {fileID: 3985643439013041368}
   m_Layer: 0
-  m_Name: Sector
+  m_Name: Sector (Unnamed Event)
   m_TagString: Sector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStartingSector: 0
+  sectorEvent: {fileID: 0}
 --- !u!114 &3985643439013041368
 MonoBehaviour:
   m_ObjectHideFlags: 0

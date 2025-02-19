@@ -78,6 +78,15 @@ public class SectorSpawnerWindow : EditorWindow
             Debug.LogWarning("Please select exactly two sectors!");
             return;
         }
+
+        Sector sectorA = selectedSectors[0].GetComponent<Sector>();
+        Sector sectorB = selectedSectors[1].GetComponent<Sector>();
+
+        if (LaneExists(sectorA, sectorB))
+        {
+            Debug.LogWarning($"A lane already exists between {sectorA.name} and {sectorB.name}");
+            return;
+        }
         
         // Endure map and lanes parent game object exist
         Transform mapParent = GetOrCreateParent("Map");
@@ -120,5 +129,21 @@ public class SectorSpawnerWindow : EditorWindow
         }
 
         return parentObj.transform;
+    }
+
+    // Function checking of lane between two selected sectors already exists or not
+    private bool LaneExists(Sector sectorA, Sector sectorB)
+    {
+        Lane[] lanes = FindObjectsByType<Lane>(FindObjectsSortMode.None);
+        foreach (Lane lane in lanes)
+        {
+            if ((lane.GetSectorA() == sectorA && lane.GetSectorB() == sectorB) ||
+                (lane.GetSectorA() == sectorB && lane.GetSectorB() == sectorA))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
