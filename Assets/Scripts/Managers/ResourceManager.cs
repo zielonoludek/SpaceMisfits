@@ -7,9 +7,24 @@ public class ResourceManager : MonoBehaviour
 
     private int booty;
     private int notoriety;
+    private int sightLevel = 1;
 
     public event Action<int> OnBootyChanged;
     public event Action<int> OnNotorietyChanged;
+    public event Action<int> OnSightChanged;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public int Booty
     {
@@ -40,16 +55,31 @@ public class ResourceManager : MonoBehaviour
     //ResourceManager.Instance.Booty += 100; (trigger booty event in other scripts)
     //ResourceManager.Instance.Notoriety -= 5;
 
-    private void Awake()
+    public int Sight
     {
-        if (Instance == null)
+        get => sightLevel;
+        set
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            sightLevel = Mathf.Clamp(value, 1, 3);
+            OnSightChanged?.Invoke(sightLevel);
         }
     }
+
+    public void IncreaseSight(int amount = 1)
+    {
+        Sight += amount;
+    }
+
+    public void DecreaseSight(int amount = 1)
+    {
+        Sight -= amount;
+    }
+
+    public int GetCurrentSight()
+    {
+        return Sight;
+    }
+
+    //ResourceManager.Instance.IncreaseSight(); //This line adds sight level in other scripts
+    //ResourceManager.Instance.DecreaseSight(); //This line removes sight level in other scripts
 }
