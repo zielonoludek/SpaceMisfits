@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Kama.unity
     guid: 4f081ee388f0727449c059de4b4b9c62
   - enabled: 1
-    path: Assets/Scenes/Kama1.unity
+    path: Assets/Scenes/Kama.unity
     guid: bf3d7a078a634ee48a9377d519900c2a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
