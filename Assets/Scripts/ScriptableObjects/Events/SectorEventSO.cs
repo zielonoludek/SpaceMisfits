@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SectorEventSO", menuName = "Scriptable Objects/SectorEventSO")]
+[CreateAssetMenu(fileName = "SectorEventSO", menuName = "Events/New Event")]
 public class SectorEventSO : ScriptableObject
 {
     public enum EventType { Story, Battle, Treasure, Spaceport}
