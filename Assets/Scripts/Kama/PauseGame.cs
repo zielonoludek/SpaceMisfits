@@ -24,7 +24,8 @@ public class PauseGame : MonoBehaviour
     }
     public void MainMenu()
     {
-        SceneManager.LoadSceneAsync(0);
+        //SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadScene("MainMenu");
     }    
 
     public void QuitGame()

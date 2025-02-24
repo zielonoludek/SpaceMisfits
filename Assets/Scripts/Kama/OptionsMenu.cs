@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Globalization;
 
 public class OptionsMenu : MonoBehaviour
 {
+
     public GameObject mainMenu;
     public GameObject pauseMenu;
+
     public GameObject OptionCanvas;
 
     public bool openPauseGame = false;
@@ -49,7 +53,10 @@ public class OptionsMenu : MonoBehaviour
     public void OpenFromMainMenu()
     {
         OptionCanvas.SetActive(true);
-        mainMenu.SetActive(false);
+        if (mainMenu != null)
+        {
+            mainMenu.SetActive(false);
+        }
         openPauseGame = false;
 
     }
@@ -57,7 +64,7 @@ public class OptionsMenu : MonoBehaviour
     public void OpenFromPauseMenu()
     {
         OptionCanvas.SetActive(true);
-        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         openPauseGame = true;
 
     }
