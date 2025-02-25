@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Funland
   m_EditorClassIdentifier: 
-  eventType: 0
   eventTitle: Funland
+  eventType: 0
   eventDescription: 
+  eventEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
+  hasChoices: 0
+  choice1Description: 
+  choice1Effect: {fileID: 0}
+  choice2Description: 
+  choice2Effect: {fileID: 0}

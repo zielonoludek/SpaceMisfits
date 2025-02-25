@@ -54,7 +54,7 @@ public class Sector : MonoBehaviour
     {
         sectorEvent = newEvent;
         
-        string finalName = newEvent != null ? newEvent.GetEventTitle() : "Unnamed Event";
+        string finalName = newEvent != null ? newEvent.eventTitle : "Unnamed Event";
         gameObject.name = $"Sector ({finalName})";
         
         NotifyLane();

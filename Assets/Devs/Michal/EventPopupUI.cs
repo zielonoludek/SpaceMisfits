@@ -27,12 +27,21 @@ public class EventPopupUI : MonoBehaviour
     public void ShowEvent(SectorEventSO sectorEvent)
     {
         currentEvent = sectorEvent;
+        Time.timeScale = 0;
         
         eventPanel.SetActive(true);
-        eventTitleText.text = sectorEvent.GetEventTitle();
+        eventTitleText.text = sectorEvent.eventTitle;
         eventTypeText.text = $"{sectorEvent.eventType}";
-        eventDescriptionText.text = sectorEvent.GetEventDescription();
-        eventEffectText.text = sectorEvent.GetEventEffect() != null ? sectorEvent.GetEventEffect().effectName : "No Effect";
+        eventDescriptionText.text = sectorEvent.eventDescription;
+
+        if (sectorEvent.eventEffect != null)
+        {
+            eventEffectText.text = $"{sectorEvent.eventEffect.description} {sectorEvent.eventEffect.amount}";
+        }
+        else
+        {
+            eventEffectText.text = "No effect";
+        }
 
         if (sectorEvent.GetChoice1() != null && sectorEvent.GetChoice2() != null)
         {
@@ -58,6 +67,7 @@ public class EventPopupUI : MonoBehaviour
     private void CloseEvent()
     {
         eventPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     private void SelectChoice(int choice)
