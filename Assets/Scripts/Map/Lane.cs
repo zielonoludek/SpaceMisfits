@@ -147,8 +147,8 @@ public class Lane : MonoBehaviour
     {
         if (sectorA == null || sectorB == null) return;
 
-        string sectorAName = sectorA.GetSectorEvent() != null ? sectorA.GetSectorEvent().eventTitle : "Unnamed";
-        string sectorBName = sectorB.GetSectorEvent() != null ? sectorB.GetSectorEvent().eventTitle : "Unnamed";
+        string sectorAName = sectorA.GetSectorEvent() != null ? sectorA.GetSectorEvent().GetEventTitle() : "Unnamed";
+        string sectorBName = sectorB.GetSectorEvent() != null ? sectorB.GetSectorEvent().GetEventTitle() : "Unnamed";
 
         gameObject.name = $"Lane ({sectorAName} - {sectorBName})";
     }

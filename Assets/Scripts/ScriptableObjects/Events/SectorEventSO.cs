@@ -4,12 +4,12 @@ using UnityEngine;
 public class SectorEventSO : ScriptableObject
 {
     [Header("Event properties")]
-    public string eventTitle;
+    [SerializeField] private string eventTitle;
     
     public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks}
     public EventType eventType;
     
-    [TextArea(3, 7)] public string eventDescription;
+    [TextArea(3, 7)][SerializeField] private string eventDescription;
 
     [SerializeField] private Effect eventEffect;
 
@@ -22,6 +22,9 @@ public class SectorEventSO : ScriptableObject
     [SerializeField] private string choice2Description;
     [SerializeField] private Effect choice2Effect;
 
+    public string GetEventTitle() => eventTitle;
+    public string GetEventDescription() => eventDescription;
+    public Effect GetEventEffect() => eventEffect;
     public string GetChoice1() => hasChoices ? choice1Description : null;
     public string GetChoice2() => hasChoices ? choice2Description : null;
 }
