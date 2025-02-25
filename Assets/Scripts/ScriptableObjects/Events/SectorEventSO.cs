@@ -14,7 +14,7 @@ public class SectorEventSO : ScriptableObject
     public Effect eventEffect;
 
     [Header("Choice-Based event settings")]
-    private bool hasChoices;
+    public bool hasChoices;
 
     public string choice1Description;
     public Effect choice1Effect;

@@ -17,7 +17,7 @@ MonoBehaviour:
   eventDescription: Boom big bum btrsssssss
   eventEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
   hasChoices: 1
-  choice1Description: Run
+  choice1Description: first choice
   choice1Effect: {fileID: 0}
-  choice2Description: Vaporeon
+  choice2Description: second choice
   choice2Effect: {fileID: 0}

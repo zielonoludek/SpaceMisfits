@@ -382,6 +382,8 @@ MonoBehaviour:
   closeButton: {fileID: 1697332688}
   choice1Text: {fileID: 2060816409}
   choice2Text: {fileID: 1265102358}
+  choice1EffectText: {fileID: 1698937972}
+  choice2EffectText: {fileID: 747396489}
 --- !u!1 &376166920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,7 +1092,7 @@ GameObject:
   - component: {fileID: 747396490}
   - component: {fileID: 747396489}
   m_Layer: 5
-  m_Name: ChoiceEffect
+  m_Name: Choice2Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2211,7 +2213,7 @@ GameObject:
   - component: {fileID: 1265102359}
   - component: {fileID: 1265102358}
   m_Layer: 5
-  m_Name: ChoiceDescription
+  m_Name: Choice2Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2757,7 +2759,7 @@ GameObject:
   - component: {fileID: 1698937973}
   - component: {fileID: 1698937972}
   m_Layer: 5
-  m_Name: ChoiceEffect
+  m_Name: Choice1Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3309,7 +3311,7 @@ GameObject:
   - component: {fileID: 2060816410}
   - component: {fileID: 2060816409}
   m_Layer: 5
-  m_Name: ChoiceDescription
+  m_Name: Choice1Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

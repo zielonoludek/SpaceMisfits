@@ -16,6 +16,8 @@ public class EventPopupUI : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private TextMeshProUGUI choice1Text;
     [SerializeField] private TextMeshProUGUI choice2Text;
+    [SerializeField] private TextMeshProUGUI choice1EffectText;
+    [SerializeField] private TextMeshProUGUI choice2EffectText;
 
     private SectorEventSO currentEvent;
 
@@ -40,7 +42,7 @@ public class EventPopupUI : MonoBehaviour
         }
         else
         {
-            eventEffectText.text = "No effect";
+            eventEffectText.text = "";
         }
 
         if (sectorEvent.GetChoice1() != null && sectorEvent.GetChoice2() != null)
@@ -48,8 +50,27 @@ public class EventPopupUI : MonoBehaviour
             choice1Button.gameObject.SetActive(true);
             choice2Button.gameObject.SetActive(true);
             closeButton.gameObject.SetActive(false);
+            
             choice1Text.text = sectorEvent.GetChoice1();
             choice2Text.text = sectorEvent.GetChoice2();
+
+            if (sectorEvent.choice1Effect != null)
+            {
+                choice1EffectText.text = $"{sectorEvent.choice1Effect.description} {sectorEvent.choice1Effect.amount}";    
+            }
+            else
+            {
+                choice1EffectText.text = "";
+            }
+
+            if (sectorEvent.choice2Effect != null)
+            {
+                choice2EffectText.text = $"{sectorEvent.choice2Effect.description} {sectorEvent.choice2Effect.amount}";   
+            }
+            else
+            {
+                choice2EffectText.text = "";
+            }
             
             choice1Button.onClick.AddListener(() => SelectChoice(1));
             choice2Button.onClick.AddListener(() => SelectChoice(2));
