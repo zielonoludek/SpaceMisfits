@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Supernova
   m_EditorClassIdentifier: 
   eventTitle: Supernova
-  eventType: 0
+  eventType: 1
   eventDescription: Boom big bum btrsssssss
   eventEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
   hasChoices: 1

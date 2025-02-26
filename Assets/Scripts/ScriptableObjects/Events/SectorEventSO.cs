@@ -4,7 +4,7 @@ using UnityEngine;
 public class SectorEventSO : ScriptableObject
 {
     [Header("Event properties")]
-    [SerializeField] public string eventTitle;
+    public string eventTitle;
     
     public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks}
     public EventType eventType;

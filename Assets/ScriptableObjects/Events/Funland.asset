@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Funland
   m_EditorClassIdentifier: 
   eventTitle: Funland
-  eventType: 0
+  eventType: 2
   eventDescription: 
   eventEffect: {fileID: 0}
   hasChoices: 1

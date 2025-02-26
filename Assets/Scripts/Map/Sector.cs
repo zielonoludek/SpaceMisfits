@@ -16,6 +16,23 @@ public class Sector : MonoBehaviour
     private HashSet<Sector> neighbors = new HashSet<Sector>();
     private Dictionary<Sector, Lane> connectedLanes = new Dictionary<Sector, Lane>();
 
+    private MeshRenderer meshRenderer;
+
+    private static readonly Dictionary<SectorEventSO.EventType, Color> eventColors =
+        new Dictionary<SectorEventSO.EventType, Color>
+        {
+            { SectorEventSO.EventType.FaintSignal, Color.white },
+            { SectorEventSO.EventType.Waypoint, Color.green },
+            { SectorEventSO.EventType.DevilsMaw, Color.blue },
+            { SectorEventSO.EventType.SharpenThoseDirks, Color.red }
+        };
+
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        UpdateSectorColor();
+    }
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -57,7 +74,22 @@ public class Sector : MonoBehaviour
         string finalName = newEvent != null ? newEvent.eventTitle : "Unnamed Event";
         gameObject.name = $"Sector ({finalName})";
         
+        UpdateSectorColor();
         NotifyLane();
+    }
+
+    private void UpdateSectorColor()
+    {
+        if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
+
+        if (sectorEvent != null && eventColors.ContainsKey(sectorEvent.eventType))
+        {
+            meshRenderer.sharedMaterial.color = eventColors[sectorEvent.eventType];
+        }
+        else
+        {
+            meshRenderer.sharedMaterial.color = Color.white;
+        }
     }
 
     private void NotifyLane()
