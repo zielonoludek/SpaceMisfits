@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Funland
+  m_Name: FightEvent
   m_EditorClassIdentifier: 
-  eventTitle: Funland
-  eventType: 1
-  eventDescription: 
+  eventTitle: Evil pirates
+  eventType: 3
+  eventDescription: Evil pirates are attacking you
   eventEffect: {fileID: 0}
   hasChoices: 1
-  choice1Description: first choice
-  choice1Effect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
-  choice2Description: second choice
-  choice2Effect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
+  choice1Description: Sure
+  choice1Effect: {fileID: 0}
+  choice2Description: Why
+  choice2Effect: {fileID: 0}

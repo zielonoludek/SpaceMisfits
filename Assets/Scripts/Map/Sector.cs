@@ -24,7 +24,8 @@ public class Sector : MonoBehaviour
             { SectorEventSO.EventType.FaintSignal, Color.white },
             { SectorEventSO.EventType.Waypoint, Color.green },
             { SectorEventSO.EventType.DevilsMaw, Color.blue },
-            { SectorEventSO.EventType.SharpenThoseDirks, Color.red }
+            { SectorEventSO.EventType.SharpenThoseDirks, Color.red },
+            { SectorEventSO.EventType.Spaceport, Color.yellow }
         };
 
     private void Awake()
@@ -82,13 +83,29 @@ public class Sector : MonoBehaviour
     {
         if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
 
+        // Only modify instances in the scene
+        if (!Application.isPlaying && PrefabUtility.IsPartOfPrefabAsset(gameObject))
+        {
+            return;
+        }
+        
+        // Ensure the sector has a material assigned
+        if (meshRenderer.sharedMaterial == null)
+        {
+            meshRenderer.sharedMaterial = new Material(Shader.Find("Sprites/Default")); // Assigns a default material
+        }
+        
+        // Use sharedMaterial in edit mode and material in play mode
+        Material targetMaterial = Application.isPlaying ? meshRenderer.material : meshRenderer.sharedMaterial;
+
+        // If the sector has an event, use its corresponding color
         if (sectorEvent != null && eventColors.ContainsKey(sectorEvent.eventType))
         {
-            meshRenderer.sharedMaterial.color = eventColors[sectorEvent.eventType];
+            targetMaterial.color = eventColors[sectorEvent.eventType];
         }
         else
         {
-            meshRenderer.sharedMaterial.color = Color.white;
+            targetMaterial.color = Color.gray;
         }
     }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spaceport
   m_EditorClassIdentifier: 
   eventTitle: Spaceport
-  eventType: 3
+  eventType: 4
   eventDescription: Port space  hehehehheheheehehehheheehhehheheeheeheeh
   eventEffect: {fileID: 0}
   hasChoices: 0
