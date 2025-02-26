@@ -6,6 +6,7 @@ using UnityEngine;
 public class SectorManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private EventPopupUI eventPopupUI;
     private static GameObject playerInstance;
     private static Sector playerCurrentSector;
     private static SectorManager Instance;
@@ -111,7 +112,15 @@ public class SectorManager : MonoBehaviour
         SectorEventSO eventSO = sector.GetSectorEvent();
         if (eventSO != null)
         {
-            Debug.Log($"Event triggered:  {eventSO.eventTitle}");
+            if (eventPopupUI != null)
+            {
+                eventPopupUI.ShowEvent(eventSO);
+            }
+            else
+            {
+                Debug.LogError("EventUI not found in the scene!");
+            }
+            // Debug.Log($"Event triggered:  {eventSO.GetEventTitle()}");
         }
     }
 

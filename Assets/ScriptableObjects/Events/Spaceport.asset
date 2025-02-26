@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Spaceport
   m_EditorClassIdentifier: 
-  eventType: 3
   eventTitle: Spaceport
-  eventDescription: 
+  eventType: 3
+  eventDescription: Port space  hehehehheheheehehehheheehhehheheeheeheeh
+  eventEffect: {fileID: 0}
+  hasChoices: 0
+  choice1Description: 
+  choice1Effect: {fileID: 0}
+  choice2Description: 
+  choice2Effect: {fileID: 0}
