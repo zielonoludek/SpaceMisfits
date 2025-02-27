@@ -23,12 +23,22 @@ public class SectorManager : MonoBehaviour
     {
         Instance = this;
 
-        ResourceManager.Instance.OnSightChanged += UpdateVisibility;
+        StartCoroutine(WaitForResourceManager());
     }
 
     private void Start()
     {
         SpawnPlayerAtStartingSector();
+    }
+
+    private IEnumerator WaitForResourceManager()
+    {
+        while (ResourceManager.Instance == null)
+        {
+            yield return null;
+        }
+        
+        ResourceManager.Instance.OnSightChanged += UpdateVisibility;
     }
 
     private void SpawnPlayerAtStartingSector()
