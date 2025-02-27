@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=823446c0ee1a1374bb326ce1a6a6dd1e&amp;type=3#MainMenuStyle" />
+    <engine:VisualElement name="MainMenu" style="flex-grow: 1;">
+        <engine:Label text="Main Menu" name="Txt_Header" class="header" style="font-size: 200px; -unity-text-align: middle-center; margin-bottom: 200px; justify-content: space-evenly; align-items: stretch; margin-top: 100px;" />
+        <engine:Button text="Start" name="Start" class="button" style="font-size: 70px; width: 600px; height: 100px; align-self: center; -unity-slice-bottom: 0; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-bottom: 2px;" />
+        <engine:Button text="Settings" name="Settings" class="button" style="font-size: 70px; width: 600px; height: 100px; align-self: center; -unity-slice-bottom: 0; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-bottom: 2px;" />
+        <engine:Button text="Quit" name="Quit" class="button" style="font-size: 70px; width: 600px; height: 100px; align-self: center; -unity-slice-bottom: 0; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; margin-bottom: 2px; padding-bottom: 10px;" />
+    </engine:VisualElement>
+</engine:UXML>

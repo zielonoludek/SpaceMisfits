@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1276556340548977776}
   - component: {fileID: 6132163913427565303}
   - component: {fileID: 3168365315532612282}
+  - component: {fileID: 3444544792681972511}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -52,6 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   inputManager: {fileID: 2836110503772724050}
+  resourceManager: {fileID: 0}
+  uiManager: {fileID: 0}
+  timeManager: {fileID: 3444544792681972511}
   Empty: {fileID: 0}
 --- !u!114 &2836110503772724050
 MonoBehaviour:
@@ -134,3 +138,19 @@ MonoBehaviour:
   sightText: {fileID: 0}
   increaseButton: {fileID: 0}
   decreaseButton: {fileID: 0}
+--- !u!114 &3444544792681972511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7e282d7cc98214089bb9a9aaf290e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneDayInSeconds: 600
+  day: 1
+  month: 7
+  year: 2793

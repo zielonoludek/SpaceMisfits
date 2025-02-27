@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] CameraManager cameraManager;
     [SerializeField] InputManager inputManager;
     [SerializeField] ResourceManager resourceManager;
+    [SerializeField] UIManager uiManager;
+    [SerializeField] TimeManager timeManager;
 
     //========SCRIPTABLES======//
     [Space]
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     //=========GETTERS=========//
     public CameraManager CameraManager { get { return cameraManager; } }
+    public ResourceManager ResourceManager { get { return resourceManager; } }
+    public UIManager UIManager { get { return uiManager; } }
+    public TimeManager TimeManager { get { return timeManager; } }
 
 
     private void Awake()
