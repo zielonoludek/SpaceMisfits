@@ -32,6 +32,7 @@ public class Sector : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         UpdateSectorColor();
+        SetVisibility(false);
     }
 
 #if UNITY_EDITOR
@@ -68,6 +69,11 @@ public class Sector : MonoBehaviour
         return neighbors.Contains(sector);
     }
 
+    public HashSet<Sector> GetNeighbors()
+    {
+        return neighbors;
+    }
+
     public void SetSectorEvent(SectorEventSO newEvent)
     {
         sectorEvent = newEvent;
@@ -77,6 +83,15 @@ public class Sector : MonoBehaviour
         
         UpdateSectorColor();
         NotifyLane();
+    }
+
+    public void SetVisibility(bool isVisible)
+    {
+        gameObject.SetActive(isVisible);
+        foreach (Lane lane in connectedLanes.Values)
+        {
+            lane.SetVisibility(isVisible);
+        }
     }
 
     private void UpdateSectorColor()

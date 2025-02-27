@@ -57,6 +57,7 @@ public class Lane : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        SetVisibility(false);
     }
 
     private void Start()
@@ -176,5 +177,13 @@ public class Lane : MonoBehaviour
         Vector3 control = midPoint + new Vector3(curveWidth, curveHeight, 0);
 
         return CalculateBezierCurve(start, control, end);
+    }
+
+    public void SetVisibility(bool isVisible)
+    {
+        if (Application.isPlaying)
+        {
+            gameObject.SetActive(isVisible);
+        }
     }
 }
