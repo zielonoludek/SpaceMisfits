@@ -7,7 +7,7 @@ public class ResourceManager : MonoBehaviour
 
     private int booty;
     private int notoriety;
-    private int sightLevel = 1;
+    private int sightLevel;
 
     public event Action<int> OnBootyChanged;
     public event Action<int> OnNotorietyChanged;
@@ -60,7 +60,7 @@ public class ResourceManager : MonoBehaviour
         get => sightLevel;
         set
         {
-            sightLevel = Mathf.Clamp(value, 1, 3);
+            sightLevel = Mathf.Clamp(value, 0, 3);
             OnSightChanged?.Invoke(sightLevel);
         }
     }
