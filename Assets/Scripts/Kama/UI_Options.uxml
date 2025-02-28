@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/UI_Options.uss?fileID=7433441132597879392&amp;guid=01ba3c4f470b6054a9ee340bd504af2b&amp;type=3#UI_Options" />
+    <engine:VisualElement name="optionsMenu" style="flex-grow: 1;">
+        <engine:Label text="OPTIONS" class="header" style="font-size: 200px; -unity-text-align: upper-center; padding-bottom: 100px; padding-top: 100px;" />
+        <engine:Slider label="Audio" value="42" high-value="100" name="VolumeSlider" style="font-size: 50px; width: 1000px; flex-direction: row; align-items: flex-start; justify-content: space-evenly; align-self: center;" />
+        <engine:Button text="Back" name="BackButton" class="button" style="font-size: 70px; width: 600px; height: 100px; align-content: flex-end; align-self: flex-start; justify-content: flex-start; align-items: flex-start; flex-direction: column; -unity-text-align: middle-center; white-space: nowrap; border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; background-position-x: center 0; bottom: auto; top: auto; left: auto;" />
+    </engine:VisualElement>
+</engine:UXML>
