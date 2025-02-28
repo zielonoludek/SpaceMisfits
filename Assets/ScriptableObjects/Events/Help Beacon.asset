@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: Help Beacon
   eventType: 0
-  eventDescription: 
+  eventDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+    dolore eu fugiat nulla pariatur. '
   eventEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
   hasChoices: 0
   choice1Description: 

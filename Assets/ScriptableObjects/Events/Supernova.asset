@@ -13,11 +13,17 @@ MonoBehaviour:
   m_Name: Supernova
   m_EditorClassIdentifier: 
   eventTitle: Supernova
-  eventType: 0
-  eventDescription: Boom big bum btrsssssss
-  eventEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
-  hasChoices: 1
-  choice1Description: first choice
-  choice1Effect: {fileID: 0}
-  choice2Description: second choice
-  choice2Effect: {fileID: 0}
+  eventType: 2
+  eventDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+    dolore eu fugiat nulla pariatur. '
+  eventEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
+  hasChoices: 0
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: 
+    choiceEffect: {fileID: 0}
+  - choiceDescription: 
+    choiceEffect: {fileID: 0}
