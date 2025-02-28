@@ -16,6 +16,25 @@ public class Sector : MonoBehaviour
     private HashSet<Sector> neighbors = new HashSet<Sector>();
     private Dictionary<Sector, Lane> connectedLanes = new Dictionary<Sector, Lane>();
 
+    private MeshRenderer meshRenderer;
+
+    private static readonly Dictionary<SectorEventSO.EventType, Color> eventColors =
+        new Dictionary<SectorEventSO.EventType, Color>
+        {
+            { SectorEventSO.EventType.FaintSignal, Color.white },
+            { SectorEventSO.EventType.Waypoint, Color.green },
+            { SectorEventSO.EventType.DevilsMaw, Color.blue },
+            { SectorEventSO.EventType.SharpenThoseDirks, Color.red },
+            { SectorEventSO.EventType.Spaceport, Color.yellow }
+        };
+
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        UpdateSectorColor();
+        SetVisibility(false);
+    }
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -50,6 +69,11 @@ public class Sector : MonoBehaviour
         return neighbors.Contains(sector);
     }
 
+    public HashSet<Sector> GetNeighbors()
+    {
+        return neighbors;
+    }
+
     public void SetSectorEvent(SectorEventSO newEvent)
     {
         sectorEvent = newEvent;
@@ -57,7 +81,47 @@ public class Sector : MonoBehaviour
         string finalName = newEvent != null ? newEvent.eventTitle : "Unnamed Event";
         gameObject.name = $"Sector ({finalName})";
         
+        UpdateSectorColor();
         NotifyLane();
+    }
+
+    public void SetVisibility(bool isVisible)
+    {
+        gameObject.SetActive(isVisible);
+        foreach (Lane lane in connectedLanes.Values)
+        {
+            lane.SetVisibility(isVisible);
+        }
+    }
+
+    private void UpdateSectorColor()
+    {
+        if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
+
+        // Only modify instances in the scene
+        if (!Application.isPlaying && PrefabUtility.IsPartOfPrefabAsset(gameObject))
+        {
+            return;
+        }
+        
+        // Ensure the sector has a material assigned
+        if (meshRenderer.sharedMaterial == null)
+        {
+            meshRenderer.sharedMaterial = new Material(Shader.Find("Sprites/Default")); // Assigns a default material
+        }
+        
+        // Use sharedMaterial in edit mode and material in play mode
+        Material targetMaterial = Application.isPlaying ? meshRenderer.material : meshRenderer.sharedMaterial;
+
+        // If the sector has an event, use its corresponding color
+        if (sectorEvent != null && eventColors.ContainsKey(sectorEvent.eventType))
+        {
+            targetMaterial.color = eventColors[sectorEvent.eventType];
+        }
+        else
+        {
+            targetMaterial.color = Color.gray;
+        }
     }
 
     private void NotifyLane()

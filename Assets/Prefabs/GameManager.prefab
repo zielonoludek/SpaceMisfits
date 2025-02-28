@@ -14,6 +14,10 @@ GameObject:
   - component: {fileID: 1176499082054525678}
   - component: {fileID: 997204994073023449}
   - component: {fileID: 1276556340548977776}
+  - component: {fileID: 8060250585802431460}
+  - component: {fileID: 3056247045791597863}
+  - component: {fileID: 7443683311627308542}
+  - component: {fileID: 9206268901018880491}
   - component: {fileID: 6132163913427565303}
   - component: {fileID: 3168365315532612282}
   - component: {fileID: 3444544792681972511}
@@ -109,6 +113,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8060250585802431460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d40606813b8664dbdc9ab371a31b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewList: []
+  activeRequests: []
+--- !u!114 &3056247045791597863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ee8a8e9ff3324489d012f8df8a13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addRequestButton: {fileID: 0}
+  progressRequestButton: {fileID: 0}
+  completeRequestButton: {fileID: 0}
+--- !u!114 &7443683311627308542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e301f488f6216043b7c90b8e707cb97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recruitButton1: {fileID: 0}
+  recruitButton2: {fileID: 0}
+  recruitButton3: {fileID: 0}
+  crewmate1: {fileID: 11400000, guid: 09e680973a9338d409f9e6c9e09ff772, type: 2}
+  crewmate2: {fileID: 11400000, guid: e3481f350a2baf54faf0e6b54dc63491, type: 2}
+  crewmate3: {fileID: 11400000, guid: be98fa10a72169641bbe923c45f498b1, type: 2}
+--- !u!114 &9206268901018880491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfb80c7d05cb047bc1af234fc50a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requestPanelPrefab: {fileID: 0}
+  requestListParent: {fileID: 0}
 --- !u!114 &6132163913427565303
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -12,15 +13,32 @@ public class SectorManager : MonoBehaviour
     private static SectorManager Instance;
 
     private static bool bIsPlayerMoving = false;
+    
+    // Stores all discovered sectors
+    private static HashSet<Sector> visibleSectors = new HashSet<Sector>();
+    // Stores all discovered lanes
+    private static HashSet<Lane> discoveredLanes = new HashSet<Lane>();
 
     private void Awake()
     {
         Instance = this;
+
+        StartCoroutine(WaitForResourceManager());
     }
 
     private void Start()
     {
         SpawnPlayerAtStartingSector();
+    }
+
+    private IEnumerator WaitForResourceManager()
+    {
+        while (ResourceManager.Instance == null)
+        {
+            yield return null;
+        }
+        
+        ResourceManager.Instance.OnSightChanged += UpdateVisibility;
     }
 
     private void SpawnPlayerAtStartingSector()
@@ -38,6 +56,9 @@ public class SectorManager : MonoBehaviour
         
         // Set the player's current sector
         playerCurrentSector = startingSector;
+        
+        // Reveal sectors and lanes neighboring to the starting sector
+        RevealSector(startingSector);
     }
 
     public static void MovePlayerToSector(Sector newSector)
@@ -90,7 +111,52 @@ public class SectorManager : MonoBehaviour
         playerInstance.transform.position = targetSector.transform.position;
         playerCurrentSector = targetSector;
         bIsPlayerMoving = false;
+        
         TriggerSectorEvent(targetSector);
+        RevealSector(targetSector);
+    }
+
+    // Called whenever sight level changes
+    private void UpdateVisibility(int sightLevel)
+    {
+        RevealSector(playerCurrentSector);
+    }
+
+    private static void RevealSector(Sector sector)
+    {
+        if(visibleSectors.Contains(sector)) return;
+        
+        // Mark sector as discovered and add it to the discovered sectors list
+        sector.SetVisibility(true);
+        visibleSectors.Add(sector);
+
+        // Loop through sector's neighbors
+        foreach (Sector neighbor in sector.GetNeighbors())
+        {
+            if (ResourceManager.Instance.GetCurrentSight() >= 1)
+            {
+                neighbor.SetVisibility(true);
+            }
+            
+            // Find the lane between current sector and this neighbor
+            Lane connectingLane = FindLaneBetween(sector, neighbor);
+            if (connectingLane != null)
+            {
+                // Show this lane and add to discovered lanes
+                connectingLane.SetVisibility(true);
+                discoveredLanes.Add(connectingLane);
+            }
+        }
+        
+        // Loop through all lanes in the scene
+        foreach (Lane lane in FindObjectsByType<Lane>(FindObjectsSortMode.None))
+        {
+            // If the lane is not discovered, hide it
+            if (!discoveredLanes.Contains(lane)) // Only hide undiscovered lanes
+            {
+                lane.SetVisibility(false);
+            }
+        }
     }
 
     private static Lane FindLaneBetween(Sector sectorA, Sector sectorB)
