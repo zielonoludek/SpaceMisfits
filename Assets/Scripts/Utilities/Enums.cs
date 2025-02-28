@@ -12,3 +12,4 @@ public enum EffectType
     CrewMemberSpot,
     CrewMood
 }
+public enum FightTier { Easy, Medium, Hard }
