@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SectorEventSO", menuName = "Events/New Event")]
@@ -16,12 +17,16 @@ public class SectorEventSO : ScriptableObject
     [Header("Choice-Based event settings")]
     public bool hasChoices;
 
-    public string choice1Description;
-    public Effect choice1Effect;
+    [Range(2, 4)] public int numberOfChoices = 2;
     
-    public string choice2Description;
-    public Effect choice2Effect;
+    [System.Serializable]
+    public class Choice
+    {
+        public string choiceDescription;
+        public Effect choiceEffect;
+    }
     
-    public string GetChoice1() => hasChoices ? choice1Description : null;
-    public string GetChoice2() => hasChoices ? choice2Description : null;
+    public List<Choice> choices = new List<Choice>() { new Choice(), new Choice() };
+
+    // public string GetChoice(int index) => (hasChoices && index < choices.Count) ? choices[index].choiceDescription : null;
 }
