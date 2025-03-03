@@ -1,12 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FightEventSO", menuName = "Events/New Fight Event")]
-public class FightEventSO : SectorEventSO
+public class FightEventSO : EventSO
 {
-    [Header("Fight Properties")]
     public FightTier fightTier;
     public int playerBetNotoriety;
-
     public int GetMaxComputerBet()
     {
         return fightTier switch
