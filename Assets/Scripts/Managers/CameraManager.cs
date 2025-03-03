@@ -39,7 +39,7 @@ public class CameraManager : MonoBehaviour
 
     public void MoveCamera(Vector2 direction)
     {
-        transform.position -= new Vector3(direction.x, 0, direction.y) * movementSpeed * Time.deltaTime / GameManager.Instance.TimeManager.TimeSpeed;
+        transform.position -= new Vector3(direction.x, 0, direction.y) * movementSpeed * Time.unscaledDeltaTime;
     }
 
     public Vector3 GetMousePosition => Mouse.current.position.ReadValue();

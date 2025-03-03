@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameManager Empty;
 
-
+    
     //=========GETTERS=========//
     public CameraManager CameraManager { get { return cameraManager; } }
     public ResourceManager ResourceManager { get { return resourceManager; } }

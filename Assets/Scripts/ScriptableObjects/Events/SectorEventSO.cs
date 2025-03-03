@@ -7,7 +7,7 @@ public class SectorEventSO : ScriptableObject
     [Header("Event properties")]
     public string eventTitle;
     
-    public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport}
+    public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight}
     public EventType eventType;
     
     [TextArea(3, 7)][SerializeField] public string eventDescription;
