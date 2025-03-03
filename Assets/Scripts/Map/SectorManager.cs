@@ -133,7 +133,7 @@ public class SectorManager : MonoBehaviour
         // Loop through sector's neighbors
         foreach (Sector neighbor in sector.GetNeighbors())
         {
-            if (ResourceManager.Instance.GetCurrentSight() >= 1)
+            if (ResourceManager.Instance.GetCurrentSight() >= 0)
             {
                 neighbor.SetVisibility(true);
             }
@@ -175,18 +175,18 @@ public class SectorManager : MonoBehaviour
 
     private void TriggerSectorEvent(Sector sector)
     {
-        SectorEventSO eventSO = sector.GetSectorEvent();
-        if (eventSO != null)
+        EventSO eventSO = sector.GetSectorEvent();
+
+        if (eventSO is SectorEventSO sectorEvent)
         {
             if (eventPopupUI != null)
             {
-                eventPopupUI.ShowEvent(eventSO);
+                eventPopupUI.ShowEvent(sectorEvent);
             }
-            else
-            {
-                Debug.LogError("EventUI not found in the scene!");
-            }
-            // Debug.Log($"Event triggered:  {eventSO.GetEventTitle()}");
+        }
+        else if (eventSO is FightEventSO)
+        {
+            Debug.Log("Fight event triggered. UI will be implemented later.");
         }
     }
 
