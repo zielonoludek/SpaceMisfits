@@ -138,6 +138,9 @@ public class SectorManager : MonoBehaviour
                 neighbor.SetVisibility(true);
             }
             
+            // Check for spaceports further away
+            RevealDistantSpaceports(neighbor, 1);
+            
             // Find the lane between current sector and this neighbor
             Lane connectingLane = FindLaneBetween(sector, neighbor);
             if (connectingLane != null)
@@ -152,10 +155,29 @@ public class SectorManager : MonoBehaviour
         foreach (Lane lane in FindObjectsByType<Lane>(FindObjectsSortMode.None))
         {
             // If the lane is not discovered, hide it
-            if (!discoveredLanes.Contains(lane)) // Only hide undiscovered lanes
+            if (!discoveredLanes.Contains(lane))
             {
                 lane.SetVisibility(false);
             }
+        }
+    }
+
+    private static void RevealDistantSpaceports(Sector sector, int depth)
+    {
+        // Stop searching after x sectors distance based on sight level
+        if(depth > 2) return;
+
+        foreach (Sector nextNeighbor in sector.GetNeighbors())
+        {
+            if (visibleSectors.Contains(nextNeighbor)) continue;
+
+            // Reveal if it's a spaceport
+            if (nextNeighbor.GetSectorEvent() is SectorEventSO sectorEvent && sectorEvent.eventType == EventType.Spaceport)
+            {
+                nextNeighbor.SetVisibility(true);
+                visibleSectors.Add(nextNeighbor);
+            }
+            RevealDistantSpaceports(nextNeighbor, depth + 1);
         }
     }
 
