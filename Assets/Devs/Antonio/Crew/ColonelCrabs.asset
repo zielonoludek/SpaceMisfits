@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crewmateName: Colonel Crabs
   crewmateDescription: 
-  PassiveEffectType: 3
-  effectValue: 6000
+  genericEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}

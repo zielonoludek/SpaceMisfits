@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crewmateName: Lieutenant Lobster
   crewmateDescription: 
-  PassiveEffectType: 2
-  effectValue: 1000
+  genericEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}

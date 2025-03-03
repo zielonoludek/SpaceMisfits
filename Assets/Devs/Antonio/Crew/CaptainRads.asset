@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crewmateName: Captain Rads
   crewmateDescription: A fearless leader of the seven seas.
-  PassiveEffectType: 1
-  effectValue: 3
+  genericEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
