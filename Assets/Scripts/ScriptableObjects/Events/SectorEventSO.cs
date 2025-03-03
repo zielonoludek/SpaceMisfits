@@ -2,16 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SectorEventSO", menuName = "Events/New Event")]
-public class SectorEventSO : ScriptableObject
+public class SectorEventSO : EventSO
 {
-    [Header("Event properties")]
-    public string eventTitle;
-    
-    public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight}
-    public EventType eventType;
-    
-    [TextArea(3, 7)][SerializeField] public string eventDescription;
-
     public Effect eventEffect;
 
     [Header("Choice-Based event settings")]

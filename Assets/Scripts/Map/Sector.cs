@@ -18,14 +18,14 @@ public class Sector : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
-    private static readonly Dictionary<SectorEventSO.EventType, Color> eventColors =
-        new Dictionary<SectorEventSO.EventType, Color>
+    private static readonly Dictionary<EventType, Color> eventColors =
+        new Dictionary<EventType, Color>
         {
-            { SectorEventSO.EventType.FaintSignal, Color.white },
-            { SectorEventSO.EventType.Waypoint, Color.green },
-            { SectorEventSO.EventType.DevilsMaw, Color.blue },
-            { SectorEventSO.EventType.SharpenThoseDirks, Color.red },
-            { SectorEventSO.EventType.Spaceport, Color.yellow }
+            { EventType.FaintSignal, Color.white },
+            { EventType.Waypoint, Color.green },
+            { EventType.DevilsMaw, Color.blue },
+            { EventType.SharpenThoseDirks, Color.red },
+            { EventType.Spaceport, Color.yellow }
         };
 
     private void Awake()
