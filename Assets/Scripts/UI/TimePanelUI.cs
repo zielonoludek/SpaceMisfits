@@ -18,8 +18,17 @@ public class TimePanelUI : MonoBehaviour
         speed1xBtn.onClick.RemoveAllListeners();
         speed2xBtn.onClick.RemoveAllListeners();
 
-        speed1xBtn.onClick.AddListener(() => GameManager.Instance.TimeManager.SetTimeSpeed(1));
-        speed2xBtn.onClick.AddListener(() => GameManager.Instance.TimeManager.SetTimeSpeed(2));
+        speed1xBtn.onClick.AddListener(() =>
+        {
+            if (!GameManager.Instance.TimeManager.IsTimeOn) OnPauseBtn();
+            GameManager.Instance.TimeManager.SetTimeSpeed(1);
+        });
+        speed2xBtn.onClick.AddListener(() =>
+        {
+            if (!GameManager.Instance.TimeManager.IsTimeOn) OnPauseBtn();
+            GameManager.Instance.TimeManager.SetTimeSpeed(2);
+        });
+        
         pauseResumeBtn.onClick.AddListener(OnPauseBtn);
 
         GameManager.Instance.TimeManager.EndOfDay += SetupDate;
