@@ -49,7 +49,7 @@ public class UI_Options : MonoBehaviour
         optionsMenu = root.Q<VisualElement>("optionsMenu");
 
         //if (mainMenu == null) Debug.LogError("MainMenuu nie ma ");
-        if (pauseMenu == null) Debug.LogError("pauseMenu nie ma ");
+        //if (pauseMenu == null) Debug.LogError("pauseMenu nie ma ");
         //if (optionsMenu == null) Debug.LogError("optionsMenu nie ma ");
 
 

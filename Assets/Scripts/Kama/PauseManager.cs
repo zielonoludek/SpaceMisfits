@@ -1,4 +1,3 @@
-
 using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -60,7 +59,7 @@ public class PauseManager : MonoBehaviour
         pauseAction.performed += ctx => Pause();
 
         clickAction.Enable();
-        pauseAction?.Enable();
+        pauseAction.Enable();
 
         pauseEl.style.display = DisplayStyle.None;
     }
@@ -76,7 +75,7 @@ public class PauseManager : MonoBehaviour
     private void OnDisable()
     {
         clickAction.Disable();
-        pauseAction?.Disable();
+        pauseAction.Disable();
 
     }
 
