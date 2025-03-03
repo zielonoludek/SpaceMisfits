@@ -10,9 +10,6 @@ public class FightManager : MonoBehaviour
     public FightEventSO sampleFightEvent;
 
     private System.Random random = new System.Random();
-    private int playerNotoriety = 100;
-    private int playerBooty = 100;
-    private int playerFood = 100;
 
     private void Update()
     {
@@ -61,16 +58,16 @@ public class FightManager : MonoBehaviour
     {
         if (playerRoll > computerRoll)
         {
-            playerNotoriety += computerBet;
-            playerBooty += fightEvent.GetBootyWin();
-            playerFood += fightEvent.GetFoodWin();
+            ResourceManager.Instance.Notoriety += computerBet;
+            ResourceManager.Instance.Booty += fightEvent.GetBootyWin();
+            ResourceManager.Instance.Food += fightEvent.GetFoodWin();
             fightResultText.text = $"<color=green>You won!</color> Gained {computerBet} notoriety, {fightEvent.GetBootyWin()} booty, and {fightEvent.GetFoodWin()} food.";
         }
         else
         {
-            playerNotoriety -= fightEvent.playerBetNotoriety;
-            playerBooty = Mathf.Max(0, playerBooty - fightEvent.GetBootyLose());
-            playerFood = Mathf.Max(0, playerFood - fightEvent.GetFoodLose());
+            ResourceManager.Instance.Notoriety -= fightEvent.playerBetNotoriety;
+            ResourceManager.Instance.Booty = Mathf.Max(0, ResourceManager.Instance.Booty - fightEvent.GetBootyLose());
+            ResourceManager.Instance.Food = Mathf.Max(0, ResourceManager.Instance.Food - fightEvent.GetFoodLose());
             fightResultText.text = $"<color=red>You lost!</color> Lost {fightEvent.playerBetNotoriety} notoriety, {fightEvent.GetBootyLose()} booty, and {fightEvent.GetFoodLose()} food.";
         }
     }
