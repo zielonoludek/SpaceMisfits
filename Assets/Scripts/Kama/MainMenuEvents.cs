@@ -16,7 +16,7 @@ public class MainMenuEvents : MonoBehaviour
     private AudioSource audioSource;
 
     private VisualElement mainMenu;
-     private VisualElement optionsMenu;
+    private VisualElement optionsMenu;
 
     // [SerializeField] private GameObject MainMenuObject;
 
@@ -34,7 +34,7 @@ public class MainMenuEvents : MonoBehaviour
     {
         var root = document.rootVisualElement;
 
-         mainMenu = root.Q<VisualElement>("MainMenu");
+        mainMenu = root.Q<VisualElement>("MainMenu");
         //optionsMenu = root.Q<VisualElement>("optionsMenu");
 
         // Downloading actions with the input system
@@ -59,7 +59,7 @@ public class MainMenuEvents : MonoBehaviour
         menuButtons = root.Query<Button>().ToList();
         foreach (var button in menuButtons)
         {
-            button.clicked += () => PlayClickSound(); 
+            button.clicked += () => PlayClickSound();
         }
 
         clickAction.Enable();
@@ -87,7 +87,7 @@ public class MainMenuEvents : MonoBehaviour
 
     public void ShowMainMenu()
     {
-       // MainMenuObject.SetActive(true);
+        // MainMenuObject.SetActive(true);
         mainMenu.style.display = DisplayStyle.Flex;
     }
 

@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -129,7 +128,7 @@ public class UI_Options : MonoBehaviour
 
     private void LoadVolume()
     {
-        if(PlayerPrefs.HasKey("GameVolume"))
+        if (PlayerPrefs.HasKey("GameVolume"))
         {
             float savedVolume = PlayerPrefs.GetFloat("GameVolume");
             audioMixer.SetFloat("Volume", Mathf.Log10(savedVolume) * 20);
