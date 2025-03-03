@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53849b780c7010243b1c3d9457a9a931, type: 3}
-  m_Name: Request1
+  m_Script: {fileID: 11500000, guid: 7f8e919d758012f4287a4845d4611be6, type: 3}
+  m_Name: CannonPart
   m_EditorClassIdentifier: 
-  requestName: 
-  difficultyLevel: 0
-  fulfillmentCondition: 
-  requiredAmount: 0
-  currentProgress: 0
+  partName: Cannon
+  durability: 100
+  level: 1
+  genericEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
+  defaultDurability: 100
+  defaultLevel: 1
