@@ -6,43 +6,20 @@ public class CrewmateData : ScriptableObject
     [Header("Crewmate Information")]
     public string crewmateName;
     [TextArea] public string crewmateDescription;
-
-    [Header("Passive Effect")]
-    public PassiveEffectType PassiveEffectType;
-    public int effectValue = 1;
+    public GenericEffect genericEffect;
 
     public void ApplyEffect()
     {
-        switch (PassiveEffectType)
+        if (genericEffect != null)
         {
-            case PassiveEffectType.IncreaseSight:
-                ResourceManager.Instance.IncreaseSight(effectValue);
-                Debug.Log($"{crewmateName} increased Sight by {effectValue}!");
-                break;
-
-            case PassiveEffectType.IncreaseBooty:
-                ResourceManager.Instance.Booty += effectValue;
-                Debug.Log($"{crewmateName} added {effectValue} Booty!");
-                break;
-            
-            case PassiveEffectType.IncreaseNotoriety:
-                ResourceManager.Instance.Notoriety += effectValue;
-                Debug.Log($"{crewmateName} increased Notoriety by {effectValue}!");
-                break;
-
-            default:
-                Debug.Log($"{crewmateName} has no effect.");
-                break;
+            genericEffect.ApplyEffect();
+            Debug.Log($"{crewmateName} applied effect: {genericEffect.effectName}");
+        }
+        else
+        {
+            Debug.Log($"{crewmateName} has no effect.");
         }
     }
-}
-
-public enum PassiveEffectType
-{
-    None,
-    IncreaseSight,
-    IncreaseBooty,
-    IncreaseNotoriety
 }
 
 /*

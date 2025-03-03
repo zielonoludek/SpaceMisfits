@@ -3926,7 +3926,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 997204994073023449, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
   m_PrefabInstance: {fileID: 775698175548093872}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954528523}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 817cc741110b19e499879f3f72ab19a9, type: 3}
@@ -8245,32 +8245,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943517254}
   m_CullTransparentMesh: 1
---- !u!1 &1954528523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7072606964494907396, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
-  m_PrefabInstance: {fileID: 775698175548093872}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1954528536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954528523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11330e14f7a719644a083fde0a1ec6aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedParts:
-  - {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
-  - {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
-  - {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
-  damageButton: {fileID: 1757173106}
-  repairButton: {fileID: 1828382030}
-  upgradeButton: {fileID: 1348686977}
-  applyEffectButton: {fileID: 1489576040}
-  partDetailsText: {fileID: 1593498814}
 --- !u!1 &1963463410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9440,6 +9414,26 @@ PrefabInstance:
       propertyPath: cannonText
       value: 
       objectReference: {fileID: 410151940}
+    - target: {fileID: 2763483960300036593, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: damageButton
+      value: 
+      objectReference: {fileID: 1757173106}
+    - target: {fileID: 2763483960300036593, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: repairButton
+      value: 
+      objectReference: {fileID: 1828382030}
+    - target: {fileID: 2763483960300036593, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: upgradeButton
+      value: 
+      objectReference: {fileID: 1348686977}
+    - target: {fileID: 2763483960300036593, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: partDetailsText
+      value: 
+      objectReference: {fileID: 1593498814}
+    - target: {fileID: 2763483960300036593, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: applyEffectButton
+      value: 
+      objectReference: {fileID: 1489576040}
     - target: {fileID: 3056247045791597863, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
       propertyPath: addRequestButton
       value: 
@@ -9547,10 +9541,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7072606964494907396, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1954528536}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
 --- !u!1001 &3533677293409559665
 PrefabInstance:
