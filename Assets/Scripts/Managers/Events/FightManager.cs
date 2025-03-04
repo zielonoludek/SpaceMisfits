@@ -1,77 +1,113 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
-using TMPro;
 
 public class FightManager : MonoBehaviour
 {
-    public TMP_Text fightResultText;
-    public TMP_Text rollingEffectText;
-
-    public FightEventSO sampleFightEvent;
+    [SerializeField] private FightPanelUI fightPanelUI;
+    [SerializeField] private FightEventSO fightEvent;
 
     private System.Random random = new System.Random();
-    private int playerNotoriety = 100;
-    private int playerBooty = 100;
-    private int playerFood = 100;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) StartFight(sampleFightEvent);
+        if (Input.GetKeyDown(KeyCode.F)) StartFight();
     }
 
-    public void StartFight(FightEventSO fightEvent)
+    private void Start()
     {
+        fightPanelUI = GameManager.Instance.UIManager.FightPanelUI;
+    }
+
+    public void StartFight()
+    {
+        if (fightEvent == null)
+        {
+            fightEvent = GetRandomFightEvent();
+        }
+
+        fightPanelUI.Setup();
+    }
+
+    public void StartFight(FightEventSO fight)
+    {
+        fightEvent = fight;
+        fightPanelUI.Setup();
+    }
+
+    public void SetupFight(int betAmount)
+    {
+        fightEvent.playerBetNotoriety = betAmount;
         int computerBet = Mathf.Min(fightEvent.playerBetNotoriety, fightEvent.GetMaxComputerBet());
 
-        int playerDice = fightEvent.GetMaxPlayerDice(computerBet);
-        int computerDice = 1 + computerBet / 10;
+        int computerDiceCount = 1 + computerBet / 10;
+        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3); // Maksymalna ró¿nica 3 kostki
 
-        int playerRoll = RollDice(playerDice);
-        int computerRoll = RollDice(computerDice);
+        int[] playerRolls = RollDice(playerDiceCount);
+        int[] computerRolls = RollDice(computerDiceCount);
 
-        StartCoroutine(ShowRollingEffect(playerRoll, computerRoll, fightEvent, computerBet));
+        int playerTotal = SumRolls(playerRolls);
+        int computerTotal = SumRolls(computerRolls);
+
+        StartCoroutine(fightPanelUI.ShowRollingEffect(playerRolls, computerRolls));
+        StartCoroutine(ResolveFight(playerTotal, computerTotal, computerBet));
     }
 
-    private int RollDice(int diceCount)
+    private FightEventSO GetRandomFightEvent()
     {
-        int total = 0;
+        FightEventSO[] allEvents = Resources.LoadAll<FightEventSO>("ScriptableObjects/Events/Fights");
+
+        if (allEvents.Length == 0)
+        {
+            Debug.LogWarning("Brak eventów w folderze 'ScriptableObjects/Events/Fights'!");
+            return null;
+        }
+
+        return allEvents[random.Next(allEvents.Length)];
+    }
+
+    private int[] RollDice(int diceCount)
+    {
+        int[] rolls = new int[diceCount];
+
         for (int i = 0; i < diceCount; i++)
         {
-            total += random.Next(1, 7);
-        }
-        return total;
-    }
-
-    private IEnumerator ShowRollingEffect(int playerRoll, int computerRoll, FightEventSO fightEvent, int computerBet)
-    {
-        int displayPlayer = 0, displayComputer = 0;
-        for (int i = 0; i < 20; i++)
-        {
-            displayPlayer = random.Next(playerRoll / 2, playerRoll + 2);
-            displayComputer = random.Next(computerRoll / 2, computerRoll + 2);
-            rollingEffectText.text = $"Rolling... Player: {displayPlayer} | Computer: {displayComputer}";
-            yield return new WaitForSeconds(0.05f);
+            rolls[i] = random.Next(1, 7);
         }
 
-        rollingEffectText.text = "";
-        ResolveFight(playerRoll, computerRoll, fightEvent, computerBet);
+        return rolls;
     }
 
-    private void ResolveFight(int playerRoll, int computerRoll, FightEventSO fightEvent, int computerBet)
+    private int SumRolls(int[] rolls)
     {
-        if (playerRoll > computerRoll)
+        return rolls.Sum();
+    }
+
+    private IEnumerator ResolveFight(int playerRoll, int computerRoll, int computerBet)
+    {
+        yield return new WaitForSeconds(1f);
+
+        int notorietyChange, bootyChange, foodChange;
+        bool playerWon = playerRoll > computerRoll;
+
+        if (playerWon)
         {
-            playerNotoriety += computerBet;
-            playerBooty += fightEvent.GetBootyWin();
-            playerFood += fightEvent.GetFoodWin();
-            fightResultText.text = $"<color=green>You won!</color> Gained {computerBet} notoriety, {fightEvent.GetBootyWin()} booty, and {fightEvent.GetFoodWin()} food.";
+            notorietyChange = computerBet;
+            bootyChange = fightEvent.GetBootyWin();
+            foodChange = fightEvent.GetFoodWin();
         }
         else
         {
-            playerNotoriety -= fightEvent.playerBetNotoriety;
-            playerBooty = Mathf.Max(0, playerBooty - fightEvent.GetBootyLose());
-            playerFood = Mathf.Max(0, playerFood - fightEvent.GetFoodLose());
-            fightResultText.text = $"<color=red>You lost!</color> Lost {fightEvent.playerBetNotoriety} notoriety, {fightEvent.GetBootyLose()} booty, and {fightEvent.GetFoodLose()} food.";
+            notorietyChange = -fightEvent.playerBetNotoriety;
+            bootyChange = -fightEvent.GetBootyLose();
+            foodChange = -fightEvent.GetFoodLose();
         }
+
+        ResourceManager.Instance.Notoriety += notorietyChange;
+        ResourceManager.Instance.Booty = Mathf.Max(0, ResourceManager.Instance.Booty + bootyChange);
+        ResourceManager.Instance.Food = Mathf.Max(0, ResourceManager.Instance.Food + foodChange);
+
+        fightPanelUI.ShowFightResult(playerWon);
+        fightPanelUI.UpdateResourceUI(notorietyChange, bootyChange, foodChange);
     }
 }

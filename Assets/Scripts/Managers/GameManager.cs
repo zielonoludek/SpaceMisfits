@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ResourceManager resourceManager;
     [SerializeField] UIManager uiManager;
     [SerializeField] TimeManager timeManager;
+    [SerializeField] FightManager fightManager;
 
     //========SCRIPTABLES======//
     [Space]
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public ResourceManager ResourceManager { get { return resourceManager; } }
     public UIManager UIManager { get { return uiManager; } }
     public TimeManager TimeManager { get { return timeManager; } }
+    public FightManager FightManager { get { return fightManager; } }
 
 
     private void Awake()

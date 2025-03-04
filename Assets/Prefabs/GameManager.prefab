@@ -58,9 +58,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   inputManager: {fileID: 2836110503772724050}
-  resourceManager: {fileID: 0}
+  resourceManager: {fileID: 1276556340548977776}
   uiManager: {fileID: 0}
   timeManager: {fileID: 3444544792681972511}
+  fightManager: {fileID: 0}
   Empty: {fileID: 0}
 --- !u!114 &2836110503772724050
 MonoBehaviour:
