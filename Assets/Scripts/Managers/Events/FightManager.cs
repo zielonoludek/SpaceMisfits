@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class FightManager : MonoBehaviour
@@ -17,22 +18,30 @@ public class FightManager : MonoBehaviour
     {
         fightPanelUI = GameManager.Instance.UIManager.FightPanelUI;
     }
+
     public void StartFight()
     {
+        if (fightEvent == null)
+        {
+            fightEvent = GetRandomFightEvent();
+        }
+
         fightPanelUI.Setup();
     }
+
     public void StartFight(FightEventSO fight)
     {
         fightEvent = fight;
         fightPanelUI.Setup();
     }
+
     public void SetupFight(int betAmount)
     {
         fightEvent.playerBetNotoriety = betAmount;
         int computerBet = Mathf.Min(fightEvent.playerBetNotoriety, fightEvent.GetMaxComputerBet());
 
         int computerDiceCount = 1 + computerBet / 10;
-        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3); // Enforcing the "+3 dice max difference" rule
+        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3); // Maksymalna ró¿nica 3 kostki
 
         int[] playerRolls = RollDice(playerDiceCount);
         int[] computerRolls = RollDice(computerDiceCount);
@@ -41,8 +50,20 @@ public class FightManager : MonoBehaviour
         int computerTotal = SumRolls(computerRolls);
 
         StartCoroutine(fightPanelUI.ShowRollingEffect(playerRolls, computerRolls));
-
         StartCoroutine(ResolveFight(playerTotal, computerTotal, computerBet));
+    }
+
+    private FightEventSO GetRandomFightEvent()
+    {
+        FightEventSO[] allEvents = Resources.LoadAll<FightEventSO>("ScriptableObjects/Events/Fights");
+
+        if (allEvents.Length == 0)
+        {
+            Debug.LogWarning("Brak eventów w folderze 'ScriptableObjects/Events/Fights'!");
+            return null;
+        }
+
+        return allEvents[random.Next(allEvents.Length)];
     }
 
     private int[] RollDice(int diceCount)
@@ -59,12 +80,7 @@ public class FightManager : MonoBehaviour
 
     private int SumRolls(int[] rolls)
     {
-        int total = 0;
-        foreach (int roll in rolls)
-        {
-            total += roll;
-        }
-        return total;
+        return rolls.Sum();
     }
 
     private IEnumerator ResolveFight(int playerRoll, int computerRoll, int computerBet)
