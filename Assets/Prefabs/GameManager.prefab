@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 6132163913427565303}
   - component: {fileID: 3168365315532612282}
   - component: {fileID: 3444544792681972511}
+  - component: {fileID: 2763483960300036593}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -219,3 +220,24 @@ MonoBehaviour:
   day: 1
   month: 7
   year: 2793
+--- !u!114 &2763483960300036593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11330e14f7a719644a083fde0a1ec6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedParts:
+  - {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
+  - {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
+  - {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
+  damageButton: {fileID: 0}
+  repairButton: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  applyEffectButton: {fileID: 0}
+  partDetailsText: {fileID: 0}

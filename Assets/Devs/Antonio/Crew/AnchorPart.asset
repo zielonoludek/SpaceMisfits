@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53849b780c7010243b1c3d9457a9a931, type: 3}
-  m_Name: Request1 1
+  m_Script: {fileID: 11500000, guid: 7f8e919d758012f4287a4845d4611be6, type: 3}
+  m_Name: AnchorPart
   m_EditorClassIdentifier: 
-  requestName: 
-  difficultyLevel: 1
-  fulfillmentCondition: 
-  requiredAmount: 0
-  currentProgress: 0
+  partName: Anchor
+  durability: 100
+  level: 3
+  genericEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
+  defaultDurability: 100
+  defaultLevel: 1
