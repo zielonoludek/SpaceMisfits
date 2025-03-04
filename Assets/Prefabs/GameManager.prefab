@@ -11,6 +11,17 @@ GameObject:
   - component: {fileID: 5643176279949095266}
   - component: {fileID: 6242438850052290503}
   - component: {fileID: 2836110503772724050}
+  - component: {fileID: 1176499082054525678}
+  - component: {fileID: 997204994073023449}
+  - component: {fileID: 1276556340548977776}
+  - component: {fileID: 8060250585802431460}
+  - component: {fileID: 3056247045791597863}
+  - component: {fileID: 7443683311627308542}
+  - component: {fileID: 9206268901018880491}
+  - component: {fileID: 6132163913427565303}
+  - component: {fileID: 3168365315532612282}
+  - component: {fileID: 3444544792681972511}
+  - component: {fileID: 2763483960300036593}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -47,6 +58,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   inputManager: {fileID: 2836110503772724050}
+  resourceManager: {fileID: 1276556340548977776}
+  uiManager: {fileID: 0}
+  timeManager: {fileID: 3444544792681972511}
+  fightManager: {fileID: 0}
   Empty: {fileID: 0}
 --- !u!114 &2836110503772724050
 MonoBehaviour:
@@ -60,55 +75,170 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f25f516a36388b4fb1c50d65c6fc457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: b45bb700-2c31-4e06-855c-bb708b27ed4f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 27b6561c-b977-4d0b-b424-b4ae94c0b480
-      m_Path: <Touchscreen>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    - m_Name: 
-      m_Id: f08a6e0c-5b15-4c3d-9d93-d18fa43698b0
-      m_Path: <Mouse>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-  press:
-    m_Name: Press
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 59cd9ca3-c389-4087-8685-8edc3ef95e56
-    m_Processors: 
-    m_Interactions: Press
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: c09d4b70-94cc-42b4-803e-2d1b23e48c40
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 6d9f49bc-af53-4881-80ba-805243aa7b30
-      m_Path: <Mouse>/press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Press
-      m_Flags: 0
-    m_Flags: 0
-  swipeResistance: 100
   pinchZoomSpeed: 0.01
+--- !u!114 &1176499082054525678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439418321fd26ad4aa27d0fac542ea04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hullText: {fileID: 0}
+  sailsText: {fileID: 0}
+  cannonText: {fileID: 0}
+--- !u!114 &997204994073023449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817cc741110b19e499879f3f72ab19a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1276556340548977776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8060250585802431460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d40606813b8664dbdc9ab371a31b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewList: []
+  activeRequests: []
+--- !u!114 &3056247045791597863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ee8a8e9ff3324489d012f8df8a13c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addRequestButton: {fileID: 0}
+  progressRequestButton: {fileID: 0}
+  completeRequestButton: {fileID: 0}
+--- !u!114 &7443683311627308542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e301f488f6216043b7c90b8e707cb97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recruitButton1: {fileID: 0}
+  recruitButton2: {fileID: 0}
+  recruitButton3: {fileID: 0}
+  crewmate1: {fileID: 11400000, guid: 09e680973a9338d409f9e6c9e09ff772, type: 2}
+  crewmate2: {fileID: 11400000, guid: e3481f350a2baf54faf0e6b54dc63491, type: 2}
+  crewmate3: {fileID: 11400000, guid: be98fa10a72169641bbe923c45f498b1, type: 2}
+--- !u!114 &9206268901018880491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfb80c7d05cb047bc1af234fc50a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requestPanelPrefab: {fileID: 0}
+  requestListParent: {fileID: 0}
+--- !u!114 &6132163913427565303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b790ea23c1cac824db3c1d1b00e8210f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootyText: {fileID: 0}
+  notorietyText: {fileID: 0}
+--- !u!114 &3168365315532612282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739e43bc15ecfcc48a55a19bdde43277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sightText: {fileID: 0}
+  increaseButton: {fileID: 0}
+  decreaseButton: {fileID: 0}
+--- !u!114 &3444544792681972511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7e282d7cc98214089bb9a9aaf290e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneDayInSeconds: 600
+  day: 1
+  month: 7
+  year: 2793
+--- !u!114 &2763483960300036593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11330e14f7a719644a083fde0a1ec6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedParts:
+  - {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
+  - {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
+  - {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
+  damageButton: {fileID: 0}
+  repairButton: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  applyEffectButton: {fileID: 0}
+  partDetailsText: {fileID: 0}
