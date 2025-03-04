@@ -1,6 +1,6 @@
 using UnityEngine;
 
- public abstract class EventSO : ScriptableObject
+public abstract class EventSO : ScriptableObject
 {
     [Header("Event properties")]
     public string eventTitle;

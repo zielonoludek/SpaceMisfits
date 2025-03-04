@@ -6,12 +6,14 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance { get; private set; }
 
     private int booty;
+    private int food;
     private int notoriety;
     private int sightLevel;
 
     public event Action<int> OnBootyChanged;
     public event Action<int> OnNotorietyChanged;
     public event Action<int> OnSightChanged;
+    public event Action<int> OnFoodChanged;
 
     private void Awake()
     {
@@ -54,6 +56,20 @@ public class ResourceManager : MonoBehaviour
 
     //ResourceManager.Instance.Booty += 100; (trigger booty event in other scripts)
     //ResourceManager.Instance.Notoriety -= 5;
+
+    public int Food
+    {
+        get => food;
+        set
+        {
+            if (food != value)
+            {
+                food = Mathf.Max(0, value);
+                OnFoodChanged?.Invoke(food);
+            }
+        }
+    }
+
 
     public int Sight
     {
