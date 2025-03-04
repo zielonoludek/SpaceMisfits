@@ -19,10 +19,14 @@ public class UI_Options : MonoBehaviour
 
     private MainMenuEvents mainMenu;
     private PauseManager pauseMenu;
+    private UI_Control ui_Control;
+    private UI_Audio ui_Audio;
 
     private VisualElement optionsMenu;
+    private VisualElement ControlMenu;
 
     private Button backButton;
+    private Button ButtonControl;
     private bool openedFromPause = false;
 
     private InputAction cancelAction;
@@ -41,16 +45,12 @@ public class UI_Options : MonoBehaviour
 
 
 
-    // [SerializeField] private GameObject OptionsGameObject;
-
     private void Awake()
     {
-
-        //GameObject.FindFirstObjectByType<UI_Options>();
-        //GameObject.Find("UI_Options")?.SetActive(true);
-        // OptionsGameObject = GetComponentInChildren<UIDocument>(true)?.gameObject;
         mainMenu = FindFirstObjectByType<MainMenuEvents>(FindObjectsInactive.Include);
         pauseMenu = FindFirstObjectByType<PauseManager>(FindObjectsInactive.Include);
+        ui_Control = FindFirstObjectByType<UI_Control>(FindObjectsInactive.Include);
+        ui_Audio = FindFirstObjectByType<UI_Audio>(FindObjectsInactive.Include);
     }
 
     private void OnEnable()
@@ -65,6 +65,12 @@ public class UI_Options : MonoBehaviour
         optionsMenu = root.Q<VisualElement>("optionsMenu");
         optionsMenu.style.display = DisplayStyle.None;
 
+        ControlMenu = root.Q<VisualElement>("Control");
+        ControlMenu.style.display = DisplayStyle.None;
+
+        ButtonControl = root.Q<Button>("Rebind");
+        ButtonControl.clicked +=  OpenControl;
+
 
         backButton = root.Q<Button>("BackButton");
         backButton.clicked += CloseOptions;
@@ -74,7 +80,7 @@ public class UI_Options : MonoBehaviour
         cancelAction.performed += ctx => CloseOptions();
         cancelAction.Enable();
 
-        var resetButton = root.Q<Button>("ResetButton");
+       /* var resetButton = root.Q<Button>("ResetButton");
         resetButton.clicked += ResetSelectedRebinds;
 
         var allresetButton = root.Q<Button>("AllResetButton");
@@ -105,6 +111,7 @@ public class UI_Options : MonoBehaviour
         musicVolumeSlider.RegisterValueChangedCallback(evt => SetMusicVolume(evt.newValue));
 
         LoadAudioSettings();
+       */
     }
 
     private void OnDisable()
@@ -116,29 +123,39 @@ public class UI_Options : MonoBehaviour
             cancelAction.Disable();
         }
 
-        rebindButton.clicked -= StartRebinding;
+      //  rebindButton.clicked -= StartRebinding;
         rebindingOperation?.Dispose();
+    }
+
+    public void OpenControl()
+    {
+        ui_Control = GameObject.FindFirstObjectByType<UI_Control>();
+        optionsMenu.style.display = DisplayStyle.None;
+        ControlMenu.style.display = DisplayStyle.Flex;
+    }
+    public void CloseControl()
+    {
+        optionsMenu.style.display = DisplayStyle.Flex;
+        ControlMenu.style.display = DisplayStyle.None;
     }
 
     public void OpenFromMainMenu()
     {
-        //OptionsGameObject.SetActive(true);
         optionsMenu.style.display = DisplayStyle.Flex;
         openedFromPause = false;
     }
 
     public void OpenFromPauseMenu()
     {
-        // OptionsGameObject.SetActive(true);
         optionsMenu.style.display = DisplayStyle.Flex;
         openedFromPause = true;
     }
+
 
     private void CloseOptions()
     {
         optionsMenu.style.display = DisplayStyle.None;
 
-        //OptionsGameObject.SetActive(false);
 
         if (openedFromPause)
         {
@@ -156,6 +173,7 @@ public class UI_Options : MonoBehaviour
         }
 
     }
+    /*
     private void StartRebinding()
     {
         if(Application.platform != RuntimePlatform.WindowsPlayer &&
@@ -340,5 +358,6 @@ public class UI_Options : MonoBehaviour
         if (PlayerPrefs.HasKey("MusicVolume"))
             musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
     }
+    */
 
 }
