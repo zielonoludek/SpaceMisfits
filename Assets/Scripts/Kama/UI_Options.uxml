@@ -5,11 +5,20 @@
             <engine:Button text="Audio" name="Audio" />
             <engine:Button text="Control&#10;" name="Rebind" />
         </engine:ToggleButtonGroup>
-        <engine:Slider label="AUDIO" value="0" high-value="100" fill="true" name="VolumeSlider" style="font-size: 50px;" />
+        <engine:Slider label="Slider" value="42" high-value="100" name="SFXVolumeSlider" />
+        <engine:Slider label="AUDIO" value="0" high-value="100" fill="true" name="MasterVolumeSlider" style="font-size: 50px;" />
+        <engine:Slider label="Slider" value="42" high-value="100" name="MusicVolumeSlider" />
         <engine:Button text="Back" name="BackButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center;" />
         <engine:Label text="Move" name="RebindLabel">
             <engine:Button text="Change&#10;" name="RebindButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center;" />
             <engine:Button text="Reset" name="ResetButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center;" />
+            <engine:Button text="All Reset" name="AllResetButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center;" />
+            <engine:Toggle label="Toggle" name="FullscreenToggle" />
+            <engine:DropdownField label="Dropdown" choices="ResolutionDropdown,FullscreenToggle">
+                <Bindings>
+                    <engine:DataBinding property="choices" binding-mode="ToTarget" />
+                </Bindings>
+            </engine:DropdownField>
         </engine:Label>
     </engine:VisualElement>
 </engine:UXML>
