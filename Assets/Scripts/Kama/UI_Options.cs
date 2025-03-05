@@ -91,8 +91,8 @@ public class UI_Options : MonoBehaviour
         rebindButton.clicked += StartRebinding;
 
         resolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
-        qualityDropdown = root.Q<DropdownField>("FullscreenToggle");
-        fullscreenToggle = root.Q<Toggle>("QualityDropdown");
+        qualityDropdown = root.Q<DropdownField>("QualityDropdown");
+        fullscreenToggle = root.Q<Toggle>("FullscreenToggle"); 
 
         resolutionDropdown.RegisterValueChangedCallback(evt => SetResolution(evt.newValue));
         fullscreenToggle.RegisterValueChangedCallback(evt => SetFullscreen(evt.newValue));

@@ -18,14 +18,11 @@ public class MainMenuEvents : MonoBehaviour
     private VisualElement mainMenu;
     private VisualElement optionsMenu;
 
-    // [SerializeField] private GameObject MainMenuObject;
 
     private List<Button> menuButtons = new List<Button>();
 
     private void Awake()
     {
-        //MainMenuObject = GetComponentInChildren<UIDocument>(true)?.gameObject;
-
         GameObject.Find("MainMenuEvents")?.SetActive(true);
         ui_Options = FindFirstObjectByType<UI_Options>(FindObjectsInactive.Include);
     }
@@ -35,9 +32,7 @@ public class MainMenuEvents : MonoBehaviour
         var root = document.rootVisualElement;
 
         mainMenu = root.Q<VisualElement>("MainMenu");
-        //optionsMenu = root.Q<VisualElement>("optionsMenu");
 
-        // Downloading actions with the input system
         var UiActionMap = inputActions.FindActionMap("UI");
         clickAction = UiActionMap.FindAction("Click");
         clickAction.performed += ctx => OnClickUI();
@@ -87,16 +82,13 @@ public class MainMenuEvents : MonoBehaviour
 
     public void ShowMainMenu()
     {
-        // MainMenuObject.SetActive(true);
         mainMenu.style.display = DisplayStyle.Flex;
     }
 
     public void OpenOptions()
     {
-        //ui_Options = GetComponentInChildren<UI_Options>(true);
         ui_Options = GameObject.FindFirstObjectByType<UI_Options>();
         ui_Options.OpenFromMainMenu();
-        //MainMenuObject.SetActive(false);
         mainMenu.style.display = DisplayStyle.None;
     }
 }

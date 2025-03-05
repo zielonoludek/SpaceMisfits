@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -15,7 +14,6 @@ public class PauseManager : MonoBehaviour
     private InputAction pauseAction;
 
     private VisualElement pauseEl;
-    // [SerializeField] private GameObject pauseMenuObject;
 
 
     private Button backButton;
@@ -26,10 +24,8 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
-        //gameObject.SetActive(isPaused);
         pauseManager = FindFirstObjectByType<PauseManager>(FindObjectsInactive.Include);
         GameObject.Find("PauseManager")?.SetActive(true);
-        // pauseMenuObject = GetComponentInChildren<UIDocument>(true)?.gameObject;
         ui_Options = FindFirstObjectByType<UI_Options>(FindObjectsInactive.Include);
 
     }
@@ -49,8 +45,6 @@ public class PauseManager : MonoBehaviour
         quitButton = root.Q<Button>("Quit");
         quitButton.clicked += () => Application.Quit();
 
-
-        // Downloading actions with the input system
         var UiActionMap = inputActions.FindActionMap("UI");
         clickAction = UiActionMap.FindAction("Click");
         pauseAction = UiActionMap.FindAction("Cancel");
@@ -66,7 +60,6 @@ public class PauseManager : MonoBehaviour
     public void Pause()
     {
         isPaused = !isPaused;
-        //pauseMenuObject.SetActive(isPaused);
         pauseEl.style.display = isPaused ? DisplayStyle.Flex : DisplayStyle.None;
         Time.timeScale = isPaused ? 0 : 1;
     }
@@ -86,16 +79,13 @@ public class PauseManager : MonoBehaviour
 
     public void ShowPauseMenu()
     {
-        //pauseMenuObject.SetActive(true);
         pauseEl.style.display = DisplayStyle.Flex;
     }
 
     public void OpenOptions()
     {
-        //ui_Options = GetComponentInChildren<UI_Options>(true);
         ui_Options = GameObject.FindFirstObjectByType<UI_Options>();
         ui_Options.OpenFromPauseMenu();
-        //pauseMenuObject.SetActive(false);
         pauseEl.style.display = DisplayStyle.None;
     }
 
