@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ui_Options: {fileID: 6870178736711222107}
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveActionReference: {fileID: 4053732215274948253, guid: 7dead05c54ca85b4681351aafd8bd03a, type: 3}
+  moveActionReference: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  audioMixer: {fileID: 24100000, guid: 2410192127189d94d875fedf550d3dec, type: 2}
 --- !u!114 &6870178736711222107
 MonoBehaviour:
   m_ObjectHideFlags: 0

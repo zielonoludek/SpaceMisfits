@@ -34,16 +34,16 @@ public class UI_Control : MonoBehaviour
         ControlMenu = root.Q<VisualElement>("ControlMenu");
         ControlMenu.style.display = DisplayStyle.None;
 
-        ButtonControl = root.Q<Button>("Rebind");
-        ButtonControl.clicked += OpenControl;
+       // ButtonControl = root.Q<Button>("Rebind");
+        //ButtonControl.clicked += OpenControl;
 
-        backButton = root.Q<Button>("BackButton");
-        backButton.clicked += CloseControl;
+       // backButton = root.Q<Button>("BackButton");
+        //backButton.clicked += CloseControl;
 
-        var uiActionMap = inputActions.FindActionMap("UI");
-        cancelAction = uiActionMap.FindAction("Cancel");
-        cancelAction.performed += ctx => CloseControl();
-        cancelAction.Enable();
+        //var uiActionMap = inputActions.FindActionMap("UI");
+        //cancelAction = uiActionMap.FindAction("Cancel");
+        //cancelAction.performed += ctx => CloseControl();
+        //cancelAction.Enable();
 
         var resetButton = root.Q<Button>("ResetButton");
         resetButton.clicked += ResetSelectedRebinds;
@@ -68,20 +68,19 @@ public class UI_Control : MonoBehaviour
         rebindButton.clicked -= StartRebinding;
         rebindingOperation?.Dispose();
     }
-
+    /*
     private void CloseControl()
     {
         ui_Options = GameObject.FindFirstObjectByType<UI_Options>();
         ui_Options.CloseControl();
 
     }
-
     private void OpenControl()
     {
         ControlMenu.style.display = DisplayStyle.Flex;
         ui_Options.OpenControl();
 
-    }
+    } */
     private void StartRebinding()
     {
         if (Application.platform != RuntimePlatform.WindowsPlayer &&
