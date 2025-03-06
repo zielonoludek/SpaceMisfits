@@ -10,6 +10,7 @@ public class MainMenuEvents : MonoBehaviour
 {
     [SerializeField] InputActionAsset inputActions;
     [SerializeField] private UIDocument document;
+    private UI_Options ui_Options;
 
     private InputAction clickAction;
     private AudioSource audioSource;
@@ -17,23 +18,28 @@ public class MainMenuEvents : MonoBehaviour
     private VisualElement mainMenu;
     private VisualElement optionsMenu;
 
+
     private List<Button> menuButtons = new List<Button>();
+
+    private void Awake()
+    {
+        GameObject.Find("MainMenuEvents")?.SetActive(true);
+        ui_Options = FindFirstObjectByType<UI_Options>(FindObjectsInactive.Include);
+    }
 
     private void OnEnable()
     {
         var root = document.rootVisualElement;
 
         mainMenu = root.Q<VisualElement>("MainMenu");
-        optionsMenu = root.Q<VisualElement>("optionsMenu");
 
-        // Downloading actions with the input system
         var UiActionMap = inputActions.FindActionMap("UI");
         clickAction = UiActionMap.FindAction("Click");
         clickAction.performed += ctx => OnClickUI();
 
         // START GAME 
         var startbutton = root.Q<Button>("Start");
-        startbutton.clicked += () => SceneManager.LoadScene("SampleScene"); // or SceneManager.LoadSceneAsync(0);  // There will be movement Scene no.0 (always return to Main Menu)
+        startbutton.clicked += () => SceneManager.LoadScene("Kama"); // or SceneManager.LoadSceneAsync(0);  // There will be movement Scene no.0 (always return to Main Menu)
 
         // SETTINGS 
         var settingsbutton = root.Q<Button>("Settings");
@@ -48,7 +54,7 @@ public class MainMenuEvents : MonoBehaviour
         menuButtons = root.Query<Button>().ToList();
         foreach (var button in menuButtons)
         {
-            button.clicked += () => PlayClickSound(); 
+            button.clicked += () => PlayClickSound();
         }
 
         clickAction.Enable();
@@ -74,9 +80,15 @@ public class MainMenuEvents : MonoBehaviour
         Debug.Log("Click");
     }
 
-    private void OpenOptions()
+    public void ShowMainMenu()
     {
-        optionsMenu.style.display = DisplayStyle.Flex;
+        mainMenu.style.display = DisplayStyle.Flex;
+    }
+
+    public void OpenOptions()
+    {
+        ui_Options = GameObject.FindFirstObjectByType<UI_Options>();
+        ui_Options.OpenFromMainMenu();
         mainMenu.style.display = DisplayStyle.None;
     }
 }

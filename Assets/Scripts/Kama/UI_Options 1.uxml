@@ -16,8 +16,7 @@
             <engine:Slider label="SFXVolume" value="0" high-value="100" name="SFXVolumeSlider" fill="true" />
             <engine:Slider label="MusicVolume" value="0" high-value="100" name="MusicVolumeSlider" fill="true" />
             <engine:Toggle label="FullScreen" name="FullscreenToggle" value="false" />
-            <engine:DropdownField label="Scene" choices="ResolutionDropdown" index="0" name="ResolutionDropdown" style="width: 500px;" />
-            <engine:DropdownField label="Scene" choices="QualityDropdown" index="0" name="QualityDropdown" style="width: 500px;" />
+            <engine:DropdownField label="Scene" choices="ResolutionDropdown,QualityDropdown" style="width: 500px;" />
         </engine:VisualElement>
         <engine:Button text="All Reset" name="AllResetButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-bottom: 10px; margin-left: 750px;" />
         <engine:ToggleButtonGroup name="ToggleButtonGroup" style="flex-direction: row;">
