@@ -67,7 +67,7 @@ public class TimePanelUI : MonoBehaviour
 
         timeTxt.text = $"{hours:D2}:{minutes:D2}";
     }
-    void SetupPauseBtn()
+    public void SetupPauseBtn()
     {
         if (GameManager.Instance.TimeManager.IsTimeOn) pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = "||";
         else pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = ">";

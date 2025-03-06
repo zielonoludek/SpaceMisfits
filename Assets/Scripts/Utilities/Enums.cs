@@ -14,3 +14,5 @@ public enum EffectType
 }
 public enum FightTier { Easy, Medium, Hard }
 public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight }
+
+public enum GameState { None, Event }
