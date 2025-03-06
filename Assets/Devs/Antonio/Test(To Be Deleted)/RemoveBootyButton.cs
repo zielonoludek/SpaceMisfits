@@ -10,6 +10,6 @@ public class RemoveBootyButton : MonoBehaviour
 
     private void AddBooty()
     {
-        GameManager.Instance.ResourceManager.Booty -= 100;
+        ResourceManager.Instance.Booty -= 100;
     }
 }

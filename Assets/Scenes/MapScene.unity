@@ -428,7 +428,7 @@ PrefabInstance:
       objectReference: {fileID: 1132327968}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Evil pirates - Help Beacon)
+      value: Lane (Unnamed - Help Beacon)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -989,6 +989,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5473249530179729123, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5624631991886485404, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1069,12 +1073,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7238888138576649173, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238888138576649173, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 935
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238888138576649173, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 442
+      objectReference: {fileID: 0}
     - target: {fileID: 9046694686010266397, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
       propertyPath: m_Name
       value: EventCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 166368948109190115, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4522d43ef8af544d8bcf6679c4bed9b, type: 3}
@@ -1177,7 +1194,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c52409a6314cd9c47924e1366f4f7265, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Evil pirates)
+      value: Sector (Unnamed Event)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1367,7 +1384,7 @@ Material:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
@@ -2148,7 +2165,7 @@ PrefabInstance:
       objectReference: {fileID: 688862288}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Spaceport - Evil pirates)
+      value: Lane (Spaceport - Unnamed)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
