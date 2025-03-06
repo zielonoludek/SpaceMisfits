@@ -27,7 +27,9 @@ public class EventPopupUI : MonoBehaviour
     public void ShowEvent(SectorEventSO sectorEvent)
     {
         currentEvent = sectorEvent;
-        Time.timeScale = 0;
+        
+        // Pause time manager
+        GameManager.Instance.TimeManager.PauseTime(true);
         
         eventPanel.SetActive(true);
         eventTitleText.text = sectorEvent.eventTitle;
@@ -86,7 +88,9 @@ public class EventPopupUI : MonoBehaviour
     private void CloseEvent()
     {
         eventPanel.SetActive(false);
-        Time.timeScale = 1;
+        
+        // Unpause time manager
+        GameManager.Instance.TimeManager.PauseTime(false);
     }
 
     private void SelectChoice(int choiceIndex)
