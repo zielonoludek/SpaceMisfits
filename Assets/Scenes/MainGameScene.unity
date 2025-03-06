@@ -9829,6 +9829,7 @@ GameObject:
   - component: {fileID: 2112534627}
   - component: {fileID: 2112534626}
   - component: {fileID: 2112534625}
+  - component: {fileID: 2112534628}
   m_Layer: 5
   m_Name: MapButton
   m_TagString: Untagged
@@ -9900,7 +9901,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2112534628}
         m_TargetAssemblyTypeName: SubsceneToggle, Assembly-CSharp
         m_MethodName: ToggleSubscene
         m_Mode: 1
@@ -9950,6 +9951,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112534623}
   m_CullTransparentMesh: 1
+--- !u!114 &2112534628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112534623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530680aceadb2054a807d682e3d7f230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapScene: MapScene
+  itemsToHide: []
 --- !u!1 &2129427370
 GameObject:
   m_ObjectHideFlags: 0
