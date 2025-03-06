@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private InputActions inputActions;
+    public static InputManager instance;
     public delegate void Swipe(Vector2 direction);
 
     private bool isDragging = false;

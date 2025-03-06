@@ -14,15 +14,13 @@ GameObject:
   - component: {fileID: 5241574982129797630}
   - component: {fileID: 1176499082054525678}
   - component: {fileID: 997204994073023449}
+  - component: {fileID: 1276556340548977776}
   - component: {fileID: 8060250585802431460}
   - component: {fileID: 7443683311627308542}
   - component: {fileID: 6132163913427565303}
   - component: {fileID: 3168365315532612282}
   - component: {fileID: 3444544792681972511}
   - component: {fileID: 2763483960300036593}
-  - component: {fileID: 1434964584215828150}
-  - component: {fileID: 4471466987761612103}
-  - component: {fileID: 2223690391424442143}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -59,13 +57,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   inputManager: {fileID: 2836110503772724050}
-  resourceManager: {fileID: 1434964584215828150}
+  resourceManager: {fileID: 1276556340548977776}
   uiManager: {fileID: 0}
   timeManager: {fileID: 3444544792681972511}
   fightManager: {fileID: 0}
-  shipDurability: {fileID: 997204994073023449}
-  crewManager: {fileID: 4471466987761612103}
-  requestManager: {fileID: 2223690391424442143}
   Empty: {fileID: 0}
 --- !u!114 &2836110503772724050
 MonoBehaviour:
@@ -117,6 +112,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 817cc741110b19e499879f3f72ab19a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1276556340548977776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8060250585802431460
@@ -223,41 +230,3 @@ MonoBehaviour:
   upgradeButton: {fileID: 0}
   applyEffectButton: {fileID: 0}
   partDetailsText: {fileID: 0}
---- !u!114 &1434964584215828150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072606964494907396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8318b71792025d9479c7a046f819d7de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4471466987761612103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072606964494907396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0d40606813b8664dbdc9ab371a31b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crewList: []
-  activeRequests: []
---- !u!114 &2223690391424442143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072606964494907396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff70453a7abbf240acaef32c7fc2f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

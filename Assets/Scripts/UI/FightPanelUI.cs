@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class FightPanelUI : MonoBehaviour
 {
     private FightManager fightManager;
-    [SerializeField] private Button closeButton;
 
     [Header("Panels")]
     [SerializeField] private GameObject bettingPanel;
@@ -29,7 +28,7 @@ public class FightPanelUI : MonoBehaviour
     [SerializeField] private TMP_Text foodAmountText;
     [SerializeField] private TMP_Text fightResultText;
 
-    private int betAmount = 0;
+    private int betAmount = 10;
 
     private void Start()
     {
@@ -38,7 +37,6 @@ public class FightPanelUI : MonoBehaviour
         addBetButton.onClick.AddListener(() => ChangeBet(1));
         subtractBetButton.onClick.AddListener(() => ChangeBet(-1));
         fightButton.onClick.AddListener(() => StartFight());
-        closeButton.onClick.AddListener(() => fightManager.CloseFight());
     }
     public void Setup()
     {
@@ -49,8 +47,8 @@ public class FightPanelUI : MonoBehaviour
 
     private void ChangeBet(int amount)
     {
-        int maxBet = GameManager.Instance.ResourceManager.Notoriety;
-        betAmount = Mathf.Clamp(betAmount + amount * 10, 0, maxBet);
+        int maxBet = ResourceManager.Instance.Notoriety;
+        betAmount = Mathf.Clamp(betAmount + amount * 10, 10, maxBet);
         UpdateBetUI();
     }
 
@@ -62,7 +60,7 @@ public class FightPanelUI : MonoBehaviour
 
     private void StartFight()
     {
-        if (GameManager.Instance.ResourceManager.Notoriety < 0) return;
+        if (ResourceManager.Instance.Notoriety <= 0) return;
         ShowResultPanel();
         fightManager.SetupFight(betAmount);
     }
@@ -94,7 +92,7 @@ public class FightPanelUI : MonoBehaviour
 
     private void ValidateFightButton()
     {
-        fightButton.interactable = GameManager.Instance.ResourceManager.Notoriety >= 0;
+        fightButton.interactable = ResourceManager.Instance.Notoriety > 0;
     }
 
     public void ShowFightResult(bool playerWon)
