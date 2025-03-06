@@ -17,6 +17,7 @@ public class FightManager : MonoBehaviour
     private void Start()
     {
         fightPanelUI = GameManager.Instance.UIManager.FightPanelUI;
+        CloseFight();
     }
 
     public void StartFight()
@@ -26,12 +27,20 @@ public class FightManager : MonoBehaviour
             fightEvent = GetRandomFightEvent();
         }
 
+        fightPanelUI.gameObject.SetActive(true);
         fightPanelUI.Setup();
+    }
+    public void CloseFight()
+    {
+        fightEvent = null;
+        fightPanelUI.gameObject.SetActive(false);
     }
 
     public void StartFight(FightEventSO fight)
     {
         fightEvent = fight;
+        
+        fightPanelUI.gameObject.SetActive(true);
         fightPanelUI.Setup();
     }
 
@@ -41,7 +50,7 @@ public class FightManager : MonoBehaviour
         int computerBet = Mathf.Min(fightEvent.playerBetNotoriety, fightEvent.GetMaxComputerBet());
 
         int computerDiceCount = 1 + computerBet / 10;
-        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3); // Maksymalna ró¿nica 3 kostki
+        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3); 
 
         int[] playerRolls = RollDice(playerDiceCount);
         int[] computerRolls = RollDice(computerDiceCount);
@@ -50,7 +59,7 @@ public class FightManager : MonoBehaviour
         int computerTotal = SumRolls(computerRolls);
 
         StartCoroutine(fightPanelUI.ShowRollingEffect(playerRolls, computerRolls));
-        StartCoroutine(ResolveFight(playerTotal, computerTotal, computerBet));
+        StartCoroutine(ResolveFight(playerTotal, computerTotal, computerBet, betAmount));
     }
 
     private FightEventSO GetRandomFightEvent()
@@ -83,7 +92,7 @@ public class FightManager : MonoBehaviour
         return rolls.Sum();
     }
 
-    private IEnumerator ResolveFight(int playerRoll, int computerRoll, int computerBet)
+    private IEnumerator ResolveFight(int playerRoll, int computerRoll, int computerBet, int playerBet)
     {
         yield return new WaitForSeconds(1f);
 
@@ -95,6 +104,9 @@ public class FightManager : MonoBehaviour
             notorietyChange = computerBet;
             bootyChange = fightEvent.GetBootyWin();
             foodChange = fightEvent.GetFoodWin();
+            
+            if (playerBet == 0) notorietyChange = fightEvent.GetNotorietyBet0();
+            else notorietyChange = computerBet;
         }
         else
         {
