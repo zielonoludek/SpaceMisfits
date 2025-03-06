@@ -237,7 +237,6 @@ public class SectorManager : MonoBehaviour
         else if (eventSO is FightEventSO fightEvent)
         {
             GameManager.Instance.FightManager.StartFight(fightEvent);
-            Debug.Log("Fight event triggered. UI will be implemented later.");
         }
     }
 

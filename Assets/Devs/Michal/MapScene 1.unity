@@ -3359,10 +3359,10 @@ GameObject:
   - component: {fileID: 1960843781}
   - component: {fileID: 1960843782}
   - component: {fileID: 1960843786}
-  - component: {fileID: 1960843785}
   - component: {fileID: 1960843784}
   - component: {fileID: 1960843783}
   - component: {fileID: 1960843787}
+  - component: {fileID: 1960843788}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3399,13 +3399,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
   inputManager: {fileID: 0}
-  resourceManager: {fileID: 1960843785}
+  resourceManager: {fileID: 1960843788}
   uiManager: {fileID: 1960843787}
   timeManager: {fileID: 1960843783}
   fightManager: {fileID: 1960843786}
-  shipDurability: {fileID: 0}
-  crewManager: {fileID: 1960843784}
-  requestManager: {fileID: 0}
   Empty: {fileID: 0}
 --- !u!114 &1960843783
 MonoBehaviour:
@@ -3437,18 +3434,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crewList: []
   activeRequests: []
---- !u!114 &1960843785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960843779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8318b71792025d9479c7a046f819d7de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1960843786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3461,8 +3446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b53a5cc53ab51248861b016cc11fa55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fightPanelUI: {fileID: 506647581}
-  fightEvent: {fileID: 0}
 --- !u!114 &1960843787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3477,6 +3460,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePanelUI: {fileID: 1196237273}
   fightPanelUI: {fileID: 506647581}
+--- !u!114 &1960843788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960843779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2026435909
 PrefabInstance:
   m_ObjectHideFlags: 0
