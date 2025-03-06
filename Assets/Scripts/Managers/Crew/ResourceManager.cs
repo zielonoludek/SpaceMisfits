@@ -3,6 +3,8 @@ using System;
 
 public class ResourceManager : MonoBehaviour
 {
+    public static ResourceManager Instance { get; private set; }
+
     private int booty;
     private int food;
     private int notoriety;
@@ -12,6 +14,19 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnNotorietyChanged;
     public event Action<int> OnSightChanged;
     public event Action<int> OnFoodChanged;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public int Booty
     {

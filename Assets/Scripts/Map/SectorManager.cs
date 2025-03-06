@@ -13,7 +13,7 @@ public class SectorManager : MonoBehaviour
     private static SectorManager Instance;
 
     private static bool bIsPlayerMoving = false;
-    
+
     // Stores all discovered sectors
     private static HashSet<Sector> visibleSectors = new HashSet<Sector>();
     // Stores all discovered lanes
@@ -37,7 +37,7 @@ public class SectorManager : MonoBehaviour
         {
             yield return null;
         }
-        
+
         ResourceManager.Instance.OnSightChanged += UpdateVisibility;
     }
 
@@ -50,13 +50,13 @@ public class SectorManager : MonoBehaviour
             Debug.LogError("No starting sector found! Make sure one sector is set as starting sector");
             return;
         }
-        
+
         // Spawn player at the starting sector's position
         playerInstance = Instantiate(playerPrefab, startingSector.transform.position, quaternion.identity);
-        
+
         // Set the player's current sector
         playerCurrentSector = startingSector;
-        
+
         // Reveal sectors and lanes neighboring to the starting sector
         RevealSector(startingSector);
     }
@@ -71,7 +71,7 @@ public class SectorManager : MonoBehaviour
 
         Vector3[] path = lane.GetLanePath();
         float speed = lane.GetLaneLength();
-        
+
         // reverse the path if moving from sectorB to sectorA
         if (lane.sectorB == playerCurrentSector && lane.sectorA == newSector)
         {
@@ -111,7 +111,7 @@ public class SectorManager : MonoBehaviour
         playerInstance.transform.position = targetSector.transform.position;
         playerCurrentSector = targetSector;
         bIsPlayerMoving = false;
-        
+
         TriggerSectorEvent(targetSector);
         RevealSector(targetSector);
     }
@@ -125,7 +125,7 @@ public class SectorManager : MonoBehaviour
     private static void RevealSector(Sector sector)
     {
         if(visibleSectors.Contains(sector)) return;
-        
+
         // Mark sector as discovered and add it to the discovered sectors list
         sector.SetVisibility(true);
         visibleSectors.Add(sector);
@@ -133,10 +133,13 @@ public class SectorManager : MonoBehaviour
         // Loop through sector's neighbors
         foreach (Sector neighbor in sector.GetNeighbors())
         {
-            if (ResourceManager.Instance.GetCurrentSight() >= 1)
+            if (ResourceManager.Instance.GetCurrentSight() >= 0)
             {
                 neighbor.SetVisibility(true);
             }
+
+            // Check for spaceports further away
+            RevealDistantSpaceports(neighbor, 1);
             
             // Find the lane between current sector and this neighbor
             Lane connectingLane = FindLaneBetween(sector, neighbor);
@@ -147,15 +150,34 @@ public class SectorManager : MonoBehaviour
                 discoveredLanes.Add(connectingLane);
             }
         }
-        
+
         // Loop through all lanes in the scene
         foreach (Lane lane in FindObjectsByType<Lane>(FindObjectsSortMode.None))
         {
             // If the lane is not discovered, hide it
-            if (!discoveredLanes.Contains(lane)) // Only hide undiscovered lanes
+            if (!discoveredLanes.Contains(lane))
             {
                 lane.SetVisibility(false);
             }
+        }
+    }
+
+    private static void RevealDistantSpaceports(Sector sector, int depth)
+    {
+        // Stop searching after x sectors distance based on sight level
+        if(depth > 2) return;
+
+        foreach (Sector nextNeighbor in sector.GetNeighbors())
+        {
+            if (visibleSectors.Contains(nextNeighbor)) continue;
+
+            // Reveal if it's a spaceport
+            if (nextNeighbor.GetSectorEvent() is SectorEventSO sectorEvent && sectorEvent.eventType == EventType.Spaceport)
+            {
+                nextNeighbor.SetVisibility(true);
+                visibleSectors.Add(nextNeighbor);
+            }
+            RevealDistantSpaceports(nextNeighbor, depth + 1);
         }
     }
 
@@ -175,18 +197,18 @@ public class SectorManager : MonoBehaviour
 
     private void TriggerSectorEvent(Sector sector)
     {
-        SectorEventSO eventSO = sector.GetSectorEvent();
-        if (eventSO != null)
+        EventSO eventSO = sector.GetSectorEvent();
+
+        if (eventSO is SectorEventSO sectorEvent)
         {
             if (eventPopupUI != null)
             {
-                eventPopupUI.ShowEvent(eventSO);
+                eventPopupUI.ShowEvent(sectorEvent);
             }
-            else
-            {
-                Debug.LogError("EventUI not found in the scene!");
-            }
-            // Debug.Log($"Event triggered:  {eventSO.GetEventTitle()}");
+        }
+        else if (eventSO is FightEventSO)
+        {
+            Debug.Log("Fight event triggered. UI will be implemented later.");
         }
     }
 

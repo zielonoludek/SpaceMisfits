@@ -7,10 +7,10 @@ public class Sector : MonoBehaviour
 {
     [Tooltip("Determines if this sector is the one where player starts the game")]
     [SerializeField] private bool isStartingSector;
-    [SerializeField] private SectorEventSO sectorEvent;
+    [SerializeField] private EventSO sectorEvent;
     
     public static Sector GetCurentStartingSector => currentStartingSector;
-    public SectorEventSO GetSectorEvent() => sectorEvent;
+    public EventSO GetSectorEvent() => sectorEvent;
     
     private static Sector currentStartingSector;
     private HashSet<Sector> neighbors = new HashSet<Sector>();
@@ -74,7 +74,7 @@ public class Sector : MonoBehaviour
         return neighbors;
     }
 
-    public void SetSectorEvent(SectorEventSO newEvent)
+    public void SetSectorEvent(EventSO newEvent)
     {
         sectorEvent = newEvent;
         
