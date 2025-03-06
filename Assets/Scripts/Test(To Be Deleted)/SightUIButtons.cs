@@ -20,7 +20,7 @@ public class SightUIButtons : MonoBehaviour
 
     private void IncreaseSight()
     {
-        GameManager.Instance.ResourceManager    .IncreaseSight();
+        GameManager.Instance.ResourceManager.IncreaseSight();
     }
 
     private void DecreaseSight()
