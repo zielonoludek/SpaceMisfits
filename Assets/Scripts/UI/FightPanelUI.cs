@@ -47,7 +47,7 @@ public class FightPanelUI : MonoBehaviour
 
     private void ChangeBet(int amount)
     {
-        int maxBet = ResourceManager.Instance.Notoriety;
+        int maxBet = GameManager.Instance.ResourceManager.Notoriety;
         betAmount = Mathf.Clamp(betAmount + amount * 10, 10, maxBet);
         UpdateBetUI();
     }
@@ -60,7 +60,7 @@ public class FightPanelUI : MonoBehaviour
 
     private void StartFight()
     {
-        if (ResourceManager.Instance.Notoriety <= 0) return;
+        if (GameManager.Instance.ResourceManager.Notoriety <= 0) return;
         ShowResultPanel();
         fightManager.SetupFight(betAmount);
     }
@@ -92,7 +92,7 @@ public class FightPanelUI : MonoBehaviour
 
     private void ValidateFightButton()
     {
-        fightButton.interactable = ResourceManager.Instance.Notoriety > 0;
+        fightButton.interactable = GameManager.Instance.ResourceManager.Notoriety > 0;
     }
 
     public void ShowFightResult(bool playerWon)

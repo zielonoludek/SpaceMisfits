@@ -7,11 +7,11 @@ public class AddNotorietyButton : MonoBehaviour
 
     private void Start()
     {
-        notorietyButton.onClick.AddListener(AddNotoriety);
+        GetComponent<Button>().onClick.AddListener(AddNotoriety);
     }
 
     private void AddNotoriety()
     {
-        ResourceManager.Instance.Notoriety += 500;
+        GameManager.Instance.ResourceManager.Notoriety += 500;
     }
 }

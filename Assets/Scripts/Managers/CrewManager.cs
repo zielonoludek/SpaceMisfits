@@ -68,7 +68,7 @@ public class CrewManager : MonoBehaviour
     private void CompleteRequest(CrewRequest request)
     {
         int rewardAmount = request.difficultyLevel * 100;
-        ResourceManager.Instance.Booty += rewardAmount;
+        GameManager.Instance.ResourceManager.Booty += rewardAmount;
         Debug.Log($"Request '{request.requestName}' completed! Reward: {rewardAmount} Booty.");
         activeRequests.Remove(request);
     }
