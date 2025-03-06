@@ -1218,7 +1218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7276e29e2a3363e49941a963b6ca2a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bootyButton: {fileID: 313914805}
 --- !u!114 &313914805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5329,6 +5328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146893078}
+  - component: {fileID: 1146893079}
   m_Layer: 5
   m_Name: MainInfoPanel
   m_TagString: Untagged
@@ -5361,17 +5361,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1162932748 stripped
+--- !u!114 &1146893079
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5241574982129797630, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
-  m_PrefabInstance: {fileID: 775698175548093872}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1146893077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 530680aceadb2054a807d682e3d7f230, type: 3}
+  m_Script: {fileID: 11500000, guid: b790ea23c1cac824db3c1d1b00e8210f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bootyText: {fileID: 1008231390}
+  notorietyText: {fileID: 2055225376}
+  shipHealthText: {fileID: 1386142456}
+  foodText: {fileID: 823856263}
+  crewMoraleText: {fileID: 1593025939}
 --- !u!1 &1193779113
 GameObject:
   m_ObjectHideFlags: 0
@@ -8387,7 +8393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c06744b214bc44589b4a9596ab3f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notorietyButton: {fileID: 1851024382}
 --- !u!114 &1851024382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9010,7 +9015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f72e8d7152703940922f4f5360faf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bootyButton: {fileID: 1963463413}
 --- !u!1 &1971339350
 GameObject:
   m_ObjectHideFlags: 0
@@ -9896,7 +9900,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1162932748}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SubsceneToggle, Assembly-CSharp
         m_MethodName: ToggleSubscene
         m_Mode: 1
