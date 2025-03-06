@@ -39,8 +39,8 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    //ResourceManager.Instance.Booty += 100; (trigger booty event in other scripts)
-    //ResourceManager.Instance.Notoriety -= 5;
+    //GameManager.Instance.ResourceManager.Booty += 100; (trigger booty event in other scripts)
+    //GameManager.Instance.ResourceManager.Notoriety -= 5;
 
     public int Food
     {
@@ -81,6 +81,6 @@ public class ResourceManager : MonoBehaviour
         return Sight;
     }
 
-    //ResourceManager.Instance.IncreaseSight(); //This line adds sight level in other scripts
-    //ResourceManager.Instance.DecreaseSight(); //This line removes sight level in other scripts
+    //GameManager.Instance.ResourceManager.IncreaseSight(); //This line adds sight level in other scripts
+    //GameManager.Instance.ResourceManager.DecreaseSight(); //This line removes sight level in other scripts
 }
