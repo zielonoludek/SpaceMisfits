@@ -4,30 +4,10 @@ using System.Collections.Generic;
 
 public class ShipDurabilityManager : MonoBehaviour
 {
-    public static ShipDurabilityManager Instance { get; private set; }
-
     public event Action<string, int> OnShipPartDamaged;
     public event Action<string, int> OnShipPartRepaired;
 
     private Dictionary<string, int> shipParts = new Dictionary<string, int>();
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        shipParts["Hull"] = 100;
-        shipParts["Sails"] = 100;
-        shipParts["Cannon"] = 100;
-
-    }
 
     public int this[string partName]
     {
