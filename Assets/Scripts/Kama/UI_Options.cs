@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using static UnityEditor.Recorder.OutputPath;
 
 public class UI_Options : MonoBehaviour
 {
@@ -42,8 +43,6 @@ public class UI_Options : MonoBehaviour
     private Slider musicVolumeSlider;
 
     private Resolution[] resolutions;
-
-
 
     private void Awake()
     {
@@ -89,17 +88,16 @@ public class UI_Options : MonoBehaviour
         rebindButton = root.Q<Button>("RebindButton");
         rebindLabel = root.Q<Label>("RebindLabel");
         rebindButton.clicked += StartRebinding;
+        
 
         resolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
         qualityDropdown = root.Q<DropdownField>("QualityDropdown");
-        fullscreenToggle = root.Q<Toggle>("FullscreenToggle"); 
+        fullscreenToggle = root.Q<Toggle>("FullscreenToggle");
+
 
         resolutionDropdown.RegisterValueChangedCallback(evt => SetResolution(evt.newValue));
         fullscreenToggle.RegisterValueChangedCallback(evt => SetFullscreen(evt.newValue));
         qualityDropdown.RegisterValueChangedCallback(evt => SetQuality(evt.newValue));
-
-        PopulateResolutionDropdown();
-        LoadGraphicsSettings();
 
         // Audio
         masterVolumeSlider = root.Q<Slider>("MasterVolumeSlider");
@@ -111,7 +109,10 @@ public class UI_Options : MonoBehaviour
         musicVolumeSlider.RegisterValueChangedCallback(evt => SetMusicVolume(evt.newValue));
 
         LoadAudioSettings();
-       
+        PopulateResolutionDropdown();
+        PopulateQualityDropdown();
+        LoadGraphicsSettings();
+
     }
 
     private void OnDisable()
@@ -281,42 +282,66 @@ public class UI_Options : MonoBehaviour
 
     private void PopulateResolutionDropdown()
     {
-        Resolution[] resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions;
+        List<string> resolutiOnptions = new List<string>();
         int currentResolutionIndex = 0;
 
         for (int i = 0; i < resolutions.Length; i++)
         {
+            string resolution = resolutions[i].width + "x" + resolutions[i].height;
+            resolutiOnptions.Add(resolution);
+
             if (resolutions[i].width == Screen.currentResolution.width &&
                 resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
-                break;
             }
         }
+
+        resolutionDropdown.choices = resolutiOnptions;
+        resolutionDropdown.index = currentResolutionIndex;
     }
 
+    private void PopulateQualityDropdown()
+    {
+        List<string> qualityOptions = new List<string>();
+        for(int i = 0 ; i < QualitySettings.names.Length; i++)
+        {
+            qualityOptions.Add(QualitySettings.names[i]);
+        }
+        qualityDropdown.choices = qualityOptions;
+
+        int currentQualityIndex = QualitySettings.GetQualityLevel();
+        qualityDropdown.value = qualityOptions[currentQualityIndex];
+
+        qualityDropdown.RegisterValueChangedCallback(evt => SetQuality(evt.newValue));
+    }
     private void SetResolution(string resolution)
     {
         string[] resParts = resolution.Split('x');
+        if (resParts.Length != 2) return;
         int width = int.Parse(resParts[0].Trim());
         int height = int.Parse(resParts[1].Trim());
 
         Screen.SetResolution(width, height, Screen.fullScreen);
         PlayerPrefs.SetString("Resolution", resolution);
+        PlayerPrefs.Save();
     }
 
     private void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
         PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     private void SetQuality(string quality)
     {
-        QualitySettings.SetQualityLevel(qualityDropdown.choices.IndexOf(quality));
+        int qualityIndex = qualityDropdown.choices.IndexOf(quality);
+        QualitySettings.SetQualityLevel(qualityIndex);
         PlayerPrefs.SetString("Quality", quality);
+        PlayerPrefs.Save();
     }
-
     private void LoadGraphicsSettings()
     {
         if (PlayerPrefs.HasKey("Resolution"))
@@ -326,7 +351,11 @@ public class UI_Options : MonoBehaviour
             fullscreenToggle.value = PlayerPrefs.GetInt("Fullscreen") == 1;
 
         if (PlayerPrefs.HasKey("Quality"))
-            qualityDropdown.value = PlayerPrefs.GetString("Quality");
+        {
+            string savedQuality = PlayerPrefs.GetString("Quality");
+            qualityDropdown.value = savedQuality;
+            SetQuality(savedQuality);
+        }
     }
 
     // Settings Volume 
