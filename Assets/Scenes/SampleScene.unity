@@ -658,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timePanelUI: {fileID: 248684235}
+  fightPanelUI: {fileID: 0}
 --- !u!1 &226519756
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,17 +9384,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095044585}
   m_CullTransparentMesh: 1
---- !u!114 &2139726915 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 712751621649989054, guid: 96278252dad0a4641bc205efa366ff5a, type: 3}
-  m_PrefabInstance: {fileID: 7709816280303825170}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c317d8098e68a5d4fa5ca189d1287876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &775698175548093872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9506,14 +9496,6 @@ PrefabInstance:
       propertyPath: notorietyText
       value: 
       objectReference: {fileID: 2055225376}
-    - target: {fileID: 6242438850052290503, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
-      propertyPath: uiManager
-      value: 
-      objectReference: {fileID: 101913068}
-    - target: {fileID: 6242438850052290503, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
-      propertyPath: cameraManager
-      value: 
-      objectReference: {fileID: 2139726915}
     - target: {fileID: 7072606964494907396, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -9538,7 +9520,8 @@ PrefabInstance:
       propertyPath: requestPanelPrefab
       value: 
       objectReference: {fileID: 1495358886}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1276556340548977776, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
