@@ -16,7 +16,7 @@ public class HoverUI : MonoBehaviour
 
     public void ShowPopup(string eventType, Vector3 worldPosition)
     {
-        if (GameManager.Instance.ResourceManager.GetCurrentSight() == 0) return;
+        if (ResourceManager.Instance.GetCurrentSight() == 0) return;
         
         popupText.text = eventType;
         popupPanel.SetActive(true);

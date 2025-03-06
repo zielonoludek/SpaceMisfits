@@ -10,22 +10,22 @@ public class SightUIButtons : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.ResourceManager.OnSightChanged += UpdateUI;
+        ResourceManager.Instance.OnSightChanged += UpdateUI;
 
         increaseButton.onClick.AddListener(IncreaseSight);
         decreaseButton.onClick.AddListener(DecreaseSight);
 
-        UpdateUI(GameManager.Instance.ResourceManager.GetCurrentSight());
+        UpdateUI(ResourceManager.Instance.GetCurrentSight());
     }
 
     private void IncreaseSight()
     {
-        GameManager.Instance.ResourceManager    .IncreaseSight();
+        ResourceManager.Instance.IncreaseSight();
     }
 
     private void DecreaseSight()
     {
-        GameManager.Instance.ResourceManager.DecreaseSight();
+        ResourceManager.Instance.DecreaseSight();
     }
 
     private void UpdateUI(int newSight)
@@ -35,6 +35,6 @@ public class SightUIButtons : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.ResourceManager.OnSightChanged -= UpdateUI;
+        ResourceManager.Instance.OnSightChanged -= UpdateUI;
     }
 }

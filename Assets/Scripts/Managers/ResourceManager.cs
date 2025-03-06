@@ -3,6 +3,8 @@ using System;
 
 public class ResourceManager : MonoBehaviour
 {
+    public static ResourceManager Instance { get; private set; }
+
     private int booty;
     private int food;
     private int notoriety;
@@ -12,6 +14,19 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnNotorietyChanged;
     public event Action<int> OnSightChanged;
     public event Action<int> OnFoodChanged;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public int Booty
     {
@@ -39,8 +54,8 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    //GameManager.Instance.ResourceManager.Booty += 100; (trigger booty event in other scripts)
-    //GameManager.Instance.ResourceManager.Notoriety -= 5;
+    //ResourceManager.Instance.Booty += 100; (trigger booty event in other scripts)
+    //ResourceManager.Instance.Notoriety -= 5;
 
     public int Food
     {
@@ -81,6 +96,6 @@ public class ResourceManager : MonoBehaviour
         return Sight;
     }
 
-    //GameManager.Instance.ResourceManager.IncreaseSight(); //This line adds sight level in other scripts
-    //GameManager.Instance.ResourceManager.DecreaseSight(); //This line removes sight level in other scripts
+    //ResourceManager.Instance.IncreaseSight(); //This line adds sight level in other scripts
+    //ResourceManager.Instance.DecreaseSight(); //This line removes sight level in other scripts
 }

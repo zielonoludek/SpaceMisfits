@@ -8,16 +8,16 @@ public class BootyUI : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.ResourceManager.OnBootyChanged += UpdateBootyUI;
-        GameManager.Instance.ResourceManager.OnNotorietyChanged += UpdateNotorietyUI;
-        UpdateBootyUI(GameManager.Instance.ResourceManager.Booty);
-        UpdateNotorietyUI(GameManager.Instance.ResourceManager.Notoriety);
+        ResourceManager.Instance.OnBootyChanged += UpdateBootyUI;
+        ResourceManager.Instance.OnNotorietyChanged += UpdateNotorietyUI;
+        UpdateBootyUI(ResourceManager.Instance.Booty);
+        UpdateNotorietyUI(ResourceManager.Instance.Notoriety);
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.ResourceManager.OnBootyChanged -= UpdateBootyUI;
-        GameManager.Instance.ResourceManager.OnNotorietyChanged -= UpdateNotorietyUI;
+        ResourceManager.Instance.OnBootyChanged -= UpdateBootyUI;
+        ResourceManager.Instance.OnNotorietyChanged -= UpdateNotorietyUI;
     }
 
     private void UpdateBootyUI(int amount)
