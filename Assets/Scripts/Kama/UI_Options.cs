@@ -283,13 +283,13 @@ public class UI_Options : MonoBehaviour
     private void PopulateResolutionDropdown()
     {
         resolutions = Screen.resolutions;
-        List<string> resolutiOnptions = new List<string>();
+        List<string> resolutionOptions = new List<string>();
         int currentResolutionIndex = 0;
 
         for (int i = 0; i < resolutions.Length; i++)
         {
             string resolution = resolutions[i].width + "x" + resolutions[i].height;
-            resolutiOnptions.Add(resolution);
+            resolutionOptions.Add(resolution);
 
             if (resolutions[i].width == Screen.currentResolution.width &&
                 resolutions[i].height == Screen.currentResolution.height)
@@ -298,8 +298,18 @@ public class UI_Options : MonoBehaviour
             }
         }
 
-        resolutionDropdown.choices = resolutiOnptions;
+        resolutionDropdown.choices = resolutionOptions;
         resolutionDropdown.index = currentResolutionIndex;
+        if (PlayerPrefs.HasKey("Resolution"))
+        {
+            string savedResolution = PlayerPrefs.GetString("Resolution");
+            if (resolutionOptions.Contains(savedResolution))
+            {
+                resolutionDropdown.value = savedResolution;
+            }
+        }
+
+        resolutionDropdown.RegisterValueChangedCallback(evt => SetResolution(evt.newValue));
     }
 
     private void PopulateQualityDropdown()
@@ -320,10 +330,12 @@ public class UI_Options : MonoBehaviour
     {
         string[] resParts = resolution.Split('x');
         if (resParts.Length != 2) return;
+
         int width = int.Parse(resParts[0].Trim());
         int height = int.Parse(resParts[1].Trim());
 
         Screen.SetResolution(width, height, Screen.fullScreen);
+
         PlayerPrefs.SetString("Resolution", resolution);
         PlayerPrefs.Save();
     }
@@ -345,7 +357,14 @@ public class UI_Options : MonoBehaviour
     private void LoadGraphicsSettings()
     {
         if (PlayerPrefs.HasKey("Resolution"))
-            SetResolution(PlayerPrefs.GetString("Resolution"));
+        {
+            string savedResolution = PlayerPrefs.GetString("Resolution");
+            if (resolutionDropdown.choices.Contains(savedResolution))
+            {
+                resolutionDropdown.value = savedResolution;
+                SetResolution(savedResolution);
+            }
+        }
 
         if (PlayerPrefs.HasKey("Fullscreen"))
             fullscreenToggle.value = PlayerPrefs.GetInt("Fullscreen") == 1;
@@ -361,12 +380,6 @@ public class UI_Options : MonoBehaviour
     // Settings Volume 
     private void SetMasterVolume(float volume)
     {
-        if (audioMixer == null)
-        {
-            Debug.LogError("AudioMixer nie jest przypisany! Sprawdź w Inspectorze.");
-            return;
-        }
-
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("MasterVolume", volume);
     }
