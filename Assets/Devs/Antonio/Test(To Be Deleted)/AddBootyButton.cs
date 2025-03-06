@@ -12,6 +12,6 @@ public class AddBootyButton : MonoBehaviour
 
     private void AddBooty()
     {
-        GameManager.Instance.ResourceManager.Booty += 100;
+        GameManager.Instance.ResourceManager.Booty += 200;
     }
 }
