@@ -7,7 +7,7 @@ public class AddNotorietyButton : MonoBehaviour
 
     private void Start()
     {
-        notorietyButton.onClick.AddListener(AddNotoriety);
+        GetComponent<Button>().onClick.AddListener(AddNotoriety);
     }
 
     private void AddNotoriety()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
-    [SerializeField] private FightPanelUI fightPanelUI;
-    [SerializeField] private FightEventSO fightEvent;
+    private FightPanelUI fightPanelUI;
+    private FightEventSO fightEvent;
 
     private System.Random random = new System.Random();
 
