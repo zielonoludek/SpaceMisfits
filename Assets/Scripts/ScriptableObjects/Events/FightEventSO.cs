@@ -20,6 +20,7 @@ public class FightEventSO : EventSO
     public int GetBootyLose() => fightTier switch { FightTier.Easy => 10, FightTier.Medium => 20, FightTier.Hard => 30, _ => 0 };
     public int GetFoodWin() => fightTier switch { FightTier.Easy => 30, FightTier.Medium => 50, FightTier.Hard => 80, _ => 0 };
     public int GetFoodLose() => fightTier switch { FightTier.Easy => 15, FightTier.Medium => 25, FightTier.Hard => 40, _ => 0 };
+    public int GetNotorietyBet0() => fightTier switch { FightTier.Easy => 10, FightTier.Medium => 20, FightTier.Hard => 30, _ => 0 };
 
     public int GetMaxPlayerDice(int computerBet)
     {

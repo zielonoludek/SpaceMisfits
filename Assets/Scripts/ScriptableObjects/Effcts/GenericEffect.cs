@@ -5,16 +5,16 @@ public class GenericEffect : Effect
 {
     public override void ApplyEffect()
     {
-        if (ResourceManager.Instance == null) return;
+        if (GameManager.Instance.ResourceManager == null) return;
 
         switch (effectType)
         {
             case EffectType.Booty:
-                ResourceManager.Instance.Booty += amount;
+                GameManager.Instance.ResourceManager.Booty += amount;
                 Debug.Log($"{effectName}: Booty changed by {amount}");
                 break;
             case EffectType.Notoriety:
-                ResourceManager.Instance.Notoriety += amount;
+                GameManager.Instance.ResourceManager.Notoriety += amount;
                 Debug.Log($"{effectName}: Notoriety changed by {amount}");
                 break;
         }
