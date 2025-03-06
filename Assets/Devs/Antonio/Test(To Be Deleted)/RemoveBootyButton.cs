@@ -3,11 +3,9 @@ using UnityEngine.UI;
 
 public class RemoveBootyButton : MonoBehaviour
 {
-    public Button bootyButton;
-
     private void Start()
     {
-        bootyButton.onClick.AddListener(AddBooty);
+        GetComponent<Button>().onClick.AddListener(AddBooty);
     }
 
     private void AddBooty()

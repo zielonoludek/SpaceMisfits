@@ -3,11 +3,9 @@ using UnityEngine.UI;
 
 public class RemoveNotorietyButton : MonoBehaviour
 {
-    public Button notorietyButton;
-
     private void Start()
     {
-        notorietyButton.onClick.AddListener(AddNotoriety);
+        GetComponent<Button>().onClick.AddListener(AddNotoriety);
     }
 
     private void AddNotoriety()
