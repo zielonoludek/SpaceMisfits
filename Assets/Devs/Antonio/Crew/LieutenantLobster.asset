@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: LieutenantLobster
   m_EditorClassIdentifier: 
   crewmateName: Lieutenant Lobster
+  crewmateImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  crewMemberType: 0
   crewmateDescription: 
   genericEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}

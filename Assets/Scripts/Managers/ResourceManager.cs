@@ -61,13 +61,13 @@ public class ResourceManager : MonoBehaviour
 
     public int CrewMood
     {
-        get => CrewMood;
+        get => crewMood;
         set
         {
-            if (CrewMood != value)
+            if (crewMood != value)
             {
                 crewMood = Mathf.Max(0, value);
-                OnCrewMoodChanged?.Invoke(CrewMood);
+                OnCrewMoodChanged?.Invoke(crewMood);
             }
         }
     }

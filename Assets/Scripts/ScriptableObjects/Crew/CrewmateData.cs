@@ -5,6 +5,7 @@ public class CrewmateData : ScriptableObject
 {
     [Header("Crewmate Information")]
     public string crewmateName;
+    public Sprite crewmateImage;
     public CrewMemberType crewMemberType;
 
     [TextArea] public string crewmateDescription;
