@@ -3,15 +3,35 @@ using System;
 
 public class ResourceManager : MonoBehaviour
 {
+    private int shipHealth;
     private int booty;
     private int food;
     private int notoriety;
+    private int crewMood;
     private int sightLevel;
+    private int speedValue;
 
+    public event Action<int> OnShipHealthChanged;
     public event Action<int> OnBootyChanged;
     public event Action<int> OnNotorietyChanged;
+    public event Action<int> OnCrewMoodChanged;
     public event Action<int> OnSightChanged;
+    public event Action<int> OnSpeedChanged;
     public event Action<int> OnFoodChanged;
+
+ 
+    public int ShipHealth
+    {
+        get => shipHealth;
+        set
+        {
+            if (shipHealth != value)
+            {
+                shipHealth = Mathf.Max(0, value);
+                OnShipHealthChanged?.Invoke(shipHealth);
+            }
+        }
+    }
 
     public int Booty
     {
@@ -35,6 +55,19 @@ public class ResourceManager : MonoBehaviour
             {
                 notoriety = Mathf.Max(0, value);
                 OnNotorietyChanged?.Invoke(notoriety);
+            }
+        }
+    }
+
+    public int CrewMood
+    {
+        get => CrewMood;
+        set
+        {
+            if (CrewMood != value)
+            {
+                crewMood = Mathf.Max(0, value);
+                OnCrewMoodChanged?.Invoke(CrewMood);
             }
         }
     }
@@ -79,6 +112,31 @@ public class ResourceManager : MonoBehaviour
     public int GetCurrentSight()
     {
         return Sight;
+    }
+
+    public int Speed
+    {
+        get => speedValue;
+        set
+        {
+            speedValue = Mathf.Clamp(value, 0, 3);
+            OnSpeedChanged?.Invoke(speedValue);
+        }
+    }
+
+    public void IncreaseSpeed(int amount = 1)
+    {
+        Speed += amount;
+    }
+
+    public void DecreaseSpeed(int amount = 1)
+    {
+        Speed -= amount;
+    }
+
+    public int GetCurrentSpeed()
+    {
+        return Speed;
     }
 
     //GameManager.Instance.ResourceManager.IncreaseSight(); //This line adds sight level in other scripts

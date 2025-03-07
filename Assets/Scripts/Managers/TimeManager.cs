@@ -42,6 +42,7 @@ public class TimeManager : MonoBehaviour
 
     public void PauseTime(bool var)
     {
+        if (GameManager.Instance.GameState == GameState.Event) return;
         timeOn = !var;
         if (timeOn) SetTimeSpeed(timeSpeed);
         else SetTimeSpeed(0);
@@ -99,8 +100,6 @@ public class TimeManager : MonoBehaviour
 
         return new Vector2(hours, minutes);
     }
-
-
     public Vector3 GetDate()
     {
         return new Vector3(Day, Month, Year);

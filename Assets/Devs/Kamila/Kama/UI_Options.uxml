@@ -1,0 +1,27 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="optionsMenu" enabled="true" style="flex-grow: 1; flex-direction: column; align-items: stretch; justify-content: space-around; align-self: auto;">
+        <engine:Label text="OPTIONS" style="font-size: 100px; -unity-text-align: lower-center; white-space: nowrap; width: 1095px;" />
+        <engine:ToggleButtonGroup label="Select" name="Selected" style="flex-direction: row;">
+            <engine:Button text="Audio/Graphic" name="Audio" />
+            <engine:Button text="Control" name="Rebind" selectable="false" style="white-space: pre-wrap;" />
+        </engine:ToggleButtonGroup>
+        <engine:VisualElement name="Control" style="flex-grow: 1; height: 0; background-color: rgba(0, 0, 0, 0);">
+            <engine:Label text="Sprint" name="Move" tabindex="-1" style="flex-direction: row; justify-content: center; align-self: auto; align-items: auto; -unity-text-align: middle-left; text-overflow: clip; height: 52px; width: 346px; align-content: auto; font-size: 32px;">
+                <engine:Button name="RebindButton" style="width: auto; height: auto; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center;">
+                    <engine:Label text="Shift" name="RebindLabel" enable-rich-text="true" style="font-size: 20px;" />
+                </engine:Button>
+                <engine:Button text="R" name="ResetButton" style="width: auto; height: auto; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 20px; align-self: center;" />
+            </engine:Label>
+            <engine:Slider label="MasterVolume" value="0" high-value="100" name="MasterVolumeSlider" fill="true" />
+            <engine:Slider label="SFXVolume" value="0" high-value="100" name="SFXVolumeSlider" fill="true" />
+            <engine:Slider label="MusicVolume" value="0" high-value="100" name="MusicVolumeSlider" fill="true" />
+            <engine:Toggle label="FullScreen" name="FullscreenToggle" value="false" />
+            <engine:DropdownField label="Scene" choices="ResolutionDropdown" index="0" name="ResolutionDropdown" style="width: 500px;" />
+            <engine:DropdownField label="Scene" choices="QualityDropdown" index="0" name="QualityDropdown" style="width: 500px;" />
+        </engine:VisualElement>
+        <engine:Button text="All Reset" name="AllResetButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: center; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-bottom: 10px; margin-left: 750px;" />
+        <engine:ToggleButtonGroup name="ToggleButtonGroup" style="flex-direction: row;">
+            <engine:Button text="Back" name="BackButton" style="width: 300px; height: 50px; white-space: pre-wrap; -unity-text-align: middle-center; font-size: 50px; align-self: flex-start; margin-bottom: 10px; margin-left: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;" />
+        </engine:ToggleButtonGroup>
+    </engine:VisualElement>
+</engine:UXML>

@@ -13,8 +13,8 @@ public class CrewUI : MonoBehaviour
 
     private void Start()
     {
-        recruitButton1.onClick.AddListener(() => CrewManager.Instance.RecruitCrewmate(crewmate1));
-        recruitButton2.onClick.AddListener(() => CrewManager.Instance.RecruitCrewmate(crewmate2));
-        recruitButton3.onClick.AddListener(() => CrewManager.Instance.RecruitCrewmate(crewmate3));
+        recruitButton1.onClick.AddListener(() => GameManager.Instance.CrewManager.RecruitCrewmate(crewmate1));
+        recruitButton2.onClick.AddListener(() => GameManager.Instance.CrewManager.RecruitCrewmate(crewmate2));
+        recruitButton3.onClick.AddListener(() => GameManager.Instance.CrewManager.RecruitCrewmate(crewmate3));
     }
 }

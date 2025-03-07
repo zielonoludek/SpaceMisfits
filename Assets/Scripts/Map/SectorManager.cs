@@ -6,27 +6,8 @@ using UnityEngine;
 
 public class SectorManager : MonoBehaviour
 {
-    [Serializable]
-    public struct SightLevelSettings
-    {
-        // How far player can see sectors
-        public int sectorVisibility;
-        // How far spaceports can be seen
-        public int spaceportVisibility;
-    }
-
-    [Header("Sight Settings")]
-    [SerializeField] private SightLevelSettings[] sightLevels = new SightLevelSettings[4]
-    {
-        new SightLevelSettings { sectorVisibility = 1, spaceportVisibility = 3 },
-        new SightLevelSettings { sectorVisibility = 2, spaceportVisibility = 3 },
-        new SightLevelSettings { sectorVisibility = 3, spaceportVisibility = 4 },
-        new SightLevelSettings { sectorVisibility = 4, spaceportVisibility = 5 } 
-    };
-    
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private EventPopupUI eventPopupUI;
-    
     private static GameObject playerInstance;
     private static Sector playerCurrentSector;
     private static SectorManager Instance;
@@ -41,14 +22,23 @@ public class SectorManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        StartCoroutine(InitializeGame());
+
+        StartCoroutine(WaitForResourceManager());
     }
 
-    private IEnumerator InitializeGame()
+    private void Start()
     {
-        yield return new WaitUntil(() => GameManager.Instance != null);
-        GameManager.Instance.ResourceManager.OnSightChanged += UpdateVisibility;
         SpawnPlayerAtStartingSector();
+    }
+
+    private IEnumerator WaitForResourceManager()
+    {
+        while (GameManager.Instance.ResourceManager == null)
+        {
+            yield return null;
+        }
+        
+        GameManager.Instance.ResourceManager.OnSightChanged += UpdateVisibility;
     }
 
     private void SpawnPlayerAtStartingSector()
@@ -68,12 +58,11 @@ public class SectorManager : MonoBehaviour
         playerCurrentSector = startingSector;
         
         // Reveal sectors and lanes neighboring to the starting sector
-        RevealSector(startingSector, GameManager.Instance.ResourceManager.GetCurrentSight());
+        RevealSector(startingSector);
     }
 
     public static void MovePlayerToSector(Sector newSector)
     {
-        GameManager.Instance.ResourceManager.Notoriety += 100;
         if(playerInstance == null || playerCurrentSector == null) return;
         if(!playerCurrentSector.IsNeighbor(newSector)) return;
 
@@ -84,7 +73,10 @@ public class SectorManager : MonoBehaviour
         float speed = lane.GetLaneLength();
         
         // reverse the path if moving from sectorB to sectorA
-        if (lane.GetSectorB() == playerCurrentSector) Array.Reverse(path);
+        if (lane.sectorB == playerCurrentSector && lane.sectorA == newSector)
+        {
+            Array.Reverse(path);
+        }
 
         Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, speed, newSector));
     }
@@ -93,12 +85,11 @@ public class SectorManager : MonoBehaviour
     {
         // Ensure valid path
         if(path.Length < 2) yield break;
-        
-        bIsPlayerMoving = true;
+
         int index = 0;
-        
         while (index < path.Length - 1)
         {
+            bIsPlayerMoving = true;
             Vector3 start = path[index];
             Vector3 end = path[index + 1];
 
@@ -122,28 +113,18 @@ public class SectorManager : MonoBehaviour
         bIsPlayerMoving = false;
         
         TriggerSectorEvent(targetSector);
-        RevealSector(targetSector, GameManager.Instance.ResourceManager.GetCurrentSight());
+        RevealSector(targetSector);
     }
 
     // Called whenever sight level changes
     private void UpdateVisibility(int sightLevel)
     {
-        foreach (var sector in visibleSectors)
-        {
-            sector.SetVisibility(false);
-        }
-        visibleSectors.Clear();
-        discoveredLanes.Clear();
-        RevealSector(playerCurrentSector, sightLevel);
+        RevealSector(playerCurrentSector);
     }
 
-    private static void RevealSector(Sector sector, int sightLevel, int depth = 0)
+    private static void RevealSector(Sector sector)
     {
-        if (depth >= Instance.sightLevels[sightLevel].sectorVisibility)
-            return;
-        
-        int sectorVisibility = Instance.sightLevels[sightLevel].sectorVisibility;
-        int spaceportVisibility = Instance.sightLevels[sightLevel].spaceportVisibility;
+        if(visibleSectors.Contains(sector)) return;
         
         // Mark sector as discovered and add it to the discovered sectors list
         sector.SetVisibility(true);
@@ -152,21 +133,11 @@ public class SectorManager : MonoBehaviour
         // Loop through sector's neighbors
         foreach (Sector neighbor in sector.GetNeighbors())
         {
-            if (!visibleSectors.Contains(neighbor))
+            if (GameManager.Instance.ResourceManager.GetCurrentSight() >= 1)
             {
                 neighbor.SetVisibility(true);
-                visibleSectors.Add(neighbor);
-
-                // Recursively reveal neighbors based on sector visibility
-                if (depth < sectorVisibility)
-                {
-                    RevealSector(neighbor, sightLevel, depth + 1);
-                }
             }
-
-            // Check for spaceports further away
-            RevealDistantSpaceports(neighbor, 1, spaceportVisibility);
-
+            
             // Find the lane between current sector and this neighbor
             Lane connectingLane = FindLaneBetween(sector, neighbor);
             if (connectingLane != null)
@@ -181,31 +152,10 @@ public class SectorManager : MonoBehaviour
         foreach (Lane lane in FindObjectsByType<Lane>(FindObjectsSortMode.None))
         {
             // If the lane is not discovered, hide it
-            if (!discoveredLanes.Contains(lane))
+            if (!discoveredLanes.Contains(lane)) // Only hide undiscovered lanes
             {
                 lane.SetVisibility(false);
             }
-        }
-    }
-
-    private static void RevealDistantSpaceports(Sector sector, int depth, int maxDepth)
-    {
-        // Stop searching after x sectors distance based on sight level
-        if(depth >= maxDepth) return;
-
-        foreach (Sector nextNeighbor in sector.GetNeighbors())
-        {
-            if (visibleSectors.Contains(nextNeighbor)) continue;
-
-            // Reveal if it's a spaceport
-            if (nextNeighbor.GetSectorEvent() is SectorEventSO sectorEvent && sectorEvent.eventType == EventType.Spaceport)
-            {
-                nextNeighbor.SetVisibility(true);
-                visibleSectors.Add(nextNeighbor);
-            }
-            
-            // If no spaceport found, search again, deeper
-            RevealDistantSpaceports(nextNeighbor, depth + 1, maxDepth);
         }
     }
 
@@ -225,18 +175,18 @@ public class SectorManager : MonoBehaviour
 
     private void TriggerSectorEvent(Sector sector)
     {
-        EventSO eventSO = sector.GetSectorEvent();
-
-        if (eventSO is SectorEventSO sectorEvent)
+        SectorEventSO eventSO = sector.GetSectorEvent();
+        if (eventSO != null)
         {
             if (eventPopupUI != null)
             {
-                eventPopupUI.ShowEvent(sectorEvent);
+                eventPopupUI.ShowEvent(eventSO);
             }
-        }
-        else if (eventSO is FightEventSO fightEvent)
-        {
-            GameManager.Instance.FightManager.StartFight(fightEvent);
+            else
+            {
+                Debug.LogError("EventUI not found in the scene!");
+            }
+            // Debug.Log($"Event triggered:  {eventSO.GetEventTitle()}");
         }
     }
 
