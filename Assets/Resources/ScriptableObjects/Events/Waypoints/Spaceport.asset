@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: Spaceport
   eventType: 4
-  eventDescription: 'Bababui
+  eventDescription: 'Some say there is no rest for the wicked. Yet here you are,
+    an enormous conglomeration of ships and buildings has risen here, allowing people
+    like you and many others to rest, resupply, and make necessary repairs before
+    the next voyage.
 
 '
   eventEffect: {fileID: 0}
-  hasChoices: 0
+  hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: BabaBui>
-    choiceEffect: {fileID: 0}
-  - choiceDescription: Buibaba
+  - choiceDescription: Visit the shop
+    choiceEffect: {fileID: 11400000, guid: 0b4ed1104766f6d489262ec315401bae, type: 2}
+  - choiceDescription: Leave
     choiceEffect: {fileID: 0}

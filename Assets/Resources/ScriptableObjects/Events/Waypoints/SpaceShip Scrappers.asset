@@ -21,6 +21,6 @@ MonoBehaviour:
   numberOfChoices: 2
   choices:
   - choiceDescription: Trade
-    choiceEffect: {fileID: 0}
+    choiceEffect: {fileID: 11400000, guid: 0b4ed1104766f6d489262ec315401bae, type: 2}
   - choiceDescription: Let's not waste time here
     choiceEffect: {fileID: 0}

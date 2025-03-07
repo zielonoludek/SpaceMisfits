@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: 
   eventType: 0
-  eventDescription: 
-  eventEffect: {fileID: 0}
-  hasChoices: 0
+  eventDescription: 'You begin to see pieces of metal and wood aimlessly drifting
+    through the void. Some time later, masts start to emerge over the eerie horizon.
+    You find yourself in a massive spaceship graveyard, a place where AI-powered
+    ships go to die.
+
+
+    You can send 2 Crew Members in order to explore'
+  eventEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+  hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
+  - choiceDescription: Send your Crew (Possitive effect)
+    choiceEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
+  - choiceDescription: Send your Crew (Negative effect)
+    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}

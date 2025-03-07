@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: 
   eventType: 0
-  eventDescription: 
+  eventDescription: You begin to hear heavy sounds in the distance. At first, it
+    resembles a hundred cannonballs firing at once. But soon, the noise takes on
+    a soothing quality, it's start to sound almost like a language. Before long,
+    you and your crew encounter the mythical space whales.
   eventEffect: {fileID: 0}
-  hasChoices: 0
+  hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
-  - choiceDescription: 
+  - choiceDescription: Take in the sights
+    choiceEffect: {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+  - choiceDescription: Leave
     choiceEffect: {fileID: 0}
