@@ -9018,7 +9018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1685538726
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11491,13 +11491,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2112534628}
-        m_TargetAssemblyTypeName: SubsceneToggle, Assembly-CSharp
-        m_MethodName: ToggleSubscene
-        m_Mode: 1
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadNewScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: MapScene
           m_BoolArgument: 0
@@ -11549,16 +11549,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112534623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 530680aceadb2054a807d682e3d7f230, type: 3}
+  m_Script: {fileID: 11500000, guid: bbcec486cdb34634ebbddc9c08c790cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapScene: MapScene
-  itemsToHide:
-  - {fileID: 1146893077}
-  - {fileID: 595540554}
-  - {fileID: 1362317640}
-  - {fileID: 1129633223}
-  - {fileID: 1685538725}
 --- !u!1 &2129427370
 GameObject:
   m_ObjectHideFlags: 0
