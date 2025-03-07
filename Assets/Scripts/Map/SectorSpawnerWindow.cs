@@ -1,3 +1,4 @@
+
 using System;
 using System.Linq;
 using UnityEditor;
@@ -7,7 +8,7 @@ public class SectorSpawnerWindow : EditorWindow
 {
     private GameObject sectorPrefab;
     private GameObject lanePrefab;
-    private SectorEventSO sectorEvent;
+    private EventSO sectorEvent;
     
     [MenuItem("Tools/Sector Spawner")]
     public static void ShowWindow()
@@ -17,13 +18,14 @@ public class SectorSpawnerWindow : EditorWindow
 
     private void OnGUI()
     {
+        LoadPrefabs();
+        
         GUILayout.Label("Sector Spawner", EditorStyles.boldLabel);
         
-        // Field to assign Sector prefab
-        sectorPrefab = (GameObject)EditorGUILayout.ObjectField("Sector Prefab", sectorPrefab, typeof(GameObject), false);
+        EditorGUILayout.ObjectField("Sector Prefab", sectorPrefab, typeof(GameObject), false);
         
         // Field to assign Sector event
-        sectorEvent = EditorGUILayout.ObjectField("Select Sector Event", sectorEvent, typeof(SectorEventSO), false) as SectorEventSO; 
+        sectorEvent = EditorGUILayout.ObjectField("Select Sector Event", sectorEvent, typeof(EventSO), false) as EventSO; 
         
         // Button to spawn sector
         if (GUILayout.Button("Spawn Sector") && sectorPrefab != null)
@@ -35,14 +37,19 @@ public class SectorSpawnerWindow : EditorWindow
         
         GUILayout.Label("Create Lane", EditorStyles.boldLabel);
         
-        // Field to assign Lane prefab
-        lanePrefab = (GameObject)EditorGUILayout.ObjectField("Lane Prefab", lanePrefab, typeof(GameObject), false);
+        EditorGUILayout.ObjectField("Lane Prefab", lanePrefab, typeof(GameObject), false);
         
         // Button to create a lane between selected sectors
         if (GUILayout.Button("Create Lane") && lanePrefab != null)
         {
             CreateLane();
         }
+    }
+
+    private void LoadPrefabs()
+    {
+        sectorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Map/Sector.prefab");
+        lanePrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Map/Lane.prefab");
     }
 
     private void SpawnSector()

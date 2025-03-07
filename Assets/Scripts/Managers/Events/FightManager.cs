@@ -78,7 +78,7 @@ public class FightManager : MonoBehaviour
 
         if (allEvents.Length == 0)
         {
-            Debug.LogWarning("Brak eventów w folderze 'ScriptableObjects/Events/Fights'!");
+            Debug.LogWarning("Brak eventï¿½w w folderze 'ScriptableObjects/Events/Fights'!");
             return null;
         }
 
@@ -109,6 +109,8 @@ public class FightManager : MonoBehaviour
         int notorietyChange, bootyChange, foodChange;
         bool playerWon = playerRoll > computerRoll;
 
+        if(fightEvent == null) yield break;
+        
         if (playerWon)
         {
             notorietyChange = computerBet;
@@ -120,7 +122,7 @@ public class FightManager : MonoBehaviour
         }
         else
         {
-            notorietyChange = -fightEvent.playerBetNotoriety;
+            notorietyChange = -playerBet;
             bootyChange = -fightEvent.GetBootyLose();
             foodChange = -fightEvent.GetFoodLose();
         }
