@@ -33,12 +33,12 @@ public class SectorManager : MonoBehaviour
 
     private IEnumerator WaitForResourceManager()
     {
-        while (ResourceManager.Instance == null)
+        while (GameManager.Instance.ResourceManager == null)
         {
             yield return null;
         }
         
-        ResourceManager.Instance.OnSightChanged += UpdateVisibility;
+        GameManager.Instance.ResourceManager.OnSightChanged += UpdateVisibility;
     }
 
     private void SpawnPlayerAtStartingSector()
@@ -133,7 +133,7 @@ public class SectorManager : MonoBehaviour
         // Loop through sector's neighbors
         foreach (Sector neighbor in sector.GetNeighbors())
         {
-            if (ResourceManager.Instance.GetCurrentSight() >= 1)
+            if (GameManager.Instance.ResourceManager.GetCurrentSight() >= 1)
             {
                 neighbor.SetVisibility(true);
             }

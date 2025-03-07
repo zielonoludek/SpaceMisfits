@@ -12,6 +12,6 @@ public class AddShipHealthButton : MonoBehaviour
 
     private void AddShipHealth()
     {
-        ResourceManager.Instance.ShipHealth += 3000;
+        GameManager.Instance.ResourceManager.ShipHealth += 3000;
     }
 }

@@ -1,18 +1,21 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCrewRequest", menuName = "Crew/Request")]
+[CreateAssetMenu(fileName = "NewCrewRequest", menuName = "Crew/CrewRequest")]
 public class CrewRequest : ScriptableObject
 {
-    public string requestName;
-    [Range(1, 10)] public int difficultyLevel;
-    public string fulfillmentCondition;
-    public DateTime expirationDate;
+    public string Name;
+    public Sprite Artwork;
 
-    [Header("Progress Tracking")]
-    public int requiredAmount;
-    public int currentProgress;
-
-    public bool IsFulfilled() => currentProgress >= requiredAmount;
-    public bool IsExpired() => DateTime.Now > expirationDate;
+    public RequestType Type;
+    public RequestOriginType Origin;
+    public CrewMemberType specialMember;
+    
+    public bool IsFromCrewMember;
+    
+    public int ExpirationTime;
+    public float ExpirationPenalty;
+    
+    public string FulfillmentCondition;
+    public string FulfillmentReward;
 }
