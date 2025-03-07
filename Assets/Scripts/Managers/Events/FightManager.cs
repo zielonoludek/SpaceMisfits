@@ -33,6 +33,7 @@ public class FightManager : MonoBehaviour
         GameManager.Instance.GameState = GameState.Event;
         GameManager.Instance.UIManager.TimePanelUI.SetupPauseBtn();
 
+        GameManager.Instance.UIManager.TimePanelUI.SetTimeSpeed(1);
     }
 
     public void StartFight(FightEventSO fight)
@@ -43,6 +44,8 @@ public class FightManager : MonoBehaviour
         fightPanelUI.Setup(); GameManager.Instance.TimeManager.PauseTime(true);
         GameManager.Instance.GameState = GameState.Event;
         GameManager.Instance.UIManager.TimePanelUI.SetupPauseBtn();
+        
+        GameManager.Instance.UIManager.TimePanelUI.SetTimeSpeed(1);
     }
 
     public void CloseFight()
@@ -108,8 +111,6 @@ public class FightManager : MonoBehaviour
 
         int notorietyChange, bootyChange, foodChange;
         bool playerWon = playerRoll > computerRoll;
-
-        if(fightEvent == null) yield break;
         
         if (playerWon)
         {
