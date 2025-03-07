@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Spaceport
+  m_Name: A space Bar (Spar)
   m_EditorClassIdentifier: 
-  eventTitle: Spaceport
-  eventType: 4
-  eventDescription: 'Bababui
-
-'
+  eventTitle: 'Space Bar (A Spar) '
+  eventType: 0
+  eventDescription: 
   eventEffect: {fileID: 0}
   hasChoices: 0
   numberOfChoices: 2
   choices:
-  - choiceDescription: BabaBui>
+  - choiceDescription: 
     choiceEffect: {fileID: 0}
-  - choiceDescription: Buibaba
+  - choiceDescription: 
     choiceEffect: {fileID: 0}
