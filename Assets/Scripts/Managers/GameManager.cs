@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TimeManager timeManager;
     
     FightManager fightManager;
-    UIManager uiManager;
+    [SerializeField] UIManager uiManager;
     CameraManager cameraManager;
     ShipDurabilityManager shipDurabilityManager;
     CrewManager crewManager;

@@ -1,3 +1,4 @@
+
 using System;
 using System.Linq;
 using UnityEditor;
@@ -7,7 +8,7 @@ public class SectorSpawnerWindow : EditorWindow
 {
     private GameObject sectorPrefab;
     private GameObject lanePrefab;
-    private SectorEventSO sectorEvent;
+    private EventSO sectorEvent;
     
     [MenuItem("Tools/Sector Spawner")]
     public static void ShowWindow()
@@ -24,7 +25,7 @@ public class SectorSpawnerWindow : EditorWindow
         EditorGUILayout.ObjectField("Sector Prefab", sectorPrefab, typeof(GameObject), false);
         
         // Field to assign Sector event
-        sectorEvent = EditorGUILayout.ObjectField("Select Sector Event", sectorEvent, typeof(SectorEventSO), false) as SectorEventSO; 
+        sectorEvent = EditorGUILayout.ObjectField("Select Sector Event", sectorEvent, typeof(EventSO), false) as EventSO; 
         
         // Button to spawn sector
         if (GUILayout.Button("Spawn Sector") && sectorPrefab != null)
