@@ -5,6 +5,8 @@ public class CrewmateData : ScriptableObject
 {
     [Header("Crewmate Information")]
     public string crewmateName;
+    public CrewMemberType crewMemberType;
+
     [TextArea] public string crewmateDescription;
     public GenericEffect genericEffect;
 
@@ -25,5 +27,5 @@ public class CrewmateData : ScriptableObject
 /*
 These lines should be used in code when the need to recuirt a crew member
 CrewmateData newCrewmate = Resources.Load<CrewmateData>("CaptainRads");
-CrewManager.Instance.RecruitCrewmate(newCrewmate);
+GameManager.Instance.CrewManager.RecruitCrewmate(newCrewmate);
 */

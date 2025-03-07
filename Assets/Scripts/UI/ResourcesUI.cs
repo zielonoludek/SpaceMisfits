@@ -7,29 +7,29 @@ public class ResourcesUI : MonoBehaviour
     public TextMeshProUGUI notorietyText;
     public TextMeshProUGUI shipHealthText;
     public TextMeshProUGUI foodText;
-    public TextMeshProUGUI crewMoraleText;
+    public TextMeshProUGUI CrewMoodText;
 
     private void Start()
     {
-        ResourceManager.Instance.OnBootyChanged += UpdateBootyUI;
-        ResourceManager.Instance.OnNotorietyChanged += UpdateNotorietyUI;
-        ResourceManager.Instance.OnShipHealthChanged += UpdateShipHealthUI;
-        ResourceManager.Instance.OnFoodChanged += UpdateFoodUI;
-        ResourceManager.Instance.OnCrewMoraleChanged += UpdateCrewMoraleUI;
-        UpdateBootyUI(ResourceManager.Instance.Booty);
-        UpdateNotorietyUI(ResourceManager.Instance.Notoriety);
-        UpdateShipHealthUI(ResourceManager.Instance.ShipHealth);
-        UpdateFoodUI(ResourceManager.Instance.Food);
-        UpdateCrewMoraleUI(ResourceManager.Instance.CrewMorale);
+        GameManager.Instance.ResourceManager.OnBootyChanged += UpdateBootyUI;
+        GameManager.Instance.ResourceManager.OnNotorietyChanged += UpdateNotorietyUI;
+        GameManager.Instance.ResourceManager.OnShipHealthChanged += UpdateShipHealthUI;
+        GameManager.Instance.ResourceManager.OnFoodChanged += UpdateFoodUI;
+        GameManager.Instance.ResourceManager.OnCrewMoodChanged += UpdateCrewMoodUI;
+        UpdateBootyUI(GameManager.Instance.ResourceManager.Booty);
+        UpdateNotorietyUI(GameManager.Instance.ResourceManager.Notoriety);
+        UpdateShipHealthUI(GameManager.Instance.ResourceManager.ShipHealth);
+        UpdateFoodUI(GameManager.Instance.ResourceManager.Food);
+        UpdateCrewMoodUI(GameManager.Instance.ResourceManager.CrewMood);
     }
 
     private void OnDestroy()
     {
-        ResourceManager.Instance.OnBootyChanged -= UpdateBootyUI;
-        ResourceManager.Instance.OnNotorietyChanged -= UpdateNotorietyUI;
-        ResourceManager.Instance.OnShipHealthChanged -= UpdateShipHealthUI;
-        ResourceManager.Instance.OnFoodChanged -= UpdateFoodUI;
-        ResourceManager.Instance.OnCrewMoraleChanged -= UpdateCrewMoraleUI;
+        GameManager.Instance.ResourceManager.OnBootyChanged -= UpdateBootyUI;
+        GameManager.Instance.ResourceManager.OnNotorietyChanged -= UpdateNotorietyUI;
+        GameManager.Instance.ResourceManager.OnShipHealthChanged -= UpdateShipHealthUI;
+        GameManager.Instance.ResourceManager.OnFoodChanged -= UpdateFoodUI;
+        GameManager.Instance.ResourceManager.OnCrewMoodChanged -= UpdateCrewMoodUI;
     }
 
     private void UpdateBootyUI(int amount)
@@ -52,8 +52,8 @@ public class ResourcesUI : MonoBehaviour
         foodText.text = "Food: " + amount;
     }
 
-    private void UpdateCrewMoraleUI(int amount)
+    private void UpdateCrewMoodUI(int amount)
     {
-        crewMoraleText.text = "Crew Morale: " + amount;
+        CrewMoodText.text = "Crew Morale: " + amount;
     }
 }

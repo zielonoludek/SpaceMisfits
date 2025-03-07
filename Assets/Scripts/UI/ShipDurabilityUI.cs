@@ -10,15 +10,15 @@ public class ShipDurabilityUI : MonoBehaviour
 
     private void Start()
     {
-        ShipDurabilityManager.Instance.OnShipPartDamaged += UpdateUI;
-        ShipDurabilityManager.Instance.OnShipPartRepaired += UpdateUI;
+        GameManager.Instance. ShipDurabilityManager.OnShipPartDamaged += UpdateUI;
+        GameManager.Instance. ShipDurabilityManager.OnShipPartRepaired += UpdateUI;
         RefreshUI();
     }
 
     private void OnDestroy()
     {
-        ShipDurabilityManager.Instance.OnShipPartDamaged -= UpdateUI;
-        ShipDurabilityManager.Instance.OnShipPartRepaired -= UpdateUI;
+        GameManager.Instance. ShipDurabilityManager.OnShipPartDamaged -= UpdateUI;
+        GameManager.Instance. ShipDurabilityManager.OnShipPartRepaired -= UpdateUI;
     }
 
     private void UpdateUI(string partName, int durability)
@@ -30,8 +30,8 @@ public class ShipDurabilityUI : MonoBehaviour
 
     private void RefreshUI()
     {
-        UpdateUI("Hull", ShipDurabilityManager.Instance.GetDurability("Hull"));
-        UpdateUI("Sails", ShipDurabilityManager.Instance.GetDurability("Sails"));
-        UpdateUI("Cannon", ShipDurabilityManager.Instance.GetDurability("Cannon"));
+        UpdateUI("Hull", GameManager.Instance. ShipDurabilityManager.GetDurability("Hull"));
+        UpdateUI("Sails", GameManager.Instance. ShipDurabilityManager.GetDurability("Sails"));
+        UpdateUI("Cannon", GameManager.Instance. ShipDurabilityManager.GetDurability("Cannon"));
     }
 }

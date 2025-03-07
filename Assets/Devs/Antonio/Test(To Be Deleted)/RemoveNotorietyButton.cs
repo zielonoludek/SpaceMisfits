@@ -10,6 +10,6 @@ public class RemoveNotorietyButton : MonoBehaviour
 
     private void AddNotoriety()
     {
-        ResourceManager.Instance.Notoriety -= 500;
+        GameManager.Instance.ResourceManager.Notoriety -= 500;
     }
 }

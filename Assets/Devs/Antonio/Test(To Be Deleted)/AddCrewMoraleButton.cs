@@ -1,17 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AddCrewMoraleButton : MonoBehaviour
+public class AddCrewMoodButton : MonoBehaviour
 {
-    public Button crewMoraleButton;
+    public Button CrewMoodButton;
 
     private void Start()
     {
-        crewMoraleButton.onClick.AddListener(AddCrewMorale);
+        CrewMoodButton.onClick.AddListener(AddCrewMood);
     }
 
-    private void AddCrewMorale()
+    private void AddCrewMood()
     {
-        ResourceManager.Instance.CrewMorale += 600;
+        GameManager.Instance.ResourceManager.CrewMood += 600;
     }
 }

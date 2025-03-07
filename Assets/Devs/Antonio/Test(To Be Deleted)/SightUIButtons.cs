@@ -14,39 +14,39 @@ public class SightUIButtons : MonoBehaviour
 
     private void Start()
     {
-        ResourceManager.Instance.OnSightChanged += UpdateSightUI;
+        GameManager.Instance.ResourceManager.OnSightChanged += UpdateSightUI;
 
         increaseSightButton.onClick.AddListener(IncreaseSight);
         decreaseSightButton.onClick.AddListener(DecreaseSight);
 
-        UpdateSightUI(ResourceManager.Instance.GetCurrentSight());
+        UpdateSightUI(GameManager.Instance.ResourceManager.GetCurrentSight());
 
-        ResourceManager.Instance.OnSpeedChanged += UpdateSpeedUI;
+        GameManager.Instance.ResourceManager.OnSpeedChanged += UpdateSpeedUI;
 
         increaseSpeedButton.onClick.AddListener(IncreaseSpeed);
         decreaseSpeedButton.onClick.AddListener(DecreaseSpeed);
 
-        UpdateSpeedUI(ResourceManager.Instance.GetCurrentSpeed());
+        UpdateSpeedUI(GameManager.Instance.ResourceManager.GetCurrentSpeed());
     }
 
     private void IncreaseSight()
     {
-        ResourceManager.Instance.IncreaseSight();
+        GameManager.Instance.ResourceManager.IncreaseSight();
     }
 
     private void DecreaseSight()
     {
-        ResourceManager.Instance.DecreaseSight();
+        GameManager.Instance.ResourceManager.DecreaseSight();
     }
 
     private void IncreaseSpeed()
     {
-        ResourceManager.Instance.IncreaseSpeed();
+        GameManager.Instance.ResourceManager.IncreaseSpeed();
     }
 
     private void DecreaseSpeed()
     {
-        ResourceManager.Instance.DecreaseSpeed();
+        GameManager.Instance.ResourceManager.DecreaseSpeed();
     }
 
     private void UpdateSightUI(int newSight)
@@ -61,7 +61,7 @@ public class SightUIButtons : MonoBehaviour
 
     private void OnDestroy()
     {
-        ResourceManager.Instance.OnSightChanged -= UpdateSightUI;
-        ResourceManager.Instance.OnSpeedChanged -= UpdateSpeedUI;
+        GameManager.Instance.ResourceManager.OnSightChanged -= UpdateSightUI;
+        GameManager.Instance.ResourceManager.OnSpeedChanged -= UpdateSpeedUI;
     }
 }

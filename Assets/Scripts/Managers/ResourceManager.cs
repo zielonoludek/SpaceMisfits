@@ -3,37 +3,23 @@ using System;
 
 public class ResourceManager : MonoBehaviour
 {
-    public static ResourceManager Instance { get; private set; }
-
     private int shipHealth;
     private int booty;
     private int food;
     private int notoriety;
-    private int crewMorale;
+    private int crewMood;
     private int sightLevel;
     private int speedValue;
 
     public event Action<int> OnShipHealthChanged;
     public event Action<int> OnBootyChanged;
     public event Action<int> OnNotorietyChanged;
-    public event Action<int> OnCrewMoraleChanged;
+    public event Action<int> OnCrewMoodChanged;
     public event Action<int> OnSightChanged;
     public event Action<int> OnSpeedChanged;
     public event Action<int> OnFoodChanged;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
+ 
     public int ShipHealth
     {
         get => shipHealth;
@@ -73,21 +59,21 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    public int CrewMorale
+    public int CrewMood
     {
-        get => crewMorale;
+        get => CrewMood;
         set
         {
-            if (crewMorale != value)
+            if (CrewMood != value)
             {
-                crewMorale = Mathf.Max(0, value);
-                OnCrewMoraleChanged?.Invoke(crewMorale);
+                crewMood = Mathf.Max(0, value);
+                OnCrewMoodChanged?.Invoke(CrewMood);
             }
         }
     }
 
-    //ResourceManager.Instance.Booty += 100; (trigger booty event in other scripts)
-    //ResourceManager.Instance.Notoriety -= 5;
+    //GameManager.Instance.ResourceManager.Booty += 100; (trigger booty event in other scripts)
+    //GameManager.Instance.ResourceManager.Notoriety -= 5;
 
     public int Food
     {
@@ -153,6 +139,6 @@ public class ResourceManager : MonoBehaviour
         return Speed;
     }
 
-    //ResourceManager.Instance.IncreaseSight(); //This line adds sight level in other scripts
-    //ResourceManager.Instance.DecreaseSight(); //This line removes sight level in other scripts
+    //GameManager.Instance.ResourceManager.IncreaseSight(); //This line adds sight level in other scripts
+    //GameManager.Instance.ResourceManager.DecreaseSight(); //This line removes sight level in other scripts
 }

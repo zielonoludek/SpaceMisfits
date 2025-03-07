@@ -125,9 +125,9 @@ public class FightManager : MonoBehaviour
             foodChange = -fightEvent.GetFoodLose();
         }
 
-        ResourceManager.Instance.Notoriety += notorietyChange;
-        ResourceManager.Instance.Booty = Mathf.Max(0, ResourceManager.Instance.Booty + bootyChange);
-        ResourceManager.Instance.Food = Mathf.Max(0, ResourceManager.Instance.Food + foodChange);
+        GameManager.Instance.ResourceManager.Notoriety += notorietyChange;
+        GameManager.Instance.ResourceManager.Booty = Mathf.Max(0, GameManager.Instance.ResourceManager.Booty + bootyChange);
+        GameManager.Instance.ResourceManager.Food = Mathf.Max(0, GameManager.Instance.ResourceManager.Food + foodChange);
 
         fightPanelUI.ShowFightResult(playerWon);
         fightPanelUI.UpdateResourceUI(notorietyChange, bootyChange, foodChange);

@@ -12,6 +12,6 @@ public class RemoveFoodButton : MonoBehaviour
 
     private void RemoveFood()
     {
-        ResourceManager.Instance.Food -= 550;
+        GameManager.Instance.ResourceManager.Food -= 550;
     }
 }

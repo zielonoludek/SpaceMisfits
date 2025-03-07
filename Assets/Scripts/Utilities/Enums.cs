@@ -16,3 +16,8 @@ public enum FightTier { Easy, Medium, Hard }
 public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight }
 
 public enum GameState { None, Event }
+
+public enum RequestType { Positive, Neutral, Negative }
+public enum RequestOriginType { Event, CrewMember, Mood }
+
+public enum CrewMemberType { None, Cook, Spyglasser, Scientist }

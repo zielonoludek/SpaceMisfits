@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class ShipDurabilityManager : MonoBehaviour
 {
-    public static ShipDurabilityManager Instance { get; private set; }
-
     public event Action<string, int> OnShipPartDamaged;
     public event Action<string, int> OnShipPartRepaired;
 
@@ -13,16 +11,6 @@ public class ShipDurabilityManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         shipParts["Hull"] = 100;
         shipParts["Sails"] = 100;
         shipParts["Cannon"] = 100;
@@ -95,8 +83,8 @@ public class ShipDurabilityManager : MonoBehaviour
     }
 
     //Use the below in other scripts to apply damage or repair to ship parts
-    //ShipDurabilityManager.Instance["Hull"] -= 20;
-    //ShipDurabilityManager.Instance["Sails"] += 15;
-    //ShipDurabilityManager.Instance["Cannon"] -= 10;
+    //GameManager.Instance. ShipDurabilityManager["Hull"] -= 20;
+    //GameManager.Instance. ShipDurabilityManager["Sails"] += 15;
+    //GameManager.Instance. ShipDurabilityManager["Cannon"] -= 10;
 
 }

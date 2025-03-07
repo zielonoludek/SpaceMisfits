@@ -12,6 +12,6 @@ public class AddFoodButton : MonoBehaviour
 
     private void AddFood()
     {
-        ResourceManager.Instance.Food += 550;
+        GameManager.Instance.ResourceManager.Food += 550;
     }
 }

@@ -12,6 +12,6 @@ public class RemoveShipHealthButton : MonoBehaviour
 
     private void RemoveShipHealth()
     {
-        ResourceManager.Instance.ShipHealth -= 3000;
+        GameManager.Instance.ResourceManager.ShipHealth -= 3000;
     }
 }

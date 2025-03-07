@@ -554,7 +554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7276e29e2a3363e49941a963b6ca2a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bootyButton: {fileID: 313914805}
 --- !u!114 &313914805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3531,7 +3530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c06744b214bc44589b4a9596ab3f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notorietyButton: {fileID: 1851024382}
 --- !u!114 &1851024382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3856,7 +3854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f72e8d7152703940922f4f5360faf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bootyButton: {fileID: 1963463413}
 --- !u!1 &1972373758
 GameObject:
   m_ObjectHideFlags: 0

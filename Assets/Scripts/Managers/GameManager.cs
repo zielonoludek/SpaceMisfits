@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     FightManager fightManager;
     UIManager uiManager;
     CameraManager cameraManager;
+    ShipDurabilityManager shipDurabilityManager;
+    CrewManager crewManager;
+    RequestManager requestManager;
     
     //=========GETTERS=========//
     public CameraManager CameraManager { get { return cameraManager; } }
@@ -25,6 +28,9 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager { get { return uiManager; } }
     public TimeManager TimeManager { get { return timeManager; } }
     public FightManager FightManager { get { return fightManager; } }
+    public ShipDurabilityManager ShipDurabilityManager {  get { return shipDurabilityManager; } } 
+    public CrewManager CrewManager { get { return crewManager; } }
+    public RequestManager RequestManager { get { return requestManager; } }
 
     public GameState GameState
     {
@@ -43,5 +49,8 @@ public class GameManager : MonoBehaviour
         cameraManager = FindFirstObjectByType<CameraManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
+        shipDurabilityManager = FindFirstObjectByType<ShipDurabilityManager>();
+        crewManager = FindFirstObjectByType<CrewManager>();
+        requestManager = FindFirstObjectByType<RequestManager>();
     }
 }
