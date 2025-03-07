@@ -89,6 +89,10 @@ public class EventPopupUI : MonoBehaviour
     private void CloseEvent()
     {
         eventPanel.SetActive(false);
+        if (currentEvent.eventEffect != null)
+        {
+            currentEvent.eventEffect.ApplyEffect();
+        }
         
         // Unpause time manager
         GameManager.Instance.TimeManager.PauseTime(false);
@@ -96,13 +100,15 @@ public class EventPopupUI : MonoBehaviour
 
     private void SelectChoice(int choiceIndex)
     {
-        if (choiceIndex < 0 || choiceIndex >= currentEvent.choices.Count)
+        if (choiceIndex < 0 || choiceIndex >= currentEvent.choices.Count) return;
+
+        SectorEventSO.Choice choice = currentEvent.choices[choiceIndex];
+
+        if (choice.choiceEffect != null)
         {
-            Debug.LogError($"Invalid choice index: {choiceIndex}. Available choices: {currentEvent.choices.Count}");
-            return;
+            choice.choiceEffect.ApplyEffect();
         }
         
-        Debug.Log($"Selected Choice {choiceIndex + 1}: {currentEvent.choices[choiceIndex].choiceDescription}");
         CloseEvent();
     }
 }
