@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
-    [SerializeField] private FightPanelUI fightPanelUI;
-    [SerializeField] private FightEventSO fightEvent;
+    private FightPanelUI fightPanelUI;
+    private FightEventSO fightEvent;
 
     private System.Random random = new System.Random();
 
@@ -17,6 +17,7 @@ public class FightManager : MonoBehaviour
     private void Start()
     {
         fightPanelUI = GameManager.Instance.UIManager.FightPanelUI;
+        CloseFight();
     }
 
     public void StartFight()
@@ -25,23 +26,44 @@ public class FightManager : MonoBehaviour
         {
             fightEvent = GetRandomFightEvent();
         }
-
+        fightPanelUI.gameObject.SetActive(true);
         fightPanelUI.Setup();
+
+        GameManager.Instance.TimeManager.PauseTime(true);
+        GameManager.Instance.GameState = GameState.Event;
+        GameManager.Instance.UIManager.TimePanelUI.SetupPauseBtn();
+
+        GameManager.Instance.UIManager.TimePanelUI.SetTimeSpeed(1);
     }
 
     public void StartFight(FightEventSO fight)
     {
         fightEvent = fight;
-        fightPanelUI.Setup();
+        fightPanelUI.gameObject.SetActive(true);
+
+        fightPanelUI.Setup(); GameManager.Instance.TimeManager.PauseTime(true);
+        GameManager.Instance.GameState = GameState.Event;
+        GameManager.Instance.UIManager.TimePanelUI.SetupPauseBtn();
+        
+        GameManager.Instance.UIManager.TimePanelUI.SetTimeSpeed(1);
     }
 
+    public void CloseFight()
+    {
+        fightEvent = null;
+        fightPanelUI.gameObject.SetActive(false);
+
+        GameManager.Instance.GameState = GameState.None;
+        GameManager.Instance.TimeManager.PauseTime(false);
+        GameManager.Instance.UIManager.TimePanelUI.SetupPauseBtn();
+    }
     public void SetupFight(int betAmount)
     {
         fightEvent.playerBetNotoriety = betAmount;
         int computerBet = Mathf.Min(fightEvent.playerBetNotoriety, fightEvent.GetMaxComputerBet());
 
         int computerDiceCount = 1 + computerBet / 10;
-        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3); // Maksymalna ró¿nica 3 kostki
+        int playerDiceCount = Mathf.Min(fightEvent.GetMaxPlayerDice(computerBet), computerDiceCount + 3);
 
         int[] playerRolls = RollDice(playerDiceCount);
         int[] computerRolls = RollDice(computerDiceCount);
@@ -50,7 +72,7 @@ public class FightManager : MonoBehaviour
         int computerTotal = SumRolls(computerRolls);
 
         StartCoroutine(fightPanelUI.ShowRollingEffect(playerRolls, computerRolls));
-        StartCoroutine(ResolveFight(playerTotal, computerTotal, computerBet));
+        StartCoroutine(ResolveFight(playerTotal, computerTotal, computerBet, betAmount));
     }
 
     private FightEventSO GetRandomFightEvent()
@@ -59,7 +81,7 @@ public class FightManager : MonoBehaviour
 
         if (allEvents.Length == 0)
         {
-            Debug.LogWarning("Brak eventów w folderze 'ScriptableObjects/Events/Fights'!");
+            Debug.LogWarning("Brak eventï¿½w w folderze 'ScriptableObjects/Events/Fights'!");
             return null;
         }
 
@@ -83,29 +105,32 @@ public class FightManager : MonoBehaviour
         return rolls.Sum();
     }
 
-    private IEnumerator ResolveFight(int playerRoll, int computerRoll, int computerBet)
+    private IEnumerator ResolveFight(int playerRoll, int computerRoll, int computerBet, int playerBet)
     {
         yield return new WaitForSeconds(1f);
 
         int notorietyChange, bootyChange, foodChange;
         bool playerWon = playerRoll > computerRoll;
-
+        
         if (playerWon)
         {
             notorietyChange = computerBet;
             bootyChange = fightEvent.GetBootyWin();
             foodChange = fightEvent.GetFoodWin();
+
+            if (playerBet == 0) notorietyChange = fightEvent.GetNotorietyBet0();
+            else notorietyChange = computerBet;
         }
         else
         {
-            notorietyChange = -fightEvent.playerBetNotoriety;
+            notorietyChange = -playerBet;
             bootyChange = -fightEvent.GetBootyLose();
             foodChange = -fightEvent.GetFoodLose();
         }
 
-        ResourceManager.Instance.Notoriety += notorietyChange;
-        ResourceManager.Instance.Booty = Mathf.Max(0, ResourceManager.Instance.Booty + bootyChange);
-        ResourceManager.Instance.Food = Mathf.Max(0, ResourceManager.Instance.Food + foodChange);
+        GameManager.Instance.ResourceManager.Notoriety += notorietyChange;
+        GameManager.Instance.ResourceManager.Booty = Mathf.Max(0, GameManager.Instance.ResourceManager.Booty + bootyChange);
+        GameManager.Instance.ResourceManager.Food = Mathf.Max(0, GameManager.Instance.ResourceManager.Food + foodChange);
 
         fightPanelUI.ShowFightResult(playerWon);
         fightPanelUI.UpdateResourceUI(notorietyChange, bootyChange, foodChange);

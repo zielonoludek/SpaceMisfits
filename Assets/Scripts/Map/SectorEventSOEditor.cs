@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(EventSO))]
+[CustomEditor(typeof(SectorEventSO))]
 public class SectorEventSOEditor : Editor
 {
     public override void OnInspectorGUI()

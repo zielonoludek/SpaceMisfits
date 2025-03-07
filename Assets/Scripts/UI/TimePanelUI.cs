@@ -67,7 +67,7 @@ public class TimePanelUI : MonoBehaviour
 
         timeTxt.text = $"{hours:D2}:{minutes:D2}";
     }
-    void SetupPauseBtn()
+    public void SetupPauseBtn()
     {
         if (GameManager.Instance.TimeManager.IsTimeOn) pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = "||";
         else pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = ">";
@@ -77,5 +77,11 @@ public class TimePanelUI : MonoBehaviour
         bool isTimePaused = GameManager.Instance.TimeManager.IsTimeOn;
         GameManager.Instance.TimeManager.PauseTime(isTimePaused);
         SetupPauseBtn();
+    }
+
+    public void SetTimeSpeed(float speed)
+    {
+        if(!GameManager.Instance.TimeManager.IsTimeOn) OnPauseBtn();
+        GameManager.Instance.TimeManager.SetTimeSpeed(speed);
     }
 }

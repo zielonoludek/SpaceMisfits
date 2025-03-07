@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -27,7 +28,9 @@ public class EventPopupUI : MonoBehaviour
     public void ShowEvent(SectorEventSO sectorEvent)
     {
         currentEvent = sectorEvent;
-        Time.timeScale = 0;
+        
+        // Pause time manager
+        GameManager.Instance.TimeManager.PauseTime(true);
         
         eventPanel.SetActive(true);
         eventTitleText.text = sectorEvent.eventTitle;
@@ -86,18 +89,26 @@ public class EventPopupUI : MonoBehaviour
     private void CloseEvent()
     {
         eventPanel.SetActive(false);
-        Time.timeScale = 1;
+        if (currentEvent.eventEffect != null)
+        {
+            currentEvent.eventEffect.ApplyEffect();
+        }
+        
+        // Unpause time manager
+        GameManager.Instance.TimeManager.PauseTime(false);
     }
 
     private void SelectChoice(int choiceIndex)
     {
-        if (choiceIndex < 0 || choiceIndex >= currentEvent.choices.Count)
+        if (choiceIndex < 0 || choiceIndex >= currentEvent.choices.Count) return;
+
+        SectorEventSO.Choice choice = currentEvent.choices[choiceIndex];
+
+        if (choice.choiceEffect != null)
         {
-            Debug.LogError($"Invalid choice index: {choiceIndex}. Available choices: {currentEvent.choices.Count}");
-            return;
+            choice.choiceEffect.ApplyEffect();
         }
         
-        Debug.Log($"Selected Choice {choiceIndex + 1}: {currentEvent.choices[choiceIndex].choiceDescription}");
         CloseEvent();
     }
 }
