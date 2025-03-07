@@ -54,6 +54,6 @@ public class ResourcesUI : MonoBehaviour
 
     private void UpdateCrewMoodUI(int amount)
     {
-        CrewMoodText.text = "Crew Morale: " + amount;
+        CrewMoodText.text = "Crew Mood: " + amount;
     }
 }
