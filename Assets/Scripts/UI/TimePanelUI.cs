@@ -78,4 +78,10 @@ public class TimePanelUI : MonoBehaviour
         GameManager.Instance.TimeManager.PauseTime(isTimePaused);
         SetupPauseBtn();
     }
+
+    public void SetTimeSpeed(float speed)
+    {
+        if(!GameManager.Instance.TimeManager.IsTimeOn) OnPauseBtn();
+        GameManager.Instance.TimeManager.SetTimeSpeed(speed);
+    }
 }
