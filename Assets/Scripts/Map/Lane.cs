@@ -2,6 +2,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class Lane : MonoBehaviour
@@ -22,10 +23,10 @@ public class Lane : MonoBehaviour
     // =============== LANE SETTINGS ===============
     [Header("Lane settings")]
     
-    [Tooltip("Controls the length of the lane, modifying the time it takes to travel between sectors, the more the faster")]
-    [SerializeField][Range(1, 5)] private int laneLength = 1;
+    [Tooltip("Controls the length of the lane, modifying the time it takes to travel between sectors, the more the longer the distance")]
+    [SerializeField][Range(1, 5)] private int laneDistance = 1;
     //[SerializeField] private LaneType laneType = LaneType.Lane;
-    public int GetLaneLength() => laneLength;
+    public int GetLaneDistance() => 6 - laneDistance;
     private enum LaneType {Lane, SpiralLane, HyperLane}
     
     

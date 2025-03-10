@@ -744,6 +744,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 1060753897}
+    - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1539808180, guid: 9515376481a53864482139093ca93d0a, type: 3}
+    - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: sectorIcon
+      value: 
+      objectReference: {fileID: 1539808180, guid: 9515376481a53864482139093ca93d0a, type: 3}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorEvent
       value: 
@@ -789,6 +801,14 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 205880762}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: laneLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: laneDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Random - Help Beacon)
@@ -1537,6 +1557,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 1660471471}
+    - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: sectorIcon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorEvent
       value: 
@@ -1618,6 +1650,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 744744658}
+    - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1539808180, guid: 9515376481a53864482139093ca93d0a, type: 3}
+    - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: sectorIcon
+      value: 
+      objectReference: {fileID: 1539808180, guid: 9515376481a53864482139093ca93d0a, type: 3}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorEvent
       value: 
@@ -2496,6 +2540,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 372045464}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: sectorIcon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorEvent
       value: 
       objectReference: {fileID: 11400000, guid: e6937a696335ad74f831b58e50bdb726, type: 2}
@@ -2724,6 +2772,7 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   resourceManager: {fileID: 1960843783}
   timeManager: {fileID: 1960843782}
+  uiManager: {fileID: 0}
 --- !u!114 &1960843785
 MonoBehaviour:
   m_ObjectHideFlags: 0

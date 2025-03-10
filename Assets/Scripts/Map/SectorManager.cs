@@ -53,7 +53,7 @@ public class SectorManager : MonoBehaviour
 
     private void SpawnPlayerAtStartingSector()
     {
-        Sector startingSector = Sector.GetCurentStartingSector;
+        Sector startingSector = Sector.GetCurrentStartingSector;
 
         if (startingSector == null)
         {
@@ -81,7 +81,7 @@ public class SectorManager : MonoBehaviour
         if(lane == null) return;
 
         Vector3[] path = lane.GetLanePath();
-        float speed = lane.GetLaneLength();
+        float speed = lane.GetLaneDistance();
         
         // reverse the path if moving from sectorB to sectorA
         if (lane.GetSectorB() == playerCurrentSector) Array.Reverse(path);
