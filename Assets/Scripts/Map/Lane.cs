@@ -1,5 +1,6 @@
 
 using System;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -38,11 +39,54 @@ public class Lane : MonoBehaviour
     public Sector GetSectorB() => sectorB;
 
     private LineRenderer lineRenderer;
+    private Transform textTransform;
+    private TextMeshPro sectorDistanceText;
     
     // Previous position of connected sectors
     private Vector3 lastPosA;
     private Vector3 lastPosB;
+    
+    
+    
+    #region Public functions
 
+    public void Initialize(Transform firstSector, Transform secondSector)
+        {
+            sectorA = firstSector.GetComponent<Sector>();
+            sectorB = secondSector.GetComponent<Sector>();
+            UpdateLane();
+            UpdateLaneName();
+        }
+    
+        public void NotifySectorEventChanged()
+        {
+            UpdateLaneName();
+        }
+        
+        public Vector3[] GetLanePath()
+        {
+            if (sectorA == null || sectorB == null) return new Vector3[0];
+    
+            Vector3 start = sectorA.transform.position;
+            Vector3 end = sectorB.transform.position;
+            Vector3 midPoint = (start + end) / 2;
+            Vector3 control = midPoint + new Vector3(curveWidth, curveHeight, 0);
+    
+            return CalculateBezierCurve(start, control, end);
+        }
+    
+        public void SetVisibility(bool isVisible)
+        {
+            if (Application.isPlaying)
+            {
+                gameObject.SetActive(isVisible);
+            }
+        }
+
+    #endregion
+    
+    
+    
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -53,6 +97,15 @@ public class Lane : MonoBehaviour
             RegisterNeighbors();
             UpdateLaneName();
         }
+        EditorApplication.delayCall += () =>
+        {
+            if (this != null)
+            {
+                FindOrCreateText();
+                UpdateTextDisplay();
+                EditorUtility.SetDirty(this);
+            }
+        };
     }
 #endif
 
@@ -82,6 +135,8 @@ public class Lane : MonoBehaviour
         {
             UpdateLane();
         }
+        
+        UpdateTextPosition();
     }
 
     private void UpdateLane()
@@ -156,36 +211,30 @@ public class Lane : MonoBehaviour
         gameObject.name = $"Lane ({sectorAName} - {sectorBName})";
     }
 
-    public void Initialize(Transform firstSector, Transform secondSector)
+    private void FindOrCreateText()
     {
-        sectorA = firstSector.GetComponent<Sector>();
-        sectorB = secondSector.GetComponent<Sector>();
-        UpdateLane();
-        UpdateLaneName();
-    }
+        textTransform = transform.Find("LaneText");
 
-    public void NotifySectorEventChanged()
-    {
-        UpdateLaneName();
+        if (textTransform != null)
+        {
+            sectorDistanceText = textTransform.GetComponent<TextMeshPro>();
+        }
     }
     
-    public Vector3[] GetLanePath()
+    private void UpdateTextPosition()
     {
-        if (sectorA == null || sectorB == null) return new Vector3[0];
+        if (textTransform == null) return;
 
         Vector3 start = sectorA.transform.position;
         Vector3 end = sectorB.transform.position;
         Vector3 midPoint = (start + end) / 2;
-        Vector3 control = midPoint + new Vector3(curveWidth, curveHeight, 0);
-
-        return CalculateBezierCurve(start, control, end);
+        textTransform.position = midPoint;
     }
-
-    public void SetVisibility(bool isVisible)
+    
+    private void UpdateTextDisplay()
     {
-        if (Application.isPlaying)
-        {
-            gameObject.SetActive(isVisible);
-        }
+        if (sectorDistanceText == null) return;
+        
+        sectorDistanceText.text = laneDistance.ToString();
     }
 }

@@ -30,43 +30,10 @@ public class Sector : MonoBehaviour
             { EventType.Spaceport, Color.yellow }
         };
 
-    private void Awake()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-        InitializeSectorIcon();
-        UpdateSectorColor();
-        SetVisibility(false);
-    }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        // Ensures sector event and name are updated when changed in editor
-        SetSectorEvent(sectorEvent);
-        
-        // Ensures only one sector is the starting sector
-        if (isStartingSector)
-        {
-            if (currentStartingSector != null && currentStartingSector != this)
-            {
-                currentStartingSector.isStartingSector = false;
-                EditorUtility.SetDirty(currentStartingSector);
-            }
-
-            currentStartingSector = this;
-        }
-        // Defer the initialization of the sector icon (used to avoid warning messages)
-        EditorApplication.delayCall += () =>
-        {
-            if (this != null)
-            {
-                InitializeSectorIcon();
-                EditorUtility.SetDirty(this);
-            }
-        };
-    }
-#endif
     
+    
+    #region Public functions
+
     public void AddNeighbor(Sector sector, Lane lane)
     {
         if (sector != null && lane != null && !connectedLanes.ContainsKey(sector))
@@ -104,6 +71,47 @@ public class Sector : MonoBehaviour
         {
             lane.SetVisibility(isVisible);
         }
+    }
+
+    #endregion
+    
+    
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        // Ensures sector event and name are updated when changed in editor
+        SetSectorEvent(sectorEvent);
+        
+        // Ensures only one sector is the starting sector
+        if (isStartingSector)
+        {
+            if (currentStartingSector != null && currentStartingSector != this)
+            {
+                currentStartingSector.isStartingSector = false;
+                EditorUtility.SetDirty(currentStartingSector);
+            }
+
+            currentStartingSector = this;
+        }
+        // Defer the initialization of the sector icon (used to avoid warning messages)
+        EditorApplication.delayCall += () =>
+        {
+            if (this != null)
+            {
+                InitializeSectorIcon();
+                EditorUtility.SetDirty(this);
+            }
+        };
+    }
+#endif
+    
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        InitializeSectorIcon();
+        UpdateSectorColor();
+        SetVisibility(false);
     }
 
     private void UpdateSectorColor()
