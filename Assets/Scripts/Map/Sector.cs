@@ -8,8 +8,9 @@ public class Sector : MonoBehaviour
     [Tooltip("Determines if this sector is the one where player starts the game")]
     [SerializeField] private bool isStartingSector;
     [SerializeField] private EventSO sectorEvent;
+    [SerializeField] private Sprite sectorIcon;
     
-    public static Sector GetCurentStartingSector => currentStartingSector;
+    public static Sector GetCurrentStartingSector => currentStartingSector;
     public EventSO GetSectorEvent() => sectorEvent;
     
     private static Sector currentStartingSector;
@@ -17,6 +18,7 @@ public class Sector : MonoBehaviour
     private Dictionary<Sector, Lane> connectedLanes = new Dictionary<Sector, Lane>();
 
     private MeshRenderer meshRenderer;
+    private SpriteRenderer sectorIconRenderer;
 
     private static readonly Dictionary<EventType, Color> eventColors =
         new Dictionary<EventType, Color>
@@ -31,6 +33,7 @@ public class Sector : MonoBehaviour
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        InitializeSectorIcon();
         UpdateSectorColor();
         SetVisibility(false);
     }
@@ -52,6 +55,15 @@ public class Sector : MonoBehaviour
 
             currentStartingSector = this;
         }
+        // Defer the initialization of the sector icon (used to avoid warning messages)
+        EditorApplication.delayCall += () =>
+        {
+            if (this != null)
+            {
+                InitializeSectorIcon();
+                EditorUtility.SetDirty(this);
+            }
+        };
     }
 #endif
     
@@ -121,6 +133,25 @@ public class Sector : MonoBehaviour
         else
         {
             targetMaterial.color = Color.gray;
+        }
+    }
+
+    private void InitializeSectorIcon()
+    {
+        Transform iconTransform = transform.Find("SectorIcon");
+        if (iconTransform != null)
+        {
+            sectorIconRenderer = iconTransform.GetComponent<SpriteRenderer>();
+        }
+
+        UpdateSectorIcon();
+    }
+
+    private void UpdateSectorIcon()
+    {
+        if (sectorIconRenderer != null)
+        {
+            sectorIconRenderer.sprite = sectorIcon;
         }
     }
 
