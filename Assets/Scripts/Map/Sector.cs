@@ -27,7 +27,8 @@ public class Sector : MonoBehaviour
             { EventType.Waypoint, Color.green },
             { EventType.DevilsMaw, Color.blue },
             { EventType.SharpenThoseDirks, Color.red },
-            { EventType.Spaceport, Color.yellow }
+            { EventType.Spaceport, Color.yellow },
+            { EventType.Fight, Color.cyan }
         };
 
     
