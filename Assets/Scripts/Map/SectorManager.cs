@@ -73,12 +73,19 @@ public class SectorManager : MonoBehaviour
 
     public static void MovePlayerToSector(Sector newSector)
     {
-        GameManager.Instance.ResourceManager.Notoriety += 100;
+        // GameManager.Instance.ResourceManager.Notoriety += 100;
         if(playerInstance == null || playerCurrentSector == null) return;
         if(!playerCurrentSector.IsNeighbor(newSector)) return;
 
         Lane lane = FindLaneBetween(playerCurrentSector, newSector);
         if(lane == null) return;
+
+        // If the current sector event is not persistent, remove it
+        EventSO currentEvent = playerCurrentSector.GetSectorEvent();
+        if (currentEvent != null && !currentEvent.isPersistent)
+        {
+            playerCurrentSector.SetSectorEvent(null);
+        }
 
         Vector3[] path = lane.GetLanePath();
         float speed = lane.GetLaneDistance();

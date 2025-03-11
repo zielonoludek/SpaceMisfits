@@ -61,6 +61,7 @@ public class Sector : MonoBehaviour
         gameObject.name = $"Sector ({finalName})";
         
         UpdateSectorColor();
+        UpdateSectorIcon();
         NotifyLane();
     }
 
@@ -159,7 +160,7 @@ public class Sector : MonoBehaviour
     {
         if (sectorIconRenderer != null)
         {
-            sectorIconRenderer.sprite = sectorIcon;
+            sectorIconRenderer.sprite = (sectorEvent != null) ? sectorIcon : null;
         }
     }
 
