@@ -27,7 +27,8 @@ public class Sector : MonoBehaviour
             { EventType.Waypoint, Color.green },
             { EventType.DevilsMaw, Color.blue },
             { EventType.SharpenThoseDirks, Color.red },
-            { EventType.Spaceport, Color.yellow }
+            { EventType.Spaceport, Color.yellow },
+            { EventType.Fight, Color.cyan }
         };
 
     
@@ -61,6 +62,7 @@ public class Sector : MonoBehaviour
         gameObject.name = $"Sector ({finalName})";
         
         UpdateSectorColor();
+        UpdateSectorIcon();
         NotifyLane();
     }
 
@@ -159,7 +161,7 @@ public class Sector : MonoBehaviour
     {
         if (sectorIconRenderer != null)
         {
-            sectorIconRenderer.sprite = sectorIcon;
+            sectorIconRenderer.sprite = (sectorEvent != null) ? sectorIcon : null;
         }
     }
 

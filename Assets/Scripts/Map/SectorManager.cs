@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -30,14 +31,61 @@ public class SectorManager : MonoBehaviour
     private static GameObject playerInstance;
     private static Sector playerCurrentSector;
     private static SectorManager Instance;
+    
+    System.Random random = new System.Random();
 
     private static bool bIsPlayerMoving = false;
     
     // Stores all discovered sectors
     private static HashSet<Sector> visibleSectors = new HashSet<Sector>();
+    // Stores all visited sectors
+    private static HashSet<Sector> visitedSectors = new HashSet<Sector>();
     // Stores all discovered lanes
     private static HashSet<Lane> discoveredLanes = new HashSet<Lane>();
 
+
+    #region Public functions
+
+    public static void MovePlayerToSector(Sector newSector)
+    {
+        // Temporary, for fights to work
+        GameManager.Instance.ResourceManager.Notoriety += 100;
+        
+        if(playerInstance == null || playerCurrentSector == null) return;
+        if(!playerCurrentSector.IsNeighbor(newSector)) return;
+
+        Lane lane = FindLaneBetween(playerCurrentSector, newSector);
+        if(lane == null) return;
+
+        // If the current sector event is not persistent, remove it
+        EventSO currentEvent = playerCurrentSector.GetSectorEvent();
+        if (currentEvent != null && !currentEvent.isPersistent)
+        {
+            playerCurrentSector.SetSectorEvent(null);
+        }
+
+        Vector3[] path = lane.GetLanePath();
+        float speed = lane.GetLaneDistance();
+        
+        // reverse the path if moving from sectorB to sectorA
+        if (lane.GetSectorB() == playerCurrentSector) Array.Reverse(path);
+
+        Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, speed, newSector));
+    }
+    
+    public static Sector GetPlayerCurrentSector()
+    {
+        return playerCurrentSector;
+    }
+
+    public static bool IsPlayerMoving()
+    {
+        return bIsPlayerMoving;
+    }
+
+    #endregion
+    
+    
     private void Awake()
     {
         Instance = this;
@@ -69,24 +117,6 @@ public class SectorManager : MonoBehaviour
         
         // Reveal sectors and lanes neighboring to the starting sector
         RevealSector(startingSector, GameManager.Instance.ResourceManager.GetCurrentSight());
-    }
-
-    public static void MovePlayerToSector(Sector newSector)
-    {
-        GameManager.Instance.ResourceManager.Notoriety += 100;
-        if(playerInstance == null || playerCurrentSector == null) return;
-        if(!playerCurrentSector.IsNeighbor(newSector)) return;
-
-        Lane lane = FindLaneBetween(playerCurrentSector, newSector);
-        if(lane == null) return;
-
-        Vector3[] path = lane.GetLanePath();
-        float speed = lane.GetLaneDistance();
-        
-        // reverse the path if moving from sectorB to sectorA
-        if (lane.GetSectorB() == playerCurrentSector) Array.Reverse(path);
-
-        Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, speed, newSector));
     }
 
     private IEnumerator AnimatePlayerMovement(Vector3[] path, float speed, Sector targetSector)
@@ -227,26 +257,56 @@ public class SectorManager : MonoBehaviour
     {
         EventSO eventSO = sector.GetSectorEvent();
 
-        if (eventSO is SectorEventSO sectorEvent)
+        visitedSectors.Add(sector);
+
+        if (eventSO != null)
         {
-            if (eventPopupUI != null)
+            if (eventSO is SectorEventSO sectorEvent)
             {
-                eventPopupUI.ShowEvent(sectorEvent);
+                if (eventPopupUI != null)
+                {
+                    eventPopupUI.ShowEvent(sectorEvent);
+                }
+            }
+            else if (eventSO is FightEventSO fightEvent)
+            {
+                GameManager.Instance.FightManager.StartFight(fightEvent);
+            }
+            return;
+        }
+        
+        AssignRandomSectorEvent(sector);
+    }
+
+    private void AssignRandomSectorEvent(Sector sector)
+    {
+        int roll = random.Next(100);
+
+        if (roll < 60)
+        {
+            sector.SetSectorEvent(null);
+            Debug.Log($"Sector {sector.name}: Empty space");
+        }
+        else if (roll < 80)
+        {
+            GameManager.Instance.FightManager.StartFight();
+            Debug.Log($"Sector {sector.name}: Fight Event Assigned!");
+        }
+        else
+        {
+            // Gets random sector event from events folder, excluding Spaceports and Waypoints
+            SectorEventSO[] allEvents = Resources.LoadAll<SectorEventSO>("ScriptableObjects/Events")
+                .Where(e => e.eventType != EventType.Spaceport && e.eventType != EventType.Waypoint)
+                .ToArray();
+            
+            if (allEvents.Length > 0)
+            {
+                SectorEventSO randomEvent = allEvents[UnityEngine.Random.Range(0, allEvents.Length)];
+                sector.SetSectorEvent(randomEvent);
+                
+                eventPopupUI.ShowEvent(randomEvent);
+                Debug.Log($"Sector {sector.name}: New Event Assigned - {randomEvent.eventTitle}");
             }
         }
-        else if (eventSO is FightEventSO fightEvent)
-        {
-            GameManager.Instance.FightManager.StartFight(fightEvent);
-        }
-    }
-
-    public static Sector GetPlayerCurrentSector()
-    {
-        return playerCurrentSector;
-    }
-
-    public static bool IsPlayerMoving()
-    {
-        return bIsPlayerMoving;
     }
 }
