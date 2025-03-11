@@ -104,5 +104,46 @@ public class TimeManager : MonoBehaviour
     {
         return new Vector3(Day, Month, Year);
     }
+    private Vector3 GetTimeUntilDateTime(Vector3 targetDate, Vector2 targetTime)
+    {
+        int targetDay = (int)targetDate.x;
+        int targetMonth = (int)targetDate.y;
+        int targetYear = (int)targetDate.z;
+        int targetHour = (int)targetTime.x;
+        int targetMinute = (int)targetTime.y;
 
+        int daysDifference = GetTimeDifference(GetDate(), targetDate);
+
+        Vector2 currentTime = GetCurrentTime();
+        int currentHour = (int)currentTime.x;
+        int currentMinute = (int)currentTime.y;
+
+        int hoursDifference = targetHour - currentHour;
+        int minutesDifference = targetMinute - currentMinute;
+
+        if (minutesDifference < 0)
+        {
+            minutesDifference += 60;
+            hoursDifference--;
+        }
+        if (hoursDifference < 0)
+        {
+            hoursDifference += 24;
+            daysDifference--;
+        }
+
+        return new Vector3(daysDifference, hoursDifference, minutesDifference);
+    }
+    public Vector3 GetTaskTimeRemaining(Vector3 taskStartDate, Vector2 taskStartTime, float taskDurationInSeconds)
+    {
+        float taskEndTime = CurrentTime + taskDurationInSeconds;
+        int daysToAdd = Mathf.FloorToInt(taskEndTime / DayLength);
+        float remainingSeconds = taskEndTime % DayLength;
+
+        Vector3 taskEndDate = GetFutureDate(daysToAdd);
+        Vector2 taskEndTimeVector = new Vector2(Mathf.FloorToInt((remainingSeconds / DayLength) * 24),
+                                                 Mathf.FloorToInt((remainingSeconds / DayLength) * 1440) % 60);
+
+        return GetTimeUntilDateTime(taskEndDate, taskEndTimeVector);
+    }
 }

@@ -1,43 +1,40 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+using System.Collections.Generic;
+using UnityEngine.UI;
+
 public class CrewRequestUI : MonoBehaviour
 {
-    public GameObject requestPanelPrefab;
-    public Transform requestListParent;
-    private RequestManager requestManager;
+    private CrewRequestSO crewRequest;
+
+    [SerializeField] private GameObject requestPanel;
+    [SerializeField] private List<Button> requestBtns = new List<Button>();
+
+    [Space]
+    [SerializeField] private Button fulfillBtn;
+    [SerializeField] private Image crewImg;
+    [SerializeField] private TMP_Text crewNameTxt;
+    [SerializeField] private TMP_Text descriptionTxt;
+    [SerializeField] private TMP_Text rewardTxt;
+    [SerializeField] private TMP_Text penaltyTxt;
+    [SerializeField] private TMP_Text timeTxt;
+    [SerializeField] private TMP_Text requrementTxt;
+   
 
     private void Start()
     {
-        requestManager = GameManager.Instance.RequestManager;
+      
+    }
+
+    public void Setup(CrewRequestSO request)
+    {
+        crewRequest = request;
         UpdateUI();
-        InvokeRepeating(nameof(UpdateUI), 1f, 1f);
     }
-
-    public void UpdateUI()
+    private void UpdateUI() 
     {
-        foreach (Transform child in requestListParent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (CrewRequest request in requestManager.GetActiveRequests())
-        {
-            GameObject panel = Instantiate(requestPanelPrefab, requestListParent);
-            panel.transform.Find("RequestName").GetComponent<TMP_Text>().text = request.Name;
-            panel.transform.Find("Condition").GetComponent<TMP_Text>().text = request.FulfillmentCondition;
-            //panel.transform.Find("Expiration").GetComponent<TMP_Text>().text = GetTimeRemaining(request.ExpirationTime, requestManager.GetRequestCreationTime(request));
-        }
-    }
-
-    private string GetTimeRemaining(float expirationTime, float creationTime)
-    {
-        float remaining = (creationTime + expirationTime) - Time.time;
-        if (remaining <= 0) return "Expired";
-        TimeSpan time = TimeSpan.FromSeconds(remaining);
-        return $"{time.Hours}h {time.Minutes}m {time.Seconds}s left";
+        
     }
 }
