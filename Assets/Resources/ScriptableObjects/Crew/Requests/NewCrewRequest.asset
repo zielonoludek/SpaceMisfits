@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Random
   Description: 'random randomowy request '
-  Artwork: {fileID: 0}
+  Artwork: {fileID: 1367602139, guid: 91767902ed904ab4ca5ec3985b8e86f4, type: 3}
   Type: 0
   specialMember: 0
+  IsFromCrewMember: 0
+  CrewMemberName: 
   TimeLimitDayHoursMinutes: {x: 4, y: 0, z: 0}
   TimeLimit: 345600
   StartTime: 0
