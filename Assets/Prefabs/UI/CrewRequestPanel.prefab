@@ -635,6 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1812351769767602801}
+  - component: {fileID: 343035019415028572}
   m_Layer: 5
   m_Name: CrewRequestPanel
   m_TagString: Untagged
@@ -664,6 +665,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &343035019415028572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340542161694185264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfb80c7d05cb047bc1af234fc50a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requestPanel: {fileID: 3636810619905025803}
+  requestBtns:
+  - {fileID: 440002667485647374}
+  - {fileID: 4911988847895123828}
+  - {fileID: 904859813234594656}
+  - {fileID: 5166909211366767426}
+  - {fileID: 2661095208897658939}
+  - {fileID: 5432588734841429936}
+  fulfillBtn: {fileID: 2540114056210044288}
+  crewImg: {fileID: 6059064030183236728}
+  crewNameTxt: {fileID: 3253666748758925246}
+  descriptionTxt: {fileID: 6992884966658170652}
+  rewardTxt: {fileID: 831646801711320713}
+  penaltyTxt: {fileID: 274134691487652485}
+  timeTxt: {fileID: 2916163972269291719}
+  requrementTxt: {fileID: 8830885899061460242}
 --- !u!1 &1356680149601973618
 GameObject:
   m_ObjectHideFlags: 0

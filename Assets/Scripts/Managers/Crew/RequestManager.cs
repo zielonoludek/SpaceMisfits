@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +8,8 @@ public class RequestManager : MonoBehaviour
     public List<CrewRequestSO> requestPool = new List<CrewRequestSO>();
     private List<CrewRequestSO> activeRequests = new List<CrewRequestSO>();
     public int requestCap = 4;
-    public float checkInterval = 5f; 
-    public float negativeModifier = 1.5f; 
+    public float checkInterval = 5f;
+    public float negativeModifier = 1.5f;
 
     private void Start()
     {
@@ -30,33 +29,15 @@ public class RequestManager : MonoBehaviour
     {
         List<CrewMemberType> availableCrewTypes = GameManager.Instance.CrewManager.crewList
             .Select(crewmate => crewmate.crewMemberType)
-            .ToList(); CrewRequestSO[] allRequests = Resources.LoadAll<CrewRequestSO>("ScriptableObjects/Crew/Requests");
-        List<CrewRequestSO> validRequests = new List<CrewRequestSO>();
-
-        foreach (CrewRequestSO request in allRequests)
-        {
-            if (request.specialMember == CrewMemberType.None || availableCrewTypes.Contains(request.specialMember))
-            {
-                validRequests.Add(request);
-            }
-        }
+            .ToList();
+        CrewRequestSO[] allRequests = Resources.LoadAll<CrewRequestSO>("ScriptableObjects/Crew/Requests");
+        List<CrewRequestSO> validRequests = allRequests.Where(request => request.specialMember == CrewMemberType.None || availableCrewTypes.Contains(request.specialMember)).ToList();
 
         if (validRequests.Count == 0) return;
 
         CrewRequestSO selectedRequest = validRequests[UnityEngine.Random.Range(0, validRequests.Count)];
         activeRequests.Add(selectedRequest);
         Debug.Log($"New Request Generated: {selectedRequest.Name}");
-    }
-
-    private void GenerateRequest(RequestType type)
-    {
-        List<CrewRequestSO> availableRequests = requestPool.FindAll(r => r.Type == type && !activeRequests.Contains(r));
-        if (availableRequests.Count == 0) return;
-
-        CrewRequestSO newRequest = availableRequests[UnityEngine.Random.Range(0, availableRequests.Count)];
-        activeRequests.Add(newRequest);
-
-        Debug.Log($"New Request Generated: {newRequest.Name}");
     }
 
     public void FulfillRequest(CrewRequestSO request)
@@ -90,7 +71,7 @@ public class RequestManager : MonoBehaviour
         for (int i = activeRequests.Count - 1; i >= 0; i--)
         {
             CrewRequestSO request = activeRequests[i];
-            if (currentTime - request.ExpirationTime > request.ExpirationTime)
+            if (currentTime - request.StartTime > request.ExpirationTime)
             {
                 FailRequest(request);
             }
@@ -106,9 +87,9 @@ public class RequestManager : MonoBehaviour
             Debug.Log($"Request Failed: {request.Name}");
         }
     }
+
     public List<CrewRequestSO> GetActiveRequests()
     {
         return activeRequests;
     }
-
 }

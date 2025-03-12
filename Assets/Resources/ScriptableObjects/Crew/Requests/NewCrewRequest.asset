@@ -12,23 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53849b780c7010243b1c3d9457a9a931, type: 3}
   m_Name: NewCrewRequest
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Random
+  Description: 'random randomowy request '
   Artwork: {fileID: 0}
   Type: 0
-  Origin: 2
   specialMember: 0
-  ExpirationTime: 0
-  ExpirationPenalty: 0
-  FulfillmentCondition:
-    rid: 9107303451642036290
-  EventToExecute: {fileID: 0}
+  TimeLimitDayHoursMinutes: {x: 4, y: 0, z: 0}
+  TimeLimit: 345600
   StartTime: 0
-  RewardType: {fileID: 0}
-  RewardAmount: 0
+  ExpirationTime: 0
+  Requrement: 3
+  FulfillmentCondition:
+    rid: 5978552977314807875
+  EventToExecute: {fileID: 0}
+  Rewards:
+    _serializedList:
+    - Key: 8
+      Value: 50
+  Penalties:
+    _serializedList:
+    - Key: 8
+      Value: -100
+    - Key: 6
+      Value: -25
   references:
     version: 2
     RefIds:
-    - rid: 9107303451642036290
+    - rid: 5978552977314807875
       type: {class: IntFulfillmentCondition, ns: , asm: Assembly-CSharp}
       data:
-        RequiredValue: 0
+        RequiredValue: 50

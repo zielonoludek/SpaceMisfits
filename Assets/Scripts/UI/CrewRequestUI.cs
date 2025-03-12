@@ -1,9 +1,11 @@
 using System;
-using UnityEngine;
-using TMPro;
-
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using AYellowpaper.SerializedCollections;
 
 public class CrewRequestUI : MonoBehaviour
 {
@@ -11,8 +13,6 @@ public class CrewRequestUI : MonoBehaviour
 
     [SerializeField] private GameObject requestPanel;
     [SerializeField] private List<Button> requestBtns = new List<Button>();
-
-    [Space]
     [SerializeField] private Button fulfillBtn;
     [SerializeField] private Image crewImg;
     [SerializeField] private TMP_Text crewNameTxt;
@@ -21,20 +21,23 @@ public class CrewRequestUI : MonoBehaviour
     [SerializeField] private TMP_Text penaltyTxt;
     [SerializeField] private TMP_Text timeTxt;
     [SerializeField] private TMP_Text requrementTxt;
-   
-
-    private void Start()
-    {
-      
-    }
 
     public void Setup(CrewRequestSO request)
     {
         crewRequest = request;
         UpdateUI();
     }
-    private void UpdateUI() 
+
+    private void UpdateUI()
     {
-        
+        if (crewRequest == null) return;
+
+        crewImg.sprite = crewRequest.Artwork;
+        crewNameTxt.text = crewRequest.Name;
+        descriptionTxt.text = crewRequest.Description;
+        rewardTxt.text = string.Join(", ", crewRequest.Rewards.Select(r => $"{r.Key}: {r.Value}"));
+        penaltyTxt.text = string.Join(", ", crewRequest.Penalties.Select(p => $"{p.Key}: {p.Value}"));
+        timeTxt.text = crewRequest.TimeLimit.ToString();
+        requrementTxt.text = crewRequest.Requrement.ToString();
     }
 }
