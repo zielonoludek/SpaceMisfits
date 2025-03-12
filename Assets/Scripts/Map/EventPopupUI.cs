@@ -94,9 +94,9 @@ public class EventPopupUI : MonoBehaviour
             currentEvent.eventEffect.ApplyEffect();
         }
 
-        if (currentEvent.crewmate != null)
+        if (currentEvent.crewmateToRecruit != null)
         {
-            GameManager.Instance.CrewManager.RecruitCrewmate(currentEvent.crewmate);
+            GameManager.Instance.CrewManager.RecruitCrewmate(currentEvent.crewmateToRecruit);
         }
         
         // Unpause time manager
