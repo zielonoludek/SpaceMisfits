@@ -9,6 +9,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     private UI_Options ui_Options;
     private PauseManager pauseManager;
+    private CameraManager cameraManager;
+
 
     private InputAction clickAction;
     private InputAction pauseAction;
@@ -27,6 +29,7 @@ public class PauseManager : MonoBehaviour
         pauseManager = FindFirstObjectByType<PauseManager>(FindObjectsInactive.Include);
         GameObject.Find("PauseManager")?.SetActive(true);
         ui_Options = FindFirstObjectByType<UI_Options>(FindObjectsInactive.Include);
+        cameraManager = FindObjectOfType<CameraManager>();
 
     }
 
@@ -62,6 +65,8 @@ public class PauseManager : MonoBehaviour
         isPaused = !isPaused;
         pauseEl.style.display = isPaused ? DisplayStyle.Flex : DisplayStyle.None;
         Time.timeScale = isPaused ? 0 : 1;
+
+        cameraManager.enabled = !isPaused;
     }
 
 
