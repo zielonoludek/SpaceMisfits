@@ -93,6 +93,11 @@ public class EventPopupUI : MonoBehaviour
         {
             currentEvent.eventEffect.ApplyEffect();
         }
+
+        if (currentEvent.crewmate != null)
+        {
+            GameManager.Instance.CrewManager.RecruitCrewmate(currentEvent.crewmate);
+        }
         
         // Unpause time manager
         GameManager.Instance.TimeManager.PauseTime(false);
@@ -107,6 +112,11 @@ public class EventPopupUI : MonoBehaviour
         if (choice.choiceEffect != null)
         {
             choice.choiceEffect.ApplyEffect();
+        }
+        
+        if (choice.crewmate != null)
+        {
+            GameManager.Instance.CrewManager.RecruitCrewmate(choice.crewmate);
         }
         
         CloseEvent();
