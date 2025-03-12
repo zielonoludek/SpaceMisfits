@@ -9,7 +9,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     private UI_Options ui_Options;
     private PauseManager pauseManager;
-    private CameraManager cameraManager;
 
 
     private InputAction clickAction;
@@ -66,7 +65,6 @@ public class PauseManager : MonoBehaviour
         pauseEl.style.display = isPaused ? DisplayStyle.Flex : DisplayStyle.None;
         Time.timeScale = isPaused ? 0 : 1;
 
-        cameraManager.enabled = !isPaused;
     }
 
 
