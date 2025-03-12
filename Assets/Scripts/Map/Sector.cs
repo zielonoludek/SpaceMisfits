@@ -8,8 +8,9 @@ public class Sector : MonoBehaviour
     [Tooltip("Determines if this sector is the one where player starts the game")]
     [SerializeField] private bool isStartingSector;
     [SerializeField] private EventSO sectorEvent;
+    [SerializeField] private Sprite sectorIcon;
     
-    public static Sector GetCurentStartingSector => currentStartingSector;
+    public static Sector GetCurrentStartingSector => currentStartingSector;
     public EventSO GetSectorEvent() => sectorEvent;
     
     private static Sector currentStartingSector;
@@ -17,6 +18,7 @@ public class Sector : MonoBehaviour
     private Dictionary<Sector, Lane> connectedLanes = new Dictionary<Sector, Lane>();
 
     private MeshRenderer meshRenderer;
+    private SpriteRenderer sectorIconRenderer;
 
     private static readonly Dictionary<EventType, Color> eventColors =
         new Dictionary<EventType, Color>
@@ -25,36 +27,14 @@ public class Sector : MonoBehaviour
             { EventType.Waypoint, Color.green },
             { EventType.DevilsMaw, Color.blue },
             { EventType.SharpenThoseDirks, Color.red },
-            { EventType.Spaceport, Color.yellow }
+            { EventType.Spaceport, Color.yellow },
+            { EventType.Fight, Color.cyan }
         };
 
-    private void Awake()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-        UpdateSectorColor();
-        SetVisibility(false);
-    }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        // Ensures sector event and name are updated when changed in editor
-        SetSectorEvent(sectorEvent);
-        
-        // Ensures only one sector is the starting sector
-        if (isStartingSector)
-        {
-            if (currentStartingSector != null && currentStartingSector != this)
-            {
-                currentStartingSector.isStartingSector = false;
-                EditorUtility.SetDirty(currentStartingSector);
-            }
-
-            currentStartingSector = this;
-        }
-    }
-#endif
     
+    
+    #region Public functions
+
     public void AddNeighbor(Sector sector, Lane lane)
     {
         if (sector != null && lane != null && !connectedLanes.ContainsKey(sector))
@@ -82,6 +62,7 @@ public class Sector : MonoBehaviour
         gameObject.name = $"Sector ({finalName})";
         
         UpdateSectorColor();
+        UpdateSectorIcon();
         NotifyLane();
     }
 
@@ -92,6 +73,47 @@ public class Sector : MonoBehaviour
         {
             lane.SetVisibility(isVisible);
         }
+    }
+
+    #endregion
+    
+    
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        // Ensures sector event and name are updated when changed in editor
+        SetSectorEvent(sectorEvent);
+        
+        // Ensures only one sector is the starting sector
+        if (isStartingSector)
+        {
+            if (currentStartingSector != null && currentStartingSector != this)
+            {
+                currentStartingSector.isStartingSector = false;
+                EditorUtility.SetDirty(currentStartingSector);
+            }
+
+            currentStartingSector = this;
+        }
+        // Defer the initialization of the sector icon (used to avoid warning messages)
+        EditorApplication.delayCall += () =>
+        {
+            if (this != null)
+            {
+                InitializeSectorIcon();
+                EditorUtility.SetDirty(this);
+            }
+        };
+    }
+#endif
+    
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        InitializeSectorIcon();
+        UpdateSectorColor();
+        SetVisibility(false);
     }
 
     private void UpdateSectorColor()
@@ -121,6 +143,25 @@ public class Sector : MonoBehaviour
         else
         {
             targetMaterial.color = Color.gray;
+        }
+    }
+
+    private void InitializeSectorIcon()
+    {
+        Transform iconTransform = transform.Find("SectorIcon");
+        if (iconTransform != null)
+        {
+            sectorIconRenderer = iconTransform.GetComponent<SpriteRenderer>();
+        }
+
+        UpdateSectorIcon();
+    }
+
+    private void UpdateSectorIcon()
+    {
+        if (sectorIconRenderer != null)
+        {
+            sectorIconRenderer.sprite = (sectorEvent != null) ? sectorIcon : null;
         }
     }
 
