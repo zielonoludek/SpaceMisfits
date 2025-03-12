@@ -28,7 +28,6 @@ public class PauseManager : MonoBehaviour
         pauseManager = FindFirstObjectByType<PauseManager>(FindObjectsInactive.Include);
         GameObject.Find("PauseManager")?.SetActive(true);
         ui_Options = FindFirstObjectByType<UI_Options>(FindObjectsInactive.Include);
-        cameraManager = FindObjectOfType<CameraManager>();
 
     }
 
