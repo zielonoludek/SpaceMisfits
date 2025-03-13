@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Help Beacon
+  m_Name: LinkedEvent1
   m_EditorClassIdentifier: 
-  tiedEvents: []
+  tiedEvents:
+  - {fileID: 11400000, guid: 9c2a562ad59ec8f48bbc617832e07288, type: 2}
   isPersistent: 0
-  eventTitle: Help Beacon
+  eventTitle: LinkedOut
   eventType: 0
-  eventDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. '
-  eventEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
-  crewmateToRecruit: {fileID: 11400000, guid: 043c57ce962df9546bc0ec6854657853, type: 2}
+  eventDescription: Test to see if linked events are working
+  eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
   hasChoices: 0
   numberOfChoices: 2
   choices:

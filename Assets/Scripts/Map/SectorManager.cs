@@ -261,6 +261,11 @@ public class SectorManager : MonoBehaviour
 
         if (eventSO != null)
         {
+            if (eventSO.IsAnyLinkedEventCompleted())
+            {
+                Debug.Log($"A linked event was completed before visiting {sector.name}");
+            }
+            
             if (eventSO is SectorEventSO sectorEvent)
             {
                 if (eventPopupUI != null)
@@ -272,6 +277,8 @@ public class SectorManager : MonoBehaviour
             {
                 GameManager.Instance.FightManager.StartFight(fightEvent);
             }
+            
+            eventSO.MarkEventAsCompleted();
             return;
         }
         
@@ -284,13 +291,13 @@ public class SectorManager : MonoBehaviour
 
         if (roll < 60)
         {
-            sector.SetSectorEvent(null);
-            Debug.Log($"Sector {sector.name}: Empty space");
+            SectorEventSO emptySpaceEvent = GetEmptySpaceEvent();
+            sector.SetSectorEvent(emptySpaceEvent);
+            eventPopupUI.ShowEvent(emptySpaceEvent);
         }
         else if (roll < 80)
         {
             GameManager.Instance.FightManager.StartFight();
-            Debug.Log($"Sector {sector.name}: Fight Event Assigned!");
         }
         else
         {
@@ -303,10 +310,21 @@ public class SectorManager : MonoBehaviour
             {
                 SectorEventSO randomEvent = allEvents[UnityEngine.Random.Range(0, allEvents.Length)];
                 sector.SetSectorEvent(randomEvent);
-                
                 eventPopupUI.ShowEvent(randomEvent);
-                Debug.Log($"Sector {sector.name}: New Event Assigned - {randomEvent.eventTitle}");
             }
         }
+    }
+
+    private SectorEventSO GetEmptySpaceEvent()
+    {
+        SectorEventSO emptySpaceEvent = Resources.LoadAll<SectorEventSO>("ScriptableObjects/Events")
+            .FirstOrDefault(e => e.eventType == EventType.EmptySpace);
+
+        if (emptySpaceEvent == null)
+        {
+            Debug.LogWarning("No Empty Space event found! Please create one in 'Resources/ScriptableObjects/Events'");
+        }
+
+        return emptySpaceEvent;
     }
 }

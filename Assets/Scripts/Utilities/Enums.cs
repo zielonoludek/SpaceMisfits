@@ -13,7 +13,7 @@ public enum EffectType
     CrewMood
 }
 public enum FightTier { Easy, Medium, Hard }
-public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight }
+public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight, EmptySpace }
 
 public enum GameState { None, Event }
 

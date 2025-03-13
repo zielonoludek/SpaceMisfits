@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Supernova
   m_EditorClassIdentifier: 
+  tiedEvents: []
   isPersistent: 0
   eventTitle: Supernova
   eventType: 2
@@ -21,10 +22,13 @@ MonoBehaviour:
     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
     dolore eu fugiat nulla pariatur. '
   eventEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
-  hasChoices: 0
+  crewmateToRecruit: {fileID: 0}
+  hasChoices: 1
   numberOfChoices: 2
   choices:
+  - choiceDescription: crew
+    choiceEffect: {fileID: 0}
+    crewmate: {fileID: 11400000, guid: 043c57ce962df9546bc0ec6854657853, type: 2}
   - choiceDescription: 
     choiceEffect: {fileID: 0}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
