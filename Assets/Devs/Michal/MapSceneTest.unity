@@ -229,14 +229,14 @@ PrefabInstance:
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorEvent
       value: 
-      objectReference: {fileID: 11400000, guid: abd3b7088112ab040899a48267500a9c, type: 2}
+      objectReference: {fileID: 11400000, guid: 4634a4fd89e2ecb4faa2140a6641a1b2, type: 2}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: isStartingSector
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Help Beacon)
+      value: Sector (Spaceport)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -577,7 +577,7 @@ PrefabInstance:
       objectReference: {fileID: 205880762}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Funland - Help Beacon)
+      value: Lane (Funland - Spaceport)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -932,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Random - Help Beacon)
+      value: Lane (Random - Spaceport)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1135,7 +1135,7 @@ Material:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
@@ -1604,7 +1604,7 @@ Material:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
@@ -1660,7 +1660,7 @@ PrefabInstance:
       objectReference: {fileID: 205880762}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Help Beacon - Help Beacon)
+      value: Lane (Help Beacon - Spaceport)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2039,22 +2039,22 @@ PrefabInstance:
     - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1539808180, guid: 9515376481a53864482139093ca93d0a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3582932925614748367, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorIcon
       value: 
-      objectReference: {fileID: 1539808180, guid: 9515376481a53864482139093ca93d0a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: sectorEvent
       value: 
-      objectReference: {fileID: 11400000, guid: de615d79fa7ac3145b79ee8b0cf09eb4, type: 2}
+      objectReference: {fileID: 11400000, guid: abd3b7088112ab040899a48267500a9c, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Funland)
+      value: Sector (Help Beacon)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2419,7 +2419,7 @@ PrefabInstance:
       objectReference: {fileID: 1515179674}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Supernova - Funland)
+      value: Lane (Supernova - Help Beacon)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2687,7 +2687,7 @@ PrefabInstance:
       objectReference: {fileID: 1350924563}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Funland - Spaceport)
+      value: Lane (Help Beacon - Spaceport)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3190,6 +3190,7 @@ GameObject:
   - component: {fileID: 1960843782}
   - component: {fileID: 1960843785}
   - component: {fileID: 1960843786}
+  - component: {fileID: 1960843787}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3282,6 +3283,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePanelUI: {fileID: 1900057186}
   fightPanelUI: {fileID: 2000552055}
+--- !u!114 &1960843787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960843779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d40606813b8664dbdc9ab371a31b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewList: []
 --- !u!224 &2000552054 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8179105992680247508, guid: 3ea6ce05d7177094fbfd0dc49ff33260, type: 3}
@@ -3328,7 +3342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
-      value: Lane (Help Beacon - Supernova)
+      value: Lane (Spaceport - Supernova)
       objectReference: {fileID: 0}
     - target: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_LocalPosition.x
