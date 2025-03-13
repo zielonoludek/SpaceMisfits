@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "FightEventSO", menuName = "Events/New Fight Event")]
 public class FightEventSO : EventSO
 {
+    [Header("Fight-specific settings")]
     public FightTier fightTier;
     public int playerBetNotoriety;
+
+    [Header("Crewmate recruit")] 
+    public CrewmateData crewmateToRecruit;
     public int GetMaxComputerBet()
     {
         return fightTier switch
