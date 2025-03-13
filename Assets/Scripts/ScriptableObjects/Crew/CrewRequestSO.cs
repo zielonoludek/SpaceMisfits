@@ -16,13 +16,12 @@ public class CrewRequestSO : ScriptableObject
     public string CrewMemberName;
 
     [Space]
-    [SerializeField]  private Vector3 TimeLimitDayHoursMinutes = Vector3.zero;
-    [HideInInspector] public float TimeLimit;
-    [HideInInspector] public float StartTime;
-    [HideInInspector] public float ExpirationTime;
+    [SerializeField]  public Vector3 TimeLimitDayHoursMinutes;
+    public float StartTime;
+    public float ExpirationTime;
 
     [Space]
-    public RequestOriginType Requrement;
+    public RequestOriginType Requirement;
     [SerializeReference] public IFulfillmentCondition FulfillmentCondition;
     [SerializeField, HideInInspector] public EventSO EventToExecute;
 
@@ -32,18 +31,50 @@ public class CrewRequestSO : ScriptableObject
 
     private void OnValidate()
     {
-        TimeLimit = (TimeLimitDayHoursMinutes.x * 86400) + (TimeLimitDayHoursMinutes.y * 3600) + (TimeLimitDayHoursMinutes.z * 60);
-
-        if (Requrement == RequestOriginType.Event && !(FulfillmentCondition is BoolFulfillmentCondition))
+        if (Requirement == RequestOriginType.Event && !(FulfillmentCondition is BoolFulfillmentCondition))
         {
             FulfillmentCondition = new BoolFulfillmentCondition();
             EventToExecute ??= null;
         }
-        else if (Requrement != RequestOriginType.Event && !(FulfillmentCondition is IntFulfillmentCondition))
+        else if (Requirement != RequestOriginType.Event && !(FulfillmentCondition is IntFulfillmentCondition))
         {
             FulfillmentCondition = new IntFulfillmentCondition();
             EventToExecute = null;
         }
+    }
+    public float TimeLimitInSeconds()
+    {
+        return GameManager.Instance.TimeManager.ConvertTimeVec3ToSeconds(TimeLimitDayHoursMinutes);
+    }
+    public bool CanFulfillRequest()
+    {
+        if (Requirement == RequestOriginType.Event)
+        {
+            return FulfillmentCondition is BoolFulfillmentCondition boolCondition && boolCondition.EventDone;
+        }
+
+        if (TryGetEffectTypeFromRequestOrigin(Requirement, out EffectType effectType))
+        {
+            int currentValue = GameManager.Instance.ResourceManager.GetResourceValue(effectType);
+            return FulfillmentCondition is IntFulfillmentCondition intCondition && currentValue >= intCondition.RequiredValue;
+        }
+
+        return false;
+    }
+    private bool TryGetEffectTypeFromRequestOrigin(RequestOriginType requestType, out EffectType effectType)
+    {
+        Dictionary<RequestOriginType, EffectType> mapping = new Dictionary<RequestOriginType, EffectType>
+        {
+            { RequestOriginType.Booty, EffectType.Booty },
+            { RequestOriginType.Notoriety, EffectType.Notoriety },
+            { RequestOriginType.Health, EffectType.Health },
+            { RequestOriginType.Sight, EffectType.Sight },
+            { RequestOriginType.Speed, EffectType.Speed },
+            { RequestOriginType.Food, EffectType.Food },
+            { RequestOriginType.CrewMood, EffectType.CrewMood }
+        };
+
+        return mapping.TryGetValue(requestType, out effectType);
     }
 }
 

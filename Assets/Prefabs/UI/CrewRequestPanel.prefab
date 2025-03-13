@@ -686,13 +686,14 @@ MonoBehaviour:
   - {fileID: 2661095208897658939}
   - {fileID: 5432588734841429936}
   fulfillBtn: {fileID: 2540114056210044288}
+  closeBtn: {fileID: 7693021153308154503}
   crewImg: {fileID: 6059064030183236728}
   crewNameTxt: {fileID: 3253666748758925246}
   descriptionTxt: {fileID: 6992884966658170652}
   rewardTxt: {fileID: 831646801711320713}
   penaltyTxt: {fileID: 274134691487652485}
   timeTxt: {fileID: 2916163972269291719}
-  requrementTxt: {fileID: 8830885899061460242}
+  requirementTxt: {fileID: 8830885899061460242}
 --- !u!1 &1356680149601973618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,7 +1503,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -255, y: 200}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5601293625283079575
 CanvasRenderer:

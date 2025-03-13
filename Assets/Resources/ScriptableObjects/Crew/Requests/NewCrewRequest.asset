@@ -19,13 +19,13 @@ MonoBehaviour:
   specialMember: 0
   IsFromCrewMember: 0
   CrewMemberName: 
-  TimeLimitDayHoursMinutes: {x: 4, y: 0, z: 0}
-  TimeLimit: 345600
-  StartTime: 0
-  ExpirationTime: 0
-  Requrement: 3
+  TimeLimitDayHoursMinutes: {x: 0, y: 1, z: 0}
+  TimeLimitInSeconds: 3600
+  StartTime: 10.600052
+  ExpirationTime: 10.600052
+  Requirement: 7
   FulfillmentCondition:
-    rid: 5978552977314807875
+    rid: 5978552999047594052
   EventToExecute: {fileID: 0}
   Rewards:
     _serializedList:
@@ -40,7 +40,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5978552977314807875
+    - rid: 5978552999047594052
       type: {class: IntFulfillmentCondition, ns: , asm: Assembly-CSharp}
       data:
         RequiredValue: 50

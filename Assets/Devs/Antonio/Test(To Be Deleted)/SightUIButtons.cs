@@ -16,39 +16,18 @@ public class SightUIButtons : MonoBehaviour
     {
         GameManager.Instance.ResourceManager.OnSightChanged += UpdateSightUI;
 
-        increaseSightButton.onClick.AddListener(IncreaseSight);
-        decreaseSightButton.onClick.AddListener(DecreaseSight);
+        increaseSightButton.onClick.AddListener(() => GameManager.Instance.ResourceManager.Sight += 1 );
+        decreaseSightButton.onClick.AddListener(() => GameManager.Instance.ResourceManager.Sight -= 1);
 
         UpdateSightUI(GameManager.Instance.ResourceManager.GetCurrentSight());
 
         GameManager.Instance.ResourceManager.OnSpeedChanged += UpdateSpeedUI;
 
-        increaseSpeedButton.onClick.AddListener(IncreaseSpeed);
-        decreaseSpeedButton.onClick.AddListener(DecreaseSpeed);
+        increaseSpeedButton.onClick.AddListener(() => GameManager.Instance.ResourceManager.Speed += 1);
+        decreaseSpeedButton.onClick.AddListener(() => GameManager.Instance.ResourceManager.Speed -= 1);
 
         UpdateSpeedUI(GameManager.Instance.ResourceManager.GetCurrentSpeed());
     }
-
-    private void IncreaseSight()
-    {
-        GameManager.Instance.ResourceManager.IncreaseSight();
-    }
-
-    private void DecreaseSight()
-    {
-        GameManager.Instance.ResourceManager.DecreaseSight();
-    }
-
-    private void IncreaseSpeed()
-    {
-        GameManager.Instance.ResourceManager.IncreaseSpeed();
-    }
-
-    private void DecreaseSpeed()
-    {
-        GameManager.Instance.ResourceManager.DecreaseSpeed();
-    }
-
     private void UpdateSightUI(int newSight)
     {
         sightText.text = $"Sight Level: {newSight}";

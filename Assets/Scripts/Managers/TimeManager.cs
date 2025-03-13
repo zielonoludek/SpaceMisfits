@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -12,7 +13,7 @@ public class TimeManager : MonoBehaviour
     private bool timeOn = true;
     private int daysCounter;
     private float currentTime;
-   
+
     private float timeSpeed = 1;
 
     int[] daysInMonths = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -22,7 +23,7 @@ public class TimeManager : MonoBehaviour
     public int Year { get { return year; } }
     public int DayLength { get { return oneDayInSeconds; } }
     public float CurrentTime { get { return currentTime; } }
-    public float TimeSpeed {  get { return timeSpeed; } }
+    public float TimeSpeed { get { return timeSpeed; } }
 
     public bool IsTimeOn { get { return timeOn; } }
 
@@ -36,7 +37,7 @@ public class TimeManager : MonoBehaviour
     }
     public void SetTimeSpeed(float speed)
     {
-        if(speed != 0) timeSpeed = speed;
+        if (speed != 0) timeSpeed = speed;
         Time.timeScale = speed;
     }
 
@@ -83,7 +84,7 @@ public class TimeManager : MonoBehaviour
             int daysInNextMonth = days - (Day - currentMonthDays);
             d = daysInNextMonth;
             if (Month == 12)
-            {         
+            {
                 m = 1;
                 y++;
             }
@@ -104,4 +105,8 @@ public class TimeManager : MonoBehaviour
     {
         return new Vector3(Day, Month, Year);
     }
+    public float ConvertTimeVec3ToSeconds(Vector3 time)
+    {
+        return (time.x * 86400) + (time.y * 3600) + (time.z * 60);
+    }  
 }

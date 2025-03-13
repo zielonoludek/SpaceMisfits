@@ -1,15 +1,18 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class ResourceManager : MonoBehaviour
 {
-    private int shipHealth;
-    private int booty;
-    private int food;
-    private int notoriety;
-    private int crewMood;
-    private int sightLevel;
-    private int speedValue;
+    [SerializeField] private int shipHealth = 1000;
+    [SerializeField] private int booty = 1000;
+    [SerializeField] private int food = 1000;
+    [SerializeField] private int notoriety = 1000;
+    [SerializeField] private int crewMood = 1000;
+    [SerializeField] private int sightLevel = 1000;
+    [SerializeField] private int speedValue = 1000;
+
+    private Dictionary<EffectType, Func<int>> resourceGetters;
 
     public event Action<int> OnShipHealthChanged;
     public event Action<int> OnBootyChanged;
@@ -19,7 +22,37 @@ public class ResourceManager : MonoBehaviour
     public event Action<int> OnSpeedChanged;
     public event Action<int> OnFoodChanged;
 
- 
+    public event Action<EffectType> OnResourceEmpty;
+
+    /*
+    // Example usage:
+
+    GameManager.Instance.ResourceManager.Booty += 100; (trigger events in other scripts)
+    GameManager.Instance.ResourceManager.Notoriety -= 5;
+
+
+    GameManager.Instance.ResourceManager.OnResourceEmpty += HandleResourceEmpty;
+    
+    void HandleResourceEmpty(EffectType resource)
+    {
+        if (resource == EffectType.Food) Debug.Log("Food has been depleted! Crew is starving!");
+    }
+    */
+
+    private void Awake()
+    {
+        resourceGetters = new Dictionary<EffectType, Func<int>>
+        {
+            { EffectType.Health, () => ShipHealth },
+            { EffectType.Booty, () => Booty },
+            { EffectType.Notoriety, () => Notoriety },
+            { EffectType.CrewMood, () => CrewMood },
+            { EffectType.Food, () => Food },
+            { EffectType.Sight, () => Sight },
+            { EffectType.Speed, () => Speed }
+        };
+    }
+
     public int ShipHealth
     {
         get => shipHealth;
@@ -29,10 +62,10 @@ public class ResourceManager : MonoBehaviour
             {
                 shipHealth = Mathf.Max(0, value);
                 OnShipHealthChanged?.Invoke(shipHealth);
+                if (shipHealth == 0) OnResourceEmpty?.Invoke(EffectType.Health);
             }
         }
     }
-
     public int Booty
     {
         get => booty;
@@ -42,10 +75,10 @@ public class ResourceManager : MonoBehaviour
             {
                 booty = Mathf.Max(0, value);
                 OnBootyChanged?.Invoke(booty);
+                if (booty == 0) OnResourceEmpty?.Invoke(EffectType.Booty);
             }
         }
     }
-
     public int Notoriety
     {
         get => notoriety;
@@ -55,10 +88,10 @@ public class ResourceManager : MonoBehaviour
             {
                 notoriety = Mathf.Max(0, value);
                 OnNotorietyChanged?.Invoke(notoriety);
+                if (notoriety == 0) OnResourceEmpty?.Invoke(EffectType.Notoriety);
             }
         }
     }
-
     public int CrewMood
     {
         get => crewMood;
@@ -68,13 +101,10 @@ public class ResourceManager : MonoBehaviour
             {
                 crewMood = Mathf.Max(0, value);
                 OnCrewMoodChanged?.Invoke(crewMood);
+                if (crewMood == 0) OnResourceEmpty?.Invoke(EffectType.CrewMood);
             }
         }
     }
-
-    //GameManager.Instance.ResourceManager.Booty += 100; (trigger booty event in other scripts)
-    //GameManager.Instance.ResourceManager.Notoriety -= 5;
-
     public int Food
     {
         get => food;
@@ -84,11 +114,10 @@ public class ResourceManager : MonoBehaviour
             {
                 food = Mathf.Max(0, value);
                 OnFoodChanged?.Invoke(food);
+                if (food == 0) OnResourceEmpty?.Invoke(EffectType.Food);
             }
         }
     }
-
-
     public int Sight
     {
         get => sightLevel;
@@ -96,24 +125,9 @@ public class ResourceManager : MonoBehaviour
         {
             sightLevel = Mathf.Clamp(value, 0, 3);
             OnSightChanged?.Invoke(sightLevel);
+            if (sightLevel == 0) OnResourceEmpty?.Invoke(EffectType.Sight);
         }
     }
-
-    public void IncreaseSight(int amount = 1)
-    {
-        Sight += amount;
-    }
-
-    public void DecreaseSight(int amount = 1)
-    {
-        Sight -= amount;
-    }
-
-    public int GetCurrentSight()
-    {
-        return Sight;
-    }
-
     public int Speed
     {
         get => speedValue;
@@ -121,24 +135,20 @@ public class ResourceManager : MonoBehaviour
         {
             speedValue = Mathf.Clamp(value, 0, 3);
             OnSpeedChanged?.Invoke(speedValue);
+            if (speedValue == 0) OnResourceEmpty?.Invoke(EffectType.Speed);
         }
     }
-
-    public void IncreaseSpeed(int amount = 1)
-    {
-        Speed += amount;
-    }
-
-    public void DecreaseSpeed(int amount = 1)
-    {
-        Speed -= amount;
-    }
-
+   
     public int GetCurrentSpeed()
     {
         return Speed;
     }
-
-    //GameManager.Instance.ResourceManager.IncreaseSight(); //This line adds sight level in other scripts
-    //GameManager.Instance.ResourceManager.DecreaseSight(); //This line removes sight level in other scripts
+    public int GetCurrentSight()
+    {
+        return Sight;
+    }
+    public int GetResourceValue(EffectType type)
+    {
+        return resourceGetters.TryGetValue(type, out var getter) ? getter() : 0;
+    }
 }
