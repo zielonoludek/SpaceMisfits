@@ -1,23 +1,31 @@
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static CrewRequestSO;
 
 public class RequestManager : MonoBehaviour
 {
-    public List<CrewRequest> requestPool = new List<CrewRequest>();
-    private List<CrewRequest> activeRequests = new List<CrewRequest>();
-    public int requestCap = 4;
-    public float checkInterval = 5f; 
-    public float negativeModifier = 1.5f; 
+    private int requestCap = 6;
+    private Coroutine requestCoroutine;
+
+    [SerializeField] private List<CrewRequestSO> activeRequests = new List<CrewRequestSO>();
+
+    [SerializeField] private Vector3 checkIntervalDaysHoursMinutes = new Vector3(0, 1, 0);
+    [SerializeField] private float negativeModifier = 1.5f;
 
     private void Start()
     {
-        StartCoroutine(GenerateRequestsPeriodically());
+        float checkInterval = GameManager.Instance.TimeManager.ConvertTimeToFloat(checkIntervalDaysHoursMinutes);
+
+        if (checkInterval < 1) checkInterval = 60;
+        if (requestCoroutine == null)
+        {
+            requestCoroutine = StartCoroutine(GenerateRequestsPeriodically(checkInterval));
+        }
     }
 
-    private IEnumerator GenerateRequestsPeriodically()
+    private IEnumerator GenerateRequestsPeriodically(float checkInterval)
     {
         while (true)
         {
@@ -26,89 +34,167 @@ public class RequestManager : MonoBehaviour
         }
     }
 
+
     public void TryGenerateRequest()
     {
-        List<CrewMemberType> availableCrewTypes = GameManager.Instance.CrewManager.crewList
-            .Select(crewmate => crewmate.crewMemberType)
-            .ToList(); CrewRequest[] allRequests = Resources.LoadAll<CrewRequest>("ScriptableObjects/Crew/Requests");
-        List<CrewRequest> validRequests = new List<CrewRequest>();
-
-        foreach (CrewRequest request in allRequests)
+        float probability = CalculateRequestProbability();
+        if (Random.value > probability)
         {
-            if (request.specialMember == CrewMemberType.None || availableCrewTypes.Contains(request.specialMember))
-            {
-                validRequests.Add(request);
-            }
+            Debug.Log("Generating request failed - probability");
+            return;
         }
 
-        if (validRequests.Count == 0) return;
+        List<CrewMemberType> availableCrewTypes = GameManager.Instance.CrewManager.crewList
+            .Select(crewmate => crewmate.crewMemberType)
+            .ToList();
+        CrewRequestSO[] allRequests = Resources.LoadAll<CrewRequestSO>("ScriptableObjects/Crew/Requests");
+        List<CrewRequestSO> validRequests = allRequests
+            .Where(request => (request.specialMember == CrewMemberType.None || availableCrewTypes.Contains(request.specialMember)) &&
+                              !IsRequestAlreadyActive(request))
+            .ToList();
 
-        CrewRequest selectedRequest = validRequests[UnityEngine.Random.Range(0, validRequests.Count)];
-        activeRequests.Add(selectedRequest);
-        Debug.Log($"New Request Generated: {selectedRequest.Name}");
+        if (validRequests.Count == 0)
+        {
+            Debug.Log("Generating request failed - no aviable requests");
+            return;
+        }
+
+        CrewRequestSO selectedRequest = validRequests[Random.Range(0, validRequests.Count)];
+
+        GenerateRequest(selectedRequest);
     }
 
-    private void GenerateRequest(RequestType type)
+    public void GenerateRequest(CrewRequestSO request)
     {
-        List<CrewRequest> availableRequests = requestPool.FindAll(r => r.Type == type && !activeRequests.Contains(r));
-        if (availableRequests.Count == 0) return;
+        if (IsRequestAlreadyActive(request)) return;
 
-        CrewRequest newRequest = availableRequests[UnityEngine.Random.Range(0, availableRequests.Count)];
-        activeRequests.Add(newRequest);
+        activeRequests.Add(request);
+        request.StartTime = GameManager.Instance.TimeManager.TotalTime;
+        request.ExpirationTime = request.StartTime + request.TimeLimitInSeconds();
 
-        Debug.Log($"New Request Generated: {newRequest.Name}");
+        GameManager.Instance.UIManager.CrewRequestUI.AssignRequestButton(request);
     }
 
-    public void FulfillRequest(CrewRequest request)
+
+    public void FulfillRequest(CrewRequestSO request)
+    {
+        if (activeRequests.Contains(request) && request.CanFulfillRequest())
+        {
+            if (request.FulfillmentCondition is IntFulfillmentCondition intCondition)
+            {
+                if (GameManager.Instance.ResourceManager.TryGetResourceTypeFromRequestOrigin(request.Requirement, out EffectType effectType))
+                {
+                    GameManager.Instance.ResourceManager.ModifyResource(effectType, -intCondition.RequiredValue);
+                }
+            }
+
+            activeRequests.Remove(request);
+            
+            ApplyEffects(request, true);
+
+            GameManager.Instance.UIManager.CrewRequestUI.CloseRequestPanel(request);
+            GameManager.Instance.UIManager.CrewRequestUI.UpdateRequestButtons();
+
+            Debug.Log($"Request {request.Name} completed. UI updated.");
+        }
+    }
+
+    private void FailRequest(CrewRequestSO request)
     {
         if (activeRequests.Contains(request))
         {
             activeRequests.Remove(request);
-            IncreaseCrewMood();
-            Debug.Log($"Request Fulfilled: {request.Name}");
+
+            ApplyEffects(request, false);
+
+            GameManager.Instance.UIManager.CrewRequestUI.CloseRequestPanel(request);
+            GameManager.Instance.UIManager.CrewRequestUI.UpdateRequestButtons();
+            Debug.Log($"Request {request.Name} failed. UI updated.");
+
         }
     }
 
-    private void IncreaseCrewMood()
+    private void ApplyEffects(CrewRequestSO request, bool isReward)
     {
-        Debug.Log("Crew Mood Increased!");
-    }
+        var effects = isReward ? request.Rewards : request.Penalties;
 
-    private void DecreaseCrewMood()
-    {
-        Debug.Log("Crew Mood Decreased!");
+        foreach (var effect in effects)
+        {
+            int effectValue = effect.Value;
+
+            switch (effect.Key)
+            {
+                case EffectType.Booty:
+                    GameManager.Instance.ResourceManager.Booty += effectValue;
+                    break;
+                case EffectType.Notoriety:
+                    GameManager.Instance.ResourceManager.Notoriety += effectValue;
+                    break;
+                case EffectType.Health:
+                    GameManager.Instance.ResourceManager.ShipHealth += effectValue;
+                    break;
+                case EffectType.Sight:
+                    GameManager.Instance.ResourceManager.Sight += effectValue;
+                    break;
+                case EffectType.Speed:
+                    GameManager.Instance.ResourceManager.Speed += effectValue;
+                        break;
+                case EffectType.Food:
+                    GameManager.Instance.ResourceManager.Food += effectValue;
+                    break;
+                case EffectType.CrewMood:
+                    GameManager.Instance.ResourceManager.CrewMood += effectValue;
+                    break;
+                case EffectType.CrewMemberSpot:
+                    break;
+                case EffectType.Durability:
+                    break;
+            }
+        }
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R)) TryGenerateRequest();
         CheckExpiredRequests();
     }
 
     private void CheckExpiredRequests()
     {
-        float currentTime = Time.time;
+        float currentTime = GameManager.Instance.TimeManager.TotalTime;
         for (int i = activeRequests.Count - 1; i >= 0; i--)
         {
-            CrewRequest request = activeRequests[i];
-            if (currentTime - request.ExpirationTime > request.ExpirationTime)
-            {
-                FailRequest(request);
-            }
+            CrewRequestSO request = activeRequests[i];
+            if (request.ExpirationTime <= 0f) return;
+            if (currentTime > request.ExpirationTime) FailRequest(request);
+
         }
     }
 
-    private void FailRequest(CrewRequest request)
-    {
-        if (activeRequests.Contains(request))
-        {
-            activeRequests.Remove(request);
-            DecreaseCrewMood();
-            Debug.Log($"Request Failed: {request.Name}");
-        }
-    }
-    public List<CrewRequest> GetActiveRequests()
+    public List<CrewRequestSO> GetActiveRequests()
     {
         return activeRequests;
+    }
+    private float CalculateRequestProbability()
+    {
+        float baseChance = 0.1f;
+        int freeSlots = requestCap - activeRequests.Count;
+        int maxSlots = requestCap;
+        float crewMood = Mathf.Clamp(GameManager.Instance.ResourceManager.CrewMood / 100f, 0f, 1f);
+
+        float slotModifier = 1 + ((float)freeSlots / maxSlots);
+        float moodModifier = 1 + (1 - crewMood);
+
+        float probability = baseChance * slotModifier * moodModifier;
+
+        if (crewMood < 0.5f) probability *= negativeModifier;
+
+        return Mathf.Clamp(probability, 0f, 1f);
+
+    }
+    public bool IsRequestAlreadyActive(CrewRequestSO request)
+    {
+        return activeRequests.Contains(request);
     }
 
 }

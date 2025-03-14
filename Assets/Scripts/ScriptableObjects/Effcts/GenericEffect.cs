@@ -11,11 +11,28 @@ public class GenericEffect : Effect
         {
             case EffectType.Booty:
                 GameManager.Instance.ResourceManager.Booty += amount;
-                Debug.Log($"{effectName}: Booty changed by {amount}");
                 break;
             case EffectType.Notoriety:
                 GameManager.Instance.ResourceManager.Notoriety += amount;
-                Debug.Log($"{effectName}: Notoriety changed by {amount}");
+                break;
+            case EffectType.Health:
+                GameManager.Instance.ResourceManager.ShipHealth += amount;
+                break;
+            case EffectType.Sight:
+                GameManager.Instance.ResourceManager.Sight += amount;
+                break;
+            case EffectType.Speed:
+                GameManager.Instance.ResourceManager.Speed += amount;
+                break;
+            case EffectType.Food:
+                GameManager.Instance.ResourceManager.Food += amount;
+                break;
+            case EffectType.CrewMood:
+                GameManager.Instance.ResourceManager.CrewMood += amount;
+                break;
+            case EffectType.CrewMemberSpot:
+                break;
+            case EffectType.Durability:
                 break;
         }
     }
