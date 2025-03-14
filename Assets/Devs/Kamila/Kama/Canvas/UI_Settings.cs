@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static UnityEngine.Timeline.DirectorControlPlayable;
@@ -29,22 +30,23 @@ public class UI_Settings : MonoBehaviour
     private InputAction clickAction;
     private InputAction backAction;
 
-    //private Dropdown resolutionDropdown;
-    //private Dropdown qualityDropdown;
-    //private Toggle fullscreenToggle;
+    private TMP_Dropdown resolutionDropdown;
+    private TMP_Dropdown qualityDropdown;
+    private Toggle fullscreenToggle;
 
-    //private Slider masterVolumeSlider;
-    //private Slider sfxVolumeSlider;
-    //private Slider musicVolumeSlider;
+    private Slider masterVolumeSlider;
+    private Slider sfxVolumeSlider;
+    private Slider musicVolumeSlider;
 
-    //private Resolution[] resolutions;
+    private Resolution[] resolutions;
     private bool openedFromPause = false;
 
     private void Awake()
     {
         ui_mainMenu = FindFirstObjectByType<UI_MainMenu>(FindObjectsInactive.Include);
         ui_Pause = FindFirstObjectByType<UI_Pause>(FindObjectsInactive.Include);
-        // Pobierz obiekty UI
+        
+        
         backButton = GameObject.Find("Back").GetComponent<Button>();
         //resetButton = GameObject.Find("ResetButton").GetComponent<Button>();
         //allResetButton = GameObject.Find("AllResetButton").GetComponent<Button>();
@@ -52,24 +54,40 @@ public class UI_Settings : MonoBehaviour
         //rebindButton = GameObject.Find("RebindButton").GetComponent<Button>();
         //rebindLabel = GameObject.Find("RebindLabel").GetComponent<Text>();
 
-        //resolutionDropdown = GameObject.Find("ResolutionDropdown").GetComponent<Dropdown>();
-        //qualityDropdown = GameObject.Find("QualityDropdown").GetComponent<Dropdown>();
-        //fullscreenToggle = GameObject.Find("FullscreenToggle").GetComponent<Toggle>();
-
+        /*resolutionDropdown = GameObject.Find("ResolutionDropdown").GetComponent<TMP_Dropdown>();
+        qualityDropdown = GameObject.Find("QualityDropdown").GetComponent<TMP_Dropdown>();
+        fullscreenToggle = GameObject.Find("FullscreenToggle").GetComponent<Toggle>();
+        */
+       /* if(masterVolumeSlider = null)
+        {
+            masterVolumeSlider = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
+            masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
+        }
+        if (sfxVolumeSlider = null)
+        {
+            sfxVolumeSlider = GameObject.Find("SFXVolumeSlider").GetComponent<Slider>();
+            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        }
+        if (musicVolumeSlider = null)
+        {
+            musicVolumeSlider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        }
+       */
         //masterVolumeSlider = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
         //sfxVolumeSlider = GameObject.Find("SFXVolumeSlider").GetComponent<Slider>();
         //musicVolumeSlider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
 
-        // Ustawienia przycisków
+
         backButton.onClick.AddListener(CloseOptions);
         //resetButton.onClick.AddListener(ResetSelectedRebinds);
         //allResetButton.onClick.AddListener(AllResetRebinds);
         //rebindButton.onClick.AddListener(StartRebinding);
-
-        //resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(resolutionDropdown.options[resolutionDropdown.value].text); });
-        //fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
-        //qualityDropdown.onValueChanged.AddListener(delegate { SetQuality(qualityDropdown.options[qualityDropdown.value].text); });
-
+        /*
+        resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(resolutionDropdown.options[resolutionDropdown.value].text); });
+        fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+        qualityDropdown.onValueChanged.AddListener(delegate { SetQuality(qualityDropdown.options[qualityDropdown.value].text); });
+        */
         //masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
         //sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         //musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
@@ -82,13 +100,13 @@ public class UI_Settings : MonoBehaviour
 
         inputActions.Enable();
         clickAction.Enable();
-        backAction.Enable();
+        backAction.Enable();*/
         // Wczytanie ustawień
-        /*LoadAudioSettings();
-        PopulateResolutionDropdown();
-        PopulateQualityDropdown();
-        LoadGraphicsSettings();
-        */
+        //LoadAudioSettings();
+        //PopulateResolutionDropdown();
+        //PopulateQualityDropdown();
+        //LoadGraphicsSettings();
+        
     }
     public void OpenFromMainMenu()
     {
@@ -106,7 +124,6 @@ public class UI_Settings : MonoBehaviour
     {
         if(openedFromPause)
         {
-            ui_Pause.PauseAction();
             ui_Pause.ShowPauseMenu();
             settingsMenu.SetActive(false);
         }
@@ -184,7 +201,7 @@ public class UI_Settings : MonoBehaviour
         PlayerPrefs.Save();
         UpdateRebindLabel();
     }
-
+    
     private void PopulateResolutionDropdown()
     {
         resolutions = Screen.resolutions;
@@ -258,7 +275,7 @@ public class UI_Settings : MonoBehaviour
         if (PlayerPrefs.HasKey("Quality"))
             qualityDropdown.value = qualityDropdown.options.FindIndex(option => option.text == PlayerPrefs.GetString("Quality"));
     }
-
+    
     private void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
@@ -275,7 +292,7 @@ public class UI_Settings : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
-
+    /*
     private void LoadAudioSettings()
     {
         if (PlayerPrefs.HasKey("MasterVolume"))
@@ -288,14 +305,4 @@ public class UI_Settings : MonoBehaviour
             musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
     }
     */
-
-    public void MainMenu()
-    {
-        SceneManager.LoadSceneAsync(0);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
 }

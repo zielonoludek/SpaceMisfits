@@ -44,6 +44,7 @@ public class UI_Pause : MonoBehaviour
         pauseAction.performed += ctx => Pause();
 
         clickAction.Enable();
+        pauseAction.Enable();
 
         pauseMenu.SetActive(false);
     }
@@ -52,7 +53,6 @@ public class UI_Pause : MonoBehaviour
         isPaused = !isPaused;
         pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
-        pauseAction.Enable();
     }
 
     private void OnDisable()
@@ -72,14 +72,5 @@ public class UI_Pause : MonoBehaviour
 
         ui_Settings.OpenFromPauseMenu();
         pauseMenu.SetActive(false);
-        if (isPaused)
-        {
-            pauseAction.Disable();
-        }
-    }
-
-    public void PauseAction()
-    {
-        pauseAction.Enable();
     }
 }
