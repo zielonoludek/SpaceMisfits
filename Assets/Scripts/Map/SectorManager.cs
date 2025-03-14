@@ -177,6 +177,7 @@ public class SectorManager : MonoBehaviour
 
     private static void RevealSector(Sector sector, int sightLevel, int depth = 0)
     {
+        sightLevel = 0;
         if (depth >= Instance.sightLevels[sightLevel].sectorVisibility)
             return;
         

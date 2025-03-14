@@ -3243,9 +3243,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1900057185}
   - {fileID: 1047965469}
   - {fileID: 2000552054}
+  - {fileID: 1900057185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3528,6 +3528,8 @@ MonoBehaviour:
   day: 1
   month: 7
   year: 2793
+  currentTime: 0
+  totalTime: 0
 --- !u!114 &1960843783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3540,6 +3542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipHealth: 1000
+  booty: 1000
+  food: 1000
+  notoriety: 1000
+  crewMood: 1000
+  sightLevel: 1000
+  speedValue: 1000
 --- !u!114 &1960843784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,10 +3561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc0ab74d261388498647b0f49a2db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  resourceManager: {fileID: 1960843783}
-  timeManager: {fileID: 1960843782}
-  uiManager: {fileID: 0}
 --- !u!114 &1960843785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,6 +3587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePanelUI: {fileID: 1900057186}
   fightPanelUI: {fileID: 2000552055}
+  crewRequestUI: {fileID: 0}
 --- !u!114 &1960843787
 MonoBehaviour:
   m_ObjectHideFlags: 0
