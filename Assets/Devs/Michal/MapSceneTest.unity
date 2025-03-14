@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4634a4fd89e2ecb4faa2140a6641a1b2, type: 2}
     - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: isStartingSector
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
@@ -966,6 +966,10 @@ PrefabInstance:
       propertyPath: sectorEvent
       value: 
       objectReference: {fileID: 11400000, guid: abd3b7088112ab040899a48267500a9c, type: 2}
+    - target: {fileID: 6028753984423885856, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
+      propertyPath: isStartingSector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
       value: Sector (Help Beacon)
@@ -1411,6 +1415,9 @@ MonoBehaviour:
     spaceportVisibility: 5
   playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
   eventPopupUI: {fileID: 1047965471}
+  tiedEventSequences:
+  - {fileID: 11400000, guid: 566c3110bdf0dfc46bf44d42f6f84ce1, type: 2}
+  - {fileID: 11400000, guid: b93ee811160883947bf68c4857d2e4b9, type: 2}
 --- !u!1001 &998310222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3237,8 +3244,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1900057185}
-  - {fileID: 2000552054}
   - {fileID: 1047965469}
+  - {fileID: 2000552054}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

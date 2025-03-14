@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: LinkedEvent1
   m_EditorClassIdentifier: 
-  tiedEvents:
-  - {fileID: 11400000, guid: 9c2a562ad59ec8f48bbc617832e07288, type: 2}
   isPersistent: 0
   eventTitle: LinkedOut
   eventType: 0

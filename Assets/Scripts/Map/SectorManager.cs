@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SectorManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class SectorManager : MonoBehaviour
     
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private EventPopupUI eventPopupUI;
+    [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
     
     private static GameObject playerInstance;
     private static Sector playerCurrentSector;
@@ -90,6 +92,12 @@ public class SectorManager : MonoBehaviour
     {
         Instance = this;
         StartCoroutine(InitializeGame());
+        
+        // Temporary solution for testing
+        foreach (var sequence in tiedEventSequences)
+        {
+            sequence.ResetSequence();
+        }
     }
 
     private IEnumerator InitializeGame()
@@ -257,32 +265,43 @@ public class SectorManager : MonoBehaviour
     {
         EventSO eventSO = sector.GetSectorEvent();
 
-        visitedSectors.Add(sector);
+        bool eventHandled = false;
 
-        if (eventSO != null)
+        foreach (var sequence in tiedEventSequences)
         {
-            if (eventSO.IsAnyLinkedEventCompleted())
+            EventSO sequenceEvent = sequence.GetCurrentEvent();
+            if (sequenceEvent != null && sequenceEvent == eventSO)
             {
-                Debug.Log($"A linked event was completed before visiting {sector.name}");
+                Debug.Log($"Event {sequenceEvent.eventTitle} triggered in sector {sector.name} as part of sequence {sequence.sequenceName}");
+                sequence.MarkCurrentEventAsCompleted();
+                ShowEventUI(eventSO);
+                eventHandled = true;
             }
-            
-            if (eventSO is SectorEventSO sectorEvent)
-            {
-                if (eventPopupUI != null)
-                {
-                    eventPopupUI.ShowEvent(sectorEvent);
-                }
-            }
-            else if (eventSO is FightEventSO fightEvent)
-            {
-                GameManager.Instance.FightManager.StartFight(fightEvent);
-            }
-            
-            eventSO.MarkEventAsCompleted();
-            return;
         }
-        
-        AssignRandomSectorEvent(sector);
+
+        if (!eventHandled && eventSO != null)
+        {
+            ShowEventUI(eventSO);
+        }
+        else if (!eventHandled)
+        {
+            AssignRandomSectorEvent(sector);
+        }
+    }
+    
+    private void ShowEventUI(EventSO eventSO)
+    {
+        if (eventSO is SectorEventSO sectorEvent)
+        {
+            if (eventPopupUI != null)
+            {
+                eventPopupUI.ShowEvent(sectorEvent);
+            }
+        }
+        else if (eventSO is FightEventSO fightEvent)
+        {
+            GameManager.Instance.FightManager.StartFight(fightEvent);
+        }
     }
 
     private void AssignRandomSectorEvent(Sector sector)
