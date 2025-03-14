@@ -1,43 +1,144 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CrewRequestUI : MonoBehaviour
 {
-    public GameObject requestPanelPrefab;
-    public Transform requestListParent;
-    private RequestManager requestManager;
+    private CrewRequestSO crewRequest;
 
-    private void Start()
+    [SerializeField] private GameObject requestPanel;
+    [SerializeField] private List<Button> requestBtns = new List<Button>();
+    [SerializeField] private Button fulfillBtn;
+    [SerializeField] private Button closeBtn;
+    [SerializeField] private Image crewImg;
+    [SerializeField] private TMP_Text crewNameTxt;
+    [SerializeField] private TMP_Text descriptionTxt;
+    [SerializeField] private TMP_Text rewardTxt;
+    [SerializeField] private TMP_Text penaltyTxt;
+    [SerializeField] private TMP_Text timeTxt;
+    [SerializeField] private TMP_Text requirementTxt;
+
+    public void Start()
     {
-        requestManager = GameManager.Instance.RequestManager;
-        UpdateUI();
-        InvokeRepeating(nameof(UpdateUI), 1f, 1f);
+        CloseRequestPanel();
+        Setup();
     }
-
-    public void UpdateUI()
+    private void Update()
     {
-        foreach (Transform child in requestListParent)
+        if (requestPanel.activeSelf && crewRequest != null)
         {
-            Destroy(child.gameObject);
+            UpdateRemainingTime();
+
+            if (crewRequest.CanFulfillRequest()) fulfillBtn.interactable = true;
+            fulfillBtn.interactable = false;
+        }
+    }
+    public void Setup()
+    {
+        closeBtn.onClick.RemoveAllListeners();
+        fulfillBtn.onClick.RemoveAllListeners();
+        foreach (Button b in requestBtns)
+        {
+            b.onClick.RemoveAllListeners();
+            b.gameObject.SetActive(false);
         }
 
-        foreach (CrewRequest request in requestManager.GetActiveRequests())
+        fulfillBtn.onClick.AddListener(() =>
         {
-            GameObject panel = Instantiate(requestPanelPrefab, requestListParent);
-            panel.transform.Find("RequestName").GetComponent<TMP_Text>().text = request.Name;
-            panel.transform.Find("Condition").GetComponent<TMP_Text>().text = request.FulfillmentCondition;
-            //panel.transform.Find("Expiration").GetComponent<TMP_Text>().text = GetTimeRemaining(request.ExpirationTime, requestManager.GetRequestCreationTime(request));
+            GameManager.Instance.RequestManager.FulfillRequest(crewRequest);
+            CloseRequestPanel(); 
+        });
+        closeBtn.onClick.AddListener(CloseRequestPanel);
+    }
+    public void SetupRequestPanel(CrewRequestSO request)
+    {
+        requestPanel.SetActive(true);
+        crewRequest = request;
+        UpdateRequestUI();
+    }
+    public void CloseRequestPanel()
+    {
+        requestPanel.SetActive(false);
+    }
+    public void CloseRequestPanel(CrewRequestSO request)
+    {
+        if (request == crewRequest)
+        {
+            crewRequest = null;
+            CloseRequestPanel();
         }
     }
 
-    private string GetTimeRemaining(float expirationTime, float creationTime)
+    public void AssignRequestButton(CrewRequestSO request)
     {
-        float remaining = (creationTime + expirationTime) - Time.time;
-        if (remaining <= 0) return "Expired";
-        TimeSpan time = TimeSpan.FromSeconds(remaining);
-        return $"{time.Hours}h {time.Minutes}m {time.Seconds}s left";
+        Button freeButton = requestBtns.FirstOrDefault(b => !b.gameObject.activeSelf);
+
+        if (freeButton != null)
+        {
+            freeButton.gameObject.SetActive(true);
+            freeButton.GetComponentInChildren<TMP_Text>().text = request.Requirement.ToString();
+
+            freeButton.onClick.RemoveAllListeners();
+            freeButton.onClick.AddListener(() => SetupRequestPanel(request));
+        }
+    }
+
+    public void UpdateRequestButtons()
+    {
+        foreach (Button b in requestBtns)
+        {
+            b.gameObject.SetActive(false);
+        }
+        foreach (var request in GameManager.Instance.RequestManager.GetActiveRequests())
+        {
+            AssignRequestButton(request);
+        }
+    }
+    private void UpdateRemainingTime()
+    {
+        float remainingSeconds = crewRequest.ExpirationTime - GameManager.Instance.TimeManager.CurrentTime ;
+        if (remainingSeconds <= 1)
+        {
+            timeTxt.text = $"Expired";
+            fulfillBtn.interactable = false;
+        }
+        else
+        {
+            Vector3 time = GameManager.Instance.TimeManager.ConvertFloatToTime(remainingSeconds);
+            timeTxt.text = $"Time: {FormatTime(time)}";
+        }
+    }
+
+    private void UpdateRequestUI()
+    {
+        crewImg.sprite = crewRequest.Artwork;
+        crewNameTxt.text = crewRequest.Name;
+        descriptionTxt.text = crewRequest.Description;
+        rewardTxt.text = string.Join("", crewRequest.Rewards.Select(r => $"{r.Key}: {r.Value}\n"));
+        penaltyTxt.text = string.Join("", crewRequest.Penalties.Select(p => $"{p.Key}: {p.Value}\n"));
+
+        UpdateRemainingTime();
+
+        string requirementText = $"Requirement: {crewRequest.Requirement}";
+        if (crewRequest.FulfillmentCondition is IntFulfillmentCondition intCondition) requirementText += $" ({intCondition.RequiredValue})";
+
+        requirementTxt.text = requirementText;
+    }
+
+    string FormatTime(Vector3 time)
+    {
+        List<string> timeParts = new List<string>();
+
+        if (time.x > 0) timeParts.Add($"{(int)time.x} days");
+        if (time.y > 0) timeParts.Add($"{(int)time.y} hours");
+        if (time.z > 0) timeParts.Add($"{(int)time.z} minutes");
+
+        string formattedTime = string.Join(", ", timeParts);
+
+        return string.Join(", ", timeParts);
     }
 }

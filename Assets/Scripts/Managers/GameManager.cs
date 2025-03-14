@@ -11,12 +11,12 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("MANAGERS")]
 
-    [SerializeField] InputManager inputManager;
-    [SerializeField] ResourceManager resourceManager;
-    [SerializeField] TimeManager timeManager;
+    InputManager inputManager;
+    ResourceManager resourceManager;
+    TimeManager timeManager;
     
     FightManager fightManager;
-    [SerializeField] UIManager uiManager;
+    UIManager uiManager;
     CameraManager cameraManager;
     ShipDurabilityManager shipDurabilityManager;
     CrewManager crewManager;
@@ -50,7 +50,12 @@ public class GameManager : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
         shipDurabilityManager = FindFirstObjectByType<ShipDurabilityManager>();
-        crewManager = FindFirstObjectByType<CrewManager>();
-        requestManager = FindFirstObjectByType<RequestManager>();
+        
+        crewManager = gameObject.GetComponentInChildren<CrewManager>();
+        requestManager = gameObject.GetComponentInChildren<RequestManager>();
+        
+        timeManager = gameObject.GetComponent<TimeManager>();
+        resourceManager = gameObject.GetComponent<ResourceManager>();
+        inputManager = gameObject.GetComponent<InputManager>();
     }
 }

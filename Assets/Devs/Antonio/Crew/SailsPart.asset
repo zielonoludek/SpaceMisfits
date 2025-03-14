@@ -15,6 +15,6 @@ MonoBehaviour:
   partName: Sails
   durability: 100
   level: 1
-  genericEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
+  genericEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
   defaultDurability: 100
   defaultLevel: 1
