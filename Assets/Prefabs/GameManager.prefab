@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6473553576860011162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5236530259498316336}
+  - component: {fileID: 4085985180971347913}
+  - component: {fileID: 3663361855481523946}
+  m_Layer: 0
+  m_Name: Crew
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5236530259498316336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473553576860011162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5643176279949095266}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4085985180971347913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473553576860011162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c41edd4424bc6546873e3ce972d136a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeRequests: []
+  checkIntervalDaysHoursMinutes: {x: 0, y: 1, z: 0}
+  negativeModifier: 1.5
+--- !u!114 &3663361855481523946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473553576860011162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d40606813b8664dbdc9ab371a31b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewList: []
 --- !u!1 &7072606964494907396
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +93,8 @@ Transform:
   m_LocalPosition: {x: -15.256797, y: 3.868084, z: 9.453178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5236530259498316336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6242438850052290503
@@ -47,13 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc0ab74d261388498647b0f49a2db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraManager: {fileID: 0}
-  inputManager: {fileID: 2836110503772724050}
-  resourceManager: {fileID: 1276556340548977776}
-  uiManager: {fileID: 0}
-  timeManager: {fileID: 3444544792681972511}
-  fightManager: {fileID: 0}
-  Empty: {fileID: 0}
 --- !u!114 &2836110503772724050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipHealth: 1000
+  booty: 1000
+  food: 1000
+  notoriety: 1000
+  crewMood: 1000
+  sightLevel: 1000
+  speedValue: 1000
 --- !u!114 &3444544792681972511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,3 +157,5 @@ MonoBehaviour:
   day: 1
   month: 7
   year: 2793
+  currentTime: 0
+  totalTime: 0

@@ -50,8 +50,9 @@ public class GameManager : MonoBehaviour
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
         shipDurabilityManager = FindFirstObjectByType<ShipDurabilityManager>();
-        crewManager = FindFirstObjectByType<CrewManager>();
-        requestManager = FindFirstObjectByType<RequestManager>();
+        
+        crewManager = gameObject.GetComponentInChildren<CrewManager>();
+        requestManager = gameObject.GetComponentInChildren<RequestManager>();
         
         timeManager = gameObject.GetComponent<TimeManager>();
         resourceManager = gameObject.GetComponent<ResourceManager>();

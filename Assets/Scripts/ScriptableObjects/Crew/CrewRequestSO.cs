@@ -18,8 +18,8 @@ public class CrewRequestSO : ScriptableObject
 
     [Space]
     [SerializeField]  public Vector3 TimeLimitDayHoursMinutes;
-    public float StartTime;
-    public float ExpirationTime;
+    [HideInInspector] public float StartTime;
+    [HideInInspector] public float ExpirationTime;
 
     [Space]
     public RequestOriginType Requirement;
