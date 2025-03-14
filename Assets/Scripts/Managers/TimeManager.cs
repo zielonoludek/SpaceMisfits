@@ -1,58 +1,63 @@
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] int oneDayInSeconds = 600; //10 min
-    [SerializeField] int day = 1;
-    [SerializeField] int month = 7;
-    [SerializeField] int year = 2793;
+    [SerializeField] private int oneDayInSeconds = 600; // 10 min
+    [SerializeField] private int day = 1;
+    [SerializeField] private int month = 7;
+    [SerializeField] private int year = 2793;
 
     public System.Action EndOfDay;
 
     private bool timeOn = true;
     private int daysCounter;
-    private float currentTime;
-
+    [SerializeField] private float currentTime;
+    [SerializeField] private float totalTime;
     private float timeSpeed = 1;
 
-    int[] daysInMonths = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    public int TotalDays { get { return daysCounter; } }
-    public int Day { get { return day; } }
-    public int Month { get { return month; } }
-    public int Year { get { return year; } }
-    public int DayLength { get { return oneDayInSeconds; } }
-    public float CurrentTime { get { return currentTime; } }
-    public float TimeSpeed { get { return timeSpeed; } }
+    private readonly int[] daysInMonths = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    public bool IsTimeOn { get { return timeOn; } }
+    public int TotalDays => daysCounter;
+    public int Day => day;
+    public int Month => month;
+    public int Year => year;
+    public int DayLength => oneDayInSeconds;
+    public float CurrentTime => currentTime;
+    public float TotalTime => currentTime + daysCounter * oneDayInSeconds;
+    public float TimeSpeed => timeSpeed;
+    public bool IsTimeOn => timeOn;
 
     void FixedUpdate()
     {
+        totalTime = TotalTime;
         if (timeOn)
         {
             currentTime += Time.fixedDeltaTime;
             if (currentTime >= oneDayInSeconds) DayEnded();
         }
     }
+
     public void SetTimeSpeed(float speed)
     {
         if (speed != 0) timeSpeed = speed;
         Time.timeScale = speed;
     }
 
-    public void PauseTime(bool var)
+    public void PauseTime(bool pause)
     {
         if (GameManager.Instance.GameState == GameState.Event) return;
-        timeOn = !var;
-        if (timeOn) SetTimeSpeed(timeSpeed);
-        else SetTimeSpeed(0);
+        timeOn = !pause;
+        SetTimeSpeed(timeOn ? timeSpeed : 0);
     }
-    void DayEnded()
+
+    private void DayEnded()
     {
         daysCounter++;
         currentTime = 0;
-        if (day < daysInMonths[month - 1]) day++;
+        if (day < daysInMonths[month - 1])
+        {
+            day++;
+        }
         else
         {
             day = 1;
@@ -64,49 +69,65 @@ public class TimeManager : MonoBehaviour
 
     public int GetTimeDifference(Vector3 firstDate, Vector3 secondDate)
     {
-        int diff = 0;
-        int day1 = (int)firstDate.x;
-        int day2 = (int)secondDate.x;
-        int month1 = (int)firstDate.y;
-        int month2 = (int)secondDate.y;
-        int year1 = (int)firstDate.z;
-        int year2 = (int)secondDate.z;
+        int day1 = (int)firstDate.x, day2 = (int)secondDate.x;
+        int month1 = (int)firstDate.y, month2 = (int)secondDate.y;
+        int year1 = (int)firstDate.z, year2 = (int)secondDate.z;
 
-        return diff;
+        int diff = (year2 - year1) * 365 + (month2 - month1) * 30 + (day2 - day1);
+        return Mathf.Abs(diff);
     }
+
     public Vector3 GetFutureDate(int days)
     {
-        int currentMonthDays = daysInMonths[Month];
-        int d, m, y;
-        d = Day; m = Month; y = Year;
-        if (Day + days > currentMonthDays)
+        int d = day, m = month, y = year;
+        int currentMonthDays = daysInMonths[m - 1];
+
+        while (days > 0)
         {
-            int daysInNextMonth = days - (Day - currentMonthDays);
-            d = daysInNextMonth;
-            if (Month == 12)
+            if (d + days > currentMonthDays)
             {
-                m = 1;
-                y++;
+                days -= (currentMonthDays - d + 1);
+                d = 1;
+                m = (m == 12) ? 1 : m + 1;
+                if (m == 1) y++;
+                currentMonthDays = daysInMonths[m - 1];
             }
-            else m++;
+            else
+            {
+                d += days;
+                days = 0;
+            }
         }
-        else d += days;
-        return new(d, m, y);
+        return new Vector3(d, m, y);
     }
+
     public Vector2 GetCurrentTime()
     {
         float dayProgress = currentTime / oneDayInSeconds;
-        int hours = Mathf.FloorToInt(dayProgress * 24) % 24;
+        int hours = Mathf.FloorToInt(dayProgress * 24);
         int minutes = Mathf.FloorToInt((dayProgress * 1440) % 60);
-
         return new Vector2(hours, minutes);
     }
+
     public Vector3 GetDate()
     {
-        return new Vector3(Day, Month, Year);
+        return new Vector3(day, month, year);
     }
-    public float ConvertTimeVec3ToSeconds(Vector3 time)
+    public float ConvertTimeToFloat(Vector3 time)
     {
-        return (time.x * 86400) + (time.y * 3600) + (time.z * 60);
-    }  
+        float seconds = (time.x * oneDayInSeconds) + (time.y * (oneDayInSeconds / 24f)) + (time.z * (oneDayInSeconds / 1440f));
+        return seconds;
+    }
+    public Vector3 ConvertFloatToTime(float seconds)
+    {
+        int days = Mathf.FloorToInt(seconds / oneDayInSeconds);
+        seconds %= oneDayInSeconds;
+
+        int hours = Mathf.FloorToInt(seconds / (oneDayInSeconds / 24f));
+        seconds %= (oneDayInSeconds / 24f);
+
+        int minutes = Mathf.FloorToInt(seconds / (oneDayInSeconds / 1440f));
+
+        return new Vector3(days, hours, minutes);
+    }
 }

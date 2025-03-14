@@ -151,4 +151,50 @@ public class ResourceManager : MonoBehaviour
     {
         return resourceGetters.TryGetValue(type, out var getter) ? getter() : 0;
     }
+    public bool TryGetResourceTypeFromRequestOrigin(RequestOriginType requestType, out EffectType effectType)
+    {
+        Dictionary<RequestOriginType, EffectType> mapping = new Dictionary<RequestOriginType, EffectType>
+        {
+            { RequestOriginType.Booty, EffectType.Booty },
+            { RequestOriginType.Notoriety, EffectType.Notoriety },
+            { RequestOriginType.Health, EffectType.Health },
+            { RequestOriginType.Sight, EffectType.Sight },
+            { RequestOriginType.Speed, EffectType.Speed },
+            { RequestOriginType.Food, EffectType.Food },
+            { RequestOriginType.CrewMood, EffectType.CrewMood }
+        };
+
+        return mapping.TryGetValue(requestType, out effectType);
+    }
+    public void ModifyResource(EffectType type, int amount)
+    {
+        switch (type)
+        {
+            case EffectType.Health:
+                ShipHealth += amount;
+                break;
+            case EffectType.Booty:
+                Booty += amount;
+                break;
+            case EffectType.Notoriety:
+                Notoriety += amount;
+                break;
+            case EffectType.CrewMood:
+                CrewMood += amount;
+                break;
+            case EffectType.Food:
+                Food += amount;
+                break;
+            case EffectType.Sight:
+                Sight += amount;
+                break;
+            case EffectType.Speed:
+                Speed += amount;
+                break;
+            default:
+                Debug.LogWarning($"EffectType {type} is not recognized in ModifyResource.");
+                break;
+        }
+    }
+
 }

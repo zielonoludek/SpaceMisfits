@@ -25,6 +25,17 @@ public class CrewRequestUI : MonoBehaviour
     public void Start()
     {
         CloseRequestPanel();
+        Setup();
+    }
+    private void Update()
+    {
+        if (requestPanel.activeSelf && crewRequest != null)
+        {
+            UpdateRemainingTime();
+
+            if (crewRequest.CanFulfillRequest()) fulfillBtn.interactable = true;
+            fulfillBtn.interactable = false;
+        }
     }
     public void Setup()
     {
@@ -40,12 +51,8 @@ public class CrewRequestUI : MonoBehaviour
         {
             GameManager.Instance.RequestManager.FulfillRequest(crewRequest);
             CloseRequestPanel(); 
-        }); 
-        closeBtn.onClick.AddListener(() =>
-        {
-            Debug.Log("cl");
-            CloseRequestPanel();
         });
+        closeBtn.onClick.AddListener(CloseRequestPanel);
     }
     public void SetupRequestPanel(CrewRequestSO request)
     {
@@ -55,8 +62,15 @@ public class CrewRequestUI : MonoBehaviour
     }
     public void CloseRequestPanel()
     {
-        Debug.Log("ose");
         requestPanel.SetActive(false);
+    }
+    public void CloseRequestPanel(CrewRequestSO request)
+    {
+        if (request == crewRequest)
+        {
+            crewRequest = null;
+            CloseRequestPanel();
+        }
     }
 
     public void AssignRequestButton(CrewRequestSO request)
@@ -84,20 +98,32 @@ public class CrewRequestUI : MonoBehaviour
             AssignRequestButton(request);
         }
     }
+    private void UpdateRemainingTime()
+    {
+        float remainingSeconds = crewRequest.ExpirationTime - GameManager.Instance.TimeManager.CurrentTime ;
+        if (remainingSeconds <= 1)
+        {
+            timeTxt.text = $"Expired";
+            fulfillBtn.interactable = false;
+        }
+        else
+        {
+            Vector3 time = GameManager.Instance.TimeManager.ConvertFloatToTime(remainingSeconds);
+            timeTxt.text = $"Time: {FormatTime(time)}";
+        }
+    }
 
     private void UpdateRequestUI()
     {
-        if (crewRequest == null) return;
-
         crewImg.sprite = crewRequest.Artwork;
         crewNameTxt.text = crewRequest.Name;
         descriptionTxt.text = crewRequest.Description;
         rewardTxt.text = string.Join("", crewRequest.Rewards.Select(r => $"{r.Key}: {r.Value}\n"));
         penaltyTxt.text = string.Join("", crewRequest.Penalties.Select(p => $"{p.Key}: {p.Value}\n"));
-        timeTxt.text = $"Time: {FormatTime(crewRequest.TimeLimitDayHoursMinutes)}";
+
+        UpdateRemainingTime();
 
         string requirementText = $"Requirement: {crewRequest.Requirement}";
-
         if (crewRequest.FulfillmentCondition is IntFulfillmentCondition intCondition) requirementText += $" ({intCondition.RequiredValue})";
 
         requirementTxt.text = requirementText;
@@ -111,8 +137,8 @@ public class CrewRequestUI : MonoBehaviour
         if (time.y > 0) timeParts.Add($"{(int)time.y} hours");
         if (time.z > 0) timeParts.Add($"{(int)time.z} minutes");
 
-        string formattedTime = timeParts.Count > 0 ? string.Join(", ", timeParts) : "No time remaining";
+        string formattedTime = string.Join(", ", timeParts);
 
-        return formattedTime;
+        return string.Join(", ", timeParts);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "NewCrewRequest", menuName = "Crew/CrewRequest")]
 public class CrewRequestSO : ScriptableObject
@@ -44,7 +45,7 @@ public class CrewRequestSO : ScriptableObject
     }
     public float TimeLimitInSeconds()
     {
-        return GameManager.Instance.TimeManager.ConvertTimeVec3ToSeconds(TimeLimitDayHoursMinutes);
+        return GameManager.Instance.TimeManager.ConvertTimeToFloat(TimeLimitDayHoursMinutes);
     }
     public bool CanFulfillRequest()
     {
@@ -53,28 +54,13 @@ public class CrewRequestSO : ScriptableObject
             return FulfillmentCondition is BoolFulfillmentCondition boolCondition && boolCondition.EventDone;
         }
 
-        if (TryGetEffectTypeFromRequestOrigin(Requirement, out EffectType effectType))
+        if (GameManager.Instance.ResourceManager.TryGetResourceTypeFromRequestOrigin(Requirement, out EffectType effectType))
         {
             int currentValue = GameManager.Instance.ResourceManager.GetResourceValue(effectType);
             return FulfillmentCondition is IntFulfillmentCondition intCondition && currentValue >= intCondition.RequiredValue;
         }
 
         return false;
-    }
-    private bool TryGetEffectTypeFromRequestOrigin(RequestOriginType requestType, out EffectType effectType)
-    {
-        Dictionary<RequestOriginType, EffectType> mapping = new Dictionary<RequestOriginType, EffectType>
-        {
-            { RequestOriginType.Booty, EffectType.Booty },
-            { RequestOriginType.Notoriety, EffectType.Notoriety },
-            { RequestOriginType.Health, EffectType.Health },
-            { RequestOriginType.Sight, EffectType.Sight },
-            { RequestOriginType.Speed, EffectType.Speed },
-            { RequestOriginType.Food, EffectType.Food },
-            { RequestOriginType.CrewMood, EffectType.CrewMood }
-        };
-
-        return mapping.TryGetValue(requestType, out effectType);
     }
 }
 

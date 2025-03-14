@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static CrewRequestSO;
 
 public class RequestManager : MonoBehaviour
 {
     private int requestCap = 6;
-    private float checkInterval = 0;
+    private Coroutine requestCoroutine;
 
     [SerializeField] private List<CrewRequestSO> activeRequests = new List<CrewRequestSO>();
 
-    [SerializeField] private Vector3 checkIntervalDaysHoursMinutes = new Vector3(0, 0, 1);
+    [SerializeField] private Vector3 checkIntervalDaysHoursMinutes = new Vector3(0, 1, 0);
     [SerializeField] private float negativeModifier = 1.5f;
 
     private void Start()
     {
-        StartCoroutine(GenerateRequestsPeriodically());
+        float checkInterval = GameManager.Instance.TimeManager.ConvertTimeToFloat(checkIntervalDaysHoursMinutes);
+
+        if (checkInterval < 1) checkInterval = 60;
+        if (requestCoroutine == null)
+        {
+            requestCoroutine = StartCoroutine(GenerateRequestsPeriodically(checkInterval));
+        }
     }
-    private void OnValidate()
-    {
-        checkInterval = GameManager.Instance?.TimeManager?.ConvertTimeVec3ToSeconds(checkIntervalDaysHoursMinutes) ?? 300;
-    }
-    private IEnumerator GenerateRequestsPeriodically()
+
+    private IEnumerator GenerateRequestsPeriodically(float checkInterval)
     {
         while (true)
         {
@@ -29,6 +33,7 @@ public class RequestManager : MonoBehaviour
             TryGenerateRequest();
         }
     }
+
 
     public void TryGenerateRequest()
     {
@@ -64,7 +69,7 @@ public class RequestManager : MonoBehaviour
         if (IsRequestAlreadyActive(request)) return;
 
         activeRequests.Add(request);
-        request.StartTime = GameManager.Instance.TimeManager.CurrentTime;
+        request.StartTime = GameManager.Instance.TimeManager.TotalTime;
         request.ExpirationTime = request.StartTime + request.TimeLimitInSeconds();
 
         GameManager.Instance.UIManager.CrewRequestUI.AssignRequestButton(request);
@@ -75,14 +80,22 @@ public class RequestManager : MonoBehaviour
     {
         if (activeRequests.Contains(request) && request.CanFulfillRequest())
         {
+            if (request.FulfillmentCondition is IntFulfillmentCondition intCondition)
+            {
+                if (GameManager.Instance.ResourceManager.TryGetResourceTypeFromRequestOrigin(request.Requirement, out EffectType effectType))
+                {
+                    GameManager.Instance.ResourceManager.ModifyResource(effectType, -intCondition.RequiredValue);
+                }
+            }
+
             activeRequests.Remove(request);
             
             ApplyEffects(request, true);
-            GameManager.Instance.UIManager.CrewRequestUI.CloseRequestPanel();
 
+            GameManager.Instance.UIManager.CrewRequestUI.CloseRequestPanel(request);
             GameManager.Instance.UIManager.CrewRequestUI.UpdateRequestButtons();
-            Debug.Log($"Request {request.Name} completed. UI updated.");
 
+            Debug.Log($"Request {request.Name} completed. UI updated.");
         }
     }
 
@@ -94,11 +107,13 @@ public class RequestManager : MonoBehaviour
 
             ApplyEffects(request, false);
 
+            GameManager.Instance.UIManager.CrewRequestUI.CloseRequestPanel(request);
             GameManager.Instance.UIManager.CrewRequestUI.UpdateRequestButtons();
-            Debug.Log($"Request {request.Name} completed. UI updated.");
+            Debug.Log($"Request {request.Name} failed. UI updated.");
 
         }
     }
+
     private void ApplyEffects(CrewRequestSO request, bool isReward)
     {
         var effects = isReward ? request.Rewards : request.Penalties;
@@ -146,15 +161,13 @@ public class RequestManager : MonoBehaviour
 
     private void CheckExpiredRequests()
     {
-        float currentTime = Time.time;
+        float currentTime = GameManager.Instance.TimeManager.TotalTime;
         for (int i = activeRequests.Count - 1; i >= 0; i--)
         {
             CrewRequestSO request = activeRequests[i];
             if (request.ExpirationTime <= 0f) return;
-            if (currentTime > request.ExpirationTime)
-            {
-                FailRequest(request);
-            }
+            if (currentTime > request.ExpirationTime) FailRequest(request);
+
         }
     }
 
@@ -183,4 +196,5 @@ public class RequestManager : MonoBehaviour
     {
         return activeRequests.Contains(request);
     }
+
 }
