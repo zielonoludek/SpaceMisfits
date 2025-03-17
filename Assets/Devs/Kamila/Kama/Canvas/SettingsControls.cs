@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
@@ -19,26 +19,46 @@ public class SettingsControls : MonoBehaviour
 
     private void Awake()
     {
-        var uiActionMap = inputActions.FindActionMap("UI");
-        clickAction = uiActionMap.FindAction("Click");
-        clickAction.Enable();
+        if (inputActions == null)
+        {
+            Debug.LogError("❌ Brak przypisanego InputActionAsset!");
+            return;
+        }
 
-        resetButton = GameObject.Find("ResetButton").GetComponent<Button>();
-        allResetButton = GameObject.Find("AllResetButton").GetComponent<Button>();
+        // Pobranie całego obiektu SettingsControls
+        settingsControls = GameObject.Find("SettingsControls");
 
-        rebindButton = GameObject.Find("RebindButton").GetComponent<Button>();
-        rebindLabel = GameObject.Find("RebindLabel").GetComponent<Text>();
+        if (settingsControls == null)
+        {
+            Debug.LogError("❌ Nie znaleziono GameObject 'SettingsControls' w hierarchii!");
+            return;
+        }
 
-        resetButton.onClick.AddListener(ResetSelectedRebinds);
-        allResetButton.onClick.AddListener(AllResetRebinds);
-        rebindButton.onClick.AddListener(StartRebinding);
+        // Znajdujemy elementy UI wewnątrz obiektu SettingsControls
+        resetButton = settingsControls.transform.Find("ResetButton")?.GetComponent<Button>();
+        allResetButton = settingsControls.transform.Find("AllResetButton")?.GetComponent<Button>();
+        rebindButton = settingsControls.transform.Find("RebindButton")?.GetComponent<Button>();
+        rebindLabel = settingsControls.transform.Find("RebindLabel")?.GetComponent<Text>();
+
+        // Sprawdzamy, czy wszystkie elementy istnieją
+        if (resetButton == null) Debug.LogError("❌ Nie znaleziono ResetButton w SettingsControls.");
+        if (allResetButton == null) Debug.LogError("❌ Nie znaleziono AllResetButton w SettingsControls.");
+        if (rebindButton == null) Debug.LogError("❌ Nie znaleziono RebindButton w SettingsControls.");
+        if (rebindLabel == null) Debug.LogError("❌ Nie znaleziono RebindLabel w SettingsControls.");
+
+        if (resetButton != null) resetButton.onClick.AddListener(ResetSelectedRebinds);
+        if (allResetButton != null) allResetButton.onClick.AddListener(AllResetRebinds);
+        if (rebindButton != null) rebindButton.onClick.AddListener(StartRebinding);
     }
-
     private void StartRebinding()
     {
-        var action = moveActionReference.action;
-        if (action == null) return;
+        if (moveActionReference == null || moveActionReference.action == null)
+        {
+            Debug.LogError("❌ moveActionReference lub jego akcja jest NULL! Upewnij się, że został przypisany w Inspektorze.");
+            return;
+        }
 
+        var action = moveActionReference.action;
         action.Disable();
         rebindLabel.text = "Press a key...";
 
@@ -47,14 +67,14 @@ public class SettingsControls : MonoBehaviour
             .OnMatchWaitForAnother(0.1f)
             .OnCancel(operation =>
             {
-                Debug.LogWarning("Fail");
+                Debug.LogWarning("⚠️ Rebinding anulowany.");
                 operation.Dispose();
                 action.Enable();
                 UpdateRebindLabel();
             })
             .OnComplete(operation =>
             {
-                Debug.Log("Success");
+                Debug.Log("✅ Sukces! Klawisz przypisany.");
                 operation.Dispose();
                 SaveRebinds();
                 UpdateRebindLabel();
