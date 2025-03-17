@@ -19,7 +19,7 @@ public class SectorInteraction : MonoBehaviour
         if (hoverUI != null)
         {
             string eventType = sector.GetSectorEvent() != null ? sector.GetSectorEvent().eventType.ToString() : "No Event";
-            hoverUI.ShowPopup(eventType, transform.position);
+            // hoverUI.ShowPopup(eventType, transform.position);
         }
         
         if (CanBeInteracted())

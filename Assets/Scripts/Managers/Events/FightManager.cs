@@ -120,6 +120,11 @@ public class FightManager : MonoBehaviour
 
             if (playerBet == 0) notorietyChange = fightEvent.GetNotorietyBet0();
             else notorietyChange = computerBet;
+
+            if (fightEvent.crewmateToRecruit != null)
+            {
+                GameManager.Instance.CrewManager.RecruitCrewmate(fightEvent.crewmateToRecruit);
+            }
         }
         else
         {

@@ -1,7 +1,9 @@
 
 using System;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class Lane : MonoBehaviour
@@ -22,10 +24,10 @@ public class Lane : MonoBehaviour
     // =============== LANE SETTINGS ===============
     [Header("Lane settings")]
     
-    [Tooltip("Controls the length of the lane, modifying the time it takes to travel between sectors, the more the faster")]
-    [SerializeField][Range(1, 5)] private int laneLength = 1;
+    [Tooltip("Controls the length of the lane, modifying the time it takes to travel between sectors, the more the longer the distance")]
+    [SerializeField][Range(1, 5)] private int laneDistance = 1;
     //[SerializeField] private LaneType laneType = LaneType.Lane;
-    public int GetLaneLength() => laneLength;
+    public int GetLaneDistance() => 6 - laneDistance;
     private enum LaneType {Lane, SpiralLane, HyperLane}
     
     
@@ -37,11 +39,54 @@ public class Lane : MonoBehaviour
     public Sector GetSectorB() => sectorB;
 
     private LineRenderer lineRenderer;
+    private Transform textTransform;
+    private TextMeshPro sectorDistanceText;
     
     // Previous position of connected sectors
     private Vector3 lastPosA;
     private Vector3 lastPosB;
+    
+    
+    
+    #region Public functions
 
+    public void Initialize(Transform firstSector, Transform secondSector)
+        {
+            sectorA = firstSector.GetComponent<Sector>();
+            sectorB = secondSector.GetComponent<Sector>();
+            UpdateLane();
+            UpdateLaneName();
+        }
+    
+        public void NotifySectorEventChanged()
+        {
+            UpdateLaneName();
+        }
+        
+        public Vector3[] GetLanePath()
+        {
+            if (sectorA == null || sectorB == null) return new Vector3[0];
+    
+            Vector3 start = sectorA.transform.position;
+            Vector3 end = sectorB.transform.position;
+            Vector3 midPoint = (start + end) / 2;
+            Vector3 control = midPoint + new Vector3(curveWidth, curveHeight, 0);
+    
+            return CalculateBezierCurve(start, control, end);
+        }
+    
+        public void SetVisibility(bool isVisible)
+        {
+            if (Application.isPlaying)
+            {
+                gameObject.SetActive(isVisible);
+            }
+        }
+
+    #endregion
+    
+    
+    
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -52,6 +97,15 @@ public class Lane : MonoBehaviour
             RegisterNeighbors();
             UpdateLaneName();
         }
+        EditorApplication.delayCall += () =>
+        {
+            if (this != null)
+            {
+                FindOrCreateText();
+                UpdateTextDisplay();
+                EditorUtility.SetDirty(this);
+            }
+        };
     }
 #endif
 
@@ -81,6 +135,8 @@ public class Lane : MonoBehaviour
         {
             UpdateLane();
         }
+        
+        UpdateTextPosition();
     }
 
     private void UpdateLane()
@@ -155,36 +211,30 @@ public class Lane : MonoBehaviour
         gameObject.name = $"Lane ({sectorAName} - {sectorBName})";
     }
 
-    public void Initialize(Transform firstSector, Transform secondSector)
+    private void FindOrCreateText()
     {
-        sectorA = firstSector.GetComponent<Sector>();
-        sectorB = secondSector.GetComponent<Sector>();
-        UpdateLane();
-        UpdateLaneName();
-    }
+        textTransform = transform.Find("LaneText");
 
-    public void NotifySectorEventChanged()
-    {
-        UpdateLaneName();
+        if (textTransform != null)
+        {
+            sectorDistanceText = textTransform.GetComponent<TextMeshPro>();
+        }
     }
     
-    public Vector3[] GetLanePath()
+    private void UpdateTextPosition()
     {
-        if (sectorA == null || sectorB == null) return new Vector3[0];
+        if (textTransform == null) return;
 
         Vector3 start = sectorA.transform.position;
         Vector3 end = sectorB.transform.position;
         Vector3 midPoint = (start + end) / 2;
-        Vector3 control = midPoint + new Vector3(curveWidth, curveHeight, 0);
-
-        return CalculateBezierCurve(start, control, end);
+        textTransform.position = midPoint;
     }
-
-    public void SetVisibility(bool isVisible)
+    
+    private void UpdateTextDisplay()
     {
-        if (Application.isPlaying)
-        {
-            gameObject.SetActive(isVisible);
-        }
+        if (sectorDistanceText == null) return;
+        
+        sectorDistanceText.text = laneDistance.ToString();
     }
 }

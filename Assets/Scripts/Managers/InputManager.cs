@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
@@ -92,6 +93,7 @@ public class InputManager : MonoBehaviour
     private void LateUpdate()
     {
         if (!isDragging) return;
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
         Vector2 diff = currentPos - initialPos; 
         

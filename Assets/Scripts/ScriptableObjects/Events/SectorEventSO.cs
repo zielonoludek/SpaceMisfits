@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "SectorEventSO", menuName = "Events/New Event")]
 public class SectorEventSO : EventSO
 {
+    [Header("Effects & Crewmates")]
     public Effect eventEffect;
+    public CrewmateData crewmateToRecruit;
 
     [Header("Choice-Based event settings")]
     public bool hasChoices;
@@ -16,6 +19,7 @@ public class SectorEventSO : EventSO
     {
         public string choiceDescription;
         public Effect choiceEffect;
+        public CrewmateData crewmate;
     }
     
     public List<Choice> choices = new List<Choice>() { new Choice(), new Choice() };
