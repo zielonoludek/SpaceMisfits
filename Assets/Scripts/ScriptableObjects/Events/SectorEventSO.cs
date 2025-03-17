@@ -25,13 +25,4 @@ public class SectorEventSO : EventSO
     public List<Choice> choices = new List<Choice>() { new Choice(), new Choice() };
 
     // public string GetChoice(int index) => (hasChoices && index < choices.Count) ? choices[index].choiceDescription : null;
-
-    // Set isPersistent to true for every Waypoint and Spaceport event type
-    private void OnValidate()
-    {
-        if (eventType == EventType.Waypoint || eventType == EventType.Spaceport)
-        {
-            isPersistent = true;
-        }
-    }
 }

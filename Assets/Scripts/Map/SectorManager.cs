@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SectorManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class SectorManager : MonoBehaviour
     
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private EventPopupUI eventPopupUI;
+    [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
     
     private static GameObject playerInstance;
     private static Sector playerCurrentSector;
@@ -90,6 +92,12 @@ public class SectorManager : MonoBehaviour
     {
         Instance = this;
         StartCoroutine(InitializeGame());
+        
+        // Temporary solution for testing
+        foreach (var sequence in tiedEventSequences)
+        {
+            sequence.ResetSequence();
+        }
     }
 
     private IEnumerator InitializeGame()
@@ -169,6 +177,7 @@ public class SectorManager : MonoBehaviour
 
     private static void RevealSector(Sector sector, int sightLevel, int depth = 0)
     {
+        sightLevel = 0;
         if (depth >= Instance.sightLevels[sightLevel].sectorVisibility)
             return;
         
@@ -257,25 +266,43 @@ public class SectorManager : MonoBehaviour
     {
         EventSO eventSO = sector.GetSectorEvent();
 
-        visitedSectors.Add(sector);
+        bool eventHandled = false;
 
-        if (eventSO != null)
+        foreach (var sequence in tiedEventSequences)
         {
-            if (eventSO is SectorEventSO sectorEvent)
+            EventSO sequenceEvent = sequence.GetCurrentEvent();
+            if (sequenceEvent != null && sequenceEvent == eventSO)
             {
-                if (eventPopupUI != null)
-                {
-                    eventPopupUI.ShowEvent(sectorEvent);
-                }
+                Debug.Log($"Event {sequenceEvent.eventTitle} triggered in sector {sector.name} as part of sequence {sequence.sequenceName}");
+                sequence.MarkCurrentEventAsCompleted();
+                ShowEventUI(eventSO);
+                eventHandled = true;
             }
-            else if (eventSO is FightEventSO fightEvent)
-            {
-                GameManager.Instance.FightManager.StartFight(fightEvent);
-            }
-            return;
         }
-        
-        AssignRandomSectorEvent(sector);
+
+        if (!eventHandled && eventSO != null)
+        {
+            ShowEventUI(eventSO);
+        }
+        else if (!eventHandled)
+        {
+            AssignRandomSectorEvent(sector);
+        }
+    }
+    
+    private void ShowEventUI(EventSO eventSO)
+    {
+        if (eventSO is SectorEventSO sectorEvent)
+        {
+            if (eventPopupUI != null)
+            {
+                eventPopupUI.ShowEvent(sectorEvent);
+            }
+        }
+        else if (eventSO is FightEventSO fightEvent)
+        {
+            GameManager.Instance.FightManager.StartFight(fightEvent);
+        }
     }
 
     private void AssignRandomSectorEvent(Sector sector)
@@ -284,13 +311,13 @@ public class SectorManager : MonoBehaviour
 
         if (roll < 60)
         {
-            sector.SetSectorEvent(null);
-            Debug.Log($"Sector {sector.name}: Empty space");
+            SectorEventSO emptySpaceEvent = GetEmptySpaceEvent();
+            sector.SetSectorEvent(emptySpaceEvent);
+            eventPopupUI.ShowEvent(emptySpaceEvent);
         }
         else if (roll < 80)
         {
             GameManager.Instance.FightManager.StartFight();
-            Debug.Log($"Sector {sector.name}: Fight Event Assigned!");
         }
         else
         {
@@ -303,10 +330,21 @@ public class SectorManager : MonoBehaviour
             {
                 SectorEventSO randomEvent = allEvents[UnityEngine.Random.Range(0, allEvents.Length)];
                 sector.SetSectorEvent(randomEvent);
-                
                 eventPopupUI.ShowEvent(randomEvent);
-                Debug.Log($"Sector {sector.name}: New Event Assigned - {randomEvent.eventTitle}");
             }
         }
+    }
+
+    private SectorEventSO GetEmptySpaceEvent()
+    {
+        SectorEventSO emptySpaceEvent = Resources.LoadAll<SectorEventSO>("ScriptableObjects/Events")
+            .FirstOrDefault(e => e.eventType == EventType.EmptySpace);
+
+        if (emptySpaceEvent == null)
+        {
+            Debug.LogWarning("No Empty Space event found! Please create one in 'Resources/ScriptableObjects/Events'");
+        }
+
+        return emptySpaceEvent;
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partName: Anchor
   durability: 100
-  level: 3
+  level: 1
   genericEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
   defaultDurability: 100
   defaultLevel: 1

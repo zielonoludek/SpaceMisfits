@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Spaceport
   m_EditorClassIdentifier: 
+  tiedEvents: []
   isPersistent: 1
   eventTitle: Spaceport
   eventType: 4
@@ -21,10 +22,13 @@ MonoBehaviour:
     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
     dolore eu fugiat nulla pariatur. '
   eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
   hasChoices: 0
   numberOfChoices: 2
   choices:
   - choiceDescription: 
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
   - choiceDescription: 
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}

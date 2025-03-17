@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0508d24ba8dd41b42abee3262aca17bc, type: 3}
   m_Name: RandomFight
   m_EditorClassIdentifier: 
+  isPersistent: 0
   eventTitle: Random
   eventType: 5
   eventDescription: 
-  eventEffect: {fileID: 0}
-  hasChoices: 0
-  numberOfChoices: 2
-  choices:
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
   fightTier: 2
   playerBetNotoriety: 10
+  crewmateToRecruit: {fileID: 0}

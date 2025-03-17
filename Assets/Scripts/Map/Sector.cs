@@ -28,7 +28,8 @@ public class Sector : MonoBehaviour
             { EventType.DevilsMaw, Color.blue },
             { EventType.SharpenThoseDirks, Color.red },
             { EventType.Spaceport, Color.yellow },
-            { EventType.Fight, Color.cyan }
+            { EventType.Fight, Color.cyan },
+            { EventType.EmptySpace, Color.gray }
         };
 
     
