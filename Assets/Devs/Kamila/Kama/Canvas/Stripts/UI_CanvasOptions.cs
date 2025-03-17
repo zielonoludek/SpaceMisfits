@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class UI_CanvasOptions : MonoBehaviour
@@ -9,20 +8,16 @@ public class UI_CanvasOptions : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private InputActionAsset inputActions;
 
-    private UI_Settings ui_Settings;
     private UI_MainMenu ui_mainMenu;
     private UI_Pause ui_Pause;
     private SettingsAudio settingsaudio;
-    private SettingsControls settingscontrols;
+    private UI_Controls settingscontrols;
     private SettingsGraphic settingsGraphic;
 
     private Button backButton;
     private Button audioButton;
     private Button graphicButton;
     private Button controlsButton;
-
-    private InputAction clickAction;
-    private InputAction backAction;
 
     private bool openedFromPause = false;
 
@@ -31,7 +26,7 @@ public class UI_CanvasOptions : MonoBehaviour
         ui_mainMenu = FindFirstObjectByType<UI_MainMenu>(FindObjectsInactive.Include);
         ui_Pause = FindFirstObjectByType<UI_Pause>(FindObjectsInactive.Include);
         settingsaudio = FindFirstObjectByType<SettingsAudio>(FindObjectsInactive.Include);
-        settingscontrols = FindFirstObjectByType<SettingsControls>(FindObjectsInactive.Include);
+        settingscontrols = FindFirstObjectByType<UI_Controls>(FindObjectsInactive.Include);
         settingsGraphic = FindFirstObjectByType<SettingsGraphic>(FindObjectsInactive.Include);
 
         backButton = GameObject.Find("Back").GetComponent<Button>();
@@ -43,20 +38,8 @@ public class UI_CanvasOptions : MonoBehaviour
         audioButton.onClick.AddListener(OpenAudio);
         graphicButton.onClick.AddListener(OpenGraphic);
         controlsButton.onClick.AddListener(OpenControls);
-
-        var uiActionMap = inputActions.FindActionMap("UI");
-        clickAction = uiActionMap.FindAction("Click");
-        backAction = uiActionMap.FindAction("Cancel");
-
-        backAction.performed += ctx => CloseOptions();
-        backAction.performed += ctx => OpenAudio();
-        backAction.performed += ctx => OpenGraphic();
-        backAction.performed += ctx => OpenControls();
-
-        clickAction.Enable();
-        backAction.Enable();
-
     }
+
     public void OpenFromMainMenu()
     {
         settingsMenu.SetActive(true);
@@ -69,18 +52,22 @@ public class UI_CanvasOptions : MonoBehaviour
         openedFromPause = true;
     }
 
-    private void CloseOptions()
+    public void CloseOptions()
     {
-        if (openedFromPause)
+        settingsMenu.SetActive(false);
+        if (openedFromPause && ui_Pause)
         {
             ui_Pause.ShowPauseMenu();
-            settingsMenu.SetActive(false);
         }
-        else
+        else if(ui_mainMenu)
         {
             ui_mainMenu.ShowMainMenu();
-            settingsMenu.SetActive(false);
         }
+    }
+
+    public bool IsOpen()
+    {
+        return settingsMenu.activeSelf;
     }
 
     private void OpenAudio()

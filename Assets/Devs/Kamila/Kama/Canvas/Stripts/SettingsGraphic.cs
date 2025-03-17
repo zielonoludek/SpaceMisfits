@@ -1,29 +1,27 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SettingsGraphic : MonoBehaviour
 {
-    [SerializeField] GameObject settingsGraphic;
+    [SerializeField] private GameObject settingsGraphic;
 
-    private TMP_Dropdown resolutionDropdown;
-    private TMP_Dropdown qualityDropdown;
+    private Dropdown resolutionDropdown;
+    private Dropdown qualityDropdown;
     private Toggle fullscreenToggle;
 
     private Resolution[] resolutions;
 
     private void Awake()
     {
-        resolutionDropdown = GameObject.Find("ResolutionDropdown").GetComponent<TMP_Dropdown>();
-        qualityDropdown = GameObject.Find("QualityDropdown").GetComponent<TMP_Dropdown>();
+        resolutionDropdown = GameObject.Find("ResolutionDropdown").GetComponent<Dropdown>();
+        qualityDropdown = GameObject.Find("QualityDropdown").GetComponent<Dropdown>();
         fullscreenToggle = GameObject.Find("FullscreenToggle").GetComponent<Toggle>();
 
-        resolutionDropdown.onValueChanged.AddListener(delegate { SetResolution(resolutionDropdown.options[resolutionDropdown.value].text); });
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
-        qualityDropdown.onValueChanged.AddListener(delegate { SetQuality(qualityDropdown.options[qualityDropdown.value].text); });
-
+        qualityDropdown.onValueChanged.AddListener(SetQuality);
 
         PopulateResolutionDropdown();
         PopulateQualityDropdown();
@@ -51,7 +49,17 @@ public class SettingsGraphic : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(resolutionOptions);
-        resolutionDropdown.value = currentResolutionIndex;
+
+        if (PlayerPrefs.HasKey("ResolutionIndex"))
+        {
+            resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionIndex");
+        }
+        else
+        {
+            resolutionDropdown.value = currentResolutionIndex;
+        }
+
+        resolutionDropdown.RefreshShownValue();
     }
 
     private void PopulateQualityDropdown()
@@ -61,19 +69,16 @@ public class SettingsGraphic : MonoBehaviour
         qualityDropdown.AddOptions(qualityOptions);
 
         int currentQualityIndex = QualitySettings.GetQualityLevel();
-        qualityDropdown.value = currentQualityIndex;
+        qualityDropdown.value = PlayerPrefs.GetInt("QualityIndex", currentQualityIndex);
     }
 
-    private void SetResolution(string resolution)
+    private void SetResolution(int resolutionIndex)
     {
-        string[] resParts = resolution.Split('x');
-        if (resParts.Length != 2) return;
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
-        int width = int.Parse(resParts[0].Trim());
-        int height = int.Parse(resParts[1].Trim());
-
-        Screen.SetResolution(width, height, Screen.fullScreen);
-        PlayerPrefs.SetString("Resolution", resolution);
+        PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
+        PlayerPrefs.SetString("Resolution", resolution.width + "x" + resolution.height);
         PlayerPrefs.Save();
     }
 
@@ -84,25 +89,32 @@ public class SettingsGraphic : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void SetQuality(string quality)
+    private void SetQuality(int qualityIndex)
     {
-        int qualityIndex = qualityDropdown.options.FindIndex(option => option.text == quality);
         QualitySettings.SetQualityLevel(qualityIndex);
-        PlayerPrefs.SetString("Quality", quality);
+        PlayerPrefs.SetInt("QualityIndex", qualityIndex);
         PlayerPrefs.Save();
     }
 
     private void LoadGraphicsSettings()
     {
-        if (PlayerPrefs.HasKey("Resolution"))
-            SetResolution(PlayerPrefs.GetString("Resolution"));
+        if (PlayerPrefs.HasKey("ResolutionIndex"))
+        {
+            resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionIndex");
+            resolutionDropdown.RefreshShownValue();
+        }
 
         if (PlayerPrefs.HasKey("Fullscreen"))
+        {
             fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen") == 1;
+        }
 
-        if (PlayerPrefs.HasKey("Quality"))
-            qualityDropdown.value = qualityDropdown.options.FindIndex(option => option.text == PlayerPrefs.GetString("Quality"));
+        if (PlayerPrefs.HasKey("QualityIndex"))
+        {
+            qualityDropdown.value = PlayerPrefs.GetInt("QualityIndex");
+        }
     }
+
     public void OpenGraphic()
     {
         settingsGraphic.SetActive(true);

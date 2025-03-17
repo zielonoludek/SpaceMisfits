@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using static UnityEngine.Timeline.DirectorControlPlayable;
 
 public class UI_MainMenu : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class UI_MainMenu : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
 
     private UI_MainMenu ui_mainMenu;
-    private UI_Settings ui_Settings;
+    private UI_CanvasOptions ui_Settings;
 
     private InputAction clickAction;
+    private InputAction cancelAction;
     private AudioSource audioSource;
 
     private Button startButton;
@@ -23,7 +25,7 @@ public class UI_MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        ui_Settings = FindFirstObjectByType<UI_Settings>(FindObjectsInactive.Include);
+        ui_Settings = FindFirstObjectByType<UI_CanvasOptions>(FindObjectsInactive.Include);
         ui_mainMenu = FindFirstObjectByType<UI_MainMenu>(FindObjectsInactive.Include);
 
         mainMenu = GameObject.Find("UI_Main");
@@ -35,7 +37,7 @@ public class UI_MainMenu : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
-        startButton.onClick.AddListener(() => SceneManager.LoadScene("SampleScene"));
+        startButton.onClick.AddListener(StartGame);
         settingsButton.onClick.AddListener(OpenOptions);
         quitButton.onClick.AddListener(() => Application.Quit());
 
@@ -50,10 +52,28 @@ public class UI_MainMenu : MonoBehaviour
 
         var uiActionMap = inputActions.FindActionMap("UI");
         clickAction = uiActionMap.FindAction("Click");
-        clickAction.performed += ctx => OnClickUI();
+        cancelAction = uiActionMap.FindAction("Cancel");
+
+        cancelAction.performed += ctx => Cancel();
+
         clickAction.Enable();
+        cancelAction.Enable();
 
         mainMenu.SetActive(true);
+    }
+
+    private void StartGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+    private void Cancel()
+    {
+        if (ui_Settings != null && ui_Settings.IsOpen())
+        {
+            ui_Settings.CloseOptions();
+            ShowMainMenu();
+        }
+
     }
 
     private void OnDisable()
@@ -69,11 +89,6 @@ public class UI_MainMenu : MonoBehaviour
         }
     }
 
-    private void OnClickUI()
-    {
-        Debug.Log("Click");
-    }
-
     public void ShowMainMenu()
     {
         mainMenu.SetActive(true);
@@ -81,7 +96,7 @@ public class UI_MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-        ui_Settings = FindFirstObjectByType<UI_Settings>(FindObjectsInactive.Include);
+        ui_Settings = FindFirstObjectByType<UI_CanvasOptions>(FindObjectsInactive.Include);
         ui_Settings.OpenFromMainMenu();
         mainMenu.SetActive(false);
     }
