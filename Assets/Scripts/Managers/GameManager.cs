@@ -11,16 +11,17 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("MANAGERS")]
 
-    InputManager inputManager;
-    ResourceManager resourceManager;
-    TimeManager timeManager;
-    
-    FightManager fightManager;
-    UIManager uiManager;
-    CameraManager cameraManager;
-    ShipDurabilityManager shipDurabilityManager;
-    CrewManager crewManager;
-    RequestManager requestManager;
+    [SerializeField] InputManager inputManager;
+    [SerializeField] ResourceManager resourceManager;
+    [SerializeField] TimeManager timeManager;
+
+    [SerializeField] FightManager fightManager;
+    [SerializeField] UIManager uiManager;
+    [SerializeField] CameraManager cameraManager;
+    [SerializeField] ShipDurabilityManager shipDurabilityManager;
+    [SerializeField] CrewManager crewManager;
+    [SerializeField] RequestManager requestManager;
+    [SerializeField] SceneLoader sceneLoader;
     
     //=========GETTERS=========//
     public CameraManager CameraManager { get { return cameraManager; } }
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     public ShipDurabilityManager ShipDurabilityManager {  get { return shipDurabilityManager; } } 
     public CrewManager CrewManager { get { return crewManager; } }
     public RequestManager RequestManager { get { return requestManager; } }
+    public SceneLoader SceneLoader { get { return sceneLoader; } }
 
     public GameState GameState
     {
@@ -41,21 +43,32 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
-        if (Instance != null && Instance != this) Destroy(this);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            Destroy(this);
+        }
         else Instance = this;
+
+        DontDestroyOnLoad(this.gameObject);
+
+        LoadManagers();
+        sceneLoader.NewSceneLoaded += LoadManagers;
     }
-    private void Start()
+    void LoadManagers()
     {
+        Debug.Log("yolo");
         cameraManager = FindFirstObjectByType<CameraManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
         shipDurabilityManager = FindFirstObjectByType<ShipDurabilityManager>();
-        
+
         crewManager = gameObject.GetComponentInChildren<CrewManager>();
         requestManager = gameObject.GetComponentInChildren<RequestManager>();
-        
+
         timeManager = gameObject.GetComponent<TimeManager>();
         resourceManager = gameObject.GetComponent<ResourceManager>();
         inputManager = gameObject.GetComponent<InputManager>();
+        sceneLoader = gameObject.GetComponent<SceneLoader>();
     }
 }

@@ -38,7 +38,10 @@ public class FightPanelUI : MonoBehaviour
         addBetButton.onClick.AddListener(() => ChangeBet(1));
         subtractBetButton.onClick.AddListener(() => ChangeBet(-1));
         fightButton.onClick.AddListener(() => StartFight());
-        closeBtn.onClick.AddListener(() => fightManager.CloseFight());
+        closeBtn.onClick.AddListener(() => {
+            fightManager.CloseFight();
+            closeBtn.gameObject.SetActive(false);
+        });
 
     }
     public void Setup()
@@ -71,12 +74,14 @@ public class FightPanelUI : MonoBehaviour
 
     public void ShowBettingPanel()
     {
+        closeBtn.gameObject.SetActive(true);
         bettingPanel.SetActive(true);
         resultPanel.SetActive(false);
     }
 
     public void ShowResultPanel()
     {
+        closeBtn.gameObject.SetActive(true);
         bettingPanel.SetActive(false);
         resultPanel.SetActive(true);
     }
