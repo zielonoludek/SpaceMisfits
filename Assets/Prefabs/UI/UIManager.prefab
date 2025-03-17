@@ -1640,6 +1640,7 @@ MonoBehaviour:
   timePanelUI: {fileID: 5358779273241765934}
   fightPanelUI: {fileID: 229275257600374309}
   crewRequestUI: {fileID: 9194535647024845268}
+  eventPanelUI: {fileID: 7065649362784865980}
 --- !u!114 &926172014247509579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7821,7 +7822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 334043492152291279, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2450773436569684060, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7977,6 +7978,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5042566791407820351, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
   m_PrefabInstance: {fileID: 6668873098116363843}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7065649362784865980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4504340797413636351, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
+  m_PrefabInstance: {fileID: 6668873098116363843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4c15ef4175a2f4d9639cc9c17c8b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6846726979191250337
 PrefabInstance:
   m_ObjectHideFlags: 0
