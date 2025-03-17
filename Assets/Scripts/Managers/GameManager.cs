@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     }
     void LoadManagers()
     {
+        Debug.Log("yolo");
         cameraManager = FindFirstObjectByType<CameraManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
