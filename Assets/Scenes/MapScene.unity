@@ -1958,7 +1958,7 @@ PrefabInstance:
       objectReference: {fileID: 587854539}
     - target: {fileID: 4804787014866995349, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: isStartingSector
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5025903620574622370, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
