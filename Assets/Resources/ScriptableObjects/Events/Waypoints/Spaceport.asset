@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Spaceport
+  m_EditorClassIdentifier: 
+  eventTitle: Spaceport
+  eventType: 4
+  eventDescription: 'Some say there is no rest for the wicked. Yet here you are,
+    an enormous conglomeration of ships and buildings has risen here, allowing people
+    like you and many others to rest, resupply, and make necessary repairs before
+    the next voyage.
+
+'
+  eventEffect: {fileID: 0}
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Visit the shop
+    choiceEffect: {fileID: 11400000, guid: 0b4ed1104766f6d489262ec315401bae, type: 2}
+  - choiceDescription: Leave
+    choiceEffect: {fileID: 0}

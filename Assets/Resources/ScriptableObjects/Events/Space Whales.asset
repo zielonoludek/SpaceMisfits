@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Space Whales
+  m_EditorClassIdentifier: 
+  eventTitle: 
+  eventType: 0
+  eventDescription: You begin to hear heavy sounds in the distance. At first, it
+    resembles a hundred cannonballs firing at once. But soon, the noise takes on
+    a soothing quality, it's start to sound almost like a language. Before long,
+    you and your crew encounter the mythical space whales.
+  eventEffect: {fileID: 0}
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Take in the sights
+    choiceEffect: {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+  - choiceDescription: Leave
+    choiceEffect: {fileID: 0}

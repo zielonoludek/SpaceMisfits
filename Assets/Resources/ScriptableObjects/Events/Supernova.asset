@@ -16,11 +16,10 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: Supernova
   eventType: 2
-  eventDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. '
+  eventDescription: '"All hands on deck!" screams the mate stationed in the crow''s
+    nest. Soon, the entire crew begins to notice the ship shaking and a powerful
+    force dragging it to portside. You know what that means, the nearest star is
+    collapsing, and soon, a black hole will be born.'
   eventEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
   crewmateToRecruit: {fileID: 0}
   hasChoices: 1
