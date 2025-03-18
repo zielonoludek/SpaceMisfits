@@ -264,7 +264,6 @@ public class SectorManager : MonoBehaviour
     private void TriggerSectorEvent(Sector sector)
     {
         EventSO eventSO = sector.GetSectorEvent();
-
         bool eventHandled = false;
 
         foreach (var sequence in tiedEventSequences)
@@ -272,8 +271,25 @@ public class SectorManager : MonoBehaviour
             EventSO sequenceEvent = sequence.GetCurrentEvent();
             if (sequenceEvent != null && sequenceEvent == eventSO)
             {
-                Debug.Log($"Event {sequenceEvent.eventTitle} triggered in sector {sector.name} as part of sequence {sequence.sequenceName}");
                 sequence.MarkCurrentEventAsCompleted();
+            
+                EventSO nextEvent = sequence.GetCurrentEvent();
+                if (nextEvent != null)
+                {
+                    Sector nextSector = FindSectorByEvent(nextEvent);
+                    if (nextSector != null)
+                    {
+                        nextSector.SetVisibility(true);
+
+                        // If visualization is enabled, start pulsating the next event sector
+                        if (sequence.enableVisualization)
+                        {
+                            nextSector.StartPulsating();
+                        }
+                    }
+                }
+
+                sector.StopPulsating();
                 ShowEventUI(eventSO);
                 eventHandled = true;
             }
@@ -287,6 +303,23 @@ public class SectorManager : MonoBehaviour
         {
             AssignRandomSectorEvent(sector);
         }
+    }
+    
+    // Find the sector that have next event in a sequence
+    private Sector FindSectorByEvent(EventSO targetEvent)
+    {
+        Sector[] allSectors = Resources.FindObjectsOfTypeAll<Sector>();
+
+        foreach (Sector sector in allSectors)
+        {
+            if (sector.GetSectorEvent() == targetEvent)
+            {
+                return sector;
+            }
+        }
+
+        Debug.LogWarning($"Could not find sector for event: {targetEvent.eventTitle}");
+        return null;
     }
     
     private void ShowEventUI(EventSO eventSO)
