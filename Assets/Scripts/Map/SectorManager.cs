@@ -27,7 +27,6 @@ public class SectorManager : MonoBehaviour
     };
     
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private EventPopupUI eventPopupUI;
     [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
     
     private static GameObject playerInstance;
@@ -294,9 +293,9 @@ public class SectorManager : MonoBehaviour
     {
         if (eventSO is SectorEventSO sectorEvent)
         {
-            if (eventPopupUI != null)
+            if (GameManager.Instance.UIManager.EventPanelUI != null)
             {
-                eventPopupUI.ShowEvent(sectorEvent);
+                GameManager.Instance.UIManager.EventPanelUI.ShowEvent(sectorEvent);
             }
         }
         else if (eventSO is FightEventSO fightEvent)
@@ -313,7 +312,7 @@ public class SectorManager : MonoBehaviour
         {
             SectorEventSO emptySpaceEvent = GetEmptySpaceEvent();
             sector.SetSectorEvent(emptySpaceEvent);
-            eventPopupUI.ShowEvent(emptySpaceEvent);
+            GameManager.Instance.UIManager.EventPanelUI.ShowEvent(emptySpaceEvent);
         }
         else if (roll < 80)
         {
@@ -330,7 +329,7 @@ public class SectorManager : MonoBehaviour
             {
                 SectorEventSO randomEvent = allEvents[UnityEngine.Random.Range(0, allEvents.Length)];
                 sector.SetSectorEvent(randomEvent);
-                eventPopupUI.ShowEvent(randomEvent);
+                GameManager.Instance.UIManager.EventPanelUI.ShowEvent(randomEvent);
             }
         }
     }
