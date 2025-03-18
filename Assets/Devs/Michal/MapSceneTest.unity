@@ -396,6 +396,7 @@ MonoBehaviour:
   zoomCamera: {fileID: 0}
   normalCamera: {fileID: 0}
   movementSpeed: 0
+  zoomedMovementSpeed: 5
 --- !u!1001 &386739557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -791,7 +792,8 @@ MonoBehaviour:
   - sectorVisibility: 4
     spaceportVisibility: 5
   playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
-  tiedEventSequences: []
+  tiedEventSequences:
+  - {fileID: 11400000, guid: 566c3110bdf0dfc46bf44d42f6f84ce1, type: 2}
 --- !u!21 &922941447
 Material:
   serializedVersion: 8
@@ -1501,9 +1503,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 317653240}
+    - target: {fileID: 665737261737132841, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: sectorEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fb724221749927469abbfebb9fcd633, type: 2}
+    - target: {fileID: 690188082182965924, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane (SpaceShip Scrappers! - Opp)
+      objectReference: {fileID: 0}
     - target: {fileID: 706124668756534660, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 760416505104127170, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane (Funland - Opp)
       objectReference: {fileID: 0}
     - target: {fileID: 857667404608731711, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1564,6 +1578,10 @@ PrefabInstance:
     - target: {fileID: 3757893570793472290, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.7789999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072379163563057908, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Sector (Opp)
       objectReference: {fileID: 0}
     - target: {fileID: 4394686251892696091, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1733,6 +1751,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 120498225}
+    - target: {fileID: 7931377622667452496, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane (Opp - Spaceport)
+      objectReference: {fileID: 0}
     - target: {fileID: 7944106604360047159, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 5.1480002
@@ -1749,6 +1771,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 1962680996}
+    - target: {fileID: 8475875444182123881, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane (Opp - Supernova)
+      objectReference: {fileID: 0}
     - target: {fileID: 8502638789761639153, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
