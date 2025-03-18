@@ -92,8 +92,9 @@ public class InputManager : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
         if (!isDragging) return;
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
         Vector2 diff = currentPos - initialPos; 
         
