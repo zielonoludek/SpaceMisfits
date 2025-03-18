@@ -13,11 +13,13 @@ public class InputManager : MonoBehaviour
     private float prevMagnitude = 0;
     private int touchCount = 0;
 
-    [SerializeField] private float zoomThreshold = 2f;
-    [SerializeField] private float scroolChangeScene = 1f;
-    private float lastZoomTime;
-
     private Vector2 initialPos = Vector2.zero;
+
+    [SerializeField] private float scrollTimer = 0f;
+    [SerializeField] private int scrollCount = 0;
+    [SerializeField] private float scrollThreshold = 5;
+    [SerializeField] private float scrollTimeWindow = 1f;
+    [SerializeField] private float zoomDelta;
 
     private void Awake()
     {
@@ -65,36 +67,52 @@ public class InputManager : MonoBehaviour
     //=============== INPUT CALLBACKS ===============//
     private void OnZoomScroll(InputAction.CallbackContext context)
     {
-        float zoomDelta = context.ReadValue<Vector2>().y;
-        float deltaTime = GameManager.Instance.TimeManager.CurrentTime - lastZoomTime;
+        zoomDelta = context.ReadValue<Vector2>().y;
+        float currentTime = GameManager.Instance.TimeManager.CurrentTime;
+
+        if (currentTime - scrollTimer > scrollTimeWindow)
+        {
+            zoomDelta = 0;
+            scrollCount = 0;
+        }
+
+        scrollTimer = currentTime;
+
 
         if (zoomDelta > 0)
         {
-            GameManager.Instance.CameraManager.ZoomInCamera();
 
-            if ((GameManager.Instance.CameraManager.ZoomState) && GameManager.Instance.GameScene == GameScene.Map)
+
+            if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Map)
             {
-                if (Mathf.Abs(zoomDelta) > zoomThreshold  && deltaTime > scroolChangeScene)
+                scrollCount++;
+
+                if (scrollCount >= scrollThreshold)
                 {
-                    lastZoomTime = GameManager.Instance.TimeManager.CurrentTime;
+                    scrollCount = 0;
                     GameManager.Instance.SceneLoader.LoadNewScene(1);
                 }
             }
+            else GameManager.Instance.CameraManager.ZoomInCamera();
         }
         else if (zoomDelta < 0)
         {
-            GameManager.Instance.CameraManager.ZoomOutCamera();
 
             if (!GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Ship)
             {
-                if (Mathf.Abs(zoomDelta) < zoomThreshold && deltaTime > scroolChangeScene)
+                scrollCount++;
+
+                if (scrollCount >= scrollThreshold)
                 {
-                    lastZoomTime = GameManager.Instance.TimeManager.CurrentTime;
+                    scrollCount = 0;
                     GameManager.Instance.SceneLoader.LoadNewScene(2);
                 }
             }
+            else GameManager.Instance.CameraManager.ZoomOutCamera();
+
         }
     }
+
 
 
     private void OnDrag(InputAction.CallbackContext context)
@@ -106,7 +124,7 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        
+
         if (context.canceled)
         {
             isDragging = false;
@@ -140,8 +158,8 @@ public class InputManager : MonoBehaviour
         if (!isDragging) return;
 
         Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
-        Vector2 diff = currentPos - initialPos; 
-        
+        Vector2 diff = currentPos - initialPos;
+
         GameManager.Instance.CameraManager.MoveCamera(diff.normalized);
 
     }
