@@ -8,9 +8,9 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private int booty = 1000;
     [SerializeField] private int food = 1000;
     [SerializeField] private int notoriety = 1000;
-    [SerializeField] private int crewMood = 1000;
-    [SerializeField] private int sightLevel = 1000;
-    [SerializeField] private int speedValue = 1000;
+    [SerializeField] private int crewMood = 100;
+    [SerializeField] private int sightLevel = 0;
+    [SerializeField] private int speedValue = 1;
 
     private Dictionary<EffectType, Func<int>> resourceGetters;
 

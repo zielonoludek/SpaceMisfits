@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc0ab74d261388498647b0f49a2db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
+  gameScene: 0
   inputManager: {fileID: 0}
   resourceManager: {fileID: 0}
   timeManager: {fileID: 0}
@@ -133,6 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinchZoomSpeed: 0.01
+  scrollTimer: 0
+  scrollCount: 0
+  scrollThreshold: 5
+  scrollTimeWindow: 1
+  zoomDelta: 0
 --- !u!114 &1276556340548977776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,9 +156,9 @@ MonoBehaviour:
   booty: 1000
   food: 1000
   notoriety: 1000
-  crewMood: 1000
-  sightLevel: 1000
-  speedValue: 1000
+  crewMood: 100
+  sightLevel: 0
+  speedValue: 1
 --- !u!114 &3444544792681972511
 MonoBehaviour:
   m_ObjectHideFlags: 0
