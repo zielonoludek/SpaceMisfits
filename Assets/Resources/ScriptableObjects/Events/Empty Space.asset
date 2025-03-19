@@ -12,15 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Empty Space
   m_EditorClassIdentifier: 
+  isPersistent: 0
   eventTitle: Nothingness
   eventType: 0
-  eventDescription: 'Sometimes peapole forget that majority of space is old plain
-    nothing. '
+  eventDescription: "Sometimes, people forget that the majority of space is just
+    an endlessly overstretching void of nothingness. Polluted by stars and planets
+    like specks of snow in the wind.\_"
   eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: Stay, maybe something exciting will happen
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
   - choiceDescription: Go on, there is no time to waste here
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}

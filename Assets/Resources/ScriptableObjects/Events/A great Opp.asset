@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: A great Opp
   m_EditorClassIdentifier: 
+  isPersistent: 0
   eventTitle: 
   eventType: 0
   eventDescription: 'A well known Blagueur offers you to partake in a great oppurtintty.
     If you pay him 10 booty, you will be able to double or even triple your money! '
   eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: 'Pay him '
-    choiceEffect: {fileID: 0}
+    choiceEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
+    crewmate: {fileID: 0}
   - choiceDescription: Save your money and leave
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
