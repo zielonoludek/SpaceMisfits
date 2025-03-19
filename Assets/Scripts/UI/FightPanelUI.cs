@@ -19,8 +19,7 @@ public class FightPanelUI : MonoBehaviour
 
     [Header("Betting UI")]
     [SerializeField] private TMP_Text betAmountText;
-    [SerializeField] private Button addBetButton;
-    [SerializeField] private Button subtractBetButton;
+    [SerializeField] private Button[] betButtons;
     [SerializeField] private Button fightButton;
 
     [Header("Resources UI")]
@@ -35,15 +34,20 @@ public class FightPanelUI : MonoBehaviour
     {
         fightManager = GameManager.Instance.FightManager;
 
-        addBetButton.onClick.AddListener(() => ChangeBet(1));
-        subtractBetButton.onClick.AddListener(() => ChangeBet(-1));
+        int[] betValues = { -100, -50, -10, -5, -1, 1, 5, 10, 50, 100 };
+        for (int i = 0; i < betButtons.Length; i++)
+        {
+            int value = betValues[i];
+            betButtons[i].onClick.AddListener(() => ChangeBet(value));
+        }
+
         fightButton.onClick.AddListener(() => StartFight());
         closeBtn.onClick.AddListener(() => {
             fightManager.CloseFight();
             closeBtn.gameObject.SetActive(false);
         });
-
     }
+
     public void Setup()
     {
         betAmount = 0;
@@ -55,7 +59,7 @@ public class FightPanelUI : MonoBehaviour
     private void ChangeBet(int amount)
     {
         int maxBet = GameManager.Instance.ResourceManager.Notoriety;
-        betAmount = Mathf.Clamp(betAmount + amount * 10, 0, maxBet);
+        betAmount = Mathf.Clamp(betAmount + amount, 0, maxBet);
         UpdateBetUI();
     }
 
@@ -107,6 +111,16 @@ public class FightPanelUI : MonoBehaviour
     public void ShowFightResult(bool playerWon)
     {
         fightResultText.text = playerWon ? "<color=green>Winner</color>" : "<color=red>Loser</color>";
+    }
+
+    public int GetPlayerDiceCount(int notoriety)
+    {
+        return notoriety / 10 + 1;
+    }
+
+    public int GetComputerDiceCount(int betAmount)
+    {
+        return Mathf.Max(1, betAmount / 10);
     }
 
     public IEnumerator ShowRollingEffect(int[] playerRolls, int[] computerRolls)
