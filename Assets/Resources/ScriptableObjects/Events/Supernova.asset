@@ -24,9 +24,10 @@ MonoBehaviour:
   hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
+  - choiceDescription: '"Brace for Impact!"Wait for the momentum to build up and
+      use it to fly away.'
+    choiceEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
     crewmate: {fileID: 0}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
+  - choiceDescription: '"Full force starboard!" Try to fly away now '
+    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
     crewmate: {fileID: 0}
