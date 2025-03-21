@@ -133,8 +133,7 @@ public class SectorManager : MonoBehaviour
         bIsPlayerMoving = true;
 
         float hourInGame = GameManager.Instance.TimeManager.DayLength / 24f;
-        float travelTimeInGameHours = distance / GameManager.Instance.ResourceManager.Speed;
-        float totalTravelTimeRealSeconds = travelTimeInGameHours * hourInGame;
+        float totalTravelTimeRealSeconds = distance * hourInGame;
 
         float totalPathLength = 0f;
         for (int i = 0; i < path.Length - 1; i++)
@@ -145,11 +144,11 @@ public class SectorManager : MonoBehaviour
         int index = 0;
         while (index < path.Length - 1)
         {
-            Vector3 start = path[index];
+            Vector3 start = path[index]; 
             Vector3 end = path[index + 1];
 
-            float segmentDurationRealSeconds = (Vector3.Distance(start, end) / totalPathLength) * totalTravelTimeRealSeconds;
-
+            yield return new WaitUntil(() => GameManager.Instance.ResourceManager.Speed > 0);
+            float segmentDurationRealSeconds = (Vector3.Distance(start, end) / totalPathLength) * totalTravelTimeRealSeconds / GameManager.Instance.ResourceManager.Speed;
             float elapsedTime = 0f;
             while (elapsedTime < segmentDurationRealSeconds)
             {
