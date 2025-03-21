@@ -8,8 +8,8 @@ public class ShipPartManager : MonoBehaviour
     {
         public ShipPart shipPart;
         public Transform partPosition;
-        public GameObject boundaryVisual;
         public List<CrewmateData> assignedCrewmates = new List<CrewmateData>();
+        public HashSet<CrewmateData> effectedCrewmates = new HashSet<CrewmateData>();
     }
 
     [Header("Ship Part Assignments")]
@@ -24,12 +24,8 @@ public class ShipPartManager : MonoBehaviour
     {
         foreach (var assignment in shipParts)
         {
-            if (assignment.boundaryVisual != null)
-            {
-                assignment.boundaryVisual.SetActive(true);
-            }
-
             assignment.assignedCrewmates.Clear();
+            assignment.effectedCrewmates.Clear();
             UpdatePartState(assignment);
         }
     }
@@ -40,40 +36,67 @@ public class ShipPartManager : MonoBehaviour
         {
             if (assignment.shipPart == targetPart)
             {
-                assignment.assignedCrewmates.Add(crewmate);
-                Debug.Log($"{crewmate.crewmateName} assigned to {targetPart.partName}");
+                if (!assignment.assignedCrewmates.Contains(crewmate))
+                {
+                    assignment.assignedCrewmates.Add(crewmate);
+                    Debug.Log($"{crewmate.crewmateName} assigned to {targetPart.partName}");
+                }
+
+                if (!assignment.effectedCrewmates.Contains(crewmate))
+                {
+                    assignment.effectedCrewmates.Add(crewmate);
+                    crewmate.ApplyEffect();
+                    Debug.Log($"Effect applied for {crewmate.crewmateName} on {targetPart.partName}");
+                }
+
                 UpdatePartState(assignment);
                 break;
             }
         }
     }
+
     private void UpdatePartState(ShipPartAssignment assignment)
     {
         if (assignment.assignedCrewmates.Count > 0)
         {
             assignment.shipPart.ApplyEffect();
-            foreach (var crewmate in assignment.assignedCrewmates)
-            {
-                crewmate.ApplyEffect();
-                Debug.Log($"{assignment.shipPart.partName} is enhanced by {crewmate.crewmateName}");
-            }
+            Debug.Log($"{assignment.shipPart.partName} is enhanced by assigned crew.");
         }
         else
         {
             Debug.Log($"{assignment.shipPart.partName} has no crew assigned and thus no bonus effect.");
         }
     }
+
     public void RemoveCrewmateFromPart(CrewmateData crewmate, ShipPart targetPart)
     {
         foreach (var assignment in shipParts)
         {
             if (assignment.shipPart == targetPart)
             {
-                assignment.assignedCrewmates.Remove(crewmate);
-                Debug.Log($"{crewmate.crewmateName} removed from {targetPart.partName}");
+                if (assignment.assignedCrewmates.Contains(crewmate))
+                {
+                    assignment.assignedCrewmates.Remove(crewmate);
+                    assignment.effectedCrewmates.Remove(crewmate);
+                    Debug.Log($"{crewmate.crewmateName} removed from {targetPart.partName}");
+                }
+
                 UpdatePartState(assignment);
                 break;
             }
         }
     }
+
+    public ShipPart GetCrewQuartersPart()
+    {
+        foreach (var assignment in shipParts)
+        {
+            if (assignment.shipPart != null && assignment.shipPart.partName == "Crew Quarters")
+            {
+                return assignment.shipPart;
+            }
+        }
+        return null;
+    }
+
 }
