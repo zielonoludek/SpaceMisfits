@@ -21,7 +21,7 @@ public class CrewMemberDraggable : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(0))
         {
             TryStartDrag();
 
@@ -31,7 +31,7 @@ public class CrewMemberDraggable : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(0))
         {
             EndDrag();
         }
@@ -51,7 +51,6 @@ public class CrewMemberDraggable : MonoBehaviour
             Cursor.visible = false;
 
             HighlightValidDropZones();
-
             Debug.Log("Drag started");
         }
     }
@@ -95,25 +94,25 @@ public class CrewMemberDraggable : MonoBehaviour
             return;
         }
 
-        Transform snapPoint = dropZone.isCrewQuarters ? dropZone.GetNextAvailableSnapPoint() : (dropZone.snapPoints.Count > 0 ? dropZone.snapPoints[0] : null);
-
+        Transform snapPoint = dropZone.isCrewQuarters
+            ? dropZone.GetNextAvailableSnapPoint()
+            : (dropZone.snapPoints.Count > 0 ? dropZone.snapPoints[0] : null);
 
         if (snapPoint != null)
         {
             transform.position = snapPoint.position;
             transform.SetParent(dropZone.transform);
 
-            if (dropZone.isCrewQuarters)
+            if (!dropZone.isCrewQuarters)
             {
-                dropZone.AssignCrew(crewmateData);
-            }
-            else
-            {
-                shipPartManager.AssignCrewmateToPart(crewmateData, dropZone.shipPart);
-                dropZone.AssignCrew(crewmateData);
+                shipPartManager.RemoveCrewmateFromPart(crewmateData, shipPartManager.GetCrewQuartersPart());
             }
 
+            dropZone.AssignCrew(crewmateData);
+            shipPartManager.AssignCrewmateToPart(crewmateData, dropZone.shipPart);
+
             dropZone.ResetZoneColor();
+            Debug.Log($"{crewmateData.crewmateName} assigned to {dropZone.shipPart?.partName ?? "Crew Quarters"}");
         }
         else
         {
@@ -142,8 +141,8 @@ public class CrewMemberDraggable : MonoBehaviour
         Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
         Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
         RaycastHit hit;
-        Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit);
-
+        int layerMask = ~LayerMask.GetMask("Ignore Raycast");
+        Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, Mathf.Infinity, layerMask);
         return hit;
     }
 
@@ -165,6 +164,7 @@ public class CrewMemberDraggable : MonoBehaviour
         {
             currentTrigger = null;
         }
+        HighlightValidDropZones();
     }
 
     private void HighlightValidDropZones()
@@ -173,6 +173,8 @@ public class CrewMemberDraggable : MonoBehaviour
 
         foreach (var dropZone in dropZones)
         {
+            if (dropZone.isCrewQuarters) continue;
+
             if (dropZone.IsAvailable())
             {
                 dropZone.HighlightZone(Color.green);
@@ -193,4 +195,5 @@ public class CrewMemberDraggable : MonoBehaviour
             dropZone.ResetZoneColor();
         }
     }
+
 }
