@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,12 +66,12 @@ public class SectorManager : MonoBehaviour
         }
 
         Vector3[] path = lane.GetLanePath();
-        float speed = lane.GetLaneDistance();
+        float distance = lane.GetLaneDistance();
         
         // reverse the path if moving from sectorB to sectorA
         if (lane.GetSectorB() == playerCurrentSector) Array.Reverse(path);
 
-        Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, speed, newSector));
+        Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, distance, newSector));
     }
     
     public static Sector GetPlayerCurrentSector()
@@ -126,27 +126,34 @@ public class SectorManager : MonoBehaviour
         RevealSector(startingSector, GameManager.Instance.ResourceManager.GetCurrentSight());
     }
 
-    private IEnumerator AnimatePlayerMovement(Vector3[] path, float speed, Sector targetSector)
+    private IEnumerator AnimatePlayerMovement(Vector3[] path, float distance, Sector targetSector)
     {
-        // Ensure valid path
-        if(path.Length < 2) yield break;
-        
+        if (path.Length < 2) yield break;
+
         bIsPlayerMoving = true;
+
+        float hourInGame = GameManager.Instance.TimeManager.DayLength / 24f;
+        float totalTravelTimeRealSeconds = distance * hourInGame;
+
+        float totalPathLength = 0f;
+        for (int i = 0; i < path.Length - 1; i++)
+        {
+            totalPathLength += Vector3.Distance(path[i], path[i + 1]);
+        }
+
         int index = 0;
-        
         while (index < path.Length - 1)
         {
-            Vector3 start = path[index];
+            Vector3 start = path[index]; 
             Vector3 end = path[index + 1];
 
-            // Time needed per segment
-            float segmentDuration = Vector3.Distance(start, end) / speed;
+            yield return new WaitUntil(() => GameManager.Instance.ResourceManager.Speed > 0);
+            float segmentDurationRealSeconds = (Vector3.Distance(start, end) / totalPathLength) * totalTravelTimeRealSeconds / GameManager.Instance.ResourceManager.Speed;
             float elapsedTime = 0f;
-
-            while (elapsedTime < segmentDuration)
+            while (elapsedTime < segmentDurationRealSeconds)
             {
                 elapsedTime += Time.deltaTime;
-                float t = elapsedTime / segmentDuration;
+                float t = elapsedTime / segmentDurationRealSeconds;
                 playerInstance.transform.position = Vector3.Lerp(start, end, t);
                 yield return null;
             }
@@ -157,10 +164,12 @@ public class SectorManager : MonoBehaviour
         playerInstance.transform.position = targetSector.transform.position;
         playerCurrentSector = targetSector;
         bIsPlayerMoving = false;
-        
+
         TriggerSectorEvent(targetSector);
         RevealSector(targetSector, GameManager.Instance.ResourceManager.GetCurrentSight());
     }
+
+
 
     // Called whenever sight level changes
     private void UpdateVisibility(int sightLevel)

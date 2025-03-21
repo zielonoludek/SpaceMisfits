@@ -11,6 +11,7 @@ public class CrewDropZone : MonoBehaviour
     private Color originalColor;
     public List<Transform> snapPoints = new List<Transform>();
     private HashSet<Transform> usedSnapPoints = new HashSet<Transform>();
+    public GameObject highlightVisual;
 
     private void Awake()
     {
@@ -54,11 +55,34 @@ public class CrewDropZone : MonoBehaviour
         if (IsAvailable())
         {
             currentCrewCount++;
-            Debug.Log($"{crewData.crewmateName} assigned to {shipPart?.partName ?? "Crew Quarters"}");
+            string partName = "Crew Quarters";
+            if (shipPart != null && shipPart.partName != null)
+            {
+                partName = shipPart.partName;
+            }
+            Debug.Log($"{crewData.crewmateName} assigned to {partName}");
         }
         else
         {
             Debug.LogError("Cannot assign crew: Capacity reached.");
+        }
+    }
+
+    public void RemoveCrew(CrewmateData crewData, Transform snapPoint = null)
+    {
+        if (currentCrewCount > 0)
+        {
+            currentCrewCount--;
+            Debug.Log($"{crewData.crewmateName} removed from {shipPart?.partName ?? "Crew Quarters"}");
+
+            if (snapPoint != null && isCrewQuarters)
+            {
+                usedSnapPoints.Remove(snapPoint);
+            }
+        }
+        else
+        {
+            Debug.LogError("Cannot remove crew: No crew assigned.");
         }
     }
 
@@ -86,17 +110,27 @@ public class CrewDropZone : MonoBehaviour
 
     public void HighlightZone(Color color)
     {
-        if (rend != null)
+        if (isCrewQuarters) return;
+
+        if (highlightVisual != null)
         {
-            rend.material.color = color;
+            Renderer highlightRenderer = highlightVisual.GetComponent<Renderer>();
+            if (highlightRenderer != null)
+            {
+                color.a = 0.0f;
+                highlightRenderer.material.color = color;
+            }
+            highlightVisual.SetActive(true);
         }
     }
 
     public void ResetZoneColor()
     {
-        if (rend != null)
+        if (isCrewQuarters) return;
+
+        if (highlightVisual != null)
         {
-            rend.material.color = originalColor;
+            highlightVisual.SetActive(false);
         }
     }
 }
