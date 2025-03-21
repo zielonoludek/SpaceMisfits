@@ -47,7 +47,7 @@ public class RandomCrewAssigner : MonoBehaviour
         if (snapPoint != null)
         {
             GameObject crewMember = Instantiate(crewMemberPrefab, snapPoint.position, Quaternion.identity);           
-            crewMember.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            //crewMember.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             Renderer quadRenderer = crewMember.GetComponentInChildren<Renderer>();
             if (quadRenderer != null)
             {

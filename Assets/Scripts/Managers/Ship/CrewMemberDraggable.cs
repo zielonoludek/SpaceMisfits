@@ -58,7 +58,7 @@ public class CrewMemberDraggable : MonoBehaviour
     private void Drag()
     {
         Vector3 mouseWorldPos = GetMouseWorldPos();
-        transform.position = new Vector3(mouseWorldPos.x, initialPosition.y, mouseWorldPos.z) + offset;
+        transform.position = new Vector3(mouseWorldPos.x, mouseWorldPos.y, initialPosition.z) + offset;
     }
 
     private void EndDrag()
