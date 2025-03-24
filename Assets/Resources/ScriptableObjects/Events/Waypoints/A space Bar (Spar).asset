@@ -12,18 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: A space Bar (Spar)
   m_EditorClassIdentifier: 
+  isPersistent: 0
   eventTitle: 'Space Bar (A Spar) '
   eventType: 1
-  eventDescription: 'You find yourself enamored by the yellow glow of the neon sign:
-    The White Seahorse. Not necessarily the most respectable abode, but you and your
-    crew can fill your guts and have some fun.'
+  eventDescription: "You find yourself enamored by the yellow glow of the neon sign:
+    The White Seahorse. \nNot necessarily the most respectable abode, but you and
+    your crew can fill your guts and have some fun."
   eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
   hasChoices: 1
   numberOfChoices: 3
   choices:
   - choiceDescription: Stay here
     choiceEffect: {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+    crewmate: {fileID: 0}
   - choiceDescription: Let's now waste time
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
   - choiceDescription: Talk with mystrious fellow smoking a pipe in the corner
     choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
