@@ -12,23 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Supernova
   m_EditorClassIdentifier: 
-  tiedEvents: []
   isPersistent: 0
   eventTitle: Supernova
   eventType: 2
-  eventDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. '
-  eventEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
+  eventDescription: '"All hands on deck!" screams the mate stationed in the crow''s
+    nest. Soon, the entire crew begins to notice the ship shaking and a powerful
+    force dragging it to portside. You know what that means, the nearest star is
+    collapsing, and soon, a black hole will be born.'
+  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
   hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: crew
-    choiceEffect: {fileID: 0}
-    crewmate: {fileID: 11400000, guid: 043c57ce962df9546bc0ec6854657853, type: 2}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
+  - choiceDescription: '"Brace for Impact!"Wait for the momentum to build up and
+      use it to fly away.'
+    choiceEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
+    crewmate: {fileID: 0}
+  - choiceDescription: '"Full force starboard!" Try to fly away now '
+    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
     crewmate: {fileID: 0}

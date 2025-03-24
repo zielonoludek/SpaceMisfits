@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 2836110503772724050}
   - component: {fileID: 1276556340548977776}
   - component: {fileID: 3444544792681972511}
+  - component: {fileID: 5543201885976861300}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -109,6 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc0ab74d261388498647b0f49a2db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
+  gameScene: 0
+  inputManager: {fileID: 0}
+  resourceManager: {fileID: 0}
+  timeManager: {fileID: 0}
+  fightManager: {fileID: 0}
+  uiManager: {fileID: 0}
+  cameraManager: {fileID: 0}
+  shipDurabilityManager: {fileID: 0}
+  crewManager: {fileID: 0}
+  requestManager: {fileID: 0}
+  sceneLoader: {fileID: 0}
 --- !u!114 &2836110503772724050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinchZoomSpeed: 0.01
+  scrollTimer: 0
+  scrollCount: 0
+  scrollThreshold: 5
+  scrollTimeWindow: 1
+  zoomDelta: 0
 --- !u!114 &1276556340548977776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,9 +156,9 @@ MonoBehaviour:
   booty: 1000
   food: 1000
   notoriety: 1000
-  crewMood: 1000
-  sightLevel: 1000
-  speedValue: 1000
+  crewMood: 100
+  sightLevel: 0
+  speedValue: 1
 --- !u!114 &3444544792681972511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +177,15 @@ MonoBehaviour:
   year: 2793
   currentTime: 0
   totalTime: 0
+--- !u!114 &5543201885976861300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f52b328e4a6424d85d4d85ec7253f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,6 @@ public class SectorManager : MonoBehaviour
     };
     
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private EventPopupUI eventPopupUI;
     [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
     
     private static GameObject playerInstance;
@@ -67,12 +66,12 @@ public class SectorManager : MonoBehaviour
         }
 
         Vector3[] path = lane.GetLanePath();
-        float speed = lane.GetLaneDistance();
+        float distance = lane.GetLaneDistance();
         
         // reverse the path if moving from sectorB to sectorA
         if (lane.GetSectorB() == playerCurrentSector) Array.Reverse(path);
 
-        Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, speed, newSector));
+        Instance.StartCoroutine(Instance.AnimatePlayerMovement(path, distance, newSector));
     }
     
     public static Sector GetPlayerCurrentSector()
@@ -127,27 +126,34 @@ public class SectorManager : MonoBehaviour
         RevealSector(startingSector, GameManager.Instance.ResourceManager.GetCurrentSight());
     }
 
-    private IEnumerator AnimatePlayerMovement(Vector3[] path, float speed, Sector targetSector)
+    private IEnumerator AnimatePlayerMovement(Vector3[] path, float distance, Sector targetSector)
     {
-        // Ensure valid path
-        if(path.Length < 2) yield break;
-        
+        if (path.Length < 2) yield break;
+
         bIsPlayerMoving = true;
+
+        float hourInGame = GameManager.Instance.TimeManager.DayLength / 24f;
+        float totalTravelTimeRealSeconds = distance * hourInGame;
+
+        float totalPathLength = 0f;
+        for (int i = 0; i < path.Length - 1; i++)
+        {
+            totalPathLength += Vector3.Distance(path[i], path[i + 1]);
+        }
+
         int index = 0;
-        
         while (index < path.Length - 1)
         {
-            Vector3 start = path[index];
+            Vector3 start = path[index]; 
             Vector3 end = path[index + 1];
 
-            // Time needed per segment
-            float segmentDuration = Vector3.Distance(start, end) / speed;
+            yield return new WaitUntil(() => GameManager.Instance.ResourceManager.Speed > 0);
+            float segmentDurationRealSeconds = (Vector3.Distance(start, end) / totalPathLength) * totalTravelTimeRealSeconds / GameManager.Instance.ResourceManager.Speed;
             float elapsedTime = 0f;
-
-            while (elapsedTime < segmentDuration)
+            while (elapsedTime < segmentDurationRealSeconds)
             {
                 elapsedTime += Time.deltaTime;
-                float t = elapsedTime / segmentDuration;
+                float t = elapsedTime / segmentDurationRealSeconds;
                 playerInstance.transform.position = Vector3.Lerp(start, end, t);
                 yield return null;
             }
@@ -158,10 +164,12 @@ public class SectorManager : MonoBehaviour
         playerInstance.transform.position = targetSector.transform.position;
         playerCurrentSector = targetSector;
         bIsPlayerMoving = false;
-        
+
         TriggerSectorEvent(targetSector);
         RevealSector(targetSector, GameManager.Instance.ResourceManager.GetCurrentSight());
     }
+
+
 
     // Called whenever sight level changes
     private void UpdateVisibility(int sightLevel)
@@ -265,7 +273,6 @@ public class SectorManager : MonoBehaviour
     private void TriggerSectorEvent(Sector sector)
     {
         EventSO eventSO = sector.GetSectorEvent();
-
         bool eventHandled = false;
 
         foreach (var sequence in tiedEventSequences)
@@ -273,8 +280,25 @@ public class SectorManager : MonoBehaviour
             EventSO sequenceEvent = sequence.GetCurrentEvent();
             if (sequenceEvent != null && sequenceEvent == eventSO)
             {
-                Debug.Log($"Event {sequenceEvent.eventTitle} triggered in sector {sector.name} as part of sequence {sequence.sequenceName}");
                 sequence.MarkCurrentEventAsCompleted();
+            
+                EventSO nextEvent = sequence.GetCurrentEvent();
+                if (nextEvent != null)
+                {
+                    Sector nextSector = FindSectorByEvent(nextEvent);
+                    if (nextSector != null)
+                    {
+                        nextSector.SetVisibility(true);
+
+                        // If visualization is enabled, start pulsating the next event sector
+                        if (sequence.enableVisualization)
+                        {
+                            nextSector.StartPulsating();
+                        }
+                    }
+                }
+
+                sector.StopPulsating();
                 ShowEventUI(eventSO);
                 eventHandled = true;
             }
@@ -290,13 +314,30 @@ public class SectorManager : MonoBehaviour
         }
     }
     
+    // Find the sector that have next event in a sequence
+    private Sector FindSectorByEvent(EventSO targetEvent)
+    {
+        Sector[] allSectors = Resources.FindObjectsOfTypeAll<Sector>();
+
+        foreach (Sector sector in allSectors)
+        {
+            if (sector.GetSectorEvent() == targetEvent)
+            {
+                return sector;
+            }
+        }
+
+        Debug.LogWarning($"Could not find sector for event: {targetEvent.eventTitle}");
+        return null;
+    }
+    
     private void ShowEventUI(EventSO eventSO)
     {
         if (eventSO is SectorEventSO sectorEvent)
         {
-            if (eventPopupUI != null)
+            if (GameManager.Instance.UIManager.EventPanelUI != null)
             {
-                eventPopupUI.ShowEvent(sectorEvent);
+                GameManager.Instance.UIManager.EventPanelUI.ShowEvent(sectorEvent);
             }
         }
         else if (eventSO is FightEventSO fightEvent)
@@ -313,7 +354,7 @@ public class SectorManager : MonoBehaviour
         {
             SectorEventSO emptySpaceEvent = GetEmptySpaceEvent();
             sector.SetSectorEvent(emptySpaceEvent);
-            eventPopupUI.ShowEvent(emptySpaceEvent);
+            GameManager.Instance.UIManager.EventPanelUI.ShowEvent(emptySpaceEvent);
         }
         else if (roll < 80)
         {
@@ -330,7 +371,7 @@ public class SectorManager : MonoBehaviour
             {
                 SectorEventSO randomEvent = allEvents[UnityEngine.Random.Range(0, allEvents.Length)];
                 sector.SetSectorEvent(randomEvent);
-                eventPopupUI.ShowEvent(randomEvent);
+                GameManager.Instance.UIManager.EventPanelUI.ShowEvent(randomEvent);
             }
         }
     }

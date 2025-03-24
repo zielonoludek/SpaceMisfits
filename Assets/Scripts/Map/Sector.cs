@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class Sector : MonoBehaviour
 
     private MeshRenderer meshRenderer;
     private SpriteRenderer sectorIconRenderer;
+    private Coroutine pulsatingCoroutine;
+    private bool isPulsating = false;
 
     private static readonly Dictionary<EventType, Color> eventColors =
         new Dictionary<EventType, Color>
@@ -76,6 +79,28 @@ public class Sector : MonoBehaviour
         }
     }
 
+    public void StartPulsating()
+    {
+        if (!isPulsating)
+        {
+            isPulsating = true;
+            pulsatingCoroutine = StartCoroutine(PulsateEffect());
+        }
+    }
+    
+    public void StopPulsating()
+    {
+        if (isPulsating)
+        {
+            isPulsating = false;
+            if (pulsatingCoroutine != null)
+            {
+                StopCoroutine(pulsatingCoroutine);
+                pulsatingCoroutine = null;
+            }
+            transform.localScale = Vector3.one  * 0.4f;
+        }
+    }
     #endregion
     
     
@@ -172,5 +197,21 @@ public class Sector : MonoBehaviour
         {
             lane.NotifySectorEventChanged();
         }
+    }
+    
+    private IEnumerator PulsateEffect()
+    {
+        float pulseSpeed = 1.5f;
+        float minScale = 0.4f;
+        float maxScale = 0.8f;
+
+        while (isPulsating)
+        {
+            float scale = Mathf.Lerp(minScale, maxScale, 0.5f * (1 + Mathf.Sin(Time.time * pulseSpeed * Mathf.PI)));
+            transform.localScale = Vector3.one * scale;
+            yield return null;
+        }
+
+        transform.localScale = Vector3.one * minScale;
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Spaceship Grave
+  m_EditorClassIdentifier: 
+  eventTitle: 
+  eventType: 0
+  eventDescription: 'You begin to see pieces of metal and wood aimlessly drifting
+    through the void. Some time later, masts start to emerge over the eerie horizon.
+    You find yourself in a massive spaceship graveyard, a place where AI-powered
+    ships go to die.
+
+
+    You can send 2 Crew Members in order to explore'
+  eventEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Send your Crew (Possitive effect)
+    choiceEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
+  - choiceDescription: Send your Crew (Negative effect)
+    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
