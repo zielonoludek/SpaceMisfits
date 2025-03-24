@@ -343,12 +343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
+  shipPart: {fileID: 0}
   isCrewQuarters: 0
   capacity: 1
-  snapPoints:
-  - {fileID: 590986233}
-  highlightVisual: {fileID: 1196617939}
+  snapPoints: []
+  highlightVisual: {fileID: 0}
 --- !u!1001 &560293942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -618,12 +617,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
+  shipPart: {fileID: 0}
   isCrewQuarters: 0
   capacity: 1
-  snapPoints:
-  - {fileID: 988602421}
-  highlightVisual: {fileID: 810638781}
+  snapPoints: []
+  highlightVisual: {fileID: 0}
 --- !u!1 &787065099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1222,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1452649413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452649415}
+  - component: {fileID: 1452649414}
+  m_Layer: 0
+  m_Name: Ship
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1452649414
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452649413}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 2092324276, guid: f8613ef439c98714591e726629b70741, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 15.27, y: 5.54}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1452649415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452649413}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1478939566 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6701397975302367533, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
@@ -1299,7 +1384,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e20ddf5b9d0546245bad8e9072c774d2, type: 2}
+  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1338,8 +1423,8 @@ Transform:
   m_GameObject: {fileID: 1488325416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0.1, z: 19.4}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 73.0388, y: 47.1935, z: 19.4}
+  m_LocalScale: {x: 91.185425, y: 10, z: 53.67689}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1502,14 +1587,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 11400000, guid: 18b145e7fa4c0814a949644adcd78049, type: 2}
-  isCrewQuarters: 1
-  capacity: 3
-  snapPoints:
-  - {fileID: 1965582497}
-  - {fileID: 1360844282}
-  - {fileID: 787065100}
-  highlightVisual: {fileID: 1075402185}
+  shipPart: {fileID: 0}
+  isCrewQuarters: 0
+  capacity: 1
+  snapPoints: []
+  highlightVisual: {fileID: 0}
 --- !u!1 &2023609925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,12 +1782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
+  shipPart: {fileID: 0}
   isCrewQuarters: 0
   capacity: 1
-  snapPoints:
-  - {fileID: 51231206}
-  highlightVisual: {fileID: 965451916}
+  snapPoints: []
+  highlightVisual: {fileID: 0}
 --- !u!1 &2071308831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,19 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f4284216b3aa842bd556bc9907a721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipParts:
-  - shipPart: {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
-    partPosition: {fileID: 2049079673}
-    assignedCrewmates: []
-  - shipPart: {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
-    partPosition: {fileID: 1293283631}
-    assignedCrewmates: []
-  - shipPart: {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
-    partPosition: {fileID: 1581064023}
-    assignedCrewmates: []
-  - shipPart: {fileID: 11400000, guid: 18b145e7fa4c0814a949644adcd78049, type: 2}
-    partPosition: {fileID: 1103558678}
-    assignedCrewmates: []
+  shipParts: []
 --- !u!4 &2071308833
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,3 +2215,4 @@ SceneRoots:
   - {fileID: 8682130518600886991}
   - {fileID: 2023609928}
   - {fileID: 2071308833}
+  - {fileID: 1452649415}

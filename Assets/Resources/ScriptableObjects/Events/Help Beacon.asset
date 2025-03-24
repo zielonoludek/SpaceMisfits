@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: Help Beacon
   m_EditorClassIdentifier: 
-  tiedEvents: []
   isPersistent: 0
   eventTitle: Help Beacon
   eventType: 0
-  eventDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. '
+  eventDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\nUt enim ad
+    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+    esse cillum dolore eu fugiat nulla pariatur. "
   eventEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
   crewmateToRecruit: {fileID: 11400000, guid: 043c57ce962df9546bc0ec6854657853, type: 2}
   hasChoices: 0
