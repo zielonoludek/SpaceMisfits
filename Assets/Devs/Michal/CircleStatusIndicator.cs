@@ -10,7 +10,14 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
     [SerializeField] private TextMeshProUGUI valueText;
     [SerializeField] private float maxValue = 100f;
 
+    [Header("Tooltip Settings")] 
+    [SerializeField] private TooltipManager tooltipManager;
+    [SerializeField] private float tooltipDelay = 1f;
+    [SerializeField, TextArea(2, 5)] private string tooltipDescription;
+
     private float currentValue;
+    private float hoverTime;
+    private bool isHovering;
     
     private void Start()
     {
@@ -24,6 +31,21 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
         if (valueText != null)
         {
             valueText.gameObject.SetActive(false);
+        }
+    }
+    
+    private void Update()
+    {
+        if (isHovering)
+        {
+            hoverTime += Time.deltaTime;
+            if (hoverTime >= tooltipDelay)
+            {
+                // Get the position of this status indicator in screen space
+                RectTransform rect = (RectTransform)transform;
+                Vector2 position = rect.TransformPoint(rect.rect.center);
+                tooltipManager.ShowTooltip(tooltipDescription, position);
+            }
         }
     }
     
@@ -44,6 +66,9 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        isHovering = true;
+        hoverTime = 0f;
+        
         if (iconImage != null)
         {
             iconImage.gameObject.SetActive(false);
@@ -57,6 +82,9 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        isHovering = false;
+        hoverTime = 0f;
+        
         if (iconImage != null)
         {
             iconImage.gameObject.SetActive(true);
@@ -65,6 +93,11 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
         if (valueText != null)
         {
             valueText.gameObject.SetActive(false);
+        }
+
+        if (tooltipManager != null)
+        {
+            tooltipManager.HideTooltip();
         }
     }
 }
