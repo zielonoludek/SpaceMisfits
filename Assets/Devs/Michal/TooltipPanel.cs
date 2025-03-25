@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TooltipManager : MonoBehaviour
+public class TooltipPanel : MonoBehaviour
 {
     [SerializeField] private GameObject tooltipPanel;
     [SerializeField] private TextMeshProUGUI tooltipText;
