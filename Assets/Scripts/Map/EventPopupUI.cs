@@ -119,6 +119,24 @@ public class EventPopupUI : MonoBehaviour
             GameManager.Instance.CrewManager.RecruitCrewmate(choice.crewmate);
         }
         
-        CloseEvent();
+        if (choice.nextEvent != null)
+        {
+            // Show the next event instead of closing the popup
+            if (choice.nextEvent is SectorEventSO sectorEvent)
+            {
+                ShowEvent(sectorEvent);
+            }
+            else if (choice.nextEvent is FightEventSO fightEvent)
+            {
+                GameManager.Instance.FightManager.StartFight(fightEvent);
+                CloseEvent();
+            }
+            
+        }
+        else
+        {
+            // Close the popup if no next event is available
+            CloseEvent();
+        }
     }
 }
