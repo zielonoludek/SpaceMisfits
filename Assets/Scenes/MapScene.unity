@@ -15289,6 +15289,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48908624815502522, guid: 96278252dad0a4641bc205efa366ff5a, type: 3}
+      propertyPath: Priority.m_Value
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 48908624815502522, guid: 96278252dad0a4641bc205efa366ff5a, type: 3}
+      propertyPath: Lens.OrthographicSize
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 712751621649989054, guid: 96278252dad0a4641bc205efa366ff5a, type: 3}
       propertyPath: movementSpeed
       value: 5
@@ -15347,7 +15355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343276750412144750, guid: 96278252dad0a4641bc205efa366ff5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 3783658738963603632, guid: 96278252dad0a4641bc205efa366ff5a, type: 3}
       propertyPath: m_Name
