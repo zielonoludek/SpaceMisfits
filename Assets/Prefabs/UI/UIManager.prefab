@@ -1165,6 +1165,7 @@ MonoBehaviour:
   iconImage: {fileID: 3446064478626880326}
   valueText: {fileID: 4917204001955251060}
   maxValue: 100
+  tooltipPanel: {fileID: 436519111955160370}
   tooltipDelay: 1
   tooltipDescription: 
 --- !u!114 &8175946117671159178
@@ -3400,6 +3401,7 @@ MonoBehaviour:
   iconImage: {fileID: 1503010838115235836}
   valueText: {fileID: 211635190212312206}
   maxValue: 100
+  tooltipPanel: {fileID: 436519111955160370}
   tooltipDelay: 1
   tooltipDescription: 
 --- !u!114 &5275338213968800400
@@ -4182,6 +4184,7 @@ MonoBehaviour:
   iconImage: {fileID: 8350328020124223173}
   valueText: {fileID: 2098360076267968102}
   maxValue: 100
+  tooltipPanel: {fileID: 436519111955160370}
   tooltipDelay: 1
   tooltipDescription: Tung tung tung sahur
 --- !u!114 &1753433318084041595
@@ -9868,6 +9871,7 @@ MonoBehaviour:
   iconImage: {fileID: 2326610093335472215}
   valueText: {fileID: 932934437328254197}
   maxValue: 100
+  tooltipPanel: {fileID: 436519111955160370}
   tooltipDelay: 1
   tooltipDescription: 
 --- !u!114 &3053360118102393206

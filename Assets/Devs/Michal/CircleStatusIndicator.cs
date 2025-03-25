@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -9,9 +10,9 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
     [SerializeField] private Image iconImage;
     [SerializeField] private TextMeshProUGUI valueText;
     [SerializeField] private float maxValue = 100f;
-
+    
     [Header("Tooltip Settings")] 
-    [SerializeField] private TooltipManager tooltipManager;
+    [SerializeField] private TooltipPanel tooltipPanel;
     [SerializeField] private float tooltipDelay = 1f;
     [SerializeField, TextArea(2, 5)] private string tooltipDescription;
 
@@ -44,7 +45,7 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
                 // Get the position of this status indicator in screen space
                 RectTransform rect = (RectTransform)transform;
                 Vector2 position = rect.TransformPoint(rect.rect.center);
-                tooltipManager.ShowTooltip(tooltipDescription, position);
+                tooltipPanel.ShowTooltip(tooltipDescription, position);
             }
         }
     }
@@ -95,9 +96,9 @@ public class CircleStatusIndicator : MonoBehaviour, IPointerEnterHandler, IPoint
             valueText.gameObject.SetActive(false);
         }
 
-        if (tooltipManager != null)
+        if (tooltipPanel != null)
         {
-            tooltipManager.HideTooltip();
+            tooltipPanel.HideTooltip();
         }
     }
 }
