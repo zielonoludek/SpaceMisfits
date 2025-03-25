@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] float movementSpeed = 10;
     [SerializeField] float zoomedMovementSpeed = 5;
 
-    private bool zoomed = false;
+    [SerializeField] private bool zoomed = false;
 
     public CinemachineCamera currentCamera { get; set; }
     public bool ZoomState { get { return zoomed; } }
