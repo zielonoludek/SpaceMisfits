@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1c437fea0787c341a9e80431a03dfda
+guid: 1744aee35e340304fbc1947714e47433
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crew_Hunger_Icon_0
+      name: LiquidFood 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 69
+        width: 71
         height: 71
-      alignment: 0
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef79d85ad1d307b40b2b526c3a0ae9f1
-      internalID: -1160632992
+      spriteID: 58428e80e807aa64ebae7b35f9daf2ee
+      internalID: 1786388358
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d213f62d6818e0d4f8f68158b3750a99
+    spriteID: 3f02f748380b26246872833e754b4e7b
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Crew_Hunger_Icon_0: -1160632992
+      LiquidFood 1_0: 1786388358
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
