@@ -35,10 +35,12 @@ public class SectorEventSOEditor : Editor
                 SerializedProperty descriptionProp = choiceProp.FindPropertyRelative("choiceDescription");
                 SerializedProperty effectProp = choiceProp.FindPropertyRelative("choiceEffect");
                 SerializedProperty crewmateRewardProp = choiceProp.FindPropertyRelative("crewmate");
+                SerializedProperty nextEventPop = choiceProp.FindPropertyRelative("nextEvent");
 
                 EditorGUILayout.PropertyField(descriptionProp, new GUIContent($"Choice {i + 1}"));
                 EditorGUILayout.PropertyField(effectProp, new GUIContent($"Choice {i + 1} Effect"));
                 EditorGUILayout.PropertyField(crewmateRewardProp, new GUIContent($"Choice {i + 1} Crew"));
+                EditorGUILayout.PropertyField(nextEventPop, new GUIContent($"Choice {i + 1} Event"));
                 EditorGUILayout.Space();
             }
         }

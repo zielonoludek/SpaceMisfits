@@ -20,6 +20,7 @@ public class SectorEventSO : EventSO
         public string choiceDescription;
         public Effect choiceEffect;
         public CrewmateData crewmate;
+        public EventSO nextEvent;
     }
     
     public List<Choice> choices = new List<Choice>() { new Choice(), new Choice() };
