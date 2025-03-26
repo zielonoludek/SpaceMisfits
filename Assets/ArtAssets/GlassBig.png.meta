@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19f894610f0eea842b788a66dbc3b135
+guid: 4618f897752a2454daf0569683966f20
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crew_Happiness_Icon_0
+      name: GlassBig_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 121
         height: 121
-      alignment: 0
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc4a0895873d58a4fae766478f5f28d8
-      internalID: 1054855474
+      spriteID: 37ed1140ea4e2db47a1eb5ef6e8924ec
+      internalID: 585536636
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f1d0232df1b40854096a1ab159f5dd77
+    spriteID: 80bde7d0b901a4f4cb5fd11d5f47a36b
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Crew_Happiness_Icon_0: 1054855474
+      GlassBig_0: 585536636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

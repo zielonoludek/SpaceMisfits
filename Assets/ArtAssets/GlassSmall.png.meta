@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b44ccb69a1821aa42bca7c615d3786be
+guid: 3e84f1a03c347ca42beb51869279ba0b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fame_Icon_0
+      name: GlassSmall_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 69
+        width: 71
         height: 71
-      alignment: 0
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1fc7a4836aaff048aa476f32e14cdab
-      internalID: -1122489293
+      spriteID: 7de3db66bb7b4b14e8a6bcf1a38b89d2
+      internalID: -191733060
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 508ae3402acfc294295daf046c297baa
+    spriteID: 85b7c9c26319d654e8e07a09c67233af
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fame_Icon_0: -1122489293
+      GlassSmall_0: -191733060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
