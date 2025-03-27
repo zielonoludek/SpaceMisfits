@@ -50,4 +50,5 @@ public class CameraManager : MonoBehaviour
 
     public Vector3 GetMousePosition => Mouse.current.position.ReadValue();
     public Vector3 GetCameraPosition => transform.position;
+
 }

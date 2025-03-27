@@ -10,6 +10,6 @@ public class ChangeSceneUI : MonoBehaviour
 
     private void Start()
     {
-        changeSceneBtn.onClick.AddListener(() => GameManager.Instance.SceneLoader.LoadNewScene(changeSceneNum));
+        changeSceneBtn?.onClick.AddListener(() => GameManager.Instance.SceneLoader.LoadNewScene(changeSceneNum));
     }
 }
