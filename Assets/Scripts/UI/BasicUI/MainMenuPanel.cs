@@ -13,6 +13,8 @@ public class MainMenuPanel : MonoBehaviour
     void Start()
     {
         Setup();
+        GameManager.Instance.TimeManager.PauseTime(true);
+
     }
 
     private void Setup()
@@ -24,7 +26,16 @@ public class MainMenuPanel : MonoBehaviour
         quitBtn.onClick.RemoveAllListeners();
         continueBtn.onClick.RemoveAllListeners();
 
-        startBtn.onClick.AddListener(() => SceneManager.LoadScene("MainGameScene"));
+        startBtn.onClick.AddListener(() =>
+        {
+            GameManager.Instance.Reset();
+            GameManager.Instance.SceneLoader.LoadNewScene(1);
+        });
+        continueBtn.onClick.AddListener(() =>
+        {
+            GameManager.Instance.SceneLoader.LoadNewScene(1);
+            GameManager.Instance.TimeManager.PauseTime(false);
+        });
         settingsBtn.onClick.AddListener(() => GameManager.Instance.UIManager.OptionsPanelUI.Setup());
         quitBtn.onClick.AddListener(() =>
         {

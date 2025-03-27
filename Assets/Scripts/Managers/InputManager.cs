@@ -38,7 +38,6 @@ public class InputManager : MonoBehaviour
         inputActions.UI.Enable();
         inputActions.UI.Esc.performed += _ =>
         {
-            Debug.Log("Escape pressed");
             GameManager.Instance.UIManager.PausePanelUI.Setup();
         };
 
@@ -91,7 +90,6 @@ public class InputManager : MonoBehaviour
 
         if (zoomDelta > 0)
         {
-
 
             if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Map)
             {

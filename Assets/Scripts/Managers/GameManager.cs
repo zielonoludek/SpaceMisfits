@@ -61,9 +61,16 @@ public class GameManager : MonoBehaviour
         LoadManagers();
         sceneLoader.NewSceneLoaded += LoadManagers;
     }
+    public void Reset()
+    {
+        timeManager.Reset();
+        resourceManager.Reset();
+
+        gameState = GameState.None;
+        gameScene = GameScene.MainMenu;
+    }
     void LoadManagers()
     {
-        inputManager.Setup();
         cameraManager = FindFirstObjectByType<CameraManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
@@ -76,5 +83,7 @@ public class GameManager : MonoBehaviour
         resourceManager = gameObject.GetComponent<ResourceManager>();
         inputManager = gameObject.GetComponent<InputManager>();
         sceneLoader = gameObject.GetComponent<SceneLoader>();
+
+        inputManager.Setup();
     }
 }

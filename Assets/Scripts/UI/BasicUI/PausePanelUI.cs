@@ -14,12 +14,8 @@ public class PausePanelUI : MonoBehaviour
 
     public void Setup()
     {
-        if (pausePanel.activeSelf)
-        {
-            Close();
-            return;
-        }
         pausePanel.SetActive(true);
+        GameManager.Instance.TimeManager.PauseTime(true);
 
         continueBtn.onClick.RemoveAllListeners();
         settingsBtn.onClick.RemoveAllListeners();
@@ -46,11 +42,13 @@ public class PausePanelUI : MonoBehaviour
     }
     private void OpenMainMenu()
     {
-        Close();
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.SceneLoader.LoadNewScene(0); 
+        GameManager.Instance.TimeManager.PauseTime(true);
+
     }
     public void Close()
     {
+        GameManager.Instance.TimeManager.PauseTime(false);
         pausePanel.SetActive(false);
     }
 }

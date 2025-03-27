@@ -17,7 +17,7 @@ public enum FightTier { Easy, Medium, Hard }
 public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight, EmptySpace }
 
 public enum GameState { None, Event }
-public enum GameScene { None, Map, Ship }
+public enum GameScene { None, Map, Ship, MainMenu }
 
 public enum RequestType { Positive, Neutral, Negative }
 public enum RequestOriginType
