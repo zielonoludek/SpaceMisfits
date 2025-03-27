@@ -1,64 +1,79 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CrewMemberDraggable : MonoBehaviour
 {
     public CrewmateData crewmateData;
-    private Vector3 offset;
+    public ShipPartManager shipPartManager;
+
+    [SerializeField] private InputActions inputActions;
+
+    private Vector3 currentScreenPosition;
+    private Camera mainCamera;
     private bool isDragging = false;
+    private Vector3 offset;
     private Renderer rend;
     private Vector3 initialPosition;
     private Transform initialParent;
     private GameObject currentTrigger;
-    public ShipPartManager shipPartManager;
+
     private static CrewMemberDraggable currentlyDragging = null;
 
-    private void Start()
+    private Vector3 WorldPosition
     {
+        get
+        {
+            float z = mainCamera.WorldToScreenPoint(transform.position).z;
+            return mainCamera.ScreenToWorldPoint(currentScreenPosition + new Vector3(0, 0, z));
+        }
+    }
+
+    private bool IsCrewClickedOn
+    {
+        get
+        {
+            Ray ray = mainCamera.ScreenPointToRay(currentScreenPosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                return hit.transform == transform;
+            }
+            return false;
+        }
+    }
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
         rend = GetComponent<Renderer>();
         initialPosition = transform.position;
         initialParent = transform.parent;
+
+        inputActions = new InputActions();
+        inputActions.CrewDrag.Press.Enable();
+        inputActions.CrewDrag.ScreenPosition.Enable();
+        inputActions.CrewDrag.ScreenPosition.performed += context => { currentScreenPosition = context.ReadValue<Vector2>(); };
+        inputActions.CrewDrag.Press.performed += _ => { if (IsCrewClickedOn) StartCoroutine(CrewDrag()); };
+        inputActions.CrewDrag.Press.canceled += _ => { EndDrag(); };
     }
 
-    private void Update()
+    private IEnumerator CrewDrag()
     {
-        if (Input.GetMouseButton(0))
+        if (currentlyDragging != null || isDragging) yield break;
+
+        isDragging = true;
+        currentlyDragging = this;
+
+        offset = transform.position - WorldPosition;
+        Cursor.visible = false;
+        HighlightValidDropZones();
+
+        while (isDragging)
         {
-            TryStartDrag();
-
-            if (isDragging)
-            {
-                Drag();
-            }
+            transform.position = WorldPosition + offset;
+            yield return null;
         }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            EndDrag();
-        }
-    }
-
-    private void TryStartDrag()
-    {
-        if (isDragging || CrewMemberDraggable.currentlyDragging != null) return;
-
-        RaycastHit hit = CastRay();
-
-        if (hit.collider != null && hit.collider.gameObject == gameObject)
-        {
-            offset = transform.position - GetMouseWorldPos();
-            isDragging = true;
-            currentlyDragging = this;
-            Cursor.visible = false;
-
-            HighlightValidDropZones();
-            Debug.Log("Drag started");
-        }
-    }
-
-    private void Drag()
-    {
-        Vector3 mouseWorldPos = GetMouseWorldPos();
-        transform.position = new Vector3(mouseWorldPos.x, mouseWorldPos.y, initialPosition.z) + offset;
     }
 
     private void EndDrag()
@@ -128,24 +143,6 @@ public class CrewMemberDraggable : MonoBehaviour
         Debug.Log("Invalid drop zone. Returning to Crew Quarters.");
     }
 
-    private Vector3 GetMouseWorldPos()
-    {
-        Vector3 screenMousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(transform.position).z);
-        return Camera.main.ScreenToWorldPoint(screenMousePos);
-    }
-
-    private RaycastHit CastRay()
-    {
-        Vector3 screenMousePosFar = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.farClipPlane);
-        Vector3 screenMousePosNear = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane);
-        Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
-        Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
-        RaycastHit hit;
-        int layerMask = ~LayerMask.GetMask("Ignore Raycast");
-        Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, Mathf.Infinity, layerMask);
-        return hit;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (currentlyDragging != this) return;
@@ -195,5 +192,4 @@ public class CrewMemberDraggable : MonoBehaviour
             dropZone.ResetZoneColor();
         }
     }
-
 }
