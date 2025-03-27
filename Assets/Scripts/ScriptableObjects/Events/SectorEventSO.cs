@@ -12,7 +12,7 @@ public class SectorEventSO : EventSO
     [Header("Choice-Based event settings")]
     public bool hasChoices;
 
-    [Range(2, 4)] public int numberOfChoices = 2;
+    [Range(1, 4)] public int numberOfChoices = 1;
     
     [System.Serializable]
     public class Choice

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1744aee35e340304fbc1947714e47433
+guid: ccd29463ea9969d42ae3710d6ec6d4b8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LiquidFood 1_0
+      name: icon_crewhappy_color 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 71
-        height: 71
-      alignment: 9
+        width: 118
+        height: 117
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58428e80e807aa64ebae7b35f9daf2ee
-      internalID: 1786388358
+      spriteID: 280c4c399c3c95442b170f266d164f9e
+      internalID: 1111588631
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3f02f748380b26246872833e754b4e7b
+    spriteID: 2409adb2fc7d6f948bb7c17ea295b0c5
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LiquidFood 1_0: 1786388358
+      icon_crewhappy_color 1_0: 1111588631
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
