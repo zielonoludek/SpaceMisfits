@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6969190601747175354}
   m_Layer: 0
   m_Name: CrewMemberPrefab
-  m_TagString: Drag
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public static InputManager instance;
     public delegate void Swipe(Vector2 direction);
 
-    private bool isDragging = false;
+    private bool isCameraDragging = false;
     public float pinchZoomSpeed = 0.01f;
     private float prevMagnitude = 0;
     private int touchCount = 0;
@@ -23,14 +23,23 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        Setup();
+    }
+    public void Setup()
+    {
         inputActions = new InputActions();
         inputActions.Camera.Enable();
 
         inputActions.Camera.Zoom.performed += OnZoomScroll;
+        inputActions.Camera.CameraDrag.started += OnCameraDrag;
+        inputActions.Camera.CameraDrag.performed += OnCameraDrag;
+        inputActions.Camera.CameraDrag.canceled += OnCameraDrag;
 
-        inputActions.Camera.Drag.started += OnDrag;
-        inputActions.Camera.Drag.performed += OnDrag;
-        inputActions.Camera.Drag.canceled += OnDrag;
+        inputActions.UI.Enable();
+        inputActions.UI.Esc.performed += _ =>
+        {
+            GameManager.Instance.UIManager.PausePanelUI.Setup();
+        };
 
         SetupPinchZoom();
     }
@@ -82,7 +91,6 @@ public class InputManager : MonoBehaviour
         if (zoomDelta > 0)
         {
 
-
             if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Map)
             {
                 scrollCount++;
@@ -115,19 +123,19 @@ public class InputManager : MonoBehaviour
 
 
 
-    private void OnDrag(InputAction.CallbackContext context)
+    private void OnCameraDrag(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             initialPos = GameManager.Instance.CameraManager.GetMousePosition;
-            isDragging = true;
+            isCameraDragging = true;
             return;
         }
 
 
         if (context.canceled)
         {
-            isDragging = false;
+            isCameraDragging = false;
         }
     }
 
@@ -155,7 +163,7 @@ public class InputManager : MonoBehaviour
     private void LateUpdate()
     {
         if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
-        if (!isDragging) return;
+        if (!isCameraDragging) return;
 
         Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
         Vector2 diff = currentPos - initialPos;
