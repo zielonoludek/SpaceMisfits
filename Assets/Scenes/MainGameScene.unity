@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51231206}
   m_Layer: 0
-  m_Name: CrewSnapPosition
+  m_Name: CannonSnapPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,11 +343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 0}
+  shipPart: {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
   isCrewQuarters: 0
   capacity: 1
-  snapPoints: []
-  highlightVisual: {fileID: 0}
+  snapPoints:
+  - {fileID: 590986233}
+  highlightVisual: {fileID: 1196617939}
 --- !u!1001 &560293942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,7 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 590986233}
   m_Layer: 0
-  m_Name: CrewSnapPosition
+  m_Name: AnchorSnapPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,11 +618,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 0}
+  shipPart: {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
   isCrewQuarters: 0
   capacity: 1
-  snapPoints: []
-  highlightVisual: {fileID: 0}
+  snapPoints:
+  - {fileID: 988602421}
+  highlightVisual: {fileID: 810638781}
 --- !u!1 &787065099
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 787065100}
   m_Layer: 0
-  m_Name: CrewSnapPosition3
+  m_Name: CQSnapPosition3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,7 +897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988602421}
   m_Layer: 0
-  m_Name: CrewSnapPosition
+  m_Name: SailsSnapPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,7 +1040,7 @@ Transform:
   m_GameObject: {fileID: 1103558677}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.5, y: -7.05, z: 33.1}
+  m_LocalPosition: {x: -25.63, y: -7.05, z: 33.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1167,7 +1169,7 @@ Transform:
   m_GameObject: {fileID: 1293283630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.44, y: -7.02, z: 9.98}
+  m_LocalPosition: {x: 3.4, y: -7, z: 14.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1185,7 +1187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1360844282}
   m_Layer: 0
-  m_Name: CrewSnapPosition2
+  m_Name: CQSnapPosition2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1454,7 +1456,7 @@ Transform:
   m_GameObject: {fileID: 1581064022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1, y: -7.08, z: 31.29}
+  m_LocalPosition: {x: -4.1, y: -7.08, z: 40.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1488,7 +1490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965582497}
   m_Layer: 0
-  m_Name: CrewSnapPosition1
+  m_Name: CQSnapPosition1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1587,11 +1589,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 0}
-  isCrewQuarters: 0
-  capacity: 1
-  snapPoints: []
-  highlightVisual: {fileID: 0}
+  shipPart: {fileID: 11400000, guid: 18b145e7fa4c0814a949644adcd78049, type: 2}
+  isCrewQuarters: 1
+  capacity: 3
+  snapPoints:
+  - {fileID: 1965582497}
+  - {fileID: 1360844282}
+  - {fileID: 787065100}
+  highlightVisual: {fileID: 1075402185}
 --- !u!1 &2023609925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1701,7 @@ Transform:
   m_GameObject: {fileID: 2049079672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.47, y: -7.13, z: -0.87}
+  m_LocalPosition: {x: 38, y: -7.1, z: 8.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1782,11 +1787,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ee969a1155d27488ea623fb9e0f76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipPart: {fileID: 0}
+  shipPart: {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
   isCrewQuarters: 0
   capacity: 1
-  snapPoints: []
-  highlightVisual: {fileID: 0}
+  snapPoints:
+  - {fileID: 51231206}
+  highlightVisual: {fileID: 965451916}
 --- !u!1 &2071308831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1822,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f4284216b3aa842bd556bc9907a721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipParts: []
+  shipParts:
+  - shipPart: {fileID: 11400000, guid: 8bd578c3938a16a46a950b7663a5e543, type: 2}
+    partPosition: {fileID: 2049079673}
+    assignedCrewmates: []
+  - shipPart: {fileID: 11400000, guid: c16949dc10b7e694b9274e0e674d2c8d, type: 2}
+    partPosition: {fileID: 1293283631}
+    assignedCrewmates: []
+  - shipPart: {fileID: 11400000, guid: 7cec17b6c1f401d4a82ad40f0d5c6905, type: 2}
+    partPosition: {fileID: 1581064023}
+    assignedCrewmates: []
+  - shipPart: {fileID: 11400000, guid: 18b145e7fa4c0814a949644adcd78049, type: 2}
+    partPosition: {fileID: 1103558678}
+    assignedCrewmates: []
 --- !u!4 &2071308833
 Transform:
   m_ObjectHideFlags: 0
@@ -2121,6 +2139,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2923600641465148287, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923600641465148287, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923600641465148287, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3125510710412903799, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2143,6 +2173,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315902191142093170, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734729523171366308, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734729523171366308, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734729523171366308, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6354115589940107660, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
