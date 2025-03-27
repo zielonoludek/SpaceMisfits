@@ -25,7 +25,7 @@ public class MainMenuPanel : MonoBehaviour
         continueBtn.onClick.RemoveAllListeners();
 
         startBtn.onClick.AddListener(() => SceneManager.LoadScene("MainGameScene"));
-        //settingsBtn.onClick.AddListener(OpenOptions);
+        settingsBtn.onClick.AddListener(() => GameManager.Instance.UIManager.OptionsPanelUI.Setup());
         quitBtn.onClick.AddListener(() =>
         {
 #if UNITY_EDITOR
@@ -35,5 +35,9 @@ public class MainMenuPanel : MonoBehaviour
 #endif
         });
 
+    }
+    void OpenOptions()
+    {
+        GameManager.Instance.UIManager.OptionsPanelUI.Setup();
     }
 }

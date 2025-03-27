@@ -12,6 +12,7 @@ public enum EffectType
     CrewMemberSpot,
     CrewMood
 }
+public enum SettingsPanel { Audio, Graphics, Controls }
 public enum FightTier { Easy, Medium, Hard }
 public enum EventType { FaintSignal, Waypoint, DevilsMaw, SharpenThoseDirks, Spaceport, Fight, EmptySpace }
 
