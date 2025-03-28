@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Help Beacon
+  m_Name: GH_F
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Help Beacon
+  eventTitle: 
   eventType: 0
-  eventDescription: "Slow and methodical data streams ping and reflect off your radars.
-    Not long after, the green hue of an emergency beacon is picked up by your spyglasser.\n\nSomeone
-    had to have left it here, and the transmitted data you decrypted points to the
-    location of the ship this emergency beacon was once a part of. It might be worth
-    to investigate the location along your travels.  \n\n"
+  eventDescription: "Finally after waiting for so long, you get a ping on your comm
+    device:\n\n\"Captain, pull me in.\"\n\nYou activate the pulling mechanism, and
+    after a while, the emergency vessel is brought back aboard. Your crewmate steps
+    onto the deck, carrying a metal chest, and sets it down on the deck floor.\n\n\"I
+    found some booty lying around in the cargo hold of a galleon wreck. I don\u2019t
+    know, and don\u2019t want to know, what destroyed it.\" \n\nNow that you have
+    managed to find treasures hidden here, you can leave.  \n"
   eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
   hasChoices: 0

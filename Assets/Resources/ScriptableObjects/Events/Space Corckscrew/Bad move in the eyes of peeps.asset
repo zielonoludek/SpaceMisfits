@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83884613326fbf74e9a8792859bba847, type: 3}
-  m_Name: Fight Won
+  m_Name: Bad move in the eyes of peeps
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: That was a bad move in the eyes of peapole
   description: 
-  effectType: 0
-  amount: -20
+  effectType: 1
+  amount: -5

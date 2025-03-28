@@ -27,11 +27,14 @@ MonoBehaviour:
   numberOfChoices: 3
   choices:
   - choiceDescription: Visit the shop
-    choiceEffect: {fileID: 11400000, guid: 0b4ed1104766f6d489262ec315401bae, type: 2}
+    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
+    nextEvent: {fileID: 11400000, guid: e01c2b16dba91534d9b5c4c877aa2f5f, type: 2}
   - choiceDescription: Leave
     choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}
   - choiceDescription: Gamble your soul away
     choiceEffect: {fileID: 11400000, guid: 58f6af6c3f9743946bcb5ebf6c221a78, type: 2}
     crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}
