@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e91a36d2dc6483448b0700dd1f484972
+guid: 56a7645839b901c41be2929ec5a5d8fa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LiquidNotoriety 1_0
+      name: icon_infamy 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 71
-        height: 71
-      alignment: 9
+        width: 44
+        height: 34
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88bd5ac7697dc29469214968809387fc
-      internalID: -157908424
+      spriteID: 81311a1199dfa734ea591ef957524b30
+      internalID: 991100626
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 80c40fc0a0e53de449027b2f9c58a7b5
+    spriteID: e6c18ed7408dde24a8299284c70649ca
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LiquidNotoriety 1_0: -157908424
+      icon_infamy 1_0: 991100626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

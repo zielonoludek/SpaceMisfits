@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 76c5b0788bbb9b64890a9aa495b42cf2
+guid: f8af78abe4a12e5498476e9d8fae2c8b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LiquidHealth 1_0
+      name: Pop-up Book cover_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 71
-        height: 71
-      alignment: 9
+        width: 1080
+        height: 680
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 670fd48487da6544e92e5aebcdf08833
-      internalID: 381437900
+      spriteID: 6b61635e22b216649a39ef172a1fed19
+      internalID: 1460330275
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 76eb574bbc609e74a84e8ccc677825de
+    spriteID: b97d921fce958914dba8cd3a3ddf1eec
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LiquidHealth 1_0: 381437900
+      Pop-up Book cover_0: 1460330275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

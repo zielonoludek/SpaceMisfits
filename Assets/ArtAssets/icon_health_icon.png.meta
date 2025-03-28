@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4618f897752a2454daf0569683966f20
+guid: b30f000750fe7f34c8695d7939fee554
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,14 +110,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GlassBig_0
+      name: icon_health_icon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 121
-        height: 121
-      alignment: 9
+        width: 35
+        height: 31
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37ed1140ea4e2db47a1eb5ef6e8924ec
-      internalID: 585536636
+      spriteID: 1f2412cb7fa75a94bbe5b7fbe55c2c79
+      internalID: 436818427
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 80bde7d0b901a4f4cb5fd11d5f47a36b
+    spriteID: 57038bf56ec34a14eb083d33c1dc34e6
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GlassBig_0: 585536636
+      icon_health_icon_0: 436818427
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
