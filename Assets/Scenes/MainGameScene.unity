@@ -2754,6 +2754,22 @@ PrefabInstance:
       propertyPath: shipPartManager
       value: 
       objectReference: {fileID: 2071308832}
+    - target: {fileID: 1780588621177501449, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: availableCrewmates.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780588621177501449, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: 'availableCrewmates.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ed25eaf06ca2f7949bb7561fe8030a61, type: 2}
+    - target: {fileID: 1780588621177501449, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: 'availableCrewmates.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f8b9c2bcacd93f40b11995ce5917315, type: 2}
+    - target: {fileID: 1780588621177501449, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
+      propertyPath: 'availableCrewmates.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e8954d906ed1be546b1415d27046ac92, type: 2}
     - target: {fileID: 1834745674527746172, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
