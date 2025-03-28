@@ -23,14 +23,23 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        Setup();
+    }
+    public void Setup()
+    {
         inputActions = new InputActions();
         inputActions.Camera.Enable();
 
         inputActions.Camera.Zoom.performed += OnZoomScroll;
-
         inputActions.Camera.CameraDrag.started += OnCameraDrag;
         inputActions.Camera.CameraDrag.performed += OnCameraDrag;
         inputActions.Camera.CameraDrag.canceled += OnCameraDrag;
+
+        inputActions.UI.Enable();
+        inputActions.UI.Esc.performed += _ =>
+        {
+            GameManager.Instance.UIManager.PausePanelUI.Setup();
+        };
 
         SetupPinchZoom();
     }
@@ -81,7 +90,6 @@ public class InputManager : MonoBehaviour
 
         if (zoomDelta > 0)
         {
-
 
             if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Map)
             {

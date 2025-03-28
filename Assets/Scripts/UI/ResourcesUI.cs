@@ -23,15 +23,6 @@ public class ResourcesUI : MonoBehaviour
         UpdateCrewMoodUI(GameManager.Instance.ResourceManager.CrewMood);
     }
 
-    private void OnDestroy()
-    {
-        GameManager.Instance.ResourceManager.OnBootyChanged -= UpdateBootyUI;
-        GameManager.Instance.ResourceManager.OnNotorietyChanged -= UpdateNotorietyUI;
-        GameManager.Instance.ResourceManager.OnShipHealthChanged -= UpdateShipHealthUI;
-        GameManager.Instance.ResourceManager.OnFoodChanged -= UpdateFoodUI;
-        GameManager.Instance.ResourceManager.OnCrewMoodChanged -= UpdateCrewMoodUI;
-    }
-
     private void UpdateBootyUI(int amount)
     {
         bootyText.text = "Booty: " + amount;

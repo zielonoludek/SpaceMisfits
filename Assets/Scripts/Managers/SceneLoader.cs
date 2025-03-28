@@ -17,8 +17,10 @@ public class SceneLoader : MonoBehaviour
     }
     private void ChangeSceneEnum(int sceneIndex)
     {
-        if (sceneIndex == 1) GameManager.Instance.GameScene = GameScene.Ship;
-        if (sceneIndex == 2) GameManager.Instance.GameScene = GameScene.Map;
+        if (sceneIndex == 0) GameManager.Instance.GameScene = GameScene.MainMenu;
+        else if(sceneIndex == 1) GameManager.Instance.GameScene = GameScene.Ship;
+        else if(sceneIndex == 2) GameManager.Instance.GameScene = GameScene.Map;
+        else GameManager.Instance.GameScene = GameScene.None;
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
