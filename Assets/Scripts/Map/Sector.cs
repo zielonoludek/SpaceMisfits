@@ -9,9 +9,9 @@ public class Sector : MonoBehaviour
     [Tooltip("Determines if this sector is the one where player starts the game")]
     [SerializeField] private bool isStartingSector;
     [SerializeField] private EventSO sectorEvent;
-    [SerializeField] private Sprite sectorIcon;
-    
-    public static Sector GetCurrentStartingSector => currentStartingSector;
+    [SerializeField] private Sprite sectorIcon; 
+        public static Sector GetCurrentStartingSector => currentStartingSector;
+
     public EventSO GetSectorEvent() => sectorEvent;
     
     private static Sector currentStartingSector;
@@ -34,9 +34,6 @@ public class Sector : MonoBehaviour
             { EventType.Fight, Color.cyan },
             { EventType.EmptySpace, Color.gray }
         };
-
-    
-    
     #region Public functions
 
     public void AddNeighbor(Sector sector, Lane lane)
@@ -81,7 +78,7 @@ public class Sector : MonoBehaviour
 
     public void StartPulsating()
     {
-        if (!isPulsating)
+        if (!isPulsating && gameObject.activeSelf)
         {
             isPulsating = true;
             pulsatingCoroutine = StartCoroutine(PulsateEffect());
@@ -102,38 +99,44 @@ public class Sector : MonoBehaviour
         }
     }
     #endregion
-    
-    
 
+
+
+    /*
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        // Ensures sector event and name are updated when changed in editor
-        SetSectorEvent(sectorEvent);
-        
-        // Ensures only one sector is the starting sector
-        if (isStartingSector)
-        {
-            if (currentStartingSector != null && currentStartingSector != this)
-            {
-                currentStartingSector.isStartingSector = false;
-                EditorUtility.SetDirty(currentStartingSector);
-            }
+    // Ensures sector event and name are updated when changed in editor
+    SetSectorEvent(sectorEvent);
 
-            currentStartingSector = this;
+    // Ensures only one sector is the starting sector
+
+    if (isStartingSector)
+    {
+        currentStartingSector.isStartingSector = false;
+        EditorUtility.SetDirty(currentStartingSector);
+
+        if (currentStartingSector != null && currentStartingSector != this)
+        {
+            currentStartingSector.isStartingSector = false;
+            EditorUtility.SetDirty(currentStartingSector);
         }
+    currentStartingSector = this;
+    }
+
         // Defer the initialization of the sector icon (used to avoid warning messages)
         EditorApplication.delayCall += () =>
-        {
-            if (this != null)
             {
-                InitializeSectorIcon();
-                EditorUtility.SetDirty(this);
-            }
-        };
-    }
+                if (this != null)
+                {
+                    InitializeSectorIcon();
+                    EditorUtility.SetDirty(this);
+                }
+            };
+        }
 #endif
-    
+    */
+
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -164,7 +167,7 @@ public class Sector : MonoBehaviour
         // If the sector has an event, use its corresponding color
         if (sectorEvent != null && eventColors.ContainsKey(sectorEvent.eventType))
         {
-            targetMaterial.color = eventColors[sectorEvent.eventType];
+            //targetMaterial.color = eventColors[sectorEvent.eventType];
         }
         else
         {

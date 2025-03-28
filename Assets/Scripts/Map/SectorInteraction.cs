@@ -5,7 +5,7 @@ public class SectorInteraction : MonoBehaviour
 {
     private HoverUI hoverUI;
     private Vector3 originalScale;
-    private Sector sector;
+    [SerializeField] private Sector sector;
 
     private void Awake()
     {
@@ -42,13 +42,13 @@ public class SectorInteraction : MonoBehaviour
     {
         if (CanBeInteracted())
         {
-            SectorManager.MovePlayerToSector(sector);
+            SectorManager.Instance.MovePlayerToSector(sector);
         }
     }
 
     private bool CanBeInteracted()
     {
-        if (SectorManager.GetPlayerCurrentSector() == null) return false;
-        return SectorManager.GetPlayerCurrentSector().IsNeighbor(sector) && !SectorManager.IsPlayerMoving();
+        if (SectorManager.Instance.GetPlayerCurrentSector() == null) return false;
+        return SectorManager.Instance.GetPlayerCurrentSector().IsNeighbor(sector) && !SectorManager.Instance.IsPlayerMoving();
     }
 }
