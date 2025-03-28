@@ -1783,6 +1783,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+--- !u!114 &1677673385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7128647425820219893, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+  m_PrefabInstance: {fileID: 1677673384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a35baac9abc5304b99e9f1c20f6bed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1685538725 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 228844977076977787, guid: 6e89b0568941b544e80c30f8c22e5a73, type: 3}
@@ -2182,7 +2193,7 @@ PrefabInstance:
     - target: {fileID: 3783063641821124408, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
       propertyPath: startingSector
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1677673385}
     - target: {fileID: 5241574982129797630, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
       propertyPath: mainSceneUI
       value: 
