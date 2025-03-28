@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1037589884}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -732,6 +736,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 606448859}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -942,6 +950,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1442469382}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -1122,6 +1134,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 874027219}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -1554,6 +1570,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 373939823}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -1945,6 +1965,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 445169139}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -2109,6 +2133,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1720968641}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Space Bar (A Spar)  - )
@@ -2319,6 +2347,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 2113938948}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -2833,6 +2865,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1555140431}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -3085,6 +3121,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1424724828}
     - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -3263,6 +3303,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 210278468}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane ( - Unnamed)
@@ -3427,6 +3471,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 388797433}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -3596,6 +3644,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 190030752}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -3919,6 +3971,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 819166952}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -4378,6 +4434,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 679053518}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -4598,6 +4658,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 427281959}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -4762,6 +4826,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 2004705679}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Space Bar (A Spar)  - Unnamed)
@@ -5105,6 +5173,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1891076066}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -5397,6 +5469,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 2005108784}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -5688,62 +5764,6 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!1 &907009413
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 907009414}
-  - component: {fileID: 907009415}
-  m_Layer: 0
-  m_Name: SectorManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &907009414
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907009413}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &907009415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907009413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc051305003bee2458d6f06aac34365e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sightLevels:
-  - sectorVisibility: 1
-    spaceportVisibility: 3
-  - sectorVisibility: 2
-    spaceportVisibility: 3
-  - sectorVisibility: 3
-    spaceportVisibility: 4
-  - sectorVisibility: 4
-    spaceportVisibility: 5
-  playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
-  tiedEventSequences:
-  - {fileID: 11400000, guid: 8d88cf18aad1e3f40b3608062cc998e7, type: 2}
 --- !u!4 &911882825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4384911440465558373, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
@@ -5816,6 +5836,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 465840455}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Supernova - )
@@ -6185,6 +6209,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 679053518}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -6349,6 +6377,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1757987076}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -6668,6 +6700,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 54468868}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -6832,6 +6868,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 54468868}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane ( - Unnamed)
@@ -7607,6 +7647,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1555140431}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -7782,6 +7826,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 313513006}
     - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -7949,6 +7997,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 388797433}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -8312,6 +8364,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 606448859}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -8481,6 +8537,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 84105043}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: laneDistance
       value: 5
@@ -8660,6 +8720,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1607980054}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -8947,6 +9011,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1296077383}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -9116,6 +9184,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1231349677}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -9285,6 +9357,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1055175304}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -9459,6 +9535,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 486428198}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -9628,6 +9708,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 2136811261}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -9853,6 +9937,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1296077383}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -10058,6 +10146,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 819166952}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -10445,6 +10537,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1757987076}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -10614,6 +10710,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 210278468}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane ( - Unnamed)
@@ -10937,6 +11037,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 335698696}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -11106,6 +11210,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 54468868}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -11429,6 +11537,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1950872619}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -11650,6 +11762,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 217304946}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -11860,6 +11976,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1068024264}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -12024,6 +12144,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1096642755}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Help Beacon - Unnamed)
@@ -12586,6 +12710,23 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+--- !u!1 &1813031032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 706124668756534660, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+  m_PrefabInstance: {fileID: 3097798070446580424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1813031034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813031032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38a2e4febf9ec942ae3e74bd2bfce65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1819037542
 Material:
   serializedVersion: 8
@@ -12643,6 +12784,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 70767330}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -12938,6 +13083,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 718430429}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Supernova - Spaceport)
@@ -13102,6 +13251,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1296077383}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -13266,6 +13419,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1068024264}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -13430,6 +13587,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 54468868}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -13962,6 +14123,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1444036382}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Spaceport - Funland)
@@ -14688,6 +14853,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1566713519}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -14852,6 +15021,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1068024264}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -15016,6 +15189,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1566713519}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -15221,6 +15398,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 1971523928}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane (Unnamed - Unnamed)
@@ -15743,6 +15924,10 @@ PrefabInstance:
       propertyPath: sectorB
       value: 
       objectReference: {fileID: 2004705679}
+    - target: {fileID: 1269819378468093659, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1754343966936144593, guid: 216b9b018ecff7c478ac8ecf73e78397, type: 3}
       propertyPath: m_Name
       value: Lane ( - Unnamed)
@@ -15924,6 +16109,10 @@ PrefabInstance:
       value: 4.81
       objectReference: {fileID: 0}
     - target: {fileID: 23618692488244910, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23618692488244910, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -15934,6 +16123,10 @@ PrefabInstance:
     - target: {fileID: 212048003764644594, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 237118188200407240, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 237118188200407240, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -15952,6 +16145,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 636537377545578900, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636537377545578900, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -15966,6 +16163,10 @@ PrefabInstance:
     - target: {fileID: 706124668756534660, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 853050234168040757, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 853050234168040757, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -15988,6 +16189,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1434017554}
     - target: {fileID: 1479158040728630124, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479158040728630124, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -16004,8 +16209,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1738985757}
     - target: {fileID: 2371879924264119438, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371879924264119438, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425433198500987251, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2425433198500987251, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -16106,6 +16319,10 @@ PrefabInstance:
     - target: {fileID: 2525694495509183955, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2635020875478606405, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2635020875478606405, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -16384,6 +16601,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3428385082261276465, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428385082261276465, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -16399,6 +16620,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 587854539}
+    - target: {fileID: 3711199294935742910, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3711199294935742910, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
@@ -17300,6 +17525,10 @@ PrefabInstance:
       value: -0.8199999
       objectReference: {fileID: 0}
     - target: {fileID: 7063398711266409535, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063398711266409535, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -17532,6 +17761,10 @@ PrefabInstance:
       value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 7482179482228884570, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482179482228884570, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -17550,6 +17783,10 @@ PrefabInstance:
     - target: {fileID: 7631875501925867826, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.2400001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679317211428916431, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7679317211428916431, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -17634,6 +17871,10 @@ PrefabInstance:
     - target: {fileID: 7840900506011517444, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 3.9850001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874188167480494305, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7874188167480494305, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -17828,6 +18069,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1962680996}
     - target: {fileID: 8411614891948901466, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411614891948901466, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
       value: 5
       objectReference: {fileID: 0}
@@ -17858,6 +18103,10 @@ PrefabInstance:
     - target: {fileID: 8921979358445023836, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964336696728871267, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8964336696728871267, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: laneDistance
@@ -18152,6 +18401,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1583945447}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 706124668756534660, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1813031034}
     - targetCorrespondingSourceObject: {fileID: 6422777256749193253, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -18206,11 +18458,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1947970121}
-  - {fileID: 907009414}
   - {fileID: 1379900653}
   - {fileID: 386739557}
   - {fileID: 656217652}
   - {fileID: 1146800467}
-  - {fileID: 3097798070446580424}
   - {fileID: 2082434906}
   - {fileID: 71404989}
+  - {fileID: 3097798070446580424}

@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 1276556340548977776}
   - component: {fileID: 3444544792681972511}
   - component: {fileID: 5543201885976861300}
-  - component: {fileID: 1010217058836238016}
+  - component: {fileID: 3783063641821124408}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f52b328e4a6424d85d4d85ec7253f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1010217058836238016
+--- !u!114 &3783063641821124408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,3 +213,5 @@ MonoBehaviour:
   playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
   tiedEventSequences:
   - {fileID: 11400000, guid: 8d88cf18aad1e3f40b3608062cc998e7, type: 2}
+  playerInstance: {fileID: 0}
+  playerCurrentSector: {fileID: 0}

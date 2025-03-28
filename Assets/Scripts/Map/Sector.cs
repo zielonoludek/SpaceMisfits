@@ -9,9 +9,9 @@ public class Sector : MonoBehaviour
     [Tooltip("Determines if this sector is the one where player starts the game")]
     [SerializeField] private bool isStartingSector;
     [SerializeField] private EventSO sectorEvent;
-    [SerializeField] private Sprite sectorIcon;
-    
-    public static Sector GetCurrentStartingSector => currentStartingSector;
+    [SerializeField] private Sprite sectorIcon; 
+        public static Sector GetCurrentStartingSector => currentStartingSector;
+
     public EventSO GetSectorEvent() => sectorEvent;
     
     private static Sector currentStartingSector;
@@ -34,9 +34,6 @@ public class Sector : MonoBehaviour
             { EventType.Fight, Color.cyan },
             { EventType.EmptySpace, Color.gray }
         };
-
-    
-    
     #region Public functions
 
     public void AddNeighbor(Sector sector, Lane lane)
@@ -81,7 +78,7 @@ public class Sector : MonoBehaviour
 
     public void StartPulsating()
     {
-        if (!isPulsating)
+        if (!isPulsating && gameObject.activeSelf)
         {
             isPulsating = true;
             pulsatingCoroutine = StartCoroutine(PulsateEffect());
@@ -164,7 +161,7 @@ public class Sector : MonoBehaviour
         // If the sector has an event, use its corresponding color
         if (sectorEvent != null && eventColors.ContainsKey(sectorEvent.eventType))
         {
-            targetMaterial.color = eventColors[sectorEvent.eventType];
+            //targetMaterial.color = eventColors[sectorEvent.eventType];
         }
         else
         {
