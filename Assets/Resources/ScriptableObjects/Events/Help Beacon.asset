@@ -15,19 +15,21 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: Help Beacon
   eventType: 0
-  eventDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n\nUt enim ad
-    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. "
-  eventEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
-  crewmateToRecruit: {fileID: 11400000, guid: 043c57ce962df9546bc0ec6854657853, type: 2}
+  eventDescription: "Slow and methodical data streams ping and reflect off your radars.
+    Not long after, the green hue of an emergency beacon is picked up by your spyglasser.\n\nSomeone
+    had to have left it here, and the transmitted data you decrypted points to the
+    location of the ship this emergency beacon was once a part of. It might be worth
+    to investigate the location along your travels.  \n\n"
+  eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
   hasChoices: 0
   numberOfChoices: 2
   choices:
   - choiceDescription: 
     choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}
   - choiceDescription: 
     choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}

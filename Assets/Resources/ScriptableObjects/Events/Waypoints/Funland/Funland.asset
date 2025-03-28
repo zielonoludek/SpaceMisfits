@@ -24,15 +24,19 @@ MonoBehaviour:
   hasChoices: 1
   numberOfChoices: 4
   choices:
-  - choiceDescription: 'Don''t stop here '
-    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
-    crewmate: {fileID: 0}
   - choiceDescription: Let your crew have some fun!
     choiceEffect: {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
     crewmate: {fileID: 0}
-  - choiceDescription: Try to win prizes (win)
-    choiceEffect: {fileID: 11400000, guid: bb334bfdd8f72f34c9d56e449af2e265, type: 2}
+    nextEvent: {fileID: 0}
+  - choiceDescription: Try to win some prizes
+    choiceEffect: {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
     crewmate: {fileID: 0}
-  - choiceDescription: Try to win prizes (lose)
-    choiceEffect: {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
+    nextEvent: {fileID: 0}
+  - choiceDescription: 'Don''t stop here '
+    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
     crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}
+  - choiceDescription: 
+    choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}
