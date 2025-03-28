@@ -21,8 +21,14 @@ public class MapDebug : MonoBehaviour
     {
         GameManager.Instance.SceneLoader.NewSceneLoaded += () =>
         {
-            StopAllCoroutines();
-            StartCoroutine(ToggleVisibility());
+            if (GameManager.Instance.GameScene == GameScene.Map)
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         };
     }
 
