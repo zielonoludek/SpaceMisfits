@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems; // Add this for event handling
+using UnityEngine.EventSystems;
 
 public class EventPopupUI : MonoBehaviour
 {
@@ -37,9 +38,27 @@ public class EventPopupUI : MonoBehaviour
         eventTitleText.text = sectorEvent.eventTitle;
         eventDescriptionText.text = sectorEvent.eventDescription;
 
-        eventEffectText.text = sectorEvent.eventEffect != null
-            ? $"{sectorEvent.eventEffect.description}! {sectorEvent.eventEffect.effectType} {sectorEvent.eventEffect.amount}"
-            : "";
+        // Display multiple event effects
+        if (sectorEvent.eventEffects != null && sectorEvent.eventEffects.Count > 0)
+        {
+            StringBuilder effectsText = new StringBuilder();
+            foreach (Effect effect in sectorEvent.eventEffects)
+            {
+                if (effect != null)
+                {
+                    if (effectsText.Length > 0)
+                    {
+                        effectsText.AppendLine();
+                    }
+                    effectsText.Append($"{effect.description}! {effect.effectType} {effect.amount}");
+                }
+            }
+            eventEffectText.text = effectsText.ToString();
+        }
+        else
+        {
+            eventEffectText.text = "";
+        }
 
         GenerateChoiceButtons(sectorEvent);
     }
@@ -67,9 +86,26 @@ public class EventPopupUI : MonoBehaviour
                 TextMeshProUGUI choiceEffectText = horizontalBox.Find("ChoiceEffectText").GetComponent<TextMeshProUGUI>();
                 
                 choiceText.text = choice.choiceDescription;
-                choiceEffectText.text = choice.choiceEffect != null 
-                    ? $"{choice.choiceEffect.effectType} {choice.choiceEffect.amount}" 
-                    : "";
+
+                // Display multiple choice effects
+                if (choice.choiceEffects != null && choice.choiceEffects.Count > 0)
+                {
+                    StringBuilder effectsText = new StringBuilder();
+                    foreach (Effect effect in choice.choiceEffects)
+                    {
+                        if (effect != null)
+                        {
+                            if (effectsText.Length > 0)
+                                effectsText.Append(", ");
+                            effectsText.Append($"{effect.effectType} {effect.amount}");
+                        }
+                    }
+                    choiceEffectText.text = effectsText.ToString();
+                }
+                else
+                {
+                    choiceEffectText.text = "";
+                }
 
                 int capturedIndex = i;
                 newButton.onClick.AddListener(() => SelectChoice(capturedIndex));
@@ -93,9 +129,17 @@ public class EventPopupUI : MonoBehaviour
     private void CloseEvent()
     {
         eventPanel.SetActive(false);
-        if (currentEvent.eventEffect != null)
+        
+        // Apply all event effects
+        if (currentEvent.eventEffects != null)
         {
-            currentEvent.eventEffect.ApplyEffect();
+            foreach (Effect effect in currentEvent.eventEffects)
+            {
+                if (effect != null)
+                {
+                    effect.ApplyEffect();
+                }
+            }
         }
 
         if (currentEvent.crewmateToRecruit != null)
@@ -113,17 +157,40 @@ public class EventPopupUI : MonoBehaviour
 
         SectorEventSO.Choice choice = currentEvent.choices[choiceIndex];
 
-        if (choice.choiceEffect != null)
+        // Apply all choice effects
+        if (choice.choiceEffects != null)
         {
-            choice.choiceEffect.ApplyEffect();
+            foreach (Effect effect in choice.choiceEffects)
+            {
+                if (effect != null)
+                {
+                    effect.ApplyEffect();
+                }
+            }
         }
-        
+
         if (choice.crewmate != null)
         {
             GameManager.Instance.CrewManager.RecruitCrewmate(choice.crewmate);
         }
 
-        CloseEvent();
+        EventSO nextEvent = choice.GetRandomEvent();
+        if (nextEvent != null)
+        {
+            if (nextEvent is SectorEventSO sectorEvent)
+            {
+                ShowEvent(sectorEvent);
+            }
+            else if (nextEvent is FightEventSO fightEvent)
+            {
+                GameManager.Instance.FightManager.StartFight(fightEvent);
+                CloseEvent();
+            }
+        }
+        else
+        {
+            CloseEvent();
+        }
     }
 
     private void AddHoverEffectToButtonText(Button button)
