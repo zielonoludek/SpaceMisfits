@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadNewScene(int sceneIndex)
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadSceneAsync(sceneIndex);
         SceneManager.sceneLoaded += OnSceneLoaded;
         ChangeSceneEnum(sceneIndex);
     }
