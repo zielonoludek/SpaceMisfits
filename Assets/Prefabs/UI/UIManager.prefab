@@ -993,6 +993,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1168236072752670540}
+  - component: {fileID: 8307263792535434065}
+  - component: {fileID: 5650323536730790023}
   m_Layer: 5
   m_Name: NotorietyDisplay
   m_TagString: Untagged
@@ -1024,6 +1026,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 85}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &8307263792535434065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315547901523998841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb960065f9f7a94f9cfb097731e0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 2167080341518681986}
+  iconImage: {fileID: 3446064478626880326}
+  valueText: {fileID: 7550546367640200438}
+  maxValue: 100
+  tooltipPanel: {fileID: 1250658277716437170}
+  tooltipDelay: 1
+  tooltipDescription: notoriety
+--- !u!114 &5650323536730790023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315547901523998841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e991e6c8f3d636f4781abeddff25510a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusIndicator: {fileID: 8307263792535434065}
 --- !u!1 &1322243601424968923
 GameObject:
   m_ObjectHideFlags: 0
@@ -2277,7 +2311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeSceneBtn: {fileID: 1069783603190657340}
-  changeSceneNum: 1
+  changeSceneNum: 2
 --- !u!1 &2109702083766565676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,6 +3647,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734729523171366308}
+  - component: {fileID: 8174820855913296592}
+  - component: {fileID: 4147648449111726116}
   m_Layer: 5
   m_Name: ShipHealthDisplay
   m_TagString: Untagged
@@ -3644,6 +3680,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 85}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &8174820855913296592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3352323581236075816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb960065f9f7a94f9cfb097731e0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 1445121980073876060}
+  iconImage: {fileID: 1503010838115235836}
+  valueText: {fileID: 6461228161023436266}
+  maxValue: 100
+  tooltipPanel: {fileID: 1250658277716437170}
+  tooltipDelay: 1
+  tooltipDescription: ship health
+--- !u!114 &4147648449111726116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3352323581236075816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214dec7f23c63b848aab369bb4224b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusIndicator: {fileID: 8174820855913296592}
 --- !u!1 &3714785895393249606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4302,6 +4370,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7152222959433990624}
+  - component: {fileID: 7947789355776097057}
+  - component: {fileID: 3439858618196192088}
   m_Layer: 5
   m_Name: CrewMoodDisplay
   m_TagString: Untagged
@@ -4333,6 +4403,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &7947789355776097057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562017923337476244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb960065f9f7a94f9cfb097731e0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 1913920036105889141}
+  iconImage: {fileID: 8350328020124223173}
+  valueText: {fileID: 8972229230813039097}
+  maxValue: 100
+  tooltipPanel: {fileID: 1250658277716437170}
+  tooltipDelay: 1
+  tooltipDescription: crew mood
+--- !u!114 &3439858618196192088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562017923337476244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4815b9e0ca0dc134d87a2136baf8bdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusIndicator: {fileID: 7947789355776097057}
 --- !u!1 &4751309411162329315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5067,6 +5169,7 @@ GameObject:
   - component: {fileID: 4919808163067661317}
   - component: {fileID: 272367389288506829}
   - component: {fileID: 1902888220194333531}
+  - component: {fileID: 1250658277716437170}
   m_Layer: 5
   m_Name: TooltipPanel
   m_TagString: Untagged
@@ -5144,6 +5247,22 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1250658277716437170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258780755784779824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209bbc40758f0f442ab758b8fa7e18ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipPanel: {fileID: 5258780755784779824}
+  tooltipText: {fileID: 5964109017306344729}
+  xOffset: 20
+  yOffset: 0
 --- !u!1 &5274230506606539463
 GameObject:
   m_ObjectHideFlags: 0
@@ -9240,6 +9359,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2923600641465148287}
+  - component: {fileID: 1486081028815192521}
+  - component: {fileID: 2143682646204134227}
   m_Layer: 5
   m_Name: CrewHungerDisplay
   m_TagString: Untagged
@@ -9271,6 +9392,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 85}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1486081028815192521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214041348383845468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb960065f9f7a94f9cfb097731e0884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 6817509785401043231}
+  iconImage: {fileID: 2326610093335472215}
+  valueText: {fileID: 8883266459221990339}
+  maxValue: 100
+  tooltipPanel: {fileID: 1250658277716437170}
+  tooltipDelay: 1
+  tooltipDescription: crew hunger
+--- !u!114 &2143682646204134227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214041348383845468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533c8bcb310933c4ea690f9a980eca47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusIndicator: {fileID: 1486081028815192521}
 --- !u!1001 &4267550150879706368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9473,19 +9626,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2440952372081787466, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2440952372081787466, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2440952372081787466, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 789.69653
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2440952372081787466, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2450773436569684060, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9537,19 +9690,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004558112712186075, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004558112712186075, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004558112712186075, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004558112712186075, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -226.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4104081199825876713, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9673,19 +9826,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5788992125552636547, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788992125552636547, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788992125552636547, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788992125552636547, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -447.8706
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929224984694313368, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -9693,19 +9846,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5929362137243595795, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929362137243595795, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929362137243595795, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 259.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5929362137243595795, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6443936482842735932, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9725,51 +9878,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7049093521290643331, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7049093521290643331, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7049093521290643331, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7049093521290643331, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -596.7813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7167652058973093076, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7167652058973093076, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7167652058973093076, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7167652058973093076, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480431704353933010, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480431704353933010, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480431704353933010, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7480431704353933010, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -67.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7494777315607697120, guid: 3c78fb0d42f99cd45a61348450235576, type: 3}
       propertyPath: m_AnchorMax.y
