@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Ghost Sector
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Ghost Sector
+  eventType: 0
+  eventDescription: 'Every tavern and spaceport has its own tales and legends, which
+    spacefarers and pirates treat as facts. One of these is about Sector 345-B, known
+    as the Ghost Sector.
+
+
+    Many ships have ventured there, and none have returned.
+    At least if you believe the tales... Nebula fog obscures most of your path through
+    the sector, but your radar pings continuously. There might be some tresure hidden
+    here, of course if you''re bold enough to send your crewmates for a closer look.'
+  eventEffect: {fileID: 0}
+  crewmateToRecruit: {fileID: 0}
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Send them out, it's worth to look around
+    choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
+    nextEvent: {fileID: 11400000, guid: b879b3043e617ae43a1f6564210eb98c, type: 2}
+  - choiceDescription: Let's not tempt fate, the faster we get out of here the better
+    choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
+    nextEvent: {fileID: 0}

@@ -10,20 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Help Beacon
+  m_Name: You have managed to win!
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Help Beacon
+  eventTitle: 
   eventType: 0
-  eventDescription: "Slow and methodical data streams ping and reflect off your radars.
-    Not long after, the green hue of an emergency beacon is picked up by your spyglasser.\n\nSomeone
-    had to have left it here, and the transmitted data you decrypted points to the
-    location of the ship this emergency beacon was once a part of. It might be worth
-    to investigate the location along your travels.  \n\n"
+  eventDescription: 
   eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
   hasChoices: 0
-  numberOfChoices: 2
+  numberOfChoices: 1
   choices:
   - choiceDescription: 
     choiceEffect: {fileID: 0}
