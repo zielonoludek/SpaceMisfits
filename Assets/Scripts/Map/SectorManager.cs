@@ -87,7 +87,7 @@ public class SectorManager : MonoBehaviour
     #endregion
     
     
-    private void Awake()
+    private void Start()
     {
         Instance = this;
         StartCoroutine(InitializeGame());
@@ -97,6 +97,7 @@ public class SectorManager : MonoBehaviour
         {
             sequence.ResetSequence();
         }
+        GameManager.Instance.SceneLoader.NewSceneLoaded += SpawnPlayerAtStartingSector;
     }
 
     private IEnumerator InitializeGame()
@@ -108,6 +109,7 @@ public class SectorManager : MonoBehaviour
 
     private void SpawnPlayerAtStartingSector()
     {
+        if (GameManager.Instance.GameScene != GameScene.Map) return;
         Sector startingSector = Sector.GetCurrentStartingSector;
 
         if (startingSector == null)
