@@ -99,38 +99,44 @@ public class Sector : MonoBehaviour
         }
     }
     #endregion
-    
-    
 
+
+
+    /*
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        // Ensures sector event and name are updated when changed in editor
-        SetSectorEvent(sectorEvent);
-        
-        // Ensures only one sector is the starting sector
-        if (isStartingSector)
-        {
-            if (currentStartingSector != null && currentStartingSector != this)
-            {
-                currentStartingSector.isStartingSector = false;
-                EditorUtility.SetDirty(currentStartingSector);
-            }
+    // Ensures sector event and name are updated when changed in editor
+    SetSectorEvent(sectorEvent);
 
-            currentStartingSector = this;
+    // Ensures only one sector is the starting sector
+
+    if (isStartingSector)
+    {
+        currentStartingSector.isStartingSector = false;
+        EditorUtility.SetDirty(currentStartingSector);
+
+        if (currentStartingSector != null && currentStartingSector != this)
+        {
+            currentStartingSector.isStartingSector = false;
+            EditorUtility.SetDirty(currentStartingSector);
         }
+    currentStartingSector = this;
+    }
+
         // Defer the initialization of the sector icon (used to avoid warning messages)
         EditorApplication.delayCall += () =>
-        {
-            if (this != null)
             {
-                InitializeSectorIcon();
-                EditorUtility.SetDirty(this);
-            }
-        };
-    }
+                if (this != null)
+                {
+                    InitializeSectorIcon();
+                    EditorUtility.SetDirty(this);
+                }
+            };
+        }
 #endif
-    
+    */
+
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();

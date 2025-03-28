@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerDebug : MonoBehaviour
 {
@@ -20,8 +21,26 @@ public class PlayerDebug : MonoBehaviour
     {
         GameManager.Instance.SceneLoader.NewSceneLoaded += () =>
         {
-            if (GameManager.Instance.GameScene == GameScene.Map) gameObject.SetActive(true);
-            else gameObject.SetActive(false);
+            StopAllCoroutines();
+            StartCoroutine(ToggleVisibility());
         };
+    }
+
+    private IEnumerator ToggleVisibility()
+    {
+        if (GameManager.Instance.GameScene == GameScene.Map)
+        {
+            yield return new WaitForSeconds(5);
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }

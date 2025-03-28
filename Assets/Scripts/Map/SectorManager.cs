@@ -24,6 +24,7 @@ public class SectorManager : MonoBehaviour
         new SightLevelSettings { sectorVisibility = 4, spaceportVisibility = 5 }
     };
 
+    [SerializeField] Sector startingSector;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
 
@@ -61,9 +62,8 @@ public class SectorManager : MonoBehaviour
     }
     private IEnumerator InitializeGame()
     {
-        yield return new WaitUntil(() => GameManager.Instance != null);
+        yield return new WaitUntil(() => GameManager.Instance != null && GameManager.Instance.GameScene == GameScene.Map);
         GameManager.Instance.ResourceManager.OnSightChanged += UpdateVisibility;
-        
         SpawnPlayerAtStartingSector();
     }
 
@@ -104,44 +104,12 @@ public class SectorManager : MonoBehaviour
 
     private void SpawnPlayerAtStartingSector()
     {
-        if (GameManager.Instance.GameScene != GameScene.Map) return;
-        Sector startingSector = Sector.GetCurrentStartingSector;
-
-        if (startingSector == null)
-        {
-            Debug.LogError("No starting sector found! Make sure one sector is set as starting sector");
-            return;
-        }
+        if (startingSector == null) startingSector = Sector.GetCurrentStartingSector;
 
         playerInstance = Instantiate(playerPrefab, startingSector.transform.position, quaternion.identity);
         playerCurrentSector = startingSector;
 
         RevealSector(startingSector, GameManager.Instance.ResourceManager.GetCurrentSight());
-    }
-
-    private void RevealVisitedSectorsAndLanes()
-    {
-        foreach (Sector visited in visitedSectors)
-        {
-            visited.SetVisibility(true);
-            visibleSectors.Add(visited);
-
-            foreach (Sector neighbor in visited.GetNeighbors())
-            {
-                if (visitedSectors.Contains(neighbor))
-                {
-                    neighbor.SetVisibility(true);
-                    visibleSectors.Add(neighbor);
-
-                    Lane connectingLane = FindLaneBetween(visited, neighbor);
-                    if (connectingLane != null)
-                    {
-                        connectingLane.SetVisibility(true);
-                        discoveredLanes.Add(connectingLane);
-                    }
-                }
-            }
-        }
     }
 
     private IEnumerator AnimatePlayerMovement(Vector3[] path, float distance, Sector targetSector)
