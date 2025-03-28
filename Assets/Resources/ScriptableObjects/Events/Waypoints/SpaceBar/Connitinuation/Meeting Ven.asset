@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: GH_PB
+  m_Name: Meeting Ven
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Ghost Sector - Pulling back the ship
+  eventTitle: Meeting Ven Vershing
   eventType: 0
-  eventDescription: Thinking it over, it's not worth it. Even if the tales are just
-    myths born at the bottom of a mug, risking one of your crew is unnecessary, especially
-    not at the cost of  unrest growing among them.
+  eventDescription: "\tHe explains that he was in the middle of destroying his own
+    research, when the corsairs attacked him. He knows what his findings would lead
+    to, and he didn\u2019t want to allow it. \n\tHis goal was to achieve a better
+    future, not line the pockets of people who funded his research. And after a short
+    exchange of words, he offers to join your crew. As now, there won\u2019t be a
+    place for him in his old life."
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
   hasChoices: 0
-  numberOfChoices: 2
+  numberOfChoices: 1
   choices:
   - choiceDescription: 
     crewmate: {fileID: 0}

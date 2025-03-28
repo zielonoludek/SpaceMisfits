@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Space Mermaids
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: 
+  eventTitle: Space Mermaid
   eventType: 0
   eventDescription: 'A slow, humming melody fills the air, soon followed by a beautiful
     woman''s voice singing, resonating in the ears of your crewmates.
@@ -23,16 +23,23 @@ MonoBehaviour:
     small asteroid belt, a stunning woman sits atop a wreck, singing while gazing
     longingly at your ship. You can see its effect on your crew, they begin to shift,
     almost unconsciously, gathering near the port deck, entranced by the song.'
-  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: Stay and listen in to the song
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 11400000, guid: c32fa643fcbda5e4d98b9898e3a02966, type: 2}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: c32fa643fcbda5e4d98b9898e3a02966, type: 2}
+      probability: 100
   - choiceDescription: Avert your ears and leave.
-    choiceEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+    possibleEvents: []

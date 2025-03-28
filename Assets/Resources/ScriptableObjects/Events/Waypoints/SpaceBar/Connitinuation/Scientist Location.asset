@@ -10,29 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Funland Manager
+  m_Name: Scientist Location
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Financial Aid
+  eventTitle: 'Location of the scientist '
   eventType: 0
-  eventDescription: "As you try to leave, an older gentleman stops you, introducing
-    himself as Funland\u2019s owner. \n\t\nHe explains that the park, one of the
-    oldest in this part of the galaxy, is struggling as the Bart Dansey Company buys
-    up land and lobbies for unfair restrictions. He asks if you\u2019d donate to
-    help Funland survive."
+  eventDescription: "You\u2019ve managed to track down the scientist vessel, and
+    you see it being in a one-sided battle with another vessel. The other vessel
+    looks like a corsair ship hired by a different corporation. To fulfil your mission,
+    you need to firstly stop this battle"
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: Yes, im in (donate funds)
+  - choiceDescription: 'Try to reason with them '
     crewmate: {fileID: 0}
-    numberOfChoiceEffects: 1
+    numberOfChoiceEffects: 2
     choiceEffects:
     - {fileID: 11400000, guid: 10cab9b7fedd32843b6c2cd39c3162da, type: 2}
-    possibleEvents: []
-  - choiceDescription: Oh bugger off (leave)
+    - {fileID: 11400000, guid: 4250928021c37ca409ba705b22c193f1, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: f3f31e5ee5f2e01429dba2aa2069bf34, type: 2}
+      probability: 100
+  - choiceDescription: "Show them who\u2019s a real pirate (Fight)"
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0
     choiceEffects: []

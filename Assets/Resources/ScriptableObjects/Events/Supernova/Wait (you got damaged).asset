@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: GH_PB
+  m_Name: Wait (you got damaged)
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Ghost Sector - Pulling back the ship
+  eventTitle: 'You got away '
   eventType: 0
-  eventDescription: Thinking it over, it's not worth it. Even if the tales are just
-    myths born at the bottom of a mug, risking one of your crew is unnecessary, especially
-    not at the cost of  unrest growing among them.
+  eventDescription: "As your crew panics, you wearing brown pants and nerves of steel
+    command them to wait. They may think you\u2019re mad, but you have a plan. The
+    tension thickens, but as the moment arrives, you yell, \"Full speed ahead!\",
+    escaping just in time.\n\nWhile your crew is alive and well, the same cannot
+    be said for your ship. The anomaly\u2019s pull has left it badly damaged, tearing
+    your sails and straining the hull.\n\n"
   crewmateToRecruit: {fileID: 0}
-  numberOfEventEffects: 0
-  eventEffects: []
+  numberOfEventEffects: 1
+  eventEffects:
+  - {fileID: 11400000, guid: 1bf67c4ff98280b49990fb5aaa2ce721, type: 2}
   hasChoices: 0
-  numberOfChoices: 2
+  numberOfChoices: 1
   choices:
   - choiceDescription: 
     crewmate: {fileID: 0}

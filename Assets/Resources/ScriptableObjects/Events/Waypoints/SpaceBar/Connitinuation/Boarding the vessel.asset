@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: SPM2
+  m_Name: Boarding the vessel
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: A magical song
+  eventTitle: Boarding Scientist Vessel
   eventType: 0
-  eventDescription: "As you listen closely, you begin to understand or rather, feel,
-    the meaning behind the song.\n\n\tThe creature, clearly not human, sings with
-    deep melancholy of an older time, when the cosmos was a simpler place, untouched
-    by relentless expansion. \nBut when her eyes  meets yours, the song shifts becoming
-    more hopeful. She sings of a place, forgotten and undiscovered, a world still
-    free."
+  eventDescription: "Persuaded and with heavier pockets, the corsairs fly away, leaving
+    you to board the vessel. As you step inside, you meet the scientist. And just
+    before your crew would tires to performe some \u201CHeavy persuasion\u201D, the
+    scientist screams that it\u2019s all a big misunderstanding"
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
@@ -32,5 +30,5 @@ MonoBehaviour:
     numberOfChoiceEffects: 0
     choiceEffects: []
     possibleEvents:
-    - eventOption: {fileID: 11400000, guid: a058dfed44ae0fe4792e9f8e7553cb68, type: 2}
+    - eventOption: {fileID: 11400000, guid: 432b502b117255e488107055bbec711b, type: 2}
       probability: 100

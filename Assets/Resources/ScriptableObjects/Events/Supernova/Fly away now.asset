@@ -10,19 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: GH_PB
+  m_Name: Fly away now
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Ghost Sector - Pulling back the ship
+  eventTitle: 'You got away '
   eventType: 0
-  eventDescription: Thinking it over, it's not worth it. Even if the tales are just
-    myths born at the bottom of a mug, risking one of your crew is unnecessary, especially
-    not at the cost of  unrest growing among them.
+  eventDescription: 'As your crew begins to panic, you wearing brown pants and possessing
+    nerves of steel immediately get them to work. Thanks to swift action and the
+    risk of damaging the ship in the process, you manage to escape just in time.
+
+
+    While
+    your crew is alive and well, the same cannot be said for your ship. The gravitational
+    pull of the anomaly has left it badly damaged, tearing your sails and straining
+    the hull. '
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
   hasChoices: 0
-  numberOfChoices: 2
+  numberOfChoices: 1
   choices:
   - choiceDescription: 
     crewmate: {fileID: 0}

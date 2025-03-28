@@ -20,16 +20,21 @@ MonoBehaviour:
     had to have left it here, and the transmitted data you decrypted points to the
     location of the ship this emergency beacon was once a part of. It might be worth
     to investigate the location along your travels.  \n\n"
-  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 0
   numberOfChoices: 2
   choices:
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
