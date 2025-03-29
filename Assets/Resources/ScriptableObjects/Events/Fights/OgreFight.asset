@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0508d24ba8dd41b42abee3262aca17bc, type: 3}
-  m_Name: space bandits
+  m_Name: OgreFight
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Space Bandits
+  eventTitle: Fight with the Ogers
   eventType: 0
-  eventDescription: "Bandits have seized this system, lurking like vultures to plunder
-    freighters and ships leaving the neighboring spaceport. The fly towards you,
-    eager to board, and they\u2019re in for a nasty surprise."
+  eventDescription: Maybe surpassing a normal human in strength, you still have the
+    advantage of your wits. Show those ogres what you really think of their toll.
   fightTier: 0
-  playerBetNotoriety: 10
+  playerBetNotoriety: 5
   crewmateToRecruit: {fileID: 0}

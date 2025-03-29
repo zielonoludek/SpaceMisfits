@@ -15,10 +15,7 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: 'The buisness end of a Cutlass '
   eventType: 0
-  eventDescription: "A ship from a rival pirate faction has been on your tail since
-    you escaped the asteroid field and entered this sector, and now, they\u2019ve
-    got you cornered. With the Jolly Roger flying high, it\u2019s clear they mean
-    business."
+  eventDescription: 
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []

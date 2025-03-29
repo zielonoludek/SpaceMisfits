@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Fight_T3
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: 
+  eventTitle: It's a Trap!
   eventType: 0
-  eventDescription: Baboi
+  eventDescription: Small skimmer vessels surround you, circling you like prey, the
+    only thing left is to fight.
   fightTier: 0
   playerBetNotoriety: 100
   crewmateToRecruit: {fileID: 0}

@@ -31,11 +31,16 @@ MonoBehaviour:
   choices:
   - choiceDescription: Let's wait.
     crewmate: {fileID: 0}
-    numberOfChoiceEffects: 0
-    choiceEffects: []
-    possibleEvents: []
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 81014cd80285d7947badbff75e91101a, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: a94391d64b8dd744fbc29d8dcbc61cb2, type: 2}
+      probability: 100
   - choiceDescription: Actually, i changed my mind (pull back the vessel)
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0
     choiceEffects: []
-    possibleEvents: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: d17d7262f526da145ae75466f13e5b21, type: 2}
+      probability: 100

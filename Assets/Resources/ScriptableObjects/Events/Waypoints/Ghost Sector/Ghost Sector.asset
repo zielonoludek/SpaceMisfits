@@ -34,10 +34,10 @@ MonoBehaviour:
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 1
     choiceEffects:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 81014cd80285d7947badbff75e91101a, type: 2}
     possibleEvents:
-    - eventOption: {fileID: 0}
-      probability: 0
+    - eventOption: {fileID: 11400000, guid: b879b3043e617ae43a1f6564210eb98c, type: 2}
+      probability: 100
   - choiceDescription: Let's not tempt fate, the faster we get out of here the better
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0

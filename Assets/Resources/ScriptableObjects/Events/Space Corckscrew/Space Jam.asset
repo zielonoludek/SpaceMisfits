@@ -15,14 +15,11 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: Space (Traffic) Jam
   eventType: 0
-  eventDescription: 'Even though space travel is three-dimensional, intelligent species
-    (especially humans), will always try to find "the shortest" route.
-
-
-    With
+  eventDescription: "\tEven though space travel is three-dimensional, intelligent
+    species (especially humans), will always try to find \"the shortest\" route.\n\tWith
     the tournament of the famous card game Paradox-Billiards-Nostroyan-Roulette-Fourth-Dimensional-Hypercube-Chess-Strip
     Poker about to begin in a neighboring sector, you find yourself jammed between
-    countless ships making their way to this grand event.'
+    countless ships making their way to this grand event."
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []

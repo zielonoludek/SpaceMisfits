@@ -15,15 +15,12 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: 'You got away '
   eventType: 0
-  eventDescription: 'As your crew begins to panic, you wearing brown pants and possessing
-    nerves of steel immediately get them to work. Thanks to swift action and the
-    risk of damaging the ship in the process, you manage to escape just in time.
-
-
-    While
-    your crew is alive and well, the same cannot be said for your ship. The gravitational
-    pull of the anomaly has left it badly damaged, tearing your sails and straining
-    the hull. '
+  eventDescription: "\tAs your crew begins to panic, you wearing brown pants and
+    possessing nerves of steel immediately get them to work. Thanks to swift action
+    and the risk of damaging the ship in the process, you manage to escape just in
+    time.\n\tWhile your crew is alive and well, the same cannot be said for your
+    ship. The gravitational pull of the anomaly has left it badly damaged, tearing
+    your sails and straining the hull. "
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []

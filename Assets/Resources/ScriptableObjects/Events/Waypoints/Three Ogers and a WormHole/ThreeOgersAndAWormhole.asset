@@ -36,7 +36,7 @@ MonoBehaviour:
     numberOfChoiceEffects: 0
     choiceEffects: []
     possibleEvents:
-    - eventOption: {fileID: 11400000, guid: f8c5c4c735da3da40bf65e92f18952da, type: 2}
+    - eventOption: {fileID: 11400000, guid: cd82535f5f16b394298abe0a6937db9e, type: 2}
       probability: 100
   - choiceDescription: 'Let''s just leave and go around '
     crewmate: {fileID: 0}

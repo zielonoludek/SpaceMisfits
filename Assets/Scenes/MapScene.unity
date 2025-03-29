@@ -858,6 +858,18 @@ PrefabInstance:
       propertyPath: startingSector
       value: 
       objectReference: {fileID: 305130550}
+    - target: {fileID: 3783063641821124408, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: tiedEventSequences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783063641821124408, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: 'tiedEventSequences.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 82ffbcd5312cece42982eaaea8ac6270, type: 2}
+    - target: {fileID: 3783063641821124408, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
+      propertyPath: 'tiedEventSequences.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ca74a2e7a58bba2419fd763909ed9310, type: 2}
     - target: {fileID: 5643176279949095266, guid: 0fdbc3af8b746224c93e4f34fc1bf7ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.256797
@@ -1389,6 +1401,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: 5.059999
       objectReference: {fileID: 0}
+    - target: {fileID: 476991793390609978, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 483347065794797528, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
       value: Lane (SpacePort - Unnamed)
@@ -1553,9 +1569,17 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: 29.940002
       objectReference: {fileID: 0}
+    - target: {fileID: 538899160968187937, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane (Nothingness - )
+      objectReference: {fileID: 0}
     - target: {fileID: 706124668756534660, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 760416505104127170, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane ( - Help Beacon)
       objectReference: {fileID: 0}
     - target: {fileID: 962679837523481434, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -1640,6 +1664,10 @@ PrefabInstance:
     - target: {fileID: 984891936300313197, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
       value: Lane (SpacePort - Space Bandits)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073015228542558429, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1216609381792533502, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -2609,6 +2637,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: 5.059999
       objectReference: {fileID: 0}
+    - target: {fileID: 2260515525581364885, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2267054924157950658, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 16.060001
@@ -3345,6 +3377,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: -4.31
       objectReference: {fileID: 0}
+    - target: {fileID: 2969155751112126689, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3063018639777241329, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 4.7899995
@@ -4065,6 +4101,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: 0.63999885
       objectReference: {fileID: 0}
+    - target: {fileID: 3811451880250826960, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: sectorEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e7720268599a914b951da4b5d6a6a5c, type: 2}
     - target: {fileID: 3872730086318834349, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 14.499999
@@ -5745,6 +5785,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: -1.8860002
       objectReference: {fileID: 0}
+    - target: {fileID: 5669626696956323066, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane (Unnamed - Lair of the beast)
+      objectReference: {fileID: 0}
     - target: {fileID: 5689296207991289059, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 10.249999
@@ -5904,6 +5948,10 @@ PrefabInstance:
     - target: {fileID: 5720345050875391980, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[9].y
       value: 15.979999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832775737307291584, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5849537078540609866, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
@@ -6151,7 +6199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242477735944809206, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
-      value: Lane ( - Unnamed)
+      value: Lane ( - Lair of the beast)
       objectReference: {fileID: 0}
     - target: {fileID: 6260594419883832944, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -6313,9 +6361,13 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: -4.360001
       objectReference: {fileID: 0}
+    - target: {fileID: 6308430019157977841, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6428270357884222410, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
-      value: Lane (Call for Help - Unnamed)
+      value: Lane (Call for Help - Lair of the beast)
       objectReference: {fileID: 0}
     - target: {fileID: 6479186700519446530, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -6637,6 +6689,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: 10.319999
       objectReference: {fileID: 0}
+    - target: {fileID: 6874286444155571964, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6913962708939431331, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 20.619999
@@ -6796,6 +6852,10 @@ PrefabInstance:
     - target: {fileID: 6988163102738331824, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[9].y
       value: 2.1499991
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005576237713877031, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: laneDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7041575710368355661, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
@@ -7036,6 +7096,10 @@ PrefabInstance:
     - target: {fileID: 7242092689266914939, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[9].y
       value: -0.5500017
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242174264620166379, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane ( - Rocky Beginings)
       objectReference: {fileID: 0}
     - target: {fileID: 7314218380944989003, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
@@ -7489,6 +7553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lane (Unnamed - SpaceShip Scrappers!)
       objectReference: {fileID: 0}
+    - target: {fileID: 7764725553429944373, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane ( - Spaceport)
+      objectReference: {fileID: 0}
     - target: {fileID: 7785883159565195973, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 20.71
@@ -7649,6 +7717,10 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[9].y
       value: 13.099999
       objectReference: {fileID: 0}
+    - target: {fileID: 8018768046275140819, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: sectorEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: dc993d0913ab65848bea56ab45d1de14, type: 2}
     - target: {fileID: 8035687793373975311, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: 7.7499995
@@ -8056,6 +8128,10 @@ PrefabInstance:
     - target: {fileID: 8880649483107304577, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       propertyPath: m_Name
       value: Lane (SpaceShip Graveyard - Unnamed)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042080545003757648, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      propertyPath: m_Name
+      value: Lane ( - Nothingness)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -15,25 +15,24 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: 'Space Bar (A Spar) '
   eventType: 1
-  eventDescription: While resting at a space tavern, you encounter a mysterious hooded
-    patron sitting in a corner booth, eying you constantly. After a while, you approach
-    him and start a conversation. He explains that he heard one or two things about
-    you, and he has a favor to ask. A couple of sectors from here, a scientist funded
-    by a space corporation has some important research that may lead to strip mining
-    entire worlds. He wants you to get to the scientist and destroy the data before
-    he can deliver it to the corporation HQ
+  eventDescription: 'While resting at a space tavern, you encounter a mysterious
+    hooded patron sitting in a corner booth, which after eying you up approaches
+    you and starts a conversation. He explains that he heard about you, and he has
+    a favor to ask. '
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: We'll see what can we do (accept the task)
+  - choiceDescription: Hear him out
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 1
     choiceEffects:
     - {fileID: 11400000, guid: 59979b3eed44f1f4191e022d03386fea, type: 2}
-    possibleEvents: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 17aa348479c17c146b16d8bf035792d9, type: 2}
+      probability: 100
   - choiceDescription: We don't have time for this (decline)
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0

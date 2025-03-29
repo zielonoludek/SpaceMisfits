@@ -27,18 +27,12 @@ MonoBehaviour:
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
-  hasChoices: 0
+  hasChoices: 1
   numberOfChoices: 1
   choices:
-  - choiceDescription: 
+  - choiceDescription: 'Leave '
     crewmate: {fileID: 0}
-    numberOfChoiceEffects: 0
+    numberOfChoiceEffects: 1
     choiceEffects:
-    - {fileID: 0}
-    possibleEvents: []
-  - choiceDescription: 
-    crewmate: {fileID: 0}
-    numberOfChoiceEffects: 0
-    choiceEffects:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 6c340f70a68a1a24db24e00af697af77, type: 2}
     possibleEvents: []

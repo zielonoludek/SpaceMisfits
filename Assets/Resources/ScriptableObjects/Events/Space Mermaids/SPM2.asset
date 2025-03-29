@@ -15,9 +15,9 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: A magical song
   eventType: 0
-  eventDescription: "As you listen closely, you begin to understand or rather, feel,
-    the meaning behind the song.\n\n\tThe creature, clearly not human, sings with
-    deep melancholy of an older time, when the cosmos was a simpler place, untouched
+  eventDescription: "\tAs you listen closely, you begin to understand or rather,
+    feel, the meaning behind the song.\n\tThe creature, clearly not human, sings
+    with deep melancholy of an older time, when the cosmos was a simpler place, untouched
     by relentless expansion. \nBut when her eyes  meets yours, the song shifts becoming
     more hopeful. She sings of a place, forgotten and undiscovered, a world still
     free."

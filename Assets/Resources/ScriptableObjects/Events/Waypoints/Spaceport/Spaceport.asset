@@ -27,7 +27,7 @@ MonoBehaviour:
   hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: Visit  shop
+  - choiceDescription: Visit shop
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0
     choiceEffects: []

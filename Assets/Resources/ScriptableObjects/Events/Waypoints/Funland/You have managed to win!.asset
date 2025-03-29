@@ -16,22 +16,22 @@ MonoBehaviour:
   eventTitle: 
   eventType: 0
   eventDescription: "\tAs a pirate, your dexterity is not only useful when boarding
-    an enemy ship, it also comes in handy for carnival games. \n\tYou manage to win
-    the grand prize. An old chest filled with gemstones, golden ducats, and all manner
-    of booty is presented to you. \n\tAs you make your way back to your ship, a piece
-    of parchment slips off the inside of the chest. Upon inspecting it, you discover
-    a fragment of parchment with a piece of map drawn on it. "
+    a ship, it also comes in handy for carnival games. \n\tYou manage to win the
+    grand prize. An old chest filled with gemstones, golden ducats, and all manner
+    of booty. \n\tAs you make your way back to your ship, a piece of parchment slips
+    off the inside of the chest. Upon inspecting, you discover a fragment of parchment
+    with a piece of map drawn on it. "
   crewmateToRecruit: {fileID: 0}
-  numberOfEventEffects: 1
-  eventEffects:
-  - {fileID: 11400000, guid: 6c340f70a68a1a24db24e00af697af77, type: 2}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 1
   choices:
   - choiceDescription: Continue towards the ship
     crewmate: {fileID: 0}
-    numberOfChoiceEffects: 0
-    choiceEffects: []
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 6c340f70a68a1a24db24e00af697af77, type: 2}
     possibleEvents:
     - eventOption: {fileID: 11400000, guid: 207edd55060f56c46b5ff0dde4c5bbe7, type: 2}
       probability: 100

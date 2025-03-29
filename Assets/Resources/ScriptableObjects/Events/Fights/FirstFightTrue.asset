@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0508d24ba8dd41b42abee3262aca17bc, type: 3}
-  m_Name: space bandits
+  m_Name: FirstFightTrue
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: Space Bandits
+  eventTitle: 
   eventType: 0
-  eventDescription: "Bandits have seized this system, lurking like vultures to plunder
-    freighters and ships leaving the neighboring spaceport. The fly towards you,
-    eager to board, and they\u2019re in for a nasty surprise."
+  eventDescription: "A ship from a rival pirate faction has been on your tail since
+    you escaped the asteroid field and entered this sector, and now, they\u2019ve
+    got you cornered. With the Jolly Roger flying high, it\u2019s clear they mean
+    business."
   fightTier: 0
-  playerBetNotoriety: 10
+  playerBetNotoriety: 50
   crewmateToRecruit: {fileID: 0}

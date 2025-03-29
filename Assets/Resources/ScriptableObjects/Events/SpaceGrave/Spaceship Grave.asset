@@ -15,19 +15,15 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: SpaceShip Graveyard
   eventType: 0
-  eventDescription: 'Since entering this sector, strange static has been constantly
+  eventDescription: "\tSince entering this sector, strange static has been constantly
     interfering with your comms. As your crew tries to pinpoint the source, towering
-    masts begin to rise over the eerie horizon, like a ghostly forest adrift in space.
-
-
-    You
+    masts begin to rise over the eerie horizon, like a ghostly forest adrift in space.\n\tYou
     have entered a massive spaceship graveyard, a place where AI-powered ships go
-    to die. There might be something valuable there... if you''re not afraid to look,
-    of course.'
+    to die. There might be something valuable there... if you're not afraid to look,
+    of course."
   crewmateToRecruit: {fileID: 0}
-  numberOfEventEffects: 1
-  eventEffects:
-  - {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
@@ -36,7 +32,9 @@ MonoBehaviour:
     numberOfChoiceEffects: 1
     choiceEffects:
     - {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
-    possibleEvents: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: eabca39c71972fc4c9f3737c00daadc0, type: 2}
+      probability: 100
   - choiceDescription: Leave, as fast as you can.
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0

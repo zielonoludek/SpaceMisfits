@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80a41946d3e4d814b9fd6d97e4ad4515, type: 3}
-  m_Name: Scientist
+  m_Name: call for help TE
   m_EditorClassIdentifier: 
-  sequenceName: Spar
+  sequenceName: LAIR
   orderedEvents:
-  - {fileID: 11400000, guid: 4a56caa5e9875164ba5124289bff0e59, type: 2}
-  - {fileID: 11400000, guid: d449d0e00531f9440a3c21b5874e3dd0, type: 2}
+  - {fileID: 11400000, guid: e868920ba6cfa7c419d223ee411415fb, type: 2}
+  - {fileID: 11400000, guid: dc993d0913ab65848bea56ab45d1de14, type: 2}
   enableVisualization: 1

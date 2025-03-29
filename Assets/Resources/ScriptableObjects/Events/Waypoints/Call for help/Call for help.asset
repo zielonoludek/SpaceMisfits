@@ -21,8 +21,8 @@ MonoBehaviour:
 
     The survivors
     explain that they are merchants who were hauling valuable cargo until they were
-    attacked by a gruesome beast that has made its nest near their route. They beg
-    you to slay the creature so their trade routes can be safe once more.'
+    attacked by a gruesome beast. They beg you to slay the creature so their trade
+    routes can be safe once more. '
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []

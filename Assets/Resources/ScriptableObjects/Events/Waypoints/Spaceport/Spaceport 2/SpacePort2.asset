@@ -32,5 +32,5 @@ MonoBehaviour:
     numberOfChoiceEffects: 0
     choiceEffects: []
     possibleEvents:
-    - eventOption: {fileID: 0}
+    - eventOption: {fileID: 11400000, guid: c768655673e542243a2b2fac40a0753b, type: 2}
       probability: 100
