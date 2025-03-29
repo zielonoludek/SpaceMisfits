@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91577731bacf6b42b346a02497e3675, type: 3}
+  m_Name: Spyglasser
+  m_EditorClassIdentifier: 
+  crewmateName: Blind Eye Sally
+  crewmateImage: {fileID: 529272256, guid: c5eae9e17e7ead048b68dc8e9e1fed05, type: 3}
+  crewMemberType: 2
+  crewmateDescription: Once an assembly-line worker in a shipyard, Sally was discarded
+    and fired after an accident. Refusing to be useless, she built her own special
+    goggles and found new ways to see; she can detect heat and energy signatures
+    from miles away. With her new abilities, she became an independent contractor,
+    working on ships or lookout points.
+  genericEffect: {fileID: 11400000, guid: e84d1dc47737a3043b305591cb73e60f, type: 2}

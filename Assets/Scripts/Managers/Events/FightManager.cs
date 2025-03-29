@@ -40,6 +40,7 @@ public class FightManager : MonoBehaviour
     {
         fightEvent = fight;
         fightPanelUI.gameObject.SetActive(true);
+        fightPanelUI.UpdateEventText(fight);
 
         fightPanelUI.Setup(); GameManager.Instance.TimeManager.PauseTime(true);
         GameManager.Instance.GameState = GameState.Event;

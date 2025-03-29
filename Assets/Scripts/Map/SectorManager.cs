@@ -69,8 +69,6 @@ public class SectorManager : MonoBehaviour
 
     public void MovePlayerToSector(Sector newSector)
     {
-        GameManager.Instance.ResourceManager.Notoriety += 100;
-
         if (playerInstance == null || playerCurrentSector == null) return;
         if (!playerCurrentSector.IsNeighbor(newSector)) 
         {

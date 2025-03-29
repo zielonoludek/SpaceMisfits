@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FightPanelUI : MonoBehaviour
 {
     private FightManager fightManager;
     [SerializeField] private Button closeBtn;
+    [SerializeField] private TextMeshProUGUI eventTitleText;
+    [SerializeField] private TextMeshProUGUI eventDescriptionText;
 
     [Header("Panels")]
     [SerializeField] private GameObject bettingPanel;
@@ -46,6 +49,10 @@ public class FightPanelUI : MonoBehaviour
             fightManager.CloseFight();
             closeBtn.gameObject.SetActive(false);
         });
+        
+        AddHoverEffectToButtonText(fightButton);
+        AddHoverEffectToButtonText(closeBtn);
+        AddHoverEffectToButtonText(betButtons);
     }
 
     public void Setup()
@@ -65,7 +72,7 @@ public class FightPanelUI : MonoBehaviour
 
     private void UpdateBetUI()
     {
-        betAmountText.text = betAmount.ToString();
+        betAmountText.text = "Bet " + betAmount;
         ValidateFightButton();
     }
 
@@ -157,6 +164,12 @@ public class FightPanelUI : MonoBehaviour
             SetDiceValue(computerDiceObjects[i], computerRolls[i]);
     }
 
+    public void UpdateEventText(FightEventSO fightEvent)
+    {
+        eventTitleText.text = fightEvent.eventTitle;
+        eventDescriptionText.text = fightEvent.eventDescription;
+    }
+
     private void ClearDiceUI(Transform parent)
     {
         foreach (Transform child in parent)
@@ -176,6 +189,45 @@ public class FightPanelUI : MonoBehaviour
         if (diceText != null)
         {
             diceText.text = value.ToString();
+        }
+    }
+    
+    private void AddHoverEffectToButtonText(Button button)
+    {
+        TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (buttonText != null)
+        {
+            EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>() ?? button.gameObject.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            pointerEnterEntry.callback.AddListener((data) => { buttonText.color = Color.red; });
+            trigger.triggers.Add(pointerEnterEntry);
+
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { buttonText.color = Color.black; });
+            trigger.triggers.Add(pointerExitEntry);
+        }
+    }
+    
+    private void AddHoverEffectToButtonText(Button[] buttons)
+    {
+        foreach (Button button in buttons)
+        {
+            if (button == null) continue;
+
+            TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText == null) continue;
+
+            EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>() ?? button.gameObject.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            pointerEnterEntry.callback.AddListener((data) => { buttonText.color = Color.red; });
+            trigger.triggers.Add(pointerEnterEntry);
+
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { buttonText.color = Color.black; });
+            trigger.triggers.Add(pointerExitEntry);
         }
     }
 }

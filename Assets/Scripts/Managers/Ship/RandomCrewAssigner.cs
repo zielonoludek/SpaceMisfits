@@ -55,6 +55,7 @@ public class RandomCrewAssigner : MonoBehaviour
                 if (quadMaterial != null && randomCrewmate.crewmateImage != null)
                 {
                     quadMaterial.mainTexture = randomCrewmate.crewmateImage.texture;
+                    quadRenderer.gameObject.transform.localScale = new Vector3(8, 12, 1);
                 }
             }
             
