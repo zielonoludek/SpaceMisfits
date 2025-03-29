@@ -13,27 +13,24 @@ MonoBehaviour:
   m_Name: SPM2
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: 
+  eventTitle: A magical song
   eventType: 0
   eventDescription: "As you listen closely, you begin to understand or rather, feel,
-    the meaning behind the song.\n\nThe creature, clearly not human, sings with deep
-    melancholy of an older time, when the cosmos was a simpler place, untouched by
-    relentless expansion. But when her eyes  meets yours, the song shifts becoming
+    the meaning behind the song.\n\n\tThe creature, clearly not human, sings with
+    deep melancholy of an older time, when the cosmos was a simpler place, untouched
+    by relentless expansion. \nBut when her eyes  meets yours, the song shifts becoming
     more hopeful. She sings of a place, forgotten and undiscovered, a world still
-    free.\n\nAnd as you listen, you find yourself unable to resist the urge to grab
-    a piece of parchment and start scribbling. Then, just as suddenly as it began,
-    the song ends, and the creature vanishes. \n\nLeaving you with what appears to
-    be a fragment of a map, drawn by your own hand, overtaken by the melody."
-  eventEffect: {fileID: 0}
+    free."
   crewmateToRecruit: {fileID: 0}
-  hasChoices: 0
-  numberOfChoices: 2
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 1
   choices:
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
+  - choiceDescription: Continue
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
-    crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: a058dfed44ae0fe4792e9f8e7553cb68, type: 2}
+      probability: 100

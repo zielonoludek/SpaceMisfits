@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0508d24ba8dd41b42abee3262aca17bc, type: 3}
+  m_Name: Fight the beast
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Fighting the beast
+  eventType: 0
+  eventDescription: Without thinking it through, you charge at the beast with full
+    force. Both the creature and your crew roar in a primal clash of fury and defiance.
+  fightTier: 2
+  playerBetNotoriety: 0
+  crewmateToRecruit: {fileID: 0}

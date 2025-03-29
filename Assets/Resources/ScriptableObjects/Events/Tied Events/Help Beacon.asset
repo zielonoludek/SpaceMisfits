@@ -15,5 +15,5 @@ MonoBehaviour:
   sequenceName: Help Beacon
   orderedEvents:
   - {fileID: 11400000, guid: abd3b7088112ab040899a48267500a9c, type: 2}
-  - {fileID: 11400000, guid: 2a8b839d6c1403c419d102a26fd3f9a4, type: 2}
+  - {fileID: 11400000, guid: ff77e9fe54fa4d24e81fe49219d02f8d, type: 2}
   enableVisualization: 1

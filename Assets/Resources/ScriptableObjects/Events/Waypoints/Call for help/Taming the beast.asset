@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Taming the beast
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Taming the best
+  eventType: 0
+  eventDescription: 'Noticing that the beast is wounded and probably just protecting
+    its eggs, you leave it some food to gain its trust, which the creature slowly
+    accepts.
+
+
+    A while later, you manage to set up a warning beacon in the sector
+    and contact a space zoologist, who informs you that the creature is actually
+    a herbivore.'
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 1
+  eventEffects:
+  - {fileID: 11400000, guid: 59979b3eed44f1f4191e022d03386fea, type: 2}
+  hasChoices: 0
+  numberOfChoices: 1
+  choices:
+  - choiceDescription: 
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
+  - choiceDescription: 
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []

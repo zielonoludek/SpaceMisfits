@@ -22,16 +22,21 @@ MonoBehaviour:
     found some booty lying around in the cargo hold of a galleon wreck. I don\u2019t
     know, and don\u2019t want to know, what destroyed it.\" \n\nNow that you have
     managed to find treasures hidden here, you can leave.  \n"
-  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 0
   numberOfChoices: 2
   choices:
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []

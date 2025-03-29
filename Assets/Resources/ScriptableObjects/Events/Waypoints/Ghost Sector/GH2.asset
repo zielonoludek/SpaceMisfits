@@ -23,16 +23,19 @@ MonoBehaviour:
 
     Now, the only thing you can do is wait. While
     your crew visibly grows anxious and discontent with your decision.'
-  eventEffect: {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: Let's wait.
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 11400000, guid: a94391d64b8dd744fbc29d8dcbc61cb2, type: 2}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []
   - choiceDescription: Actually, i changed my mind (pull back the vessel)
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 11400000, guid: d17d7262f526da145ae75466f13e5b21, type: 2}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

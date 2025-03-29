@@ -23,16 +23,21 @@ MonoBehaviour:
     the tournament of the famous card game Paradox-Billiards-Nostroyan-Roulette-Fourth-Dimensional-Hypercube-Chess-Strip
     Poker about to begin in a neighboring sector, you find yourself jammed between
     countless ships making their way to this grand event.'
-  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: We don't have time for it. Let's just force our way through
-    choiceEffect: {fileID: 11400000, guid: 4250928021c37ca409ba705b22c193f1, type: 2}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 4250928021c37ca409ba705b22c193f1, type: 2}
+    possibleEvents: []
   - choiceDescription: 'We can just wait it out '
-    choiceEffect: {fileID: 11400000, guid: e108d27f7d1015742ae4395743779d97, type: 2}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: e108d27f7d1015742ae4395743779d97, type: 2}
+    possibleEvents: []

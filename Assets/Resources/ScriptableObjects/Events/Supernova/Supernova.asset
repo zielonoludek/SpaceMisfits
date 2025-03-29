@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Supernova
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Supernova
+  eventType: 2
+  eventDescription: '"All hands on deck!" screams the mate stationed in the crow''s
+    nest. Soon, the entire crew begins to notice the ship is shaking and a powerful
+    force draggs it towards portside. You know what that means, the nearest star
+    is collapsing, and soon, a black hole will be born.'
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: '"Brace for Impact!" Wait for a good moment to fly away'
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: eeebb35bd6c6358478425026e26ee0c3, type: 2}
+      probability: 50
+    - eventOption: {fileID: 11400000, guid: 3c1bac78e2f7b414eb292e393c42dee2, type: 2}
+      probability: 50
+  - choiceDescription: '"Full force starboard!" Try to fly away  '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 1bf67c4ff98280b49990fb5aaa2ce721, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: f44788c0dfcf3054c9b988f3eb75e70f, type: 2}
+      probability: 100

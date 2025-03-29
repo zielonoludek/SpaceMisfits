@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: SectorEventSO
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: You sent your crew
+  eventType: 0
+  eventDescription: "\tYou assign two crew members to venture out and scavenge anything
+    of value. All you can do now is wait and hope they return in one piece."
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 1
+  choices:
+  - choiceDescription: Wait
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 81014cd80285d7947badbff75e91101a, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: ec55a5b5ee945a34cb06d5ce39f00293, type: 2}
+      probability: 100
