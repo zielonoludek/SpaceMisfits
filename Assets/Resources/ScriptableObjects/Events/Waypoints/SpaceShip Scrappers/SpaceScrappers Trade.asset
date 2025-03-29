@@ -10,31 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Shop
+  m_Name: SpaceScrappers Trade
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: 
+  eventTitle: Let's Trade
   eventType: 0
-  eventDescription: A hooded person stands behind a counter and presents themselves
-    as the owner of a warehouse filled with goods needed for space travel. Seeing
-    you walk in, they simply ask "What do you buyin?".
+  eventDescription: You fly closer and dock near a heavily remodeled galleon. Inside,
+    heaps of trash and ship parts are scattered around, while masked workers in heavy
+    gear move through the clutter, speaking in an unknown language. Some approach
+    you, offering various services.
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
-  - choiceDescription: Buy a Barrel of food
+  - choiceDescription: Repair your ship
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 2
     choiceEffects:
-    - {fileID: 11400000, guid: 21fd4f7ecce400f4687340ca347008bb, type: 2}
-    - {fileID: 11400000, guid: 266a2780c8873834d84d43709f77f877, type: 2}
+    - {fileID: 11400000, guid: 10cab9b7fedd32843b6c2cd39c3162da, type: 2}
+    - {fileID: 11400000, guid: f54947952d4d0da40a7da8450d8502bf, type: 2}
     possibleEvents: []
-  - choiceDescription: Leave the shop
+  - choiceDescription: Coming here was a mistake, let's leave
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0
     choiceEffects: []
-    possibleEvents:
-    - eventOption: {fileID: 11400000, guid: 4634a4fd89e2ecb4faa2140a6641a1b2, type: 2}
-      probability: 100
+    possibleEvents: []

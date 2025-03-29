@@ -12,15 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
   m_Name: SpaceShip Scrappers
   m_EditorClassIdentifier: 
+  isPersistent: 0
   eventTitle: SpaceShip Scrappers!
   eventType: 0
-  eventDescription: "You find a asteroid belt where Scrappers dismantle spaceships
-    left over by shady recycling companies. \n"
-  eventEffect: {fileID: 0}
+  eventDescription: "\tFlying through this sector, you spot drifting debris and old
+    ship parts. Moving ahead cautiously, you reach an asteroid belt where Scrappers
+    break down ships abandoned by shady recycling companies.\n\tA small skimmer drifts
+    closer, and a voice crackles over the comms:\n\"Need something dismantled? Parts?
+    Repairs? Come check our stock we've got everything.\""
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: Trade
-    choiceEffect: {fileID: 11400000, guid: 0b4ed1104766f6d489262ec315401bae, type: 2}
-  - choiceDescription: Let's not waste time here
-    choiceEffect: {fileID: 0}
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 4dc71b9353dca144188facc390e3ee53, type: 2}
+      probability: 100
+  - choiceDescription: Let's not waste our time here
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

@@ -10,28 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
-  m_Name: Space Whales
+  m_Name: Crew Returns
   m_EditorClassIdentifier: 
   isPersistent: 0
-  eventTitle: 
+  eventTitle: 'Crew Returns '
   eventType: 0
-  eventDescription: You begin to hear heavy sounds in the distance. At first, it
-    resembles the roar of a hundred cannonballs firing at once. But soon, the noise
-    takes on a soothing quality, almost sounding like a language. Before long, you
-    and your crew encounter the mythical space whales.
+  eventDescription: 'Waiting in this bone-chilling place is an experience you never
+    want to repeat. But finally, your crew spots the flickering lights of the vessel
+    you sent to scavenge.
+
+
+    They return with tales of a corrupted AI matrix and
+    a haul of valuable equipment. But most intriguing of all they''ve recovered a
+    fragment of a map, one that perfectly fits with the two pieces you''ve already
+    found.'
   crewmateToRecruit: {fileID: 0}
   numberOfEventEffects: 0
   eventEffects: []
-  hasChoices: 1
-  numberOfChoices: 2
+  hasChoices: 0
+  numberOfChoices: 1
   choices:
-  - choiceDescription: Take in the sights
+  - choiceDescription: 
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0
-    choiceEffects: []
+    choiceEffects:
+    - {fileID: 0}
     possibleEvents: []
-  - choiceDescription: Leave
+  - choiceDescription: 
     crewmate: {fileID: 0}
     numberOfChoiceEffects: 0
-    choiceEffects: []
+    choiceEffects:
+    - {fileID: 0}
     possibleEvents: []
