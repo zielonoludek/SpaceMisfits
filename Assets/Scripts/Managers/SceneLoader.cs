@@ -9,10 +9,15 @@ public class SceneLoader : MonoBehaviour
     {
         ChangeSceneEnum(SceneManager.GetActiveScene().buildIndex);
     }
-    public void LoadNewScene(int sceneIndex)
+    public void LoadNewScene(int sceneIndex, bool forceZoomed = false)
     {
+        GameManager.Instance.CameraManager.SaveZoomState();
         SceneManager.LoadSceneAsync(sceneIndex);
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            GameManager.Instance.CameraManager.RestoreZoomState(forceZoomed);
+            NewSceneLoaded?.Invoke();
+        };
         ChangeSceneEnum(sceneIndex);
     }
     private void ChangeSceneEnum(int sceneIndex)
@@ -24,7 +29,8 @@ public class SceneLoader : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; 
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        GameManager.Instance.CameraManager.RestoreZoomState();
         NewSceneLoaded?.Invoke();
     }
 }
