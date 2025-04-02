@@ -98,7 +98,7 @@ public class InputManager : MonoBehaviour
                 if (scrollCount >= scrollThreshold)
                 {
                     scrollCount = 0;
-                    GameManager.Instance.SceneLoader.LoadNewScene(1);
+                    GameManager.Instance.SceneLoader.LoadNewScene(1, false);
                 }
             }
             else GameManager.Instance.CameraManager.ZoomInCamera();
@@ -113,7 +113,7 @@ public class InputManager : MonoBehaviour
                 if (scrollCount >= scrollThreshold)
                 {
                     scrollCount = 0;
-                    GameManager.Instance.SceneLoader.LoadNewScene(2);
+                    GameManager.Instance.SceneLoader.LoadNewScene(2, true);
                 }
             }
             else GameManager.Instance.CameraManager.ZoomOutCamera();
