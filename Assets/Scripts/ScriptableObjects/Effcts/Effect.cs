@@ -8,4 +8,5 @@ public abstract class Effect : ScriptableObject
     public int amount; 
 
     public abstract void ApplyEffect();
+    public abstract void RemoveEffect();
 }

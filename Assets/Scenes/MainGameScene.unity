@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 417101773}
   - component: {fileID: 417101775}
   - component: {fileID: 417101774}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Anchor
   m_TagString: DropZone
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 684547083}
   - component: {fileID: 684547085}
   - component: {fileID: 684547084}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sails
   m_TagString: DropZone
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 810638782}
   - component: {fileID: 810638785}
   - component: {fileID: 810638784}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: SailsHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,7 +935,7 @@ GameObject:
   - component: {fileID: 965451917}
   - component: {fileID: 965451920}
   - component: {fileID: 965451919}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CannonHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,7 +1052,7 @@ GameObject:
   - component: {fileID: 1075402186}
   - component: {fileID: 1075402189}
   - component: {fileID: 1075402188}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CQHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,7 +1369,7 @@ GameObject:
   - component: {fileID: 1196617940}
   - component: {fileID: 1196617943}
   - component: {fileID: 1196617942}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: AnchorHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,15 +2022,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7822378748135923076, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8661955628053290449, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2832713701540234453, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4247254887096707110, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 5088347789395062863, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -2046,22 +2037,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7248221618467229444, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3130064211538756507, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 945631522151677977, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 8290451319507931188, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2443305752772578840, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7320112482027507468, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3541375280664386780, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 3287109962757086456, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
@@ -2071,6 +2047,15 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2492321924401263242, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6150857099055626467, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6350713331762638725, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 7710913049721380408, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0a22f485bb144e045a680296ecc701a0, type: 3}
@@ -2145,7 +2130,7 @@ GameObject:
   - component: {fileID: 2006836016}
   m_Layer: 2
   m_Name: CrewQuarters
-  m_TagString: Untagged
+  m_TagString: DropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2330,7 +2315,7 @@ GameObject:
   - component: {fileID: 2070189756}
   - component: {fileID: 2070189758}
   - component: {fileID: 2070189757}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cannon
   m_TagString: DropZone
   m_Icon: {fileID: 0}

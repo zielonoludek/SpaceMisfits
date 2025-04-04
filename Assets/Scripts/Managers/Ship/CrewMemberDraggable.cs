@@ -14,10 +14,10 @@ public class CrewMemberDraggable : MonoBehaviour
     private bool isDragging = false;
     private Vector3 offset;
     private Renderer rend;
-    private Vector3 initialPosition;
     private Transform initialParent;
     private GameObject currentTrigger;
-
+    private Transform previousSnapPoint;
+    private CrewDropZone previousDropZone;
     private static CrewMemberDraggable currentlyDragging = null;
 
     private Vector3 WorldPosition
@@ -47,7 +47,6 @@ public class CrewMemberDraggable : MonoBehaviour
     {
         mainCamera = Camera.main;
         rend = GetComponent<Renderer>();
-        initialPosition = transform.position;
         initialParent = transform.parent;
 
         inputActions = new InputActions();
@@ -92,7 +91,7 @@ public class CrewMemberDraggable : MonoBehaviour
         }
         else
         {
-            ReturnToInitialPosition();
+            RevertToPreviousPosition();
         }
 
         Debug.Log("Drag ended");
@@ -100,12 +99,11 @@ public class CrewMemberDraggable : MonoBehaviour
 
     private void SnapToTrigger()
     {
-        CrewDropZone dropZone = currentTrigger != null ? currentTrigger.GetComponent<CrewDropZone>() : null;
+        CrewDropZone dropZone = currentTrigger.GetComponent<CrewDropZone>();
 
         if (dropZone == null || !dropZone.IsAvailable())
         {
-            Debug.Log("Invalid or unavailable drop zone. Returning to initial position.");
-            ReturnToInitialPosition();
+            RevertToPreviousPosition();
             return;
         }
 
@@ -115,32 +113,51 @@ public class CrewMemberDraggable : MonoBehaviour
 
         if (snapPoint != null)
         {
-            transform.position = snapPoint.position;
-            transform.SetParent(dropZone.transform);
-
-            if (!dropZone.isCrewQuarters)
+            if (previousDropZone != null && previousSnapPoint != null)
             {
-                shipPartManager.RemoveCrewmateFromPart(crewmateData, shipPartManager.GetCrewQuartersPart());
+                previousDropZone.RemoveCrew(crewmateData, previousSnapPoint);
+
+                if (previousDropZone.shipPart != null)
+                {
+                    shipPartManager.RemoveCrewmateFromPart(crewmateData, previousDropZone.shipPart);
+                    previousDropZone.shipPart.RemoveEffect();
+                }
             }
 
-            dropZone.AssignCrew(crewmateData);
+            transform.position = snapPoint.position;
+            transform.SetParent(dropZone.transform);
+            previousSnapPoint = snapPoint;
+            previousDropZone = dropZone;
+
             shipPartManager.AssignCrewmateToPart(crewmateData, dropZone.shipPart);
+            dropZone.AssignCrew(crewmateData);
 
             dropZone.ResetZoneColor();
-            Debug.Log($"{crewmateData.crewmateName} assigned to {dropZone.shipPart?.partName ?? "Crew Quarters"}");
         }
         else
         {
-            Debug.Log("No available snap points. Returning to initial position.");
-            ReturnToInitialPosition();
+            RevertToPreviousPosition();
         }
     }
 
-    private void ReturnToInitialPosition()
+    private void RevertToPreviousPosition()
     {
-        transform.position = initialPosition;
-        transform.SetParent(initialParent);
-        Debug.Log("Invalid drop zone. Returning to Crew Quarters.");
+        if (previousSnapPoint != null && previousDropZone != null)
+        {
+            transform.position = previousSnapPoint.position;
+            transform.SetParent(previousDropZone.transform);
+        }
+        else
+        {
+            transform.position = initialParent.position;
+            transform.SetParent(initialParent);
+        }
+        if (previousDropZone != null)
+        {
+            previousDropZone.AssignCrew(crewmateData);
+        }
+
+        Debug.Log("Reverted to previous position");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -164,14 +181,23 @@ public class CrewMemberDraggable : MonoBehaviour
         HighlightValidDropZones();
     }
 
+    public void UpdateDropZoneReferences(Transform newParent, Transform assignedSnapPoint)
+    {
+        initialParent = newParent;
+        CrewDropZone dropZone = newParent.GetComponent<CrewDropZone>();
+        if (dropZone != null)
+        {
+            previousDropZone = dropZone;
+            previousSnapPoint = assignedSnapPoint;
+        }
+    }
+
     private void HighlightValidDropZones()
     {
         CrewDropZone[] dropZones = FindObjectsByType<CrewDropZone>(FindObjectsSortMode.None);
 
         foreach (var dropZone in dropZones)
         {
-            if (dropZone.isCrewQuarters) continue;
-
             if (dropZone.IsAvailable())
             {
                 dropZone.HighlightZone(Color.green);

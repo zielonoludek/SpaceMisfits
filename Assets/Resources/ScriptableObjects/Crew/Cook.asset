@@ -15,6 +15,7 @@ MonoBehaviour:
   crewmateName: Clawspoon
   crewmateImage: {fileID: -1798088504, guid: 60277e25f05476549940f870b2af3f2d, type: 3}
   crewMemberType: 1
+  isQuestMember: 0
   crewmateDescription: "Clawspoon is a name known by some. People tell mysterious
     stories relating to his time before becoming a seafaring pirate/chef. Some say
     he defrauded a major corporation out of millions of credits. Some say that he

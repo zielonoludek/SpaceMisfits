@@ -34,6 +34,15 @@ public class ShipPartManager : MonoBehaviour
     {
         foreach (var assignment in shipParts)
         {
+            if (assignment.assignedCrewmates.Contains(crewmate))
+            {
+                RemoveCrewmateFromPart(crewmate, assignment.shipPart);
+                break;
+            }
+        }
+
+        foreach (var assignment in shipParts)
+        {
             if (assignment.shipPart == targetPart)
             {
                 if (!assignment.assignedCrewmates.Contains(crewmate))
@@ -72,15 +81,11 @@ public class ShipPartManager : MonoBehaviour
     {
         foreach (var assignment in shipParts)
         {
-            if (assignment.shipPart == targetPart)
+            if (assignment.shipPart == targetPart && assignment.assignedCrewmates.Contains(crewmate))
             {
-                if (assignment.assignedCrewmates.Contains(crewmate))
-                {
-                    assignment.assignedCrewmates.Remove(crewmate);
-                    assignment.effectedCrewmates.Remove(crewmate);
-                    Debug.Log($"{crewmate.crewmateName} removed from {targetPart.partName}");
-                }
-
+                assignment.assignedCrewmates.Remove(crewmate);
+                assignment.effectedCrewmates.Remove(crewmate);
+                Debug.Log($"{crewmate.crewmateName} removed from {targetPart.partName}");
                 UpdatePartState(assignment);
                 break;
             }
@@ -98,5 +103,4 @@ public class ShipPartManager : MonoBehaviour
         }
         return null;
     }
-
 }

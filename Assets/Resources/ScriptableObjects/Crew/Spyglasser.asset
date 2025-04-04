@@ -15,6 +15,7 @@ MonoBehaviour:
   crewmateName: Blind Eye Sally
   crewmateImage: {fileID: 529272256, guid: c5eae9e17e7ead048b68dc8e9e1fed05, type: 3}
   crewMemberType: 2
+  isQuestMember: 0
   crewmateDescription: Once an assembly-line worker in a shipyard, Sally was discarded
     and fired after an accident. Refusing to be useless, she built her own special
     goggles and found new ways to see; she can detect heat and energy signatures
