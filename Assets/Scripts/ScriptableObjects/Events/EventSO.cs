@@ -12,4 +12,5 @@ public abstract class EventSO : ScriptableObject
     public string eventTitle;
     public EventType eventType;
     [TextArea(3, 7)][SerializeField] public string eventDescription;
+    public string sectorHoverInfoText;
 }
