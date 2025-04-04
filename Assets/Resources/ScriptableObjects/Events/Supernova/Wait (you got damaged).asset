@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Wait (you got damaged)
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 'You got away '
+  eventType: 0
+  eventDescription: "As your crew panics, you wearing brown pants and nerves of steel
+    command them to wait. They may think you\u2019re mad, but you have a plan. The
+    tension thickens, but as the moment arrives, you yell, \"Full speed ahead!\",
+    escaping just in time.\n\nWhile your crew is alive and well, the same cannot
+    be said for your ship. The anomaly\u2019s pull has left it badly damaged, tearing
+    your sails and straining the hull.\n\n"
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 1
+  eventEffects:
+  - {fileID: 11400000, guid: 1bf67c4ff98280b49990fb5aaa2ce721, type: 2}
+  hasChoices: 0
+  numberOfChoices: 1
+  choices:
+  - choiceDescription: 
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
+  - choiceDescription: 
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []

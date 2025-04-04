@@ -15,23 +15,26 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: 'Space Bar (A Spar) '
   eventType: 1
-  eventDescription: "You find yourself enamored by the yellow glow of the neon sign:
-    The White Seahorse. \nNot necessarily the most respectable abode, but you and
-    your crew can fill your guts and have some fun."
-  eventEffect: {fileID: 0}
+  eventDescription: 'While resting at a space tavern, you encounter a mysterious
+    hooded patron sitting in a corner booth, which after eying you up approaches
+    you and starts a conversation. He explains that he heard about you, and he has
+    a favor to ask. '
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
-  numberOfChoices: 3
+  numberOfChoices: 2
   choices:
-  - choiceDescription: Stay here
-    choiceEffect: {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+  - choiceDescription: Hear him out
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
-  - choiceDescription: Let's now waste time
-    choiceEffect: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 59979b3eed44f1f4191e022d03386fea, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 17aa348479c17c146b16d8bf035792d9, type: 2}
+      probability: 100
+  - choiceDescription: We don't have time for this (decline)
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
-  - choiceDescription: Talk with mystrious fellow smoking a pipe in the corner
-    choiceEffect: {fileID: 0}
-    crewmate: {fileID: 0}
-    nextEvent: {fileID: 11400000, guid: f08d5cbda9209d64d9e4b34b15f48135, type: 2}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

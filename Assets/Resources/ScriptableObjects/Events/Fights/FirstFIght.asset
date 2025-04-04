@@ -15,20 +15,17 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: 'The buisness end of a Cutlass '
   eventType: 0
-  eventDescription: "A ship from a rival pirate faction has been on your tail since
-    you escaped the asteroid field and entered this sector, and now, they\u2019ve
-    got you cornered. With the Jolly Roger flying high, it\u2019s clear they mean
-    business."
-  eventEffect: {fileID: 0}
+  eventDescription: 
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
-  numberOfChoices: 2
+  numberOfChoices: 1
   choices:
   - choiceDescription: Let's show them who's the real Pirate around here
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 11400000, guid: e6937a696335ad74f831b58e50bdb726, type: 2}
-  - choiceDescription: 
-    choiceEffect: {fileID: 0}
-    crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: e6937a696335ad74f831b58e50bdb726, type: 2}
+      probability: 100

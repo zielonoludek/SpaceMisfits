@@ -16,22 +16,26 @@ MonoBehaviour:
   eventTitle: 
   eventType: 0
   eventDescription: "Finally after waiting for so long, you get a ping on your comm
-    device:\n\n\"Captain, pull me in.\"\n\nYou activate the pulling mechanism, and
-    after a while, the emergency vessel is brought back aboard. Your crewmate steps
-    onto the deck, carrying a metal chest, and sets it down on the deck floor.\n\n\"I
+    device: \"Captain, pull me in.\" You activate the pulling mechanism, and after
+    a while, the emergency vessel is brought back aboard. Your crewmate steps onto
+    the deck, carrying a metal chest, and sets it down on the deck floor.\n\t\"I
     found some booty lying around in the cargo hold of a galleon wreck. I don\u2019t
-    know, and don\u2019t want to know, what destroyed it.\" \n\nNow that you have
-    managed to find treasures hidden here, you can leave.  \n"
-  eventEffect: {fileID: 0}
+    know, and don\u2019t want to know, what destroyed it.\" "
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 0
   numberOfChoices: 2
   choices:
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []

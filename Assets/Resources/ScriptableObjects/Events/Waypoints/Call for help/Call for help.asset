@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Call for help
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Call for Help
+  eventType: 0
+  eventDescription: 'A broken-down and destroyed caravan of ships slowly comes into
+    view. After some time, you manage to establish radio contact.
+
+
+    The survivors
+    explain that they are merchants who were hauling valuable cargo until they were
+    attacked by a gruesome beast. They beg you to slay the creature so their trade
+    routes can be safe once more. '
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Let's help them out
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
+  - choiceDescription: 'We shouldn''t waste time on that  '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

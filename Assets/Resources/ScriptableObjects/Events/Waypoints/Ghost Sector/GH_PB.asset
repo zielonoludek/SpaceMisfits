@@ -18,16 +18,21 @@ MonoBehaviour:
   eventDescription: Thinking it over, it's not worth it. Even if the tales are just
     myths born at the bottom of a mug, risking one of your crew is unnecessary, especially
     not at the cost of  unrest growing among them.
-  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 0
   numberOfChoices: 2
   choices:
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []
   - choiceDescription: 
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects:
+    - {fileID: 0}
+    possibleEvents: []

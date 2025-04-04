@@ -15,25 +15,31 @@ MonoBehaviour:
   isPersistent: 0
   eventTitle: Ghost Sector
   eventType: 0
-  eventDescription: 'Every tavern and spaceport has its own tales and legends, which
-    spacefarers and pirates treat as facts. One of these is about Sector 345-B, known
-    as the Ghost Sector.
+  eventDescription: 'Every spaceport has its own tales and legends, which spacefarers
+    and pirates treat as facts. One of these is about Sector 345-B, known as the
+    Ghost Sector.
 
 
-    Many ships have ventured there, and none have returned.
-    At least if you believe the tales... Nebula fog obscures most of your path through
-    the sector, but your radar pings continuously. There might be some tresure hidden
-    here, of course if you''re bold enough to send your crewmates for a closer look.'
-  eventEffect: {fileID: 0}
+    Many ships have ventured there, and none have returned. At
+    least if you believe the tales... Nebula fog obscures most of this sector, but
+    your radar pings continuously. There might be tresure hidden here, of course
+    if you''re bold enough to look for it'
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: Send them out, it's worth to look around
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 11400000, guid: b879b3043e617ae43a1f6564210eb98c, type: 2}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 81014cd80285d7947badbff75e91101a, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: b879b3043e617ae43a1f6564210eb98c, type: 2}
+      probability: 100
   - choiceDescription: Let's not tempt fate, the faster we get out of here the better
-    choiceEffect: {fileID: 0}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

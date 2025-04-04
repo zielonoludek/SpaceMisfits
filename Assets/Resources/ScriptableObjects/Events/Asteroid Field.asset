@@ -19,16 +19,23 @@ MonoBehaviour:
     \n\nAn asteroid field blocks your path. you can push through it or take the long
     way around, but that\u2019ll cost you time and resources. What\u2019s your move
     Capitan?"
-  eventEffect: {fileID: 0}
   crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
   hasChoices: 1
   numberOfChoices: 2
   choices:
   - choiceDescription: Charge Head on. What bad could happen?
-    choiceEffect: {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
-  - choiceDescription: Take the long way, better safe than sorry
-    choiceEffect: {fileID: 11400000, guid: 45f17acef49c7754bad45b10d7fb6884, type: 2}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 474917f1d8c8e0e47bdd6b52017c4fd5, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 0}
+      probability: 0
+  - choiceDescription: Let's take the long way
     crewmate: {fileID: 0}
-    nextEvent: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 45f17acef49c7754bad45b10d7fb6884, type: 2}
+    possibleEvents: []

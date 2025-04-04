@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0508d24ba8dd41b42abee3262aca17bc, type: 3}
   m_Name: Fight_T1
   m_EditorClassIdentifier: 
-  eventTitle: Random
+  isPersistent: 0
+  eventTitle: Hooded Robin And his Marinemen
   eventType: 5
   eventDescription: A small time bandit, Hooded Robin, and his band of Marinemen
     are creating a blockade in this sector. Show them who's the boss!
   fightTier: 0
   playerBetNotoriety: 0
+  crewmateToRecruit: {fileID: 0}

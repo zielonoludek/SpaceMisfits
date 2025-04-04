@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: lair of the beast
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Lair of the beast
+  eventType: 0
+  eventDescription: 'You arrive at your destination and spot the beast''s nest a
+    massive structure of scrap and wood, woven together into a protective shell around
+    three enormous eggs.
+
+
+    From the shadows, a monstrous creature emerges, its
+    body covered in feathers and writhing tentacles. Weird ooze flows from a part
+    of it''s body.'
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Let's fight and get over it
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 826400224b8e6154eb91f43dce27f8bf, type: 2}
+      probability: 100
+  - choiceDescription: Try to tame the beast
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 23095e56c90b0f54f937d024f1806ce1, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: dccffd6114ef72d449523965e4393447, type: 2}
+      probability: 100
