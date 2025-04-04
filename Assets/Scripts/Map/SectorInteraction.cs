@@ -1,11 +1,12 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class SectorInteraction : MonoBehaviour
 {
     private HoverUI hoverUI;
     private Vector3 originalScale;
-    [SerializeField] private Sector sector;
+    private Sector sector;
 
     private void Awake()
     {
@@ -16,10 +17,17 @@ public class SectorInteraction : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if(GameManager.Instance.GameState == GameState.Event) return;
         if (hoverUI != null)
         {
-            string eventType = sector.GetSectorEvent() != null ? sector.GetSectorEvent().eventType.ToString() : "No Event";
-            // hoverUI.ShowPopup(eventType, transform.position);
+            if (sector.GetSectorEvent() != null)
+            {
+                hoverUI.ShowPopup(sector.GetSectorEvent().sectorHoverInfoText, transform.position);
+            }
+            else
+            {
+                hoverUI.ShowPopup("", transform.position);
+            }
         }
         
         if (CanBeInteracted())
@@ -40,6 +48,7 @@ public class SectorInteraction : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if(GameManager.Instance.GameState == GameState.Event) return;
         if (CanBeInteracted())
         {
             SectorManager.Instance.MovePlayerToSector(sector);

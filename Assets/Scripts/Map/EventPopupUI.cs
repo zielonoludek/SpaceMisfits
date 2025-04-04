@@ -33,6 +33,7 @@ public class EventPopupUI : MonoBehaviour
         
         // Pause time manager
         GameManager.Instance.TimeManager.PauseTime(true);
+        GameManager.Instance.GameState = GameState.Event;
         
         eventPanel.SetActive(true);
         eventTitleText.text = sectorEvent.eventTitle;
@@ -148,6 +149,7 @@ public class EventPopupUI : MonoBehaviour
         }
         
         // Unpause time manager
+        GameManager.Instance.GameState = GameState.None;
         GameManager.Instance.TimeManager.PauseTime(false);
     }
 
@@ -183,8 +185,8 @@ public class EventPopupUI : MonoBehaviour
             }
             else if (nextEvent is FightEventSO fightEvent)
             {
-                GameManager.Instance.FightManager.StartFight(fightEvent);
                 CloseEvent();
+                GameManager.Instance.FightManager.StartFight(fightEvent);
             }
         }
         else

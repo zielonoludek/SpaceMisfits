@@ -14,11 +14,17 @@ public class HoverUI : MonoBehaviour
         HidePopup();
     }
 
-    public void ShowPopup(string eventType, Vector3 worldPosition)
+    public void ShowPopup(string eventHoverInfo, Vector3 worldPosition)
     {
-        if (GameManager.Instance.ResourceManager.GetCurrentSight() == 0) return;
+        if (eventHoverInfo != "")
+        {
+            popupText.text = eventHoverInfo;
+        }
+        else
+        {
+            popupText.text = "Unknown info";
+        }
         
-        popupText.text = eventType;
         popupPanel.SetActive(true);
 
         Vector3 screenPosition = mainCamera.WorldToScreenPoint(worldPosition);
