@@ -110,8 +110,6 @@ public class CrewDropZone : MonoBehaviour
 
     public void HighlightZone(Color color)
     {
-        if (isCrewQuarters) return;
-
         if (highlightVisual != null)
         {
             Renderer highlightRenderer = highlightVisual.GetComponent<Renderer>();
@@ -126,8 +124,6 @@ public class CrewDropZone : MonoBehaviour
 
     public void ResetZoneColor()
     {
-        if (isCrewQuarters) return;
-
         if (highlightVisual != null)
         {
             highlightVisual.SetActive(false);

@@ -15,6 +15,7 @@ MonoBehaviour:
   crewmateName: Venn Vershing
   crewmateImage: {fileID: 850669503, guid: b54c09bca9b8fe748841c20344343486, type: 3}
   crewMemberType: 3
+  isQuestMember: 0
   crewmateDescription: "\nOnce, he was a rising star in corporate funded research.
     One of his greatest achievements was crafting a piece of ground-breaking technology
     able to localize rare resources and minerals. He thought that he was paving the

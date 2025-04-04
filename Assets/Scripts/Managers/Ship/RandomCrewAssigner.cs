@@ -1,5 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class RandomCrewAssigner : MonoBehaviour
@@ -10,76 +11,84 @@ public class RandomCrewAssigner : MonoBehaviour
     public Button assignButton;
     public ShipPartManager shipPartManager;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return null;
+
+        AssignSingleRandomNonQuestCrewmate();
+        AssignSingleRandomNonQuestCrewmate();
+
         if (assignButton != null)
         {
-            assignButton.onClick.AddListener(AssignSingleRandomCrewmate);
+            assignButton.onClick.AddListener(AssignSingleRandomNonQuestCrewmate);
         }
     }
 
-    private void AssignSingleRandomCrewmate()
+    private void AssignSingleRandomNonQuestCrewmate()
     {
-        if (crewQuarters == null || crewMemberPrefab == null || availableCrewmates.Count == 0)
+        List<CrewmateData> nonQuestCrew = availableCrewmates.FindAll(crewmate => !crewmate.isQuestMember);
+
+        if (crewQuarters == null || crewMemberPrefab == null || nonQuestCrew.Count == 0)
         {
-            if (availableCrewmates.Count == 0 && assignButton != null)
+            if (nonQuestCrew.Count == 0 && assignButton != null)
             {
                 assignButton.interactable = false;
-                Debug.Log("No more crew members available.");
+                Debug.Log("No more non‑quest crew members available.");
             }
             else
             {
-                Debug.LogError("Ensure all references are assigned and there are available crewmates.");
+                Debug.LogError("Ensure all references are assigned and that there are available non‑quest crew members.");
             }
             return;
         }
 
+        int randomIndex = Random.Range(0, nonQuestCrew.Count);
+        CrewmateData randomCrewmate = nonQuestCrew[randomIndex];
+        AssignCrewMember(randomCrewmate);
+        availableCrewmates.Remove(randomCrewmate);
+
+        if (availableCrewmates.Count == 0 && assignButton != null)
+        {
+            assignButton.interactable = false;
+            Debug.Log("No more crew members available.");
+        }
+    }
+
+    private void AssignCrewMember(CrewmateData crew)
+    {
         if (!crewQuarters.IsAvailable())
         {
             Debug.Log("Crew Quarters is full. Cannot assign more crew members.");
             return;
         }
 
-        int randomIndex = Random.Range(0, availableCrewmates.Count);
-        CrewmateData randomCrewmate = availableCrewmates[randomIndex];
         Transform snapPoint = crewQuarters.GetNextAvailableSnapPoint();
-
         if (snapPoint != null)
         {
-            GameObject crewMember = Instantiate(crewMemberPrefab, snapPoint.position, Quaternion.identity);           
-            //crewMember.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            GameObject crewMember = Instantiate(crewMemberPrefab, snapPoint.position, Quaternion.identity);
             Renderer quadRenderer = crewMember.GetComponentInChildren<Renderer>();
             if (quadRenderer != null)
             {
                 Material quadMaterial = quadRenderer.material;
-                if (quadMaterial != null && randomCrewmate.crewmateImage != null)
+                if (quadMaterial != null && crew.crewmateImage != null)
                 {
-                    quadMaterial.mainTexture = randomCrewmate.crewmateImage.texture;
+                    quadMaterial.mainTexture = crew.crewmateImage.texture;
                     quadRenderer.gameObject.transform.localScale = new Vector3(8, 12, 1);
                 }
             }
-            
             CrewMemberDraggable draggable = crewMember.GetComponent<CrewMemberDraggable>();
             if (draggable != null)
             {
-                draggable.crewmateData = randomCrewmate;
+                draggable.crewmateData = crew;
                 draggable.shipPartManager = shipPartManager;
+                crewMember.transform.SetParent(crewQuarters.transform);
                 crewMember.transform.position = snapPoint.position;
-                crewMember.transform.SetParent(null);
+                draggable.UpdateDropZoneReferences(crewQuarters.transform, snapPoint);
             }
-
-            crewQuarters.AssignCrew(randomCrewmate);
+            crewQuarters.AssignCrew(crew);
             if (crewQuarters.shipPart != null)
             {
-                shipPartManager.AssignCrewmateToPart(randomCrewmate, crewQuarters.shipPart);
-            }
-
-            availableCrewmates.RemoveAt(randomIndex);
-
-            if (availableCrewmates.Count == 0 && assignButton != null)
-            {
-                assignButton.interactable = false;
-                Debug.Log("No more crew members available.");
+                shipPartManager.AssignCrewmateToPart(crew, crewQuarters.shipPart);
             }
         }
         else
@@ -87,5 +96,4 @@ public class RandomCrewAssigner : MonoBehaviour
             Debug.Log("No available snap points. Cannot assign crew member.");
         }
     }
-
 }
