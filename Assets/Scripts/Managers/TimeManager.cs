@@ -3,7 +3,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField] private bool timeOn = true;
-    [SerializeField] private int oneDayInSeconds = 600; // 10 min
+    [SerializeField] private int oneDayInSeconds = 30; // 10 min
     [SerializeField] private int day = 1;
     [SerializeField] private int month = 7;
     [SerializeField] private int year = 2793;

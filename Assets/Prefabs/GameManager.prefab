@@ -153,11 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipHealth: 1000
-  booty: 1000
-  food: 1000
-  notoriety: 1000
-  crewMood: 100
+  shipHealth: 100
+  booty: 100
+  food: 100
+  notoriety: 0
+  crewMood: 50
   sightLevel: 0
   speedValue: 1
 --- !u!114 &3444544792681972511
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOn: 1
-  oneDayInSeconds: 600
+  oneDayInSeconds: 60
   day: 1
   month: 7
   year: 2793
@@ -210,6 +210,7 @@ MonoBehaviour:
     spaceportVisibility: 4
   - sectorVisibility: 4
     spaceportVisibility: 5
+  startingSector: {fileID: 0}
   playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
   tiedEventSequences:
   - {fileID: 11400000, guid: 8d88cf18aad1e3f40b3608062cc998e7, type: 2}

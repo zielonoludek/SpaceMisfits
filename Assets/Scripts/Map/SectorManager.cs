@@ -116,8 +116,8 @@ public class SectorManager : MonoBehaviour
 
         bIsPlayerMoving = true;
 
-        float hourInGame = GameManager.Instance.TimeManager.DayLength / 24f;
-        float totalTravelTimeRealSeconds = distance * hourInGame;
+        float halfDayInGame = GameManager.Instance.TimeManager.DayLength / 2f ;
+        float totalTravelTimeRealSeconds = distance * halfDayInGame;
 
         float totalPathLength = 0f;
         for (int i = 0; i < path.Length - 1; i++)
