@@ -22,18 +22,7 @@ public class Sector : MonoBehaviour
     private SpriteRenderer sectorIconRenderer;
     private Coroutine pulsatingCoroutine;
     private bool isPulsating = false;
-
-    private static readonly Dictionary<EventType, Color> eventColors =
-        new Dictionary<EventType, Color>
-        {
-            { EventType.FaintSignal, Color.white },
-            { EventType.Waypoint, Color.green },
-            { EventType.DevilsMaw, Color.blue },
-            { EventType.SharpenThoseDirks, Color.red },
-            { EventType.Spaceport, Color.yellow },
-            { EventType.Fight, Color.cyan },
-            { EventType.EmptySpace, Color.gray }
-        };
+    
     #region Public functions
 
     public void AddNeighbor(Sector sector, Lane lane)
@@ -62,7 +51,7 @@ public class Sector : MonoBehaviour
         string finalName = newEvent != null ? newEvent.eventTitle : "Unnamed Event";
         gameObject.name = $"Sector ({finalName})";
         
-        UpdateSectorColor();
+        UpdateSectorMaterial();
         UpdateSectorIcon();
         NotifyLane();
     }
@@ -102,76 +91,107 @@ public class Sector : MonoBehaviour
 
 
 
-    /*
+    
 #if UNITY_EDITOR
     private void OnValidate()
     {
-    // Ensures sector event and name are updated when changed in editor
-    SetSectorEvent(sectorEvent);
+        // Ensures sector event and name are updated when changed in editor
+        SetSectorEvent(sectorEvent);
 
-    // Ensures only one sector is the starting sector
-
-    if (isStartingSector)
-    {
-        currentStartingSector.isStartingSector = false;
-        EditorUtility.SetDirty(currentStartingSector);
-
-        if (currentStartingSector != null && currentStartingSector != this)
+        // Ensures only one sector is the starting sector
+        if (isStartingSector)
         {
-            currentStartingSector.isStartingSector = false;
-            EditorUtility.SetDirty(currentStartingSector);
+            // Add null check here
+            if (currentStartingSector != null && currentStartingSector != this)
+            {
+                currentStartingSector.isStartingSector = false;
+                EditorUtility.SetDirty(currentStartingSector);
+            }
+            currentStartingSector = this;
         }
-    currentStartingSector = this;
-    }
 
         // Defer the initialization of the sector icon (used to avoid warning messages)
         EditorApplication.delayCall += () =>
+        {
+            if (this != null)
             {
-                if (this != null)
+                InitializeSectorIcon();
+                // Only update material if SectorManager exists
+                if (SectorManager.Instance != null)
                 {
-                    InitializeSectorIcon();
-                    EditorUtility.SetDirty(this);
+                    UpdateSectorMaterial();
                 }
-            };
-        }
+                EditorUtility.SetDirty(this);
+            }
+        };
+    }
 #endif
-    */
+    
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         InitializeSectorIcon();
-        UpdateSectorColor();
+        UpdateSectorMaterial();
         SetVisibility(false);
     }
 
-    private void UpdateSectorColor()
+    private void UpdateSectorMaterial()
     {
         if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
-
+        if (meshRenderer == null) return;
+        
         // Only modify instances in the scene
         if (!Application.isPlaying && PrefabUtility.IsPartOfPrefabAsset(gameObject))
         {
             return;
         }
         
-        // Ensure the sector has a material assigned
-        if (meshRenderer.sharedMaterial == null)
+        if (sectorEvent != null && SectorManager.Instance != null && SectorManager.Instance.eventMaterials.ContainsKey(sectorEvent.eventType))
         {
-            meshRenderer.sharedMaterial = new Material(Shader.Find("Sprites/Default")); // Assigns a default material
-        }
-        
-        // Use sharedMaterial in edit mode and material in play mode
-        Material targetMaterial = Application.isPlaying ? meshRenderer.material : meshRenderer.sharedMaterial;
-
-        // If the sector has an event, use its corresponding color
-        if (sectorEvent != null && eventColors.ContainsKey(sectorEvent.eventType))
-        {
-            //targetMaterial.color = eventColors[sectorEvent.eventType];
+            Material materialToUse = SectorManager.Instance.eventMaterials[sectorEvent.eventType];
+            
+            if (materialToUse != null)
+            {
+                if (Application.isPlaying)
+                {
+                    meshRenderer.material = materialToUse;
+                }
+                else
+                {
+                    meshRenderer.sharedMaterial = materialToUse;
+                }
+            }
         }
         else
         {
-            targetMaterial.color = Color.gray;
+            // Ensure shared material exists before trying to modify its color
+            if (meshRenderer.sharedMaterial == null)
+            {
+                // Create a new default material instance
+                Material defaultMat = new Material(Shader.Find("Standard"));
+                defaultMat.color = Color.gray;
+                meshRenderer.sharedMaterial = defaultMat;
+            }
+            else
+            {
+                // For runtime instances, create a material instance to avoid changing the shared material
+                if (Application.isPlaying)
+                {
+                    // Create a copy of the shared material to modify
+                    Material instanceMaterial = new Material(meshRenderer.sharedMaterial);
+                    instanceMaterial.color = Color.gray;
+                    meshRenderer.material = instanceMaterial;
+                }
+                else
+                {
+                    // In edit mode, we can modify the shared material directly
+                    // This is a copy of the original material
+                    Material editModeInstance = new Material(meshRenderer.sharedMaterial);
+                    editModeInstance.color = Color.gray;
+                    meshRenderer.sharedMaterial = editModeInstance;
+                }
+            }
         }
     }
 
@@ -190,6 +210,21 @@ public class Sector : MonoBehaviour
     {
         if (sectorIconRenderer != null)
         {
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                // In edit mode, delay setting the sprite, to get rid of annoying warning
+                EditorApplication.delayCall += () =>
+                {
+                    if (this != null && sectorIconRenderer != null)
+                    {
+                        sectorIconRenderer.sprite = (sectorEvent != null) ? sectorIcon : null;
+                    }
+                };
+                return;
+            }
+#endif
+            // In play mode, set the sprite directly
             sectorIconRenderer.sprite = (sectorEvent != null) ? sectorIcon : null;
         }
     }

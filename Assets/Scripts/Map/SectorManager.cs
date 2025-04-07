@@ -14,6 +14,13 @@ public class SectorManager : MonoBehaviour
         public int spaceportVisibility;
     }
 
+    [Serializable]
+    public class EventMaterial
+    {
+        public EventType eventType;
+        public Material material;
+    }
+
     [Header("Sight Settings")]
     [SerializeField]
     private SightLevelSettings[] sightLevels = new SightLevelSettings[4]
@@ -30,6 +37,11 @@ public class SectorManager : MonoBehaviour
 
     [SerializeField] private GameObject playerInstance;
     [SerializeField] private Sector playerCurrentSector;
+
+    [Header("Event Materials")]
+    [SerializeField] private List<EventMaterial> eventMaterialsList = new List<EventMaterial>();
+    
+    public Dictionary<EventType, Material> eventMaterials = new Dictionary<EventType, Material>();
 
     private static SectorManager instance;
     public static SectorManager Instance => instance;
@@ -49,6 +61,11 @@ public class SectorManager : MonoBehaviour
             return;
         }
         instance = this;
+        
+        foreach (var eventMaterial in eventMaterialsList)
+        {
+            eventMaterials.TryAdd(eventMaterial.eventType, eventMaterial.material);
+        }
     }
 
     private void Start()

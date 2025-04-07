@@ -214,5 +214,22 @@ MonoBehaviour:
   playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
   tiedEventSequences:
   - {fileID: 11400000, guid: 8d88cf18aad1e3f40b3608062cc998e7, type: 2}
+  - {fileID: 11400000, guid: 82ffbcd5312cece42982eaaea8ac6270, type: 2}
+  - {fileID: 11400000, guid: ca74a2e7a58bba2419fd763909ed9310, type: 2}
   playerInstance: {fileID: 0}
   playerCurrentSector: {fileID: 0}
+  eventMaterialsList:
+  - eventType: 0
+    material: {fileID: 2100000, guid: c5daaf1485ac52648a9a478aae4ea278, type: 2}
+  - eventType: 1
+    material: {fileID: 2100000, guid: cde9779aa10ab3348a24fe316aeee2ce, type: 2}
+  - eventType: 2
+    material: {fileID: 2100000, guid: ab511c9ca37198c4ab930bd2fa2c7604, type: 2}
+  - eventType: 3
+    material: {fileID: 2100000, guid: cde9779aa10ab3348a24fe316aeee2ce, type: 2}
+  - eventType: 4
+    material: {fileID: 2100000, guid: f84455d49b1be03489ca33dbf46ede2d, type: 2}
+  - eventType: 5
+    material: {fileID: 2100000, guid: 71fc34be5b2d5184b97082c48b554ca3, type: 2}
+  - eventType: 6
+    material: {fileID: 0}
