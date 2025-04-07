@@ -140,17 +140,18 @@ public class Sector : MonoBehaviour
     {
         if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
         if (meshRenderer == null) return;
-        
+    
         // Only modify instances in the scene
         if (!Application.isPlaying && PrefabUtility.IsPartOfPrefabAsset(gameObject))
         {
             return;
         }
-        
+    
+        // When there's a valid event with a material defined in SectorManager
         if (sectorEvent != null && SectorManager.Instance != null && SectorManager.Instance.eventMaterials.ContainsKey(sectorEvent.eventType))
         {
             Material materialToUse = SectorManager.Instance.eventMaterials[sectorEvent.eventType];
-            
+        
             if (materialToUse != null)
             {
                 if (Application.isPlaying)
@@ -163,34 +164,23 @@ public class Sector : MonoBehaviour
                 }
             }
         }
+        // When there's no event or no material for the event, use default gray
         else
         {
-            // Ensure shared material exists before trying to modify its color
-            if (meshRenderer.sharedMaterial == null)
+            // Default material for sectors with no events
+            if (Application.isPlaying)
             {
-                // Create a new default material instance
-                Material defaultMat = new Material(Shader.Find("Standard"));
-                defaultMat.color = Color.gray;
-                meshRenderer.sharedMaterial = defaultMat;
+                // Create a new material instance for runtime
+                Material defaultMaterial = new Material(Shader.Find("Sprites/Default"));
+                defaultMaterial.color = Color.gray;
+                meshRenderer.material = defaultMaterial;
             }
             else
             {
-                // For runtime instances, create a material instance to avoid changing the shared material
-                if (Application.isPlaying)
-                {
-                    // Create a copy of the shared material to modify
-                    Material instanceMaterial = new Material(meshRenderer.sharedMaterial);
-                    instanceMaterial.color = Color.gray;
-                    meshRenderer.material = instanceMaterial;
-                }
-                else
-                {
-                    // In edit mode, we can modify the shared material directly
-                    // This is a copy of the original material
-                    Material editModeInstance = new Material(meshRenderer.sharedMaterial);
-                    editModeInstance.color = Color.gray;
-                    meshRenderer.sharedMaterial = editModeInstance;
-                }
+                // For editor time
+                Material defaultMaterial = new Material(Shader.Find("Sprites/Default"));
+                defaultMaterial.color = Color.gray;
+                meshRenderer.sharedMaterial = defaultMaterial;
             }
         }
     }
