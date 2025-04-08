@@ -56,15 +56,6 @@ public class Sector : MonoBehaviour
         NotifyLane();
     }
 
-    public void SetVisibility(bool isVisible)
-    {
-        gameObject.SetActive(isVisible);
-        foreach (Lane lane in connectedLanes.Values)
-        {
-            lane.SetVisibility(isVisible);
-        }
-    }
-
     public void StartPulsating()
     {
         if (!isPulsating && gameObject.activeSelf)
@@ -133,7 +124,6 @@ public class Sector : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         InitializeSectorIcon();
         UpdateSectorMaterial();
-        SetVisibility(false);
     }
 
     private void UpdateSectorMaterial()

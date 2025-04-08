@@ -8,35 +8,18 @@ using UnityEngine;
 public class SectorManager : MonoBehaviour
 {
     [Serializable]
-    public struct SightLevelSettings
-    {
-        public int sectorVisibility;
-        public int spaceportVisibility;
-    }
-
-    [Serializable]
     public class EventMaterial
     {
         public EventType eventType;
         public Material material;
     }
 
-    [Header("Sight Settings")]
-    [SerializeField]
-    private SightLevelSettings[] sightLevels = new SightLevelSettings[4]
-    {
-        new SightLevelSettings { sectorVisibility = 1, spaceportVisibility = 3 },
-        new SightLevelSettings { sectorVisibility = 2, spaceportVisibility = 3 },
-        new SightLevelSettings { sectorVisibility = 3, spaceportVisibility = 4 },
-        new SightLevelSettings { sectorVisibility = 4, spaceportVisibility = 5 }
-    };
-
     [SerializeField] Sector startingSector;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
 
-    [SerializeField] private GameObject playerInstance;
-    [SerializeField] private Sector playerCurrentSector;
+    private GameObject playerInstance;
+    private Sector playerCurrentSector;
 
     [Header("Event Materials")]
     [SerializeField] private List<EventMaterial> eventMaterialsList = new List<EventMaterial>();
@@ -49,9 +32,6 @@ public class SectorManager : MonoBehaviour
     private readonly System.Random random = new();
 
     private bool bIsPlayerMoving = false;
-    private HashSet<Sector> visibleSectors = new();
-    private HashSet<Sector> visitedSectors = new();
-    private HashSet<Lane> discoveredLanes = new();
 
     private void Awake()
     {
@@ -80,7 +60,6 @@ public class SectorManager : MonoBehaviour
     private IEnumerator InitializeGame()
     {
         yield return new WaitUntil(() => GameManager.Instance != null && GameManager.Instance.GameScene == GameScene.Map);
-        GameManager.Instance.ResourceManager.OnSightChanged += UpdateVisibility;
         SpawnPlayerAtStartingSector();
     }
 
@@ -123,8 +102,6 @@ public class SectorManager : MonoBehaviour
 
         playerInstance = Instantiate(playerPrefab, startingSector.transform.position, quaternion.identity);
         playerCurrentSector = startingSector;
-
-        RevealSector(startingSector, GameManager.Instance.ResourceManager.GetCurrentSight());
     }
 
     private IEnumerator AnimatePlayerMovement(Vector3[] path, float distance, Sector targetSector)
@@ -167,78 +144,6 @@ public class SectorManager : MonoBehaviour
         bIsPlayerMoving = false;
 
         TriggerSectorEvent(targetSector);
-        RevealSector(targetSector, GameManager.Instance.ResourceManager.GetCurrentSight());
-    }
-
-    private void UpdateVisibility(int sightLevel)
-    {
-        foreach (var sector in visibleSectors)
-        {
-            sector.SetVisibility(false);
-        }
-        visibleSectors.Clear();
-        discoveredLanes.Clear();
-        RevealSector(playerCurrentSector, sightLevel);
-    }
-
-    private void RevealSector(Sector sector, int sightLevel, int depth = 0)
-    {
-        if (depth >= sightLevels[sightLevel].sectorVisibility) return;
-
-        int sectorVisibility = sightLevels[sightLevel].sectorVisibility;
-        int spaceportVisibility = sightLevels[sightLevel].spaceportVisibility;
-
-        sector.SetVisibility(true);
-        visibleSectors.Add(sector);
-
-        foreach (Sector neighbor in sector.GetNeighbors())
-        {
-            if (!visibleSectors.Contains(neighbor))
-            {
-                neighbor.SetVisibility(true);
-                visibleSectors.Add(neighbor);
-
-                if (depth < sectorVisibility)
-                {
-                    RevealSector(neighbor, sightLevel, depth + 1);
-                }
-            }
-
-            RevealDistantSpaceports(neighbor, 1, spaceportVisibility);
-
-            Lane connectingLane = FindLaneBetween(sector, neighbor);
-            if (connectingLane != null)
-            {
-                connectingLane.SetVisibility(true);
-                discoveredLanes.Add(connectingLane);
-            }
-        }
-
-        foreach (Lane lane in FindObjectsByType<Lane>(FindObjectsSortMode.None))
-        {
-            if (!discoveredLanes.Contains(lane))
-            {
-                lane.SetVisibility(false);
-            }
-        }
-    }
-
-    private void RevealDistantSpaceports(Sector sector, int depth, int maxDepth)
-    {
-        if (depth >= maxDepth) return;
-
-        foreach (Sector nextNeighbor in sector.GetNeighbors())
-        {
-            if (visibleSectors.Contains(nextNeighbor)) continue;
-
-            if (nextNeighbor.GetSectorEvent() is SectorEventSO sectorEvent && sectorEvent.eventType == EventType.Spaceport)
-            {
-                nextNeighbor.SetVisibility(true);
-                visibleSectors.Add(nextNeighbor);
-            }
-
-            RevealDistantSpaceports(nextNeighbor, depth + 1, maxDepth);
-        }
     }
 
     private Lane FindLaneBetween(Sector sectorA, Sector sectorB)
@@ -271,7 +176,6 @@ public class SectorManager : MonoBehaviour
                     Sector nextSector = FindSectorByEvent(nextEvent);
                     if (nextSector != null)
                     {
-                        nextSector.SetVisibility(true);
                         if (sequence.enableVisualization)
                         {
                             nextSector.StartPulsating();
