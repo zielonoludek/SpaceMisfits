@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    private GameState gameState;
+    [SerializeField] private GameState gameState;
+    [SerializeField] private GameScene gameScene;
 
     //========MANAGERS======//
     [Space]
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
         get => gameState;
         set => gameState = value;
     }
+    public GameScene GameScene
+    {
+        get => gameScene;
+        set => gameScene = value;
+    }
 
     private void Awake()
     {
@@ -55,9 +61,16 @@ public class GameManager : MonoBehaviour
         LoadManagers();
         sceneLoader.NewSceneLoaded += LoadManagers;
     }
+    public void Reset()
+    {
+        timeManager.Reset();
+        resourceManager.Reset();
+
+        gameState = GameState.None;
+        gameScene = GameScene.MainMenu;
+    }
     void LoadManagers()
     {
-        Debug.Log("yolo");
         cameraManager = FindFirstObjectByType<CameraManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         fightManager = FindFirstObjectByType<FightManager>();
@@ -70,5 +83,7 @@ public class GameManager : MonoBehaviour
         resourceManager = gameObject.GetComponent<ResourceManager>();
         inputManager = gameObject.GetComponent<InputManager>();
         sceneLoader = gameObject.GetComponent<SceneLoader>();
+
+        inputManager.Setup();
     }
 }

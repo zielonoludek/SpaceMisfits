@@ -8,12 +8,27 @@ public class CameraManager : MonoBehaviour
     [SerializeField] CinemachineCamera zoomCamera;
     [SerializeField] CinemachineCamera normalCamera;
 
-    [SerializeField] float movementSpeed;
+    [SerializeField] float movementSpeed = 10;
+    [SerializeField] float zoomedMovementSpeed = 5;
 
-    private bool zoomed = false;
+    [SerializeField] private bool zoomed = false;
+    private static bool savedZoomState = false;
 
     public CinemachineCamera currentCamera { get; set; }
     public bool ZoomState { get { return zoomed; } }
+
+    private void Start()
+    {
+        if (GameManager.Instance.GameScene == GameScene.Map)
+        {
+            zoomed = true;
+        }
+        else if (GameManager.Instance.GameScene == GameScene.Ship)
+        {
+            zoomed = false;
+        }
+        UpdateCameraPriority();
+    }
 
     public void ToggleCamera()
     {
@@ -39,9 +54,25 @@ public class CameraManager : MonoBehaviour
 
     public void MoveCamera(Vector2 direction)
     {
-        transform.position -= new Vector3(direction.x, 0, direction.y) * movementSpeed * Time.unscaledDeltaTime;
+        Vector3 dir = new Vector3(direction.x, direction.y, 0) * Time.unscaledDeltaTime;
+        
+        if (zoomed) dir *= zoomedMovementSpeed;
+        else dir *= movementSpeed;
+
+        transform.position -= dir;
     }
 
     public Vector3 GetMousePosition => Mouse.current.position.ReadValue();
     public Vector3 GetCameraPosition => transform.position;
+
+    public void SaveZoomState()
+    {
+        savedZoomState = zoomed;
+    }
+
+    public void RestoreZoomState(bool forceZoomed = false)
+    {
+        zoomed = forceZoomed || savedZoomState;
+        UpdateCameraPriority();
+    }
 }

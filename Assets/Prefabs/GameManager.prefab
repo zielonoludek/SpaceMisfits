@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 1276556340548977776}
   - component: {fileID: 3444544792681972511}
   - component: {fileID: 5543201885976861300}
+  - component: {fileID: 3783063641821124408}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -110,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc0ab74d261388498647b0f49a2db58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
+  gameScene: 0
   inputManager: {fileID: 0}
   resourceManager: {fileID: 0}
   timeManager: {fileID: 0}
@@ -133,6 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinchZoomSpeed: 0.01
+  scrollTimer: 0
+  scrollCount: 0
+  scrollThreshold: 5
+  scrollTimeWindow: 1
+  zoomDelta: 0
 --- !u!114 &1276556340548977776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,13 +153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c996dcd91c9a5914e88ff4ebce81ff72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipHealth: 1000
-  booty: 1000
-  food: 1000
-  notoriety: 1000
-  crewMood: 1000
-  sightLevel: 1000
-  speedValue: 1000
+  shipHealth: 100
+  booty: 100
+  food: 100
+  notoriety: 0
+  crewMood: 50
+  sightLevel: 0
+  speedValue: 1
 --- !u!114 &3444544792681972511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,12 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7e282d7cc98214089bb9a9aaf290e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneDayInSeconds: 600
+  timeOn: 1
+  oneDayInSeconds: 60
   day: 1
   month: 7
   year: 2793
-  currentTime: 0
-  totalTime: 0
 --- !u!114 &5543201885976861300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +189,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f52b328e4a6424d85d4d85ec7253f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3783063641821124408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072606964494907396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc051305003bee2458d6f06aac34365e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sightLevels:
+  - sectorVisibility: 1
+    spaceportVisibility: 3
+  - sectorVisibility: 2
+    spaceportVisibility: 3
+  - sectorVisibility: 3
+    spaceportVisibility: 4
+  - sectorVisibility: 4
+    spaceportVisibility: 5
+  startingSector: {fileID: 0}
+  playerPrefab: {fileID: 5731662092938905112, guid: 74356d8b8397aeb4ca6f54e84922704b, type: 3}
+  tiedEventSequences:
+  - {fileID: 11400000, guid: 8d88cf18aad1e3f40b3608062cc998e7, type: 2}
+  - {fileID: 11400000, guid: 82ffbcd5312cece42982eaaea8ac6270, type: 2}
+  - {fileID: 11400000, guid: ca74a2e7a58bba2419fd763909ed9310, type: 2}
+  playerInstance: {fileID: 0}
+  playerCurrentSector: {fileID: 0}
+  eventMaterialsList:
+  - eventType: 0
+    material: {fileID: 2100000, guid: c5daaf1485ac52648a9a478aae4ea278, type: 2}
+  - eventType: 1
+    material: {fileID: 2100000, guid: cde9779aa10ab3348a24fe316aeee2ce, type: 2}
+  - eventType: 2
+    material: {fileID: 2100000, guid: ab511c9ca37198c4ab930bd2fa2c7604, type: 2}
+  - eventType: 3
+    material: {fileID: 2100000, guid: cde9779aa10ab3348a24fe316aeee2ce, type: 2}
+  - eventType: 4
+    material: {fileID: 2100000, guid: f84455d49b1be03489ca33dbf46ede2d, type: 2}
+  - eventType: 5
+    material: {fileID: 2100000, guid: 71fc34be5b2d5184b97082c48b554ca3, type: 2}
+  - eventType: 6
+    material: {fileID: 0}

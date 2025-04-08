@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Shop
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 
+  eventType: 0
+  eventDescription: A hooded person stands behind a counter and presents themselves
+    as the owner of a warehouse filled with goods needed for space travel. Seeing
+    you walk in, they simply ask "What do you buyin?".
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Buy a Barrel of food
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 2
+    choiceEffects:
+    - {fileID: 11400000, guid: 21fd4f7ecce400f4687340ca347008bb, type: 2}
+    - {fileID: 11400000, guid: 266a2780c8873834d84d43709f77f877, type: 2}
+    possibleEvents: []
+  - choiceDescription: Leave the shop
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 4634a4fd89e2ecb4faa2140a6641a1b2, type: 2}
+      probability: 100

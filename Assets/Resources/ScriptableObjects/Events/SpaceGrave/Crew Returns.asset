@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Crew Returns
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 'Crew Returns '
+  eventType: 0
+  eventDescription: 'Waiting in this bone-chilling place is an experience you never
+    want to repeat. But finally, your crew spots the flickering lights of the vessel
+    you sent to scavenge.
+
+
+    They return with tales of a corrupted AI matrix and
+    a haul of valuable equipment. But most intriguing of all they''ve recovered a
+    fragment of a map, one that perfectly fits with the two pieces you''ve already
+    found.'
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 1
+  choices:
+  - choiceDescription: 'Leave '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 6c340f70a68a1a24db24e00af697af77, type: 2}
+    possibleEvents: []

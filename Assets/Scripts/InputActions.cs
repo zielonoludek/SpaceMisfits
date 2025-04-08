@@ -590,6 +590,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""dab27115-0b6d-4160-ae8e-347fda8d11a3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1010,6 +1019,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a0c3d1a-8ac1-434c-bf45-fb9e0a05663c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1045,7 +1065,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Drag"",
+                    ""name"": ""CameraDrag"",
                     ""type"": ""Button"",
                     ""id"": ""ed3fe220-5bc9-467b-8395-633beb214898"",
                     ""expectedControlType"": """",
@@ -1245,11 +1265,59 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cc5a9656-6e2d-44ee-90c0-8d7243f8c570"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch;Keyboard&Mouse"",
-                    ""action"": ""Drag"",
+                    ""action"": ""CameraDrag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CrewDrag"",
+            ""id"": ""1b792961-6cd3-4202-aa6e-276bbdc48ff9"",
+            ""actions"": [
+                {
+                    ""name"": ""Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""b30fcd15-356b-4a47-ad12-00a8e2b5f826"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Screen Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""7baf8335-924f-4da4-88b5-13e93b371687"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4276e5c9-659d-4976-9a89-fe08238c4dc0"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""action"": ""Screen Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c45381c7-8b1d-43c5-bd38-f605ca66b59a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""action"": ""Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1342,12 +1410,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_Esc = m_UI.FindAction("Esc", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
         m_Camera_TouchMovement = m_Camera.FindAction("TouchMovement", throwIfNotFound: true);
-        m_Camera_Drag = m_Camera.FindAction("Drag", throwIfNotFound: true);
+        m_Camera_CameraDrag = m_Camera.FindAction("CameraDrag", throwIfNotFound: true);
+        // CrewDrag
+        m_CrewDrag = asset.FindActionMap("CrewDrag", throwIfNotFound: true);
+        m_CrewDrag_Press = m_CrewDrag.FindAction("Press", throwIfNotFound: true);
+        m_CrewDrag_ScreenPosition = m_CrewDrag.FindAction("Screen Position", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1355,6 +1428,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputActions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputActions.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, InputActions.Camera.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CrewDrag.enabled, "This will cause a leak and performance issues, InputActions.CrewDrag.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -1536,6 +1610,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_Esc;
     public struct UIActions
     {
         private @InputActions m_Wrapper;
@@ -1550,6 +1625,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @Esc => m_Wrapper.m_UI_Esc;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1589,6 +1665,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1623,6 +1702,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1647,7 +1729,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera_Zoom;
     private readonly InputAction m_Camera_Move;
     private readonly InputAction m_Camera_TouchMovement;
-    private readonly InputAction m_Camera_Drag;
+    private readonly InputAction m_Camera_CameraDrag;
     public struct CameraActions
     {
         private @InputActions m_Wrapper;
@@ -1655,7 +1737,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
         public InputAction @Move => m_Wrapper.m_Camera_Move;
         public InputAction @TouchMovement => m_Wrapper.m_Camera_TouchMovement;
-        public InputAction @Drag => m_Wrapper.m_Camera_Drag;
+        public InputAction @CameraDrag => m_Wrapper.m_Camera_CameraDrag;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1674,9 +1756,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TouchMovement.started += instance.OnTouchMovement;
             @TouchMovement.performed += instance.OnTouchMovement;
             @TouchMovement.canceled += instance.OnTouchMovement;
-            @Drag.started += instance.OnDrag;
-            @Drag.performed += instance.OnDrag;
-            @Drag.canceled += instance.OnDrag;
+            @CameraDrag.started += instance.OnCameraDrag;
+            @CameraDrag.performed += instance.OnCameraDrag;
+            @CameraDrag.canceled += instance.OnCameraDrag;
         }
 
         private void UnregisterCallbacks(ICameraActions instance)
@@ -1690,9 +1772,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TouchMovement.started -= instance.OnTouchMovement;
             @TouchMovement.performed -= instance.OnTouchMovement;
             @TouchMovement.canceled -= instance.OnTouchMovement;
-            @Drag.started -= instance.OnDrag;
-            @Drag.performed -= instance.OnDrag;
-            @Drag.canceled -= instance.OnDrag;
+            @CameraDrag.started -= instance.OnCameraDrag;
+            @CameraDrag.performed -= instance.OnCameraDrag;
+            @CameraDrag.canceled -= instance.OnCameraDrag;
         }
 
         public void RemoveCallbacks(ICameraActions instance)
@@ -1710,6 +1792,60 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // CrewDrag
+    private readonly InputActionMap m_CrewDrag;
+    private List<ICrewDragActions> m_CrewDragActionsCallbackInterfaces = new List<ICrewDragActions>();
+    private readonly InputAction m_CrewDrag_Press;
+    private readonly InputAction m_CrewDrag_ScreenPosition;
+    public struct CrewDragActions
+    {
+        private @InputActions m_Wrapper;
+        public CrewDragActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Press => m_Wrapper.m_CrewDrag_Press;
+        public InputAction @ScreenPosition => m_Wrapper.m_CrewDrag_ScreenPosition;
+        public InputActionMap Get() { return m_Wrapper.m_CrewDrag; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CrewDragActions set) { return set.Get(); }
+        public void AddCallbacks(ICrewDragActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CrewDragActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CrewDragActionsCallbackInterfaces.Add(instance);
+            @Press.started += instance.OnPress;
+            @Press.performed += instance.OnPress;
+            @Press.canceled += instance.OnPress;
+            @ScreenPosition.started += instance.OnScreenPosition;
+            @ScreenPosition.performed += instance.OnScreenPosition;
+            @ScreenPosition.canceled += instance.OnScreenPosition;
+        }
+
+        private void UnregisterCallbacks(ICrewDragActions instance)
+        {
+            @Press.started -= instance.OnPress;
+            @Press.performed -= instance.OnPress;
+            @Press.canceled -= instance.OnPress;
+            @ScreenPosition.started -= instance.OnScreenPosition;
+            @ScreenPosition.performed -= instance.OnScreenPosition;
+            @ScreenPosition.canceled -= instance.OnScreenPosition;
+        }
+
+        public void RemoveCallbacks(ICrewDragActions instance)
+        {
+            if (m_Wrapper.m_CrewDragActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICrewDragActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CrewDragActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CrewDragActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CrewDragActions @CrewDrag => new CrewDragActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1779,12 +1915,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
         void OnZoom(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnTouchMovement(InputAction.CallbackContext context);
-        void OnDrag(InputAction.CallbackContext context);
+        void OnCameraDrag(InputAction.CallbackContext context);
+    }
+    public interface ICrewDragActions
+    {
+        void OnPress(InputAction.CallbackContext context);
+        void OnScreenPosition(InputAction.CallbackContext context);
     }
 }

@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] private int oneDayInSeconds = 600; // 10 min
+    [SerializeField] private bool timeOn = true;
+    [SerializeField] private int oneDayInSeconds = 30; // 10 min
     [SerializeField] private int day = 1;
     [SerializeField] private int month = 7;
     [SerializeField] private int year = 2793;
 
     public System.Action EndOfDay;
 
-    private bool timeOn = true;
     private int daysCounter;
-    [SerializeField] private float currentTime;
-    [SerializeField] private float totalTime;
+    private float currentTime;
+    private float totalTime;
     private float timeSpeed = 1;
 
     private readonly int[] daysInMonths = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -50,6 +50,16 @@ public class TimeManager : MonoBehaviour
         SetTimeSpeed(timeOn ? timeSpeed : 0);
     }
 
+    public void Reset()
+    {
+        day = 1;
+        month = 7;
+        year = 2793;
+        currentTime = 0;
+        totalTime = 0;
+        daysCounter = 0;
+        oneDayInSeconds = 600;
+    }
     private void DayEnded()
     {
         daysCounter++;

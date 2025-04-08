@@ -25,9 +25,9 @@ public class Lane : MonoBehaviour
     [Header("Lane settings")]
     
     [Tooltip("Controls the length of the lane, modifying the time it takes to travel between sectors, the more the longer the distance")]
-    [SerializeField][Range(1, 5)] private int laneDistance = 1;
+    [SerializeField] private int laneDistance = 1;
     //[SerializeField] private LaneType laneType = LaneType.Lane;
-    public int GetLaneDistance() => 6 - laneDistance;
+    public int GetLaneDistance() => laneDistance;
     private enum LaneType {Lane, SpiralLane, HyperLane}
     
     

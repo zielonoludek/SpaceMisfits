@@ -58,7 +58,20 @@ public class ShipPart : ScriptableObject
         }
         else
         {
-            Debug.Log($"{partName} has no effect.");
+            Debug.Log($"{partName} has no effect to apply.");
+        }
+    }
+
+    public void RemoveEffect()
+    {
+        if (genericEffect != null)
+        {
+            genericEffect.RemoveEffect();
+            Debug.Log($"{partName} removed effect: {genericEffect.effectName}");
+        }
+        else
+        {
+            Debug.Log($"{partName} has no effect to remove.");
         }
     }
 }

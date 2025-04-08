@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0508d24ba8dd41b42abee3262aca17bc, type: 3}
   m_Name: Fight_T3
   m_EditorClassIdentifier: 
-  eventTitle: 
+  isPersistent: 0
+  eventTitle: It's a Trap!
   eventType: 0
-  eventDescription: 
+  eventDescription: Small skimmer vessels surround you, circling you like prey, the
+    only thing left is to fight.
   fightTier: 0
-  playerBetNotoriety: 0
+  playerBetNotoriety: 100
+  crewmateToRecruit: {fileID: 0}

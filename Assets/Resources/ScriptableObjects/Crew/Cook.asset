@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91577731bacf6b42b346a02497e3675, type: 3}
+  m_Name: Cook
+  m_EditorClassIdentifier: 
+  crewmateName: Clawspoon
+  crewmateImage: {fileID: -1798088504, guid: 60277e25f05476549940f870b2af3f2d, type: 3}
+  crewMemberType: 1
+  isQuestMember: 0
+  crewmateDescription: "Clawspoon is a name known by some. People tell mysterious
+    stories relating to his time before becoming a seafaring pirate/chef. Some say
+    he defrauded a major corporation out of millions of credits. Some say that he
+    robbed the biggest bank of silver in these parts, and some\u2026 That he killed
+    a man with only one of his claws. There is only one thing for sure about him.
+    He can create a feast with two salted crackers and a pile of jerky worthy to
+    die for."
+  genericEffect: {fileID: 11400000, guid: 6eeb509acbf157e44920114d17cece9c, type: 2}

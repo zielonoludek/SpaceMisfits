@@ -7,6 +7,7 @@ public class CrewmateData : ScriptableObject
     public string crewmateName;
     public Sprite crewmateImage;
     public CrewMemberType crewMemberType;
+    public bool isQuestMember;
 
     [TextArea] public string crewmateDescription;
     public GenericEffect genericEffect;

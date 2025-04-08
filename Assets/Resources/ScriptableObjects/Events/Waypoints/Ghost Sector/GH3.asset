@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: GH3
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 
+  eventType: 0
+  eventDescription: "As you wait and your crew grows weary, strange and unexplained
+    phenomena begin to happen. Distant voices and the thundering echoes of a space
+    battle ring out in the distance.\n\tAnd then, out of nowhere, a small asteroid
+    collides with your ship\u2019s hull. As your crew rushes to check for damage,
+    a voice comes through your comm device:\n\"Captain, I found something. But I
+    need more time to get it into my vessel.\""
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: We waited for so long, let's not give up now
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 2
+    choiceEffects:
+    - {fileID: 11400000, guid: 81014cd80285d7947badbff75e91101a, type: 2}
+    - {fileID: 11400000, guid: 630a2b96d18216d47b21b90a17c07684, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 436e95b2f3de2dc4289f967912d8a169, type: 2}
+      probability: 100
+  - choiceDescription: Whatever they found, it's not worth it (Pull your crewmate
+      back)
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 630a2b96d18216d47b21b90a17c07684, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: d17d7262f526da145ae75466f13e5b21, type: 2}
+      probability: 100

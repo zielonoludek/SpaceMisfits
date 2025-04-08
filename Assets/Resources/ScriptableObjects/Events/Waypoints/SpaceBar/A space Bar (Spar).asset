@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: A space Bar (Spar)
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 'Space Bar (A Spar) '
+  eventType: 1
+  eventDescription: 'While resting at a space tavern, you encounter a mysterious
+    hooded patron sitting in a corner booth, which after eying you up approaches
+    you and starts a conversation. He explains that he heard about you, and he has
+    a favor to ask. '
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Hear him out
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 59979b3eed44f1f4191e022d03386fea, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 17aa348479c17c146b16d8bf035792d9, type: 2}
+      probability: 100
+  - choiceDescription: We don't have time for this (decline)
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

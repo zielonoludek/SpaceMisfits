@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Shop 2
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 
+  eventType: 0
+  eventDescription: "A hooded person stands behind a counter and presents themselves
+    as the owner of a warehouse filled with goods needed for space travel. \n\nSeeing
+    you walk in, they simply ask \"Welcome! Got a selection of good things on sale
+    stranger.\" He seems weirdly simmiliar to the shopkeep you meet some time ago
+    on a diffrent spaceport."
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 3
+  choices:
+  - choiceDescription: Barrel of food
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 2
+    choiceEffects:
+    - {fileID: 11400000, guid: 266a2780c8873834d84d43709f77f877, type: 2}
+    - {fileID: 11400000, guid: 21fd4f7ecce400f4687340ca347008bb, type: 2}
+    possibleEvents: []
+  - choiceDescription: Crewmate "Spyglasser"
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 2
+    choiceEffects:
+    - {fileID: 11400000, guid: 10cab9b7fedd32843b6c2cd39c3162da, type: 2}
+    - {fileID: 0}
+    possibleEvents: []
+  - choiceDescription: Leave shop
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 042d536ddf78567428ddc251eafe0c18, type: 2}
+      probability: 100

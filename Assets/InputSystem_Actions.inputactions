@@ -568,6 +568,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "dab27115-0b6d-4160-ae8e-347fda8d11a3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -988,6 +997,17 @@
                     "action": "TrackedDeviceOrientation",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a0c3d1a-8ac1-434c-bf45-fb9e0a05663c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1023,7 +1043,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Drag",
+                    "name": "CameraDrag",
                     "type": "Button",
                     "id": "ed3fe220-5bc9-467b-8395-633beb214898",
                     "expectedControlType": "",
@@ -1223,11 +1243,59 @@
                 {
                     "name": "",
                     "id": "cc5a9656-6e2d-44ee-90c0-8d7243f8c570",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch;Keyboard&Mouse",
-                    "action": "Drag",
+                    "action": "CameraDrag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CrewDrag",
+            "id": "1b792961-6cd3-4202-aa6e-276bbdc48ff9",
+            "actions": [
+                {
+                    "name": "Press",
+                    "type": "Button",
+                    "id": "b30fcd15-356b-4a47-ad12-00a8e2b5f826",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Screen Position",
+                    "type": "Value",
+                    "id": "7baf8335-924f-4da4-88b5-13e93b371687",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4276e5c9-659d-4976-9a89-fe08238c4dc0",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Screen Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c45381c7-8b1d-43c5-bd38-f605ca66b59a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Press",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

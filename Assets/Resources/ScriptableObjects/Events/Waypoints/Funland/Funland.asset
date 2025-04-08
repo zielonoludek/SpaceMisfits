@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Funland
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Funland
+  eventType: 1
+  eventDescription: Colorful lights and lively carnival sounds fill the air as your
+    crew picks up on their source. Before long, you spot an incredible space carnival
+    called Funland. You have the opportunity to stop here, allowing yourself and
+    your crew to rest for a while maybe even win some prizes
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 3
+  choices:
+  - choiceDescription: Let your crew have some fun!
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 207edd55060f56c46b5ff0dde4c5bbe7, type: 2}
+      probability: 100
+  - choiceDescription: Try to win some prizes
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 3459731c7a4399049b485b29ff6a1646, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: 00adaf8a837e2dd4db24d8d99e45eb82, type: 2}
+      probability: 100
+  - choiceDescription: 'Don''t stop here '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+    possibleEvents: []

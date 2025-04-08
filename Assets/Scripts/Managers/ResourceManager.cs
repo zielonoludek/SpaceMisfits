@@ -8,9 +8,9 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private int booty = 1000;
     [SerializeField] private int food = 1000;
     [SerializeField] private int notoriety = 1000;
-    [SerializeField] private int crewMood = 1000;
-    [SerializeField] private int sightLevel = 1000;
-    [SerializeField] private int speedValue = 1000;
+    [SerializeField] private int crewMood = 100;
+    [SerializeField] private int sightLevel = 0;
+    [SerializeField] private int speedValue = 1;
 
     private Dictionary<EffectType, Func<int>> resourceGetters;
 
@@ -38,7 +38,16 @@ public class ResourceManager : MonoBehaviour
         if (resource == EffectType.Food) Debug.Log("Food has been depleted! Crew is starving!");
     }
     */
-
+    public void Reset()
+    {
+        shipHealth = 1000;
+        booty = 1000;
+        food = 1000;
+        notoriety = 1000;
+        crewMood = 100;
+        sightLevel = 0;
+        speedValue = 1;
+    }
     private void Awake()
     {
         resourceGetters = new Dictionary<EffectType, Func<int>>

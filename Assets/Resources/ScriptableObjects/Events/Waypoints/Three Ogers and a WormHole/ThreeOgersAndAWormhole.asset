@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: ThreeOgersAndAWormhole
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: 3 Ogers and a Wormhole
+  eventType: 2
+  eventDescription: "Traveling through space, your navigator points you toward a
+    wormhole that should shorten your journey. \n\nWhen you arrive, you see three
+    Ogers standing on an asteroid, blocking your path. They shout at you:\n\n\"Oi,
+    you there! If you want to pass through this wormhole, you must pay the toll!"
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 3
+  choices:
+  - choiceDescription: 'Pay the toll, it''s not worth the hassle '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 10cab9b7fedd32843b6c2cd39c3162da, type: 2}
+    possibleEvents: []
+  - choiceDescription: Let's see if they take cannonballs as a form of payment
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: cd82535f5f16b394298abe0a6937db9e, type: 2}
+      probability: 100
+  - choiceDescription: 'Let''s just leave and go around '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: e108d27f7d1015742ae4395743779d97, type: 2}
+    possibleEvents: []

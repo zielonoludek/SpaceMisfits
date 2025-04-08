@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Space Jam
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Space (Traffic) Jam
+  eventType: 0
+  eventDescription: "\tEven though space travel is three-dimensional, intelligent
+    species (especially humans), will always try to find \"the shortest\" route.\n\tWith
+    the tournament of the famous card game Paradox-Billiards-Nostroyan-Roulette-Fourth-Dimensional-Hypercube-Chess-Strip
+    Poker about to begin in a neighboring sector, you find yourself jammed between
+    countless ships making their way to this grand event."
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: We don't have time for it. Let's just force our way through
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 4250928021c37ca409ba705b22c193f1, type: 2}
+    possibleEvents: []
+  - choiceDescription: 'We can just wait it out '
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: e108d27f7d1015742ae4395743779d97, type: 2}
+    possibleEvents: []

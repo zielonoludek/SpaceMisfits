@@ -26,7 +26,7 @@ public class TimePanelUI : MonoBehaviour
         speed2xBtn.onClick.AddListener(() =>
         {
             if (!GameManager.Instance.TimeManager.IsTimeOn) OnPauseBtn();
-            GameManager.Instance.TimeManager.SetTimeSpeed(2);
+            GameManager.Instance.TimeManager.SetTimeSpeed(4);
         });
         
         pauseResumeBtn.onClick.AddListener(OnPauseBtn);
@@ -69,8 +69,8 @@ public class TimePanelUI : MonoBehaviour
     }
     public void SetupPauseBtn()
     {
-        if (GameManager.Instance.TimeManager.IsTimeOn) pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = "||";
-        else pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = ">";
+        //if (GameManager.Instance.TimeManager.IsTimeOn) pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = "||";
+        //else pauseResumeBtn.GetComponentInChildren<TMP_Text>().text = ">";
     }
     private void OnPauseBtn()
     {

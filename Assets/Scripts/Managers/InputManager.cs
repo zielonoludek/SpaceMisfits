@@ -8,23 +8,38 @@ public class InputManager : MonoBehaviour
     public static InputManager instance;
     public delegate void Swipe(Vector2 direction);
 
-    private bool isDragging = false;
+    private bool isCameraDragging = false;
     public float pinchZoomSpeed = 0.01f;
     private float prevMagnitude = 0;
     private int touchCount = 0;
 
     private Vector2 initialPos = Vector2.zero;
 
+    [SerializeField] private float scrollTimer = 0f;
+    [SerializeField] private int scrollCount = 0;
+    [SerializeField] private float scrollThreshold = 5;
+    [SerializeField] private float scrollTimeWindow = 1f;
+    [SerializeField] private float zoomDelta;
+
     private void Awake()
+    {
+        Setup();
+    }
+    public void Setup()
     {
         inputActions = new InputActions();
         inputActions.Camera.Enable();
 
         inputActions.Camera.Zoom.performed += OnZoomScroll;
+        inputActions.Camera.CameraDrag.started += OnCameraDrag;
+        inputActions.Camera.CameraDrag.performed += OnCameraDrag;
+        inputActions.Camera.CameraDrag.canceled += OnCameraDrag;
 
-        inputActions.Camera.Drag.started += OnDrag;
-        inputActions.Camera.Drag.performed += OnDrag;
-        inputActions.Camera.Drag.canceled += OnDrag;
+        inputActions.UI.Enable();
+        inputActions.UI.Esc.performed += _ =>
+        {
+            GameManager.Instance.UIManager.PausePanelUI.Setup();
+        };
 
         SetupPinchZoom();
     }
@@ -59,26 +74,68 @@ public class InputManager : MonoBehaviour
 
 
     //=============== INPUT CALLBACKS ===============//
-
     private void OnZoomScroll(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<Vector2>().y > 0) GameManager.Instance.CameraManager.ZoomInCamera();
-        else if (context.ReadValue<Vector2>().y < 0) GameManager.Instance.CameraManager.ZoomOutCamera();
+        zoomDelta = context.ReadValue<Vector2>().y;
+        float currentTime = GameManager.Instance.TimeManager.CurrentTime;
+
+        if (currentTime - scrollTimer > scrollTimeWindow)
+        {
+            zoomDelta = 0;
+            scrollCount = 0;
+        }
+
+        scrollTimer = currentTime;
+
+
+        if (zoomDelta > 0)
+        {
+
+            if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Map)
+            {
+                scrollCount++;
+
+                if (scrollCount >= scrollThreshold)
+                {
+                    scrollCount = 0;
+                    GameManager.Instance.SceneLoader.LoadNewScene(1, false);
+                }
+            }
+            else GameManager.Instance.CameraManager.ZoomInCamera();
+        }
+        else if (zoomDelta < 0)
+        {
+
+            if (!GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Ship)
+            {
+                scrollCount++;
+
+                if (scrollCount >= scrollThreshold)
+                {
+                    scrollCount = 0;
+                    GameManager.Instance.SceneLoader.LoadNewScene(2, true);
+                }
+            }
+            else GameManager.Instance.CameraManager.ZoomOutCamera();
+
+        }
     }
 
-    private void OnDrag(InputAction.CallbackContext context)
+
+
+    private void OnCameraDrag(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             initialPos = GameManager.Instance.CameraManager.GetMousePosition;
-            isDragging = true;
+            isCameraDragging = true;
             return;
         }
 
-        
+
         if (context.canceled)
         {
-            isDragging = false;
+            isCameraDragging = false;
         }
     }
 
@@ -86,17 +143,31 @@ public class InputManager : MonoBehaviour
     private void ApplyPinchZoom(float increment)
     {
         if (increment > 0)
-            GameManager.Instance.CameraManager.ZoomOutCamera();
+        {
+            if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Ship)
+            {
+                GameManager.Instance.SceneLoader.LoadNewScene(2);
+            }
+            else GameManager.Instance.CameraManager.ZoomOutCamera();
+        }
         else if (increment < 0)
-            GameManager.Instance.CameraManager.ZoomInCamera();
+        {
+            if (!GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Map)
+            {
+                GameManager.Instance.SceneLoader.LoadNewScene(1);
+            }
+            else GameManager.Instance.CameraManager.ZoomInCamera();
+        }
     }
+
     private void LateUpdate()
     {
-        if (!isDragging) return;
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
+        if (!isCameraDragging) return;
+
         Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
-        Vector2 diff = currentPos - initialPos; 
-        
+        Vector2 diff = currentPos - initialPos;
+
         GameManager.Instance.CameraManager.MoveCamera(diff.normalized);
 
     }

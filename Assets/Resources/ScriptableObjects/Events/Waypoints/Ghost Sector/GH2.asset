@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: GH2
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Ghost sector - Looking for Treasure
+  eventType: 2
+  eventDescription: 'You send one of your crew members out in a small vessel, tethered
+    to your ship by a steel-knitted rope. The vessel''s primary purpose is as an
+    emergency escape pod, and without the sonar built into your ship, it could easily
+    get lost without the rope.
+
+
+    Now, the only thing you can do is wait. While
+    your crew visibly grows anxious and discontent with your decision.'
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Let's wait.
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 81014cd80285d7947badbff75e91101a, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: a94391d64b8dd744fbc29d8dcbc61cb2, type: 2}
+      probability: 100
+  - choiceDescription: Actually, i changed my mind (pull back the vessel)
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: d17d7262f526da145ae75466f13e5b21, type: 2}
+      probability: 100

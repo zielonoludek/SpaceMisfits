@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Space Mermaids
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Space Mermaid
+  eventType: 0
+  eventDescription: 'A slow, humming melody fills the air, soon followed by a beautiful
+    woman''s voice singing, resonating in the ears of your crewmates.
+
+
+    In the
+    small asteroid belt, a stunning woman sits atop a wreck, singing while gazing
+    longingly at your ship. You can see its effect on your crew, they begin to shift,
+    almost unconsciously, gathering near the port deck, entranced by the song.'
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Stay and listen in to the song
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 318ea8f502efee144a5f7880e0b7fc54, type: 2}
+    possibleEvents:
+    - eventOption: {fileID: 11400000, guid: c32fa643fcbda5e4d98b9898e3a02966, type: 2}
+      probability: 100
+  - choiceDescription: Avert your ears and leave.
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: ff72e940f26c48947a52693a691154e9, type: 2}
+    possibleEvents: []

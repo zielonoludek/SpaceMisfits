@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b56e9ccb3770334ba2e365771a6ff61, type: 3}
+  m_Name: Funland Manager
+  m_EditorClassIdentifier: 
+  isPersistent: 0
+  eventTitle: Financial Aid
+  eventType: 0
+  eventDescription: "As you try to leave, an older gentleman stops you, introducing
+    himself as Funland\u2019s owner. \n\t\nHe explains that the park, one of the
+    oldest in this part of the galaxy, is struggling as the Bart Dansey Company buys
+    up land and lobbies for unfair restrictions. He asks if you\u2019d donate to
+    help Funland survive."
+  crewmateToRecruit: {fileID: 0}
+  numberOfEventEffects: 0
+  eventEffects: []
+  hasChoices: 1
+  numberOfChoices: 2
+  choices:
+  - choiceDescription: Yes, im in (donate funds)
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 1
+    choiceEffects:
+    - {fileID: 11400000, guid: 10cab9b7fedd32843b6c2cd39c3162da, type: 2}
+    possibleEvents: []
+  - choiceDescription: Oh bugger off (leave)
+    crewmate: {fileID: 0}
+    numberOfChoiceEffects: 0
+    choiceEffects: []
+    possibleEvents: []

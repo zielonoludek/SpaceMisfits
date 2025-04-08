@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FightPanelUI : MonoBehaviour
 {
     private FightManager fightManager;
     [SerializeField] private Button closeBtn;
+    [SerializeField] private TextMeshProUGUI eventTitleText;
+    [SerializeField] private TextMeshProUGUI eventDescriptionText;
 
     [Header("Panels")]
     [SerializeField] private GameObject bettingPanel;
@@ -19,8 +22,7 @@ public class FightPanelUI : MonoBehaviour
 
     [Header("Betting UI")]
     [SerializeField] private TMP_Text betAmountText;
-    [SerializeField] private Button addBetButton;
-    [SerializeField] private Button subtractBetButton;
+    [SerializeField] private Button[] betButtons;
     [SerializeField] private Button fightButton;
 
     [Header("Resources UI")]
@@ -35,15 +37,24 @@ public class FightPanelUI : MonoBehaviour
     {
         fightManager = GameManager.Instance.FightManager;
 
-        addBetButton.onClick.AddListener(() => ChangeBet(1));
-        subtractBetButton.onClick.AddListener(() => ChangeBet(-1));
+        int[] betValues = { -100, -50, -10, -5, -1, 1, 5, 10, 50, 100 };
+        for (int i = 0; i < betButtons.Length; i++)
+        {
+            int value = betValues[i];
+            betButtons[i].onClick.AddListener(() => ChangeBet(value));
+        }
+
         fightButton.onClick.AddListener(() => StartFight());
         closeBtn.onClick.AddListener(() => {
             fightManager.CloseFight();
             closeBtn.gameObject.SetActive(false);
         });
-
+        
+        AddHoverEffectToButtonText(fightButton);
+        AddHoverEffectToButtonText(closeBtn);
+        AddHoverEffectToButtonText(betButtons);
     }
+
     public void Setup()
     {
         betAmount = 0;
@@ -55,13 +66,13 @@ public class FightPanelUI : MonoBehaviour
     private void ChangeBet(int amount)
     {
         int maxBet = GameManager.Instance.ResourceManager.Notoriety;
-        betAmount = Mathf.Clamp(betAmount + amount * 10, 0, maxBet);
+        betAmount = Mathf.Clamp(betAmount + amount, 0, maxBet);
         UpdateBetUI();
     }
 
     private void UpdateBetUI()
     {
-        betAmountText.text = betAmount.ToString();
+        betAmountText.text = "Bet " + betAmount;
         ValidateFightButton();
     }
 
@@ -109,6 +120,16 @@ public class FightPanelUI : MonoBehaviour
         fightResultText.text = playerWon ? "<color=green>Winner</color>" : "<color=red>Loser</color>";
     }
 
+    public int GetPlayerDiceCount(int notoriety)
+    {
+        return notoriety / 10 + 1;
+    }
+
+    public int GetComputerDiceCount(int betAmount)
+    {
+        return Mathf.Max(1, betAmount / 10);
+    }
+
     public IEnumerator ShowRollingEffect(int[] playerRolls, int[] computerRolls)
     {
         ClearDiceUI(playerDicesParent);
@@ -143,6 +164,12 @@ public class FightPanelUI : MonoBehaviour
             SetDiceValue(computerDiceObjects[i], computerRolls[i]);
     }
 
+    public void UpdateEventText(FightEventSO fightEvent)
+    {
+        eventTitleText.text = fightEvent.eventTitle;
+        eventDescriptionText.text = fightEvent.eventDescription;
+    }
+
     private void ClearDiceUI(Transform parent)
     {
         foreach (Transform child in parent)
@@ -162,6 +189,45 @@ public class FightPanelUI : MonoBehaviour
         if (diceText != null)
         {
             diceText.text = value.ToString();
+        }
+    }
+    
+    private void AddHoverEffectToButtonText(Button button)
+    {
+        TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (buttonText != null)
+        {
+            EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>() ?? button.gameObject.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            pointerEnterEntry.callback.AddListener((data) => { buttonText.color = Color.red; });
+            trigger.triggers.Add(pointerEnterEntry);
+
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { buttonText.color = Color.black; });
+            trigger.triggers.Add(pointerExitEntry);
+        }
+    }
+    
+    private void AddHoverEffectToButtonText(Button[] buttons)
+    {
+        foreach (Button button in buttons)
+        {
+            if (button == null) continue;
+
+            TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText == null) continue;
+
+            EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>() ?? button.gameObject.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            pointerEnterEntry.callback.AddListener((data) => { buttonText.color = Color.red; });
+            trigger.triggers.Add(pointerEnterEntry);
+
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { buttonText.color = Color.black; });
+            trigger.triggers.Add(pointerExitEntry);
         }
     }
 }

@@ -9,6 +9,9 @@ public class TiedEventSequenceSO : ScriptableObject
     [Tooltip("Events should be visited in order from top to bottom")]
     public List<EventSO> orderedEvents = new List<EventSO>();
 
+    [Tooltip("If enabled, game will show pulsing effect on the next sector")]
+    public bool enableVisualization;
+    
     private int currentIndex = 0;
 
     public EventSO GetCurrentEvent()
