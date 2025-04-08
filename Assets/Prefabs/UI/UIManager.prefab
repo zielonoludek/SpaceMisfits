@@ -1043,7 +1043,7 @@ MonoBehaviour:
   valueText: {fileID: 7550546367640200438}
   maxValue: 100
   tooltipPanel: {fileID: 1250658277716437170}
-  tooltipDelay: 1
+  tooltipDelay: 0.25
   tooltipDescription: notoriety
 --- !u!114 &5650323536730790023
 MonoBehaviour:
@@ -3971,7 +3971,7 @@ MonoBehaviour:
   valueText: {fileID: 6461228161023436266}
   maxValue: 100
   tooltipPanel: {fileID: 1250658277716437170}
-  tooltipDelay: 1
+  tooltipDelay: 0.25
   tooltipDescription: ship health
 --- !u!114 &4147648449111726116
 MonoBehaviour:
@@ -4814,7 +4814,7 @@ MonoBehaviour:
   valueText: {fileID: 8972229230813039097}
   maxValue: 100
   tooltipPanel: {fileID: 1250658277716437170}
-  tooltipDelay: 1
+  tooltipDelay: 0.25
   tooltipDescription: crew mood
 --- !u!114 &3439858618196192088
 MonoBehaviour:
@@ -9803,7 +9803,7 @@ MonoBehaviour:
   valueText: {fileID: 8883266459221990339}
   maxValue: 100
   tooltipPanel: {fileID: 1250658277716437170}
-  tooltipDelay: 1
+  tooltipDelay: 0.25
   tooltipDescription: crew hunger
 --- !u!114 &2143682646204134227
 MonoBehaviour:
