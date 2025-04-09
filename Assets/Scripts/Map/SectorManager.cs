@@ -20,6 +20,7 @@ public class SectorManager : MonoBehaviour
 
     private GameObject playerInstance;
     private Sector playerCurrentSector;
+    [SerializeField] private FogOfWarController fogOfWarController;
 
     [Header("Event Materials")]
     [SerializeField] private List<EventMaterial> eventMaterialsList = new List<EventMaterial>();
@@ -102,6 +103,8 @@ public class SectorManager : MonoBehaviour
 
         playerInstance = Instantiate(playerPrefab, startingSector.transform.position, quaternion.identity);
         playerCurrentSector = startingSector;
+        
+        fogOfWarController.UpdatePlayerPosition(playerInstance.transform.position);
     }
 
     private IEnumerator AnimatePlayerMovement(Vector3[] path, float distance, Sector targetSector)
@@ -133,6 +136,7 @@ public class SectorManager : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / segmentDurationRealSeconds;
                 playerInstance.transform.position = Vector3.Lerp(start, end, t);
+                fogOfWarController.UpdatePlayerPosition(playerInstance.transform.position);
                 yield return null;
             }
 
