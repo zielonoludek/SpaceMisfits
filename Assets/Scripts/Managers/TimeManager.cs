@@ -58,7 +58,7 @@ public class TimeManager : MonoBehaviour
         currentTime = 0;
         totalTime = 0;
         daysCounter = 0;
-        oneDayInSeconds = 600;
+        oneDayInSeconds = 60;
     }
     private void DayEnded()
     {

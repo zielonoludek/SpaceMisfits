@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CrewManager crewManager;
     [SerializeField] RequestManager requestManager;
     [SerializeField] SceneLoader sceneLoader;
-    
+
     //=========GETTERS=========//
     public CameraManager CameraManager { get { return cameraManager; } }
     public ResourceManager ResourceManager { get { return resourceManager; } }
@@ -34,6 +35,12 @@ public class GameManager : MonoBehaviour
     public CrewManager CrewManager { get { return crewManager; } }
     public RequestManager RequestManager { get { return requestManager; } }
     public SceneLoader SceneLoader { get { return sceneLoader; } }
+    public static bool IsGameOver { get; private set; } = false;
+
+    public void SetGameOver(bool state)
+    {
+        IsGameOver = state;
+    }
 
     public GameState GameState
     {
@@ -61,6 +68,13 @@ public class GameManager : MonoBehaviour
         LoadManagers();
         sceneLoader.NewSceneLoaded += LoadManagers;
     }
+
+    private IEnumerator DelayedLoadManagers()
+    {
+        yield return new WaitForSeconds(0.1f);
+        LoadManagers();
+    }
+
     public void Reset()
     {
         timeManager.Reset();
@@ -68,6 +82,7 @@ public class GameManager : MonoBehaviour
 
         gameState = GameState.None;
         gameScene = GameScene.MainMenu;
+        StartCoroutine(DelayedLoadManagers());
     }
     void LoadManagers()
     {
