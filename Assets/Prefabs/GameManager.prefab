@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOn: 1
-  oneDayInSeconds: 60
+  oneDayInSeconds: 30
   day: 1
   month: 7
   year: 2793
