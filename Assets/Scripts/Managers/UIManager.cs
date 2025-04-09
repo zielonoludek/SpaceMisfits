@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] EventPopupUI eventPanelUI;
     [SerializeField] OptionsPanel optionsPanelUI;
     [SerializeField] PausePanelUI pausePanelUI;
+    [SerializeField] GameOverPanelUI gameOverPanelUI;
 
     public TimePanelUI TimePanelUI { get { return timePanelUI; } }
     public FightPanelUI FightPanelUI { get { return fightPanelUI; } }
@@ -15,4 +16,5 @@ public class UIManager : MonoBehaviour
     public EventPopupUI EventPanelUI { get { return eventPanelUI; } }
     public OptionsPanel OptionsPanelUI { get { return optionsPanelUI; } }
     public PausePanelUI PausePanelUI { get { return pausePanelUI; } }
+    public GameOverPanelUI GameOverPanelUI { get { return gameOverPanelUI; } }
 }

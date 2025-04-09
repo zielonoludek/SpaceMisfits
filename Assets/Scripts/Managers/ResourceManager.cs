@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class ResourceManager : MonoBehaviour
 {
-    [SerializeField] private int shipHealth = 1000;
-    [SerializeField] private int booty = 1000;
-    [SerializeField] private int food = 1000;
-    [SerializeField] private int notoriety = 1000;
-    [SerializeField] private int crewMood = 100;
-    [SerializeField] private int sightLevel = 0;
-    [SerializeField] private int speedValue = 1;
+    [SerializeField] private int shipHealth;
+    [SerializeField] private int booty;
+    [SerializeField] private int food;
+    [SerializeField] private int notoriety;
+    [SerializeField] private int crewMood;
+    [SerializeField] private int sightLevel;
+    [SerializeField] private int speedValue;
 
     private Dictionary<EffectType, Func<int>> resourceGetters;
 
@@ -40,11 +40,11 @@ public class ResourceManager : MonoBehaviour
     */
     public void Reset()
     {
-        shipHealth = 1000;
-        booty = 1000;
-        food = 1000;
-        notoriety = 1000;
-        crewMood = 100;
+        shipHealth = 100;
+        booty = 100;
+        food = 100;
+        notoriety = 0;
+        crewMood = 50;
         sightLevel = 0;
         speedValue = 1;
     }

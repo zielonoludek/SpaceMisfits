@@ -33,6 +33,7 @@ public class CrewMemberDraggable : MonoBehaviour
     {
         get
         {
+            if (GameManager.IsGameOver) return false;
             Ray ray = mainCamera.ScreenPointToRay(currentScreenPosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -151,10 +152,6 @@ public class CrewMemberDraggable : MonoBehaviour
         {
             transform.position = initialParent.position;
             transform.SetParent(initialParent);
-        }
-        if (previousDropZone != null)
-        {
-            previousDropZone.AssignCrew(crewmateData);
         }
 
         Debug.Log("Reverted to previous position");
