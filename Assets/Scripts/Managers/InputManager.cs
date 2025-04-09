@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AYellowpaper.SerializedCollections.Editor.Data;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -31,9 +32,6 @@ public class InputManager : MonoBehaviour
         inputActions.Camera.Enable();
 
         inputActions.Camera.Zoom.performed += OnZoomScroll;
-        inputActions.Camera.CameraDrag.started += OnCameraDrag;
-        inputActions.Camera.CameraDrag.performed += OnCameraDrag;
-        inputActions.Camera.CameraDrag.canceled += OnCameraDrag;
 
         inputActions.UI.Enable();
         inputActions.UI.Esc.performed += _ =>
@@ -43,7 +41,12 @@ public class InputManager : MonoBehaviour
 
         SetupPinchZoom();
     }
-    private void SetupPinchZoom()
+    private void OnDisable()
+    {
+        inputActions.Camera.Disable();
+        inputActions.UI.Disable();
+    }
+private void SetupPinchZoom()
     {
         var touch0contact = new InputAction(type: InputActionType.Button, binding: "<Touchscreen>/touch0/press");
         touch0contact.Enable();
@@ -121,25 +124,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-
-
-    private void OnCameraDrag(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            initialPos = GameManager.Instance.CameraManager.GetMousePosition;
-            isCameraDragging = true;
-            return;
-        }
-
-
-        if (context.canceled)
-        {
-            isCameraDragging = false;
-        }
-    }
-
-
     private void ApplyPinchZoom(float increment)
     {
         if (increment > 0)
@@ -158,17 +142,5 @@ public class InputManager : MonoBehaviour
             }
             else GameManager.Instance.CameraManager.ZoomInCamera();
         }
-    }
-
-    private void LateUpdate()
-    {
-        if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
-        if (!isCameraDragging) return;
-
-        Vector2 currentPos = GameManager.Instance.CameraManager.GetMousePosition;
-        Vector2 diff = currentPos - initialPos;
-
-        GameManager.Instance.CameraManager.MoveCamera(diff.normalized);
-
     }
 }
