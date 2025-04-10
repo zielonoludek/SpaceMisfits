@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
@@ -8,14 +9,21 @@ public class CameraManager : MonoBehaviour
     [SerializeField] CinemachineCamera zoomCamera;
     [SerializeField] CinemachineCamera normalCamera;
 
-    [SerializeField] float movementSpeed = 10;
-    [SerializeField] float zoomedMovementSpeed = 5;
-
-    [SerializeField] private bool zoomed = false;
+    private bool zoomed = false;
     private static bool savedZoomState = false;
 
-    public CinemachineCamera currentCamera { get; set; }
-    public bool ZoomState { get { return zoomed; } }
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float acceleration = 10f;
+    [SerializeField] private float damping = 15f;
+
+    private Plane plane;
+
+    private float speed;
+
+    private Vector3 horizontalVelocity;
+    private Vector3 lastPosition;
+    private Vector3 startDrag;
+    private Vector3 targetPosition;
 
     private void Start()
     {
@@ -29,7 +37,28 @@ public class CameraManager : MonoBehaviour
         }
         UpdateCameraPriority();
     }
+    private void OnEnable()
+    {
+        lastPosition = this.transform.position;
+        plane = new Plane(Vector3.forward, Vector3.zero);
+    }
+    private void Update()
+    {
+        if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
 
+        DragCamera();
+        UpdateVelocity();
+        UpdateBasePosition();
+
+    }
+    #region Getters
+    public Vector3 GetMousePosition => Mouse.current.position.ReadValue();
+    public Vector3 GetCameraPosition => transform.position;
+    public CinemachineCamera currentCamera { get; set; }
+    public bool ZoomState { get { return zoomed; } }
+    #endregion
+
+    #region Zoom
     public void ToggleCamera()
     {
         zoomed = !zoomed;
@@ -51,20 +80,6 @@ public class CameraManager : MonoBehaviour
         if (zoomed) zoomCamera.Priority = 20;
         else zoomCamera.Priority = 0;
     }
-
-    public void MoveCamera(Vector2 direction)
-    {
-        Vector3 dir = new Vector3(direction.x, direction.y, 0) * Time.unscaledDeltaTime;
-        
-        if (zoomed) dir *= zoomedMovementSpeed;
-        else dir *= movementSpeed;
-
-        transform.position -= dir;
-    }
-
-    public Vector3 GetMousePosition => Mouse.current.position.ReadValue();
-    public Vector3 GetCameraPosition => transform.position;
-
     public void SaveZoomState()
     {
         savedZoomState = zoomed;
@@ -75,4 +90,45 @@ public class CameraManager : MonoBehaviour
         zoomed = forceZoomed || savedZoomState;
         UpdateCameraPriority();
     }
+    #endregion
+
+    #region Movement
+
+    private void UpdateVelocity()
+    {
+        horizontalVelocity = (this.transform.position - lastPosition) / Time.deltaTime;
+        horizontalVelocity.y = 0f;
+        lastPosition = this.transform.position;
+    }
+
+    private void DragCamera()
+    {
+        if (!Mouse.current.rightButton.isPressed) return;
+
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            if (Mouse.current.rightButton.wasPressedThisFrame) startDrag = ray.GetPoint(distance);
+            else targetPosition += startDrag - ray.GetPoint(distance);
+            Debug.Log("ray");
+        }
+    }
+
+    private void UpdateBasePosition()
+    {
+        if (targetPosition.sqrMagnitude > 0.1f)
+        {
+            speed = Mathf.Lerp(speed, maxSpeed, Time.deltaTime * acceleration);
+            transform.position += targetPosition * speed * Time.deltaTime;
+        }
+        else
+        {
+            horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, Time.deltaTime * damping);
+            transform.position += horizontalVelocity * Time.deltaTime;
+        }
+
+        targetPosition = Vector3.zero;
+    }
+    #endregion
 }

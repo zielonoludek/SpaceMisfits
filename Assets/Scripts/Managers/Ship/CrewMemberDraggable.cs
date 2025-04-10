@@ -154,7 +154,7 @@ public class CrewMemberDraggable : MonoBehaviour
             transform.SetParent(initialParent);
         }
 
-        Debug.Log("Reverted to previous position");
+        //Debug.Log("Reverted to previous position");
     }
 
     private void OnTriggerEnter(Collider other)
