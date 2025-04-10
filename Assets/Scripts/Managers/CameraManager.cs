@@ -9,15 +9,14 @@ public class CameraManager : MonoBehaviour
     [SerializeField] CinemachineCamera zoomCamera;
     [SerializeField] CinemachineCamera normalCamera;
 
-    [SerializeField] float movementSpeed = 10;
-    [SerializeField] float zoomedMovementSpeed = 5;
-
-    [SerializeField] private bool zoomed = false;
+    private bool zoomed = false;
     private static bool savedZoomState = false;
 
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float damping = 15f;
+
+    private Plane plane;
 
     private float speed;
 
@@ -38,10 +37,14 @@ public class CameraManager : MonoBehaviour
         }
         UpdateCameraPriority();
     }
-    private void OnEnable() => lastPosition = this.transform.position;
+    private void OnEnable()
+    {
+        lastPosition = this.transform.position;
+        plane = new Plane(Vector3.forward, Vector3.zero);
+    }
     private void Update()
     {
-        //if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
+        if (EventSystem.current.IsPointerOverGameObject() || !Application.isFocused) return;
 
         DragCamera();
         UpdateVelocity();
@@ -100,18 +103,15 @@ public class CameraManager : MonoBehaviour
 
     private void DragCamera()
     {
-        if (!Mouse.current.rightButton.isPressed)
-            return;
+        if (!Mouse.current.rightButton.isPressed) return;
 
-        Plane plane = new Plane(Vector3.up, Vector3.zero);
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (plane.Raycast(ray, out float distance))
         {
-            if (Mouse.current.rightButton.wasPressedThisFrame)
-                startDrag = ray.GetPoint(distance);
-            else
-                targetPosition += startDrag - ray.GetPoint(distance);
+            if (Mouse.current.rightButton.wasPressedThisFrame) startDrag = ray.GetPoint(distance);
+            else targetPosition += startDrag - ray.GetPoint(distance);
+            Debug.Log("ray");
         }
     }
 

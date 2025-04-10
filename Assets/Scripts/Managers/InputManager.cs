@@ -9,12 +9,9 @@ public class InputManager : MonoBehaviour
     public static InputManager instance;
     public delegate void Swipe(Vector2 direction);
 
-    private bool isCameraDragging = false;
     public float pinchZoomSpeed = 0.01f;
     private float prevMagnitude = 0;
     private int touchCount = 0;
-
-    private Vector2 initialPos = Vector2.zero;
 
     [SerializeField] private float scrollTimer = 0f;
     [SerializeField] private int scrollCount = 0;

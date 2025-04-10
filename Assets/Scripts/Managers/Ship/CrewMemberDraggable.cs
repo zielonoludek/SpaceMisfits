@@ -157,7 +157,7 @@ public class CrewMemberDraggable : MonoBehaviour
             previousDropZone.AssignCrew(crewmateData);
         }
 
-        Debug.Log("Reverted to previous position");
+        //Debug.Log("Reverted to previous position");
     }
 
     private void OnTriggerEnter(Collider other)
