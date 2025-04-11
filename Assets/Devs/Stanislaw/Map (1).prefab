@@ -1104,7 +1104,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ff77e9fe54fa4d24e81fe49219d02f8d, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector ()
+      value: Sector (It's a Trap!)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3060,7 +3060,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e868920ba6cfa7c419d223ee411415fb, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Call for Help)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6708,7 +6708,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d38023e2df6048341a32b3c917af9ca4, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Supernova)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7283,7 +7283,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d449d0e00531f9440a3c21b5874e3dd0, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Location of the scientist )
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9739,7 +9739,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 38aca0d7619605f40be324ce45bb34b5, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector ()
+      value: Sector (Space Mermaid)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10221,7 +10221,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4a56caa5e9875164ba5124289bff0e59, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Space Bar (A Spar) )
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11025,7 +11025,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 6ba829462a0fe7f418206daf327778d1, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (SpaceShip Graveyard)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11426,7 +11426,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 042d536ddf78567428ddc251eafe0c18, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (SpacePort)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13471,7 +13471,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 7f4bf0e205c939246a556aef81e7fef7, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector ()
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14362,7 +14362,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 757958ca1d4abd04b9da0020a55788de, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (SpaceShip Scrappers!)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15249,7 +15249,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5572de226653ed846b17d3fbcb0f4d8e, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Problem of three bodies)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17480,7 +17480,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 3eec09eaff197d14c91cfdfdec372c9f, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Space Bandits)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17723,7 +17723,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e6937a696335ad74f831b58e50bdb726, type: 2}
     - target: {fileID: 7067480459453390333, guid: 16336d876fbd50d4688b9085eb7593f0, type: 3}
       propertyPath: m_Name
-      value: Sector (Unnamed Event)
+      value: Sector (Hooded Robin And his Marinemen)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
