@@ -20,9 +20,8 @@ MonoBehaviour:
   IsFromCrewMember: 0
   CrewMemberName: 
   TimeLimitDayHoursMinutes: {x: 0, y: 1, z: 0}
-  TimeLimitInSeconds: 3600
-  StartTime: 10.600052
-  ExpirationTime: 10.600052
+  StartTime: 7.599993
+  ExpirationTime: 8.849993
   Requirement: 7
   FulfillmentCondition:
     rid: 5978552999047594052
@@ -34,9 +33,9 @@ MonoBehaviour:
   Penalties:
     _serializedList:
     - Key: 8
-      Value: -100
+      Value: 0
     - Key: 6
-      Value: -25
+      Value: 0
   references:
     version: 2
     RefIds:
