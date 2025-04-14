@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53849b780c7010243b1c3d9457a9a931, type: 3}
-  m_Name: NewCrewRequest
+  m_Name: Request_Hunger
   m_EditorClassIdentifier: 
   Name: Random
-  Description: 'random randomowy request '
+  Description: I want to eat!
   Artwork: {fileID: 1367602139, guid: 91767902ed904ab4ca5ec3985b8e86f4, type: 3}
   Type: 0
   specialMember: 0
-  IsFromCrewMember: 0
+  IsFromCrewMember: 1
+  originCrewMemberConsumption: {fileID: 0}
   CrewMemberName: 
-  TimeLimitDayHoursMinutes: {x: 0, y: 1, z: 0}
-  TimeLimitInSeconds: 3600
-  StartTime: 10.600052
-  ExpirationTime: 10.600052
-  Requirement: 7
+  TimeLimitDayHoursMinutes: {x: 1, y: 0, z: 0}
+  StartTime: 5.0599957
+  ExpirationTime: 35.059998
+  Requirement: 10
   FulfillmentCondition:
-    rid: 5978552999047594052
+    rid: 8269587793097785415
   EventToExecute: {fileID: 0}
   Rewards:
     _serializedList:
@@ -34,13 +34,11 @@ MonoBehaviour:
   Penalties:
     _serializedList:
     - Key: 8
-      Value: -100
-    - Key: 6
-      Value: -25
+      Value: 0
   references:
     version: 2
     RefIds:
-    - rid: 5978552999047594052
+    - rid: 8269587793097785415
       type: {class: IntFulfillmentCondition, ns: , asm: Assembly-CSharp}
       data:
         RequiredValue: 50

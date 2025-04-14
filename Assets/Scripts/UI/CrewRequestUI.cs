@@ -116,7 +116,7 @@ public class CrewRequestUI : MonoBehaviour
     private void UpdateRequestUI()
     {
         crewImg.sprite = crewRequest.Artwork;
-        crewNameTxt.text = crewRequest.Name;
+        crewNameTxt.text = crewRequest.CrewMemberName;
         descriptionTxt.text = crewRequest.Description;
         rewardTxt.text = string.Join("", crewRequest.Rewards.Select(r => $"{r.Key}: {r.Value}\n"));
         penaltyTxt.text = string.Join("", crewRequest.Penalties.Select(p => $"{p.Key}: {p.Value}\n"));

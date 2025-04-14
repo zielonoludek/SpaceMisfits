@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c41edd4424bc6546873e3ce972d136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeRequests: []
+  requestCap: 6
+  availableRequests: []
   checkIntervalDaysHoursMinutes: {x: 0, y: 1, z: 0}
   negativeModifier: 1.5
+  activeRequests: []
 --- !u!114 &3663361855481523946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipHealth: 100
   booty: 100
-  food: 100
+  food: 1000
   notoriety: 0
   crewMood: 50
   sightLevel: 0
@@ -173,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOn: 1
-  oneDayInSeconds: 60
+  oneDayInSeconds: 30
   day: 1
   month: 7
   year: 2793

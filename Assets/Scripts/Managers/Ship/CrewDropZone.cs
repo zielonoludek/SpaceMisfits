@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CrewDropZone : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CrewDropZone : MonoBehaviour
     public List<Transform> snapPoints = new List<Transform>();
     private HashSet<Transform> usedSnapPoints = new HashSet<Transform>();
     public GameObject highlightVisual;
+    public event Action CrewAssignedSuccess;
 
     private void Awake()
     {
@@ -55,17 +57,28 @@ public class CrewDropZone : MonoBehaviour
         if (IsAvailable())
         {
             currentCrewCount++;
-            string partName = "Crew Quarters";
+            string partName = "Unknown Part";
             if (shipPart != null && shipPart.partName != null)
             {
                 partName = shipPart.partName;
             }
             Debug.Log($"{crewData.crewmateName} assigned to {partName}");
-        }
+            CrewAssignedSuccess?.Invoke();
+
+    }
         else
         {
             Debug.LogError("Cannot assign crew: Capacity reached.");
         }
+        
+    }
+
+    
+
+
+    public string GetPartName()
+    {
+        return shipPart != null ? shipPart.partName : "Unknown Part";
     }
 
     public void RemoveCrew(CrewmateData crewData, Transform snapPoint = null)
