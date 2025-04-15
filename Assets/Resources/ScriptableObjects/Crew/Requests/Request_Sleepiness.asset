@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53849b780c7010243b1c3d9457a9a931, type: 3}
+  m_Name: Request_Sleepiness
+  m_EditorClassIdentifier: 
+  Name: Random
+  Description: I want to rest!
+  Artwork: {fileID: 1367602139, guid: 91767902ed904ab4ca5ec3985b8e86f4, type: 3}
+  Type: 0
+  specialMember: 0
+  IsFromCrewMember: 0
+  originCrewMemberConsumption: {fileID: 0}
+  CrewMemberName: 
+  TimeLimitDayHoursMinutes: {x: 1, y: 0, z: 0}
+  StartTime: 1.279999
+  ExpirationTime: 31.279999
+  Requirement: 11
+  FulfillmentCondition:
+    rid: 8269587793097785415
+  EventToExecute: {fileID: 0}
+  Rewards:
+    _serializedList:
+    - Key: 8
+      Value: 50
+  Penalties:
+    _serializedList:
+    - Key: 8
+      Value: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8269587793097785415
+      type: {class: IntFulfillmentCondition, ns: , asm: Assembly-CSharp}
+      data:
+        RequiredValue: 50

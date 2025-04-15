@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -100,45 +101,169 @@ public class CrewMemberDraggable : MonoBehaviour
 
     private void SnapToTrigger()
     {
-        CrewDropZone dropZone = currentTrigger.GetComponent<CrewDropZone>();
-
-        if (dropZone == null || !dropZone.IsAvailable())
+        CrewDropZone dropZone = currentTrigger?.GetComponent<CrewDropZone>();
+        if (dropZone == null)
         {
             RevertToPreviousPosition();
             return;
         }
 
-        Transform snapPoint = dropZone.isCrewQuarters
-            ? dropZone.GetNextAvailableSnapPoint()
-            : (dropZone.snapPoints.Count > 0 ? dropZone.snapPoints[0] : null);
-
-        if (snapPoint != null)
+        Collider zoneCollider = dropZone.GetComponent<Collider>();
+        if (zoneCollider != null && !zoneCollider.bounds.Contains(transform.position))
         {
-            if (previousDropZone != null && previousSnapPoint != null)
+            RevertToPreviousPosition();
+            return;
+        }
+
+        if (dropZone.IsAvailable())
+        {
+            Transform snapPoint = dropZone.isCrewQuarters
+                ? dropZone.GetNextAvailableSnapPoint()
+                : (dropZone.snapPoints.Count > 0 ? dropZone.snapPoints[0] : null);
+
+            if (snapPoint != null)
             {
-                previousDropZone.RemoveCrew(crewmateData, previousSnapPoint);
-
-                if (previousDropZone.shipPart != null)
+                if (previousDropZone != null && previousSnapPoint != null)
                 {
-                    shipPartManager.RemoveCrewmateFromPart(crewmateData, previousDropZone.shipPart);
-                    previousDropZone.shipPart.RemoveEffect();
+                    previousDropZone.RemoveCrew(crewmateData, previousSnapPoint);
+                    if (previousDropZone.shipPart != null)
+                    {
+                        shipPartManager.RemoveCrewmateFromPart(crewmateData, previousDropZone.shipPart);
+                        previousDropZone.shipPart.RemoveEffect();
+                    }
                 }
+
+                PlaceInZone(dropZone, snapPoint);
             }
-
-            transform.position = snapPoint.position;
-            transform.SetParent(dropZone.transform);
-            previousSnapPoint = snapPoint;
-            previousDropZone = dropZone;
-
-            shipPartManager.AssignCrewmateToPart(crewmateData, dropZone.shipPart);
-            dropZone.AssignCrew(crewmateData);
-
-            dropZone.ResetZoneColor();
+            else
+            {
+                RevertToPreviousPosition();
+            }
         }
         else
         {
-            RevertToPreviousPosition();
+            CrewMemberDraggable swapTarget = GetSwapTarget(dropZone);
+            if (swapTarget != null)
+            {
+                DoSwap(swapTarget);
+            }
+            else
+            {
+                RevertToPreviousPosition();
+            }
         }
+    }
+
+    private CrewMemberDraggable GetSwapTarget(CrewDropZone dropZone)
+    {
+        if (currentTrigger == null || currentTrigger.GetComponent<CrewDropZone>() != dropZone)
+        {
+            Debug.Log("Current trigger does not match drop zone.");
+            return null;
+        }
+
+        Transform closestSnapPoint = null;
+        float minDistance = float.MaxValue;
+
+        foreach (var snapPoint in dropZone.snapPoints)
+        {
+            float dist = Vector3.Distance(transform.position, snapPoint.position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closestSnapPoint = snapPoint;
+            }
+        }
+
+        Debug.Log($"[World] Closest snap point: {closestSnapPoint?.name}, Distance: {minDistance}");
+
+        if (closestSnapPoint == null || minDistance > 5.0f)
+        {
+            Debug.Log("Not close enough to a snap point.");
+            return null;
+        }
+
+        CrewMemberDraggable[] crewMembers = dropZone.GetComponentsInChildren<CrewMemberDraggable>();
+
+        foreach (var crew in crewMembers)
+        {
+            if (crew == this) continue;
+
+            if (crew.previousSnapPoint == closestSnapPoint)
+            {
+                Debug.Log($"Found crew to swap: {crew.name}");
+                return crew;
+            }
+
+            float snapDist = Vector3.Distance(crew.transform.position, closestSnapPoint.position);
+            if (snapDist < 0.3f)
+            {
+                Debug.Log($"Found close crew to swap by distance: {crew.name}, dist: {snapDist}");
+                return crew;
+            }
+        }
+
+        Debug.Log("No swap target found at snap point.");
+        return null;
+    }
+
+    private void PlaceInZone(CrewDropZone zone, Transform snapPoint, bool isSwap = false)
+    {
+        transform.position = snapPoint.position;
+        transform.SetParent(zone.transform);
+        previousDropZone = zone;
+        previousSnapPoint = snapPoint;
+        currentTrigger = zone.gameObject;
+
+        if (!isSwap)
+        {
+            shipPartManager.AssignCrewmateToPart(crewmateData, zone.shipPart);
+            zone.AssignCrew(crewmateData);
+        }
+
+        zone.ResetZoneColor();
+    }
+
+    private void DoSwap(CrewMemberDraggable target)
+    {
+        CrewDropZone originZone = this.previousDropZone;
+        Transform originSnap = this.previousSnapPoint;
+        CrewDropZone targetZone = target.previousDropZone;
+        Transform targetSnap = target.previousSnapPoint;
+
+        if (originZone == null || targetZone == null)
+        {
+            Debug.LogError("Swap failed: Missing drop zone reference.");
+            RevertToPreviousPosition();
+            return;
+        }
+
+        if (originZone.shipPart != null)
+        {
+            shipPartManager.RemoveCrewmateFromPart(this.crewmateData, originZone.shipPart);
+            originZone.shipPart.RemoveEffect();
+        }
+
+        if (targetZone.shipPart != null)
+        {
+            shipPartManager.RemoveCrewmateFromPart(target.crewmateData, targetZone.shipPart);
+            targetZone.shipPart.RemoveEffect();
+        }
+
+        this.PlaceInZone(targetZone, targetSnap, true);
+        target.PlaceInZone(originZone, originSnap, true);
+
+        if (targetZone.shipPart != null)
+        {
+            shipPartManager.AssignCrewmateToPart(this.crewmateData, targetZone.shipPart);
+        }
+
+        if (originZone.shipPart != null)
+        {
+            shipPartManager.AssignCrewmateToPart(target.crewmateData, originZone.shipPart);
+        }
+
+        Debug.Log("Swapped and reassigned crew members between drop zones.");
     }
 
     private void RevertToPreviousPosition()
@@ -186,6 +311,7 @@ public class CrewMemberDraggable : MonoBehaviour
         {
             previousDropZone = dropZone;
             previousSnapPoint = assignedSnapPoint;
+            currentTrigger = dropZone.gameObject;
         }
     }
 

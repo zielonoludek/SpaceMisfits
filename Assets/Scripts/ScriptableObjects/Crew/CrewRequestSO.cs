@@ -14,6 +14,7 @@ public class CrewRequestSO : ScriptableObject
     public CrewMemberType specialMember;
 
     public bool IsFromCrewMember;
+    public CrewMemberConsumption originCrewMemberConsumption;
     public string CrewMemberName;
 
     [Space]
@@ -58,6 +59,28 @@ public class CrewRequestSO : ScriptableObject
         {
             int currentValue = GameManager.Instance.ResourceManager.GetResourceValue(effectType);
             return FulfillmentCondition is IntFulfillmentCondition intCondition && currentValue >= intCondition.RequiredValue;
+        }
+
+        if (Requirement == RequestOriginType.CrewMemberHunger && IsFromCrewMember == true)
+        { 
+        
+            if (originCrewMemberConsumption.currentHunger >= originCrewMemberConsumption.hungerThreshold)
+            {
+                int currentValue = originCrewMemberConsumption.currentHunger;
+                return FulfillmentCondition is IntFulfillmentCondition intCondition && currentValue <= intCondition.RequiredValue;
+            }
+            
+        }
+
+        if (Requirement == RequestOriginType.CrewMemberSleepiness && IsFromCrewMember == true)
+        {
+
+            if (originCrewMemberConsumption.currentSleepiness >= originCrewMemberConsumption.sleepinessThreshold)
+            {
+                int currentValue = originCrewMemberConsumption.currentSleepiness;
+                return FulfillmentCondition is IntFulfillmentCondition intCondition && currentValue <= intCondition.RequiredValue;
+            }
+
         }
 
         return false;
