@@ -155,7 +155,9 @@ public class SectorManager : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / segmentDurationRealSeconds;
+                Vector3 direction = Vector3.Lerp(start, end, t);
                 playerInstance.transform.position = Vector3.Lerp(start, end, t);
+                GameManager.Instance.CameraManager.FollowPlayer(direction);
                 yield return null;
             }
 

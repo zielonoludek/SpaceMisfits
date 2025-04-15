@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -111,7 +112,6 @@ public class CameraManager : MonoBehaviour
         {
             if (Mouse.current.rightButton.wasPressedThisFrame) startDrag = ray.GetPoint(distance);
             else targetPosition += startDrag - ray.GetPoint(distance);
-            Debug.Log("ray");
         }
     }
 
@@ -129,6 +129,11 @@ public class CameraManager : MonoBehaviour
         }
 
         targetPosition = Vector3.zero;
+    }
+
+    public void FollowPlayer(Vector3 dir)
+    {
+        transform.position += dir;
     }
     #endregion
 }
