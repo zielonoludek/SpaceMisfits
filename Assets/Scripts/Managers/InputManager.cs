@@ -76,6 +76,7 @@ private void SetupPinchZoom()
     //=============== INPUT CALLBACKS ===============//
     private void OnZoomScroll(InputAction.CallbackContext context)
     {
+        if (GameManager.IsGameOver) return;
         zoomDelta = context.ReadValue<Vector2>().y;
         float currentTime = GameManager.Instance.TimeManager.CurrentTime;
 
@@ -123,6 +124,7 @@ private void SetupPinchZoom()
 
     private void ApplyPinchZoom(float increment)
     {
+        if (GameManager.IsGameOver) return;
         if (increment > 0)
         {
             if (GameManager.Instance.CameraManager.ZoomState && GameManager.Instance.GameScene == GameScene.Ship)
