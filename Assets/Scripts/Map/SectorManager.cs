@@ -104,7 +104,10 @@ public class SectorManager : MonoBehaviour
         playerInstance = Instantiate(playerPrefab, startingSector.transform.position, quaternion.identity);
         playerCurrentSector = startingSector;
         
-        fogOfWarController.UpdatePlayerPosition(playerInstance.transform.position);
+        if (fogOfWarController != null)
+        {
+            fogOfWarController.SetPlayerTransform(playerInstance.transform);
+        }
     }
 
     private IEnumerator AnimatePlayerMovement(Vector3[] path, float distance, Sector targetSector)
@@ -136,7 +139,6 @@ public class SectorManager : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / segmentDurationRealSeconds;
                 playerInstance.transform.position = Vector3.Lerp(start, end, t);
-                fogOfWarController.UpdatePlayerPosition(playerInstance.transform.position);
                 yield return null;
             }
 
