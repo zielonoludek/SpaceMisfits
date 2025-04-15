@@ -73,9 +73,6 @@ public class CrewDropZone : MonoBehaviour
         
     }
 
-    
-
-
     public string GetPartName()
     {
         return shipPart != null ? shipPart.partName : "Unknown Part";
@@ -101,7 +98,16 @@ public class CrewDropZone : MonoBehaviour
 
     public bool IsAvailable()
     {
-        return currentCrewCount < capacity;
+        if (currentCrewCount < capacity)
+        {
+            foreach (Transform snapPoint in snapPoints)
+            {
+                if (snapPoint.childCount == 0)
+                    return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     public Transform GetNextAvailableSnapPoint()
