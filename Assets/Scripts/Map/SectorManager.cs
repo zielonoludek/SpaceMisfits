@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class SectorManager : MonoBehaviour
 {
@@ -147,10 +148,13 @@ public class SectorManager : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / segmentDurationRealSeconds;
-                playerInstance.transform.position = Vector3.Lerp(start, end, t);
                 
                 currentETA -= Time.deltaTime;
                 OnETAUpdated?.Invoke(currentETA);
+                
+                Vector3 nextPos = Vector3.Lerp(start, end, t);
+                GameManager.Instance.CameraManager.FollowPlayer(nextPos - playerInstance.transform.position);
+                playerInstance.transform.position = nextPos;
                 
                 yield return null;
             }
