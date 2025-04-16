@@ -7,32 +7,38 @@ public class SectorInteraction : MonoBehaviour
     private HoverUI hoverUI;
     private Vector3 originalScale;
     private Sector sector;
+    private FogOfWarController fogOfWar;
 
     private void Awake()
     {
         sector = GetComponent<Sector>();
         hoverUI = FindFirstObjectByType<HoverUI>();
+        fogOfWar = FindFirstObjectByType<FogOfWarController>();
         originalScale = transform.localScale;
     }
 
     private void OnMouseEnter()
     {
         if(GameManager.Instance.GameState == GameState.Event) return;
-        if (hoverUI != null)
+
+        if (IsSectorVisible())
         {
-            if (sector.GetSectorEvent() != null)
+            if (hoverUI != null)
             {
-                hoverUI.ShowPopup(sector.GetSectorEvent().sectorHoverInfoText, transform.position);
+                if (sector.GetSectorEvent() != null)
+                {
+                    hoverUI.ShowPopup(sector.GetSectorEvent().sectorHoverInfoText, transform.position);
+                }
+                else
+                {
+                    hoverUI.ShowPopup("", transform.position);
+                }
             }
-            else
-            {
-                hoverUI.ShowPopup("", transform.position);
-            }
-        }
         
-        if (CanBeInteracted())
-        {
-            transform.localScale = originalScale * 1.2f;
+            if (CanBeInteracted())
+            {
+                transform.localScale = originalScale * 1.2f;
+            }   
         }
     }
 
@@ -59,5 +65,12 @@ public class SectorInteraction : MonoBehaviour
     {
         if (SectorManager.Instance.GetPlayerCurrentSector() == null) return false;
         return SectorManager.Instance.GetPlayerCurrentSector().IsNeighbor(sector) && !SectorManager.Instance.IsPlayerMoving();
+    }
+
+    private bool IsSectorVisible()
+    {
+        if (fogOfWar == null) return true;
+
+        return fogOfWar.IsPositionVisible(transform.position);
     }
 }

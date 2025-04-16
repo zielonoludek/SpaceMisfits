@@ -14,6 +14,9 @@ public class SectorManager : MonoBehaviour
         public Material material;
     }
 
+    public delegate void ETAUpdateHandler(float remainingSeconds);
+    public event ETAUpdateHandler OnETAUpdated;
+
     [SerializeField] Sector startingSector;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private List<TiedEventSequenceSO> tiedEventSequences;
@@ -31,6 +34,9 @@ public class SectorManager : MonoBehaviour
     public static SectorManager Instance => instance;
 
     private readonly System.Random random = new();
+    
+    private float currentETA = 0f;
+    public float CurrentETA => currentETA;
 
     private bool bIsPlayerMoving = false;
 
@@ -124,6 +130,9 @@ public class SectorManager : MonoBehaviour
         {
             totalPathLength += Vector3.Distance(path[i], path[i + 1]);
         }
+        
+        currentETA = totalTravelTimeRealSeconds / GameManager.Instance.ResourceManager.Speed;
+        OnETAUpdated?.Invoke(currentETA);
 
         int index = 0;
         while (index < path.Length - 1)
@@ -139,6 +148,10 @@ public class SectorManager : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / segmentDurationRealSeconds;
                 playerInstance.transform.position = Vector3.Lerp(start, end, t);
+                
+                currentETA -= Time.deltaTime;
+                OnETAUpdated?.Invoke(currentETA);
+                
                 yield return null;
             }
 
@@ -149,7 +162,34 @@ public class SectorManager : MonoBehaviour
         playerCurrentSector = targetSector;
         bIsPlayerMoving = false;
 
+        currentETA = 0f;
+        OnETAUpdated?.Invoke(0);
+        
         TriggerSectorEvent(targetSector);
+    }
+
+    private float CalculateETA(Sector targetSector)
+    {
+        if (playerInstance == null || playerCurrentSector == null) return -1f;
+        if (!playerCurrentSector.IsNeighbor(targetSector)) return -1f;
+        
+        Lane lane = FindLaneBetween(playerCurrentSector, targetSector);
+        if (lane == null) return -1f;
+        
+        float distance = lane.GetLaneDistance();
+        float halfDayInGame = GameManager.Instance.TimeManager.DayLength / 2f;
+        float totalTravelTimeRealSeconds = distance * halfDayInGame / GameManager.Instance.ResourceManager.Speed;
+
+        return totalTravelTimeRealSeconds;
+    }
+    
+    public string FormatTime(float timeInSeconds)
+    {
+        if (timeInSeconds <= 0) return "00:00";
+    
+        int minutes = Mathf.FloorToInt(timeInSeconds / 60);
+        int seconds = Mathf.FloorToInt(timeInSeconds % 60);
+        return $"{minutes:00}:{seconds:00}";
     }
 
     private Lane FindLaneBetween(Sector sectorA, Sector sectorB)

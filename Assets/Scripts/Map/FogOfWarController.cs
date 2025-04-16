@@ -15,14 +15,14 @@ public class FogOfWarController : MonoBehaviour
     private RenderTexture exploredAreasTexture;
     private RenderTexture temporaryTexture;
     
-    void Start()
+    private void Start()
     {
         // Create render texture for storing explored areas
-        exploredAreasTexture = new RenderTexture(1024, 1024, 0, RenderTextureFormat.R8);
+        exploredAreasTexture = new RenderTexture(1024, 1024, 16, RenderTextureFormat.R16);
         exploredAreasTexture.Create();
         
         // Create a temporary texture for updating the explored areas
-        temporaryTexture = new RenderTexture(1024, 1024, 0, RenderTextureFormat.R8);
+        temporaryTexture = new RenderTexture(1024, 1024, 16, RenderTextureFormat.R16);
         temporaryTexture.Create();
         
         // Set up the fog material
@@ -38,7 +38,7 @@ public class FogOfWarController : MonoBehaviour
         SetupRenderCamera();
     }
     
-    void Update()
+    private void Update()
     {
         if (playerTransform == null) return;
         
@@ -49,7 +49,7 @@ public class FogOfWarController : MonoBehaviour
         UpdateExploredAreas();
     }
     
-    void UpdateExploredAreas()
+    private void UpdateExploredAreas()
     {
         // Set the render target to the temporary texture
         fogRenderCamera.targetTexture = temporaryTexture;
@@ -73,7 +73,7 @@ public class FogOfWarController : MonoBehaviour
         fogMaterial.SetTexture("_ExploredTex", exploredAreasTexture);
     }
     
-    void CreateFogQuad()
+    private void CreateFogQuad()
     {
         fogQuad = GameObject.CreatePrimitive(PrimitiveType.Quad);
         fogQuad.name = "FogOfWarQuad";
@@ -87,7 +87,7 @@ public class FogOfWarController : MonoBehaviour
         fogQuad.GetComponent<Renderer>().material = fogMaterial;
     }
     
-    void SetupRenderCamera()
+    private void SetupRenderCamera()
     {
         if (fogRenderCamera == null)
         {
@@ -109,6 +109,16 @@ public class FogOfWarController : MonoBehaviour
     public void SetPlayerTransform(Transform player)
     {
         playerTransform = player;
+    }
+
+    // Check if sector is visible (not covered by FOW)
+    public bool IsPositionVisible(Vector2 worldPosition)
+    {
+        if (playerTransform == null) return false;
+
+        float distToPlayer = Vector2.Distance(worldPosition, new Vector2(playerTransform.position.x, playerTransform.position.y));
+
+        return distToPlayer < visibilityRadius;
     }
     
     private void OnDestroy()
