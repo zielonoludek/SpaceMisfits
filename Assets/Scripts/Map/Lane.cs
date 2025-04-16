@@ -74,14 +74,6 @@ public class Lane : MonoBehaviour
     
             return CalculateBezierCurve(start, control, end);
         }
-    
-        public void SetVisibility(bool isVisible)
-        {
-            if (Application.isPlaying)
-            {
-                gameObject.SetActive(isVisible);
-            }
-        }
 
     #endregion
     
@@ -112,7 +104,6 @@ public class Lane : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        SetVisibility(false);
     }
 
     private void Start()
