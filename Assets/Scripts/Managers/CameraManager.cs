@@ -97,7 +97,7 @@ public class CameraManager : MonoBehaviour
 
     private void UpdateVelocity()
     {
-        horizontalVelocity = (this.transform.position - lastPosition) / Time.deltaTime;
+        horizontalVelocity = (this.transform.position - lastPosition) / Time.unscaledDeltaTime;
         horizontalVelocity.y = 0f;
         lastPosition = this.transform.position;
     }
@@ -119,13 +119,13 @@ public class CameraManager : MonoBehaviour
     {
         if (targetPosition.sqrMagnitude > 0.1f)
         {
-            speed = Mathf.Lerp(speed, maxSpeed, Time.deltaTime * acceleration);
-            transform.position += targetPosition * speed * Time.deltaTime;
+            speed = Mathf.Lerp(speed, maxSpeed, Time.unscaledDeltaTime * acceleration);
+            transform.position += targetPosition * speed * Time.unscaledDeltaTime;
         }
         else
         {
-            horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, Time.deltaTime * damping);
-            transform.position += horizontalVelocity * Time.deltaTime;
+            horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, Time.unscaledDeltaTime * damping);
+            transform.position += horizontalVelocity * Time.unscaledDeltaTime;
         }
 
         targetPosition = Vector3.zero;
