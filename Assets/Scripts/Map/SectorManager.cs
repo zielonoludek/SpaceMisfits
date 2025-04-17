@@ -196,6 +196,31 @@ public class SectorManager : MonoBehaviour
         return $"{minutes:00}:{seconds:00}";
     }
 
+    private void RegisterNextEventsInSequences()
+    {
+        if (fogOfWarController == null) return;
+    
+        // Clear any existing quest sectors
+        fogOfWarController.ClearNextQuestSectors();
+    
+        foreach (var sequence in tiedEventSequences)
+        {
+            if (sequence.enableVisualization)
+            {
+                EventSO nextEvent = sequence.GetCurrentEvent();
+                if (nextEvent != null)
+                {
+                    Sector nextSector = FindSectorByEvent(nextEvent);
+                    if (nextSector != null)
+                    {
+                        fogOfWarController.RegisterNextQuestSector(nextSector);
+                        nextSector.StartPulsating();
+                    }
+                }
+            }
+        }
+    }
+    
     private Lane FindLaneBetween(Sector sectorA, Sector sectorB)
     {
         Lane[] lanes = FindObjectsByType<Lane>(FindObjectsSortMode.None);
@@ -214,24 +239,37 @@ public class SectorManager : MonoBehaviour
         EventSO eventSO = sector.GetSectorEvent();
         bool eventHandled = false;
 
+        // If this sector was a next quest sector, unregister it
+        if (fogOfWarController != null)
+        {
+            fogOfWarController.UnregisterNextQuestSector(sector);
+        }
+
         foreach (var sequence in tiedEventSequences)
         {
             EventSO sequenceEvent = sequence.GetCurrentEvent();
             if (sequenceEvent != null && sequenceEvent == eventSO)
             {
+                // Mark this event as completed
                 sequence.MarkCurrentEventAsCompleted();
+            
+                // Get the next event in this sequence
                 EventSO nextEvent = sequence.GetCurrentEvent();
                 if (nextEvent != null)
                 {
                     Sector nextSector = FindSectorByEvent(nextEvent);
-                    if (nextSector != null)
+                    if (nextSector != null && sequence.enableVisualization)
                     {
-                        if (sequence.enableVisualization)
+                        // Register with fog of war for visibility
+                        if (fogOfWarController != null)
                         {
-                            nextSector.StartPulsating();
+                            fogOfWarController.RegisterNextQuestSector(nextSector);
                         }
+                        
+                        nextSector.StartPulsating();
                     }
                 }
+            
                 sector.StopPulsating();
                 ShowEventUI(eventSO);
                 eventHandled = true;

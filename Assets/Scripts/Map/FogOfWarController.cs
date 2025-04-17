@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FogOfWarController : MonoBehaviour
@@ -7,6 +8,9 @@ public class FogOfWarController : MonoBehaviour
     [SerializeField] private float visibilityRadius = 5f;
     [SerializeField, Range(0, 1)] private float fadeEdgeSize = 0.2f;
     
+    [Header("Quest Settings")]
+    [SerializeField] private float questVisibilityRadius = 2.5f;
+    
     private GameObject fogQuad;
     private Transform playerTransform;
     private Camera fogRenderCamera;
@@ -14,6 +18,16 @@ public class FogOfWarController : MonoBehaviour
     // Render texture that stores the explored areas
     private RenderTexture exploredAreasTexture;
     private RenderTexture temporaryTexture;
+    
+    private List<Sector> nextQuestSectors = new List<Sector>();
+    
+    private static readonly int PlayerPosID = Shader.PropertyToID("_PlayerPos");
+    private static readonly int VisibilityRadiusID = Shader.PropertyToID("_VisibilityRadius");
+    private static readonly int QuestRadiusID = Shader.PropertyToID("_QuestRadius");
+    private static readonly int QuestPositionsID = Shader.PropertyToID("_QuestPositions");
+    private static readonly int QuestCountID = Shader.PropertyToID("_QuestCount");
+    private static readonly int ExploredTexID = Shader.PropertyToID("_ExploredTex");
+    private static readonly int FadeEdgeSizeID = Shader.PropertyToID("_FadeEdgeSize");
     
     private void Start()
     {
@@ -26,9 +40,10 @@ public class FogOfWarController : MonoBehaviour
         temporaryTexture.Create();
         
         // Set up the fog material
-        fogMaterial.SetTexture("_ExploredTex", exploredAreasTexture);
-        fogMaterial.SetFloat("_VisibilityRadius", visibilityRadius);
-        fogMaterial.SetFloat("_FadeEdgeSize", fadeEdgeSize);
+        fogMaterial.SetTexture(ExploredTexID, exploredAreasTexture);
+        fogMaterial.SetFloat(VisibilityRadiusID, visibilityRadius);
+        fogMaterial.SetFloat(FadeEdgeSizeID, fadeEdgeSize);
+        fogMaterial.SetFloat(QuestRadiusID, questVisibilityRadius);
         
         if (fogQuad == null)
         {
@@ -43,10 +58,30 @@ public class FogOfWarController : MonoBehaviour
         if (playerTransform == null) return;
         
         // Update player position in the shader
-        fogMaterial.SetVector("_PlayerPos", new Vector4(playerTransform.position.x, playerTransform.position.y, 0, 0));
+        fogMaterial.SetVector(PlayerPosID, new Vector4(playerTransform.position.x, playerTransform.position.y, 0, 0));
         
-        // Update explored areas
         UpdateExploredAreas();
+    }
+    
+    public void RegisterNextQuestSector(Sector sector)
+    {
+        if (sector != null && !nextQuestSectors.Contains(sector))
+        {
+            nextQuestSectors.Add(sector);
+        }
+    }
+    
+    public void UnregisterNextQuestSector(Sector sector)
+    {
+        if (sector != null)
+        {
+            nextQuestSectors.Remove(sector);
+        }
+    }
+    
+    public void ClearNextQuestSectors()
+    {
+        nextQuestSectors.Clear();
     }
     
     private void UpdateExploredAreas()
@@ -54,23 +89,40 @@ public class FogOfWarController : MonoBehaviour
         // Set the render target to the temporary texture
         fogRenderCamera.targetTexture = temporaryTexture;
         
-        // Clear with black (unexplored)
         fogRenderCamera.backgroundColor = Color.black;
         fogRenderCamera.clearFlags = CameraClearFlags.SolidColor;
         
         // Render the current explored areas
         Graphics.Blit(exploredAreasTexture, temporaryTexture);
         
-        // Setup material for drawing the current visible circle
-        Material drawMaterial = new Material(Shader.Find("Hidden/DrawVisibleCircle"));
-        drawMaterial.SetVector("_PlayerPos", new Vector4(playerTransform.position.x, playerTransform.position.y, 0, 0));
-        drawMaterial.SetFloat("_VisibilityRadius", visibilityRadius);
+        // Setup material for drawing the visible circles
+        Material drawMaterial = new Material(Shader.Find("Hidden/DrawVisibleCircles"));
         
-        // Draw the new visible area
+        // Set player position and visibility radius
+        drawMaterial.SetVector(PlayerPosID, new Vector4(playerTransform.position.x, playerTransform.position.y, 0, 0));
+        drawMaterial.SetFloat(VisibilityRadiusID, visibilityRadius);
+        drawMaterial.SetFloat(QuestRadiusID, questVisibilityRadius);
+        
+        Vector4[] questPositions = new Vector4[10];
+        int questCount = Mathf.Min(nextQuestSectors.Count, 10);
+        
+        for (int i = 0; i < questCount; i++)
+        {
+            Vector3 pos = nextQuestSectors[i].transform.position;
+            questPositions[i] = new Vector4(pos.x, pos.y, 0, 0);
+        }
+        
+        drawMaterial.SetVectorArray(QuestPositionsID, questPositions);
+        drawMaterial.SetInt(QuestCountID, questCount);
+        
+        // Draw the new visible areas
         Graphics.Blit(temporaryTexture, exploredAreasTexture, drawMaterial);
         
         // Update the texture in the fog material
-        fogMaterial.SetTexture("_ExploredTex", exploredAreasTexture);
+        fogMaterial.SetTexture(ExploredTexID, exploredAreasTexture);
+        
+        fogMaterial.SetVectorArray(QuestPositionsID, questPositions);
+        fogMaterial.SetInt(QuestCountID, questCount);
     }
     
     private void CreateFogQuad()
@@ -97,12 +149,12 @@ public class FogOfWarController : MonoBehaviour
             fogRenderCamera = camObj.AddComponent<Camera>();
             fogRenderCamera.orthographic = true;
             
-            // Match the camera size to your game world
             fogRenderCamera.orthographicSize = 50;
             fogRenderCamera.transform.position = new Vector3(0, 0, -10);
             fogRenderCamera.clearFlags = CameraClearFlags.SolidColor;
             fogRenderCamera.backgroundColor = Color.black;
             fogRenderCamera.cullingMask = 0;
+            fogRenderCamera.enabled = false;
         }
     }
     
@@ -110,15 +162,60 @@ public class FogOfWarController : MonoBehaviour
     {
         playerTransform = player;
     }
-
-    // Check if sector is visible (not covered by FOW)
+    
+    public void SetVisibilityRadius(float radius)
+    {
+        visibilityRadius = radius;
+        fogMaterial.SetFloat(VisibilityRadiusID, visibilityRadius);
+    }
+    
+    // Check if position is visible (not covered by FOW)
     public bool IsPositionVisible(Vector2 worldPosition)
     {
         if (playerTransform == null) return false;
-
+        
+        // Check player visibility
         float distToPlayer = Vector2.Distance(worldPosition, new Vector2(playerTransform.position.x, playerTransform.position.y));
-
-        return distToPlayer < visibilityRadius;
+        if (distToPlayer < visibilityRadius) return true;
+        
+        // Check quest visibility
+        foreach (var sector in nextQuestSectors)
+        {
+            Vector2 sectorPos = new Vector2(sector.transform.position.x, sector.transform.position.y);
+            float distToQuest = Vector2.Distance(worldPosition, sectorPos);
+            if (distToQuest < questVisibilityRadius) return true;
+        }
+        
+        return false;
+    }
+    
+    // Check if a position has been explored
+    public bool IsPositionExplored(Vector2 worldPosition)
+    {
+        if (IsPositionVisible(worldPosition)) return true;
+        
+        Vector2 texUV = new Vector2((worldPosition.x + 50) / 100, (worldPosition.y + 50) / 100);
+        
+        if (texUV.x < 0 || texUV.x > 1 || texUV.y < 0 || texUV.y > 1) return false;
+        
+        Texture2D tex = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+        
+        // Save active render texture and set to explored areas texture
+        RenderTexture previousActive = RenderTexture.active;
+        RenderTexture.active = exploredAreasTexture;
+        
+        int x = Mathf.FloorToInt(texUV.x * exploredAreasTexture.width);
+        int y = Mathf.FloorToInt(texUV.y * exploredAreasTexture.height);
+        tex.ReadPixels(new Rect(x, y, 1, 1), 0, 0);
+        tex.Apply();
+        
+        // Restore previous render texture
+        RenderTexture.active = previousActive;
+        
+        Color pixelColor = tex.GetPixel(0, 0);
+        Destroy(tex);
+        
+        return pixelColor.r > 0.1f;
     }
     
     private void OnDestroy()

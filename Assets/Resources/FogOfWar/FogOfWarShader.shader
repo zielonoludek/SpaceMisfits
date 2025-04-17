@@ -6,6 +6,7 @@ Shader "Custom/FogOfWar"
         _FogColor ("Fog Color", Color) = (0, 0, 0, 0.8)
         _ExploredColor ("Explored Color", Color) = (0, 0, 0, 0.4)
         _VisibilityRadius ("Visibility Radius", Float) = 5.0
+        _QuestRadius ("Quest Radius", Float) = 2.5
         _FadeEdgeSize ("Fade Edge Size", Range(0, 1)) = 0.2
         _ExploredTex ("Explored Texture", 2D) = "black" {}
     }
@@ -44,9 +45,14 @@ Shader "Custom/FogOfWar"
             float4 _FogColor;
             float4 _ExploredColor;
             float _VisibilityRadius;
+            float _QuestRadius;
             float _FadeEdgeSize;
             sampler2D _ExploredTex;
             float4 _PlayerPos;
+            
+            // Array of quest positions (x,y,0,0), maximum 10
+            float4 _QuestPositions[10];
+            int _QuestCount;
             
             v2f vert (appdata v)
             {
@@ -65,30 +71,41 @@ Shader "Custom/FogOfWar"
                 // Determine if this position is within player's visibility
                 float inRadius = 1.0 - smoothstep(_VisibilityRadius * (1.0 - _FadeEdgeSize), _VisibilityRadius, dist);
                 
+                // Check if position is within any quest radius
+                float inQuestRadius = 0;
+                for (int idx = 0; idx < _QuestCount; idx++) 
+                {
+                    float questDist = distance(float2(i.worldPos.x, i.worldPos.y), 
+                                             float2(_QuestPositions[idx].x, _QuestPositions[idx].y));
+                    
+                    // If within quest visibility radius, mark as visible
+                    if (questDist < _QuestRadius) {
+                        inQuestRadius = 1.0 - (questDist / _QuestRadius);
+                        break;
+                    }
+                }
+                
                 // Sample the explored map texture
                 // Convert world position to texture coordinates
                 float2 texUV = float2(
-                    (i.worldPos.x + 50) / 100, // Adjust these values based on your map size
+                    (i.worldPos.x + 50) / 100,
                     (i.worldPos.y + 50) / 100
                 );
                 float explored = tex2D(_ExploredTex, texUV).r;
                 
-                // Either visible around player or previously explored
-                float visibility = max(inRadius, explored);
+                // Either visible around player, quest, or previously explored
+                float visibility = max(max(inRadius, explored), inQuestRadius);
                 
-                // Determine final fog alpha value
+                // Determine final fog color and alpha
+                float4 finalColor = _FogColor;
                 float fogAlpha = 0;
+                
                 if (visibility <= 0)
                 {
-                    fogAlpha = _FogColor.a; // Complete fog for unexplored areas
-                }
-                else if (visibility < 1)
-                {
-                    fogAlpha = lerp(_ExploredColor.a, 0, visibility); // Partial fog for explored areas
+                    fogAlpha = _FogColor.a;
                 }
                 
-                // Return fog color with calculated alpha
-                return float4(_FogColor.rgb, fogAlpha);
+                return float4(finalColor.rgb, fogAlpha);
             }
             ENDCG
         }
