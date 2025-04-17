@@ -133,7 +133,7 @@ public class CameraManager : MonoBehaviour
 
     public void FollowPlayer(Vector3 dir)
     {
-        transform.position += dir;
+        transform.position += dir * 0.4f;
     }
     #endregion
 }
