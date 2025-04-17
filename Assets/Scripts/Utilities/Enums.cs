@@ -32,9 +32,12 @@ public enum RequestOriginType
 
     Durability,
     Food,
+    CrewMood,
 
     CrewMemberSpot,
-    CrewMood
+    CrewMemberHunger,
+    CrewMemberSleepiness
+        
 }
 
 public enum CrewMemberType { None, Cook, Spyglasser, Scientist }

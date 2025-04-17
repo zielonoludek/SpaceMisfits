@@ -6,13 +6,15 @@ using static CrewRequestSO;
 
 public class RequestManager : MonoBehaviour
 {
-    private int requestCap = 6;
+    [SerializeField] private int requestCap = 6;
     private Coroutine requestCoroutine;
 
-    [SerializeField] private List<CrewRequestSO> activeRequests = new List<CrewRequestSO>();
-
+    [SerializeField] private List<CrewRequestSO> availableRequests;
+    
     [SerializeField] private Vector3 checkIntervalDaysHoursMinutes = new Vector3(0, 1, 0);
     [SerializeField] private float negativeModifier = 1.5f;
+
+    [SerializeField] private List<CrewRequestSO> activeRequests = new List<CrewRequestSO>();
 
     private void Start()
     {
@@ -47,7 +49,7 @@ public class RequestManager : MonoBehaviour
         List<CrewMemberType> availableCrewTypes = GameManager.Instance.CrewManager.crewList
             .Select(crewmate => crewmate.crewMemberType)
             .ToList();
-        CrewRequestSO[] allRequests = Resources.LoadAll<CrewRequestSO>("ScriptableObjects/Crew/Requests");
+        CrewRequestSO[] allRequests = availableRequests.ToArray();
         List<CrewRequestSO> validRequests = allRequests
             .Where(request => (request.specialMember == CrewMemberType.None || availableCrewTypes.Contains(request.specialMember)) &&
                               !IsRequestAlreadyActive(request))
@@ -55,7 +57,7 @@ public class RequestManager : MonoBehaviour
 
         if (validRequests.Count == 0)
         {
-            Debug.Log("Generating request failed - no aviable requests");
+            Debug.Log("Generating request failed - no available requests");
             return;
         }
 
@@ -71,10 +73,20 @@ public class RequestManager : MonoBehaviour
         activeRequests.Add(request);
         request.StartTime = GameManager.Instance.TimeManager.TotalTime;
         request.ExpirationTime = request.StartTime + request.TimeLimitInSeconds();
+        
 
         GameManager.Instance.UIManager.CrewRequestUI.AssignRequestButton(request);
+        GetLastGeneratedRequest(request);
     }
 
+    // get request generated in GenerateRequest
+    public CrewRequestSO GetLastGeneratedRequest(CrewRequestSO request)
+    {
+        {
+            return request;
+        }
+        
+    }
 
     public void FulfillRequest(CrewRequestSO request)
     {

@@ -8,6 +8,7 @@ public class GameOverPanelUI : MonoBehaviour
     public GameObject gameOverPanel;
     public TMP_Text gameOverText;
     public Button restartButton;
+    public Button mainMenuButton;
     public Button damageShipButton;
     public ResourceManager resourceManager;
 
@@ -15,6 +16,7 @@ public class GameOverPanelUI : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         restartButton.onClick.AddListener(RestartGame);
+        mainMenuButton.onClick.AddListener(GoToMainMenu);
         damageShipButton.onClick.AddListener(DamageShip);
         resourceManager = GameManager.Instance.ResourceManager;
         resourceManager.OnShipHealthChanged += CheckShipHealth;
@@ -42,7 +44,13 @@ public class GameOverPanelUI : MonoBehaviour
         GameManager.Instance.SetGameOver(false);
 
         GameManager.Instance.Reset();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.SceneLoader.LoadNewScene(1);
+    }
+
+    private void GoToMainMenu()
+    {
+        Time.timeScale = 1;
+        GameManager.Instance.SceneLoader.LoadNewScene(0);
     }
 
     private void DamageShip()

@@ -345,14 +345,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fcf66de6d473ee4cb6a6c6d10bea3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crewDropZone: {fileID: 0}
   currentHunger: 0
   maxHunger: 100
-  addedHunger: 5
-  decreaseHunger: 5
+  addedHunger: 2
+  decreaseHunger: 15
+  hungerThreshold: 70
   currentSleepiness: 0
   maxSleepiness: 100
-  addedSleepiness: 5
-  sleepinessDecrease: 5
+  addedSleepiness: 1
+  sleepinessDecrease: 10
+  sleepinessThreshold: 70
+  hungerCrewRequestSO: {fileID: 11400000, guid: 328d4c2f6c23d65438a5f2fc1cb18474, type: 2}
+  sleepinessCrewRequestSO: {fileID: 0}
 --- !u!114 &-1490490530691119641
 MonoBehaviour:
   m_ObjectHideFlags: 0
