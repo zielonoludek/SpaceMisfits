@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public RequestManager RequestManager { get { return requestManager; } }
     public SceneLoader SceneLoader { get { return sceneLoader; } }
     public static bool IsGameOver { get; private set; } = false;
+    public bool IsActivePause { get; set; } = false;
 
     public void SetGameOver(bool state)
     {

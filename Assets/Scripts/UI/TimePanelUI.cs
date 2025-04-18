@@ -75,7 +75,17 @@ public class TimePanelUI : MonoBehaviour
     private void OnPauseBtn()
     {
         bool isTimePaused = GameManager.Instance.TimeManager.IsTimeOn;
-        GameManager.Instance.TimeManager.PauseTime(isTimePaused);
+
+        if (isTimePaused)
+        {
+            GameManager.Instance.TimeManager.PauseTime(true);
+            GameManager.Instance.IsActivePause = true;
+        }
+        else
+        {
+            GameManager.Instance.TimeManager.PauseTime(false);
+            GameManager.Instance.IsActivePause = false;
+        }
         SetupPauseBtn();
     }
 
