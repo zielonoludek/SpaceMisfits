@@ -24,10 +24,9 @@ public class CrewMemberConsumption : MonoBehaviour
     [SerializeField] public int sleepinessDecrease;
     [SerializeField] public int sleepinessThreshold;
 
-    [SerializeField] public CrewRequestSO hungerCrewRequestSO;
-    [SerializeField] public CrewRequestSO sleepinessCrewRequestSO;
+    [SerializeField] public CrewRequestSO hungerRequest;
+    [SerializeField] public CrewRequestSO sleepinessRequest;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         crewDropZone = transform.parent.GetComponent<CrewDropZone>();
@@ -39,12 +38,6 @@ public class CrewMemberConsumption : MonoBehaviour
         float hourTime = GameManager.Instance.TimeManager.DayLength / 24f;
         StartCoroutine(ManageHungerAndSleepiness(hourTime));
         StartCoroutine(EvaluateCrewRequests(hourTime));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     // manages hunger and sleepiness calculation
@@ -83,8 +76,7 @@ public class CrewMemberConsumption : MonoBehaviour
         {
             if (currentHunger >= hungerThreshold)
             {
-                GameManager.Instance.RequestManager.GenerateRequest(hungerCrewRequestSO);
-                CrewRequestSO hungerRequest = GameManager.Instance.RequestManager.GetLastGeneratedRequest(hungerCrewRequestSO);
+                GameManager.Instance.RequestManager.GenerateRequest(hungerRequest);
                 hungerRequest.IsFromCrewMember = true;
                 hungerRequest.CrewMemberName = crewName;
                 hungerRequest.originCrewMemberConsumption = this;
@@ -92,13 +84,11 @@ public class CrewMemberConsumption : MonoBehaviour
 
             if (currentSleepiness >= sleepinessThreshold)
             {
-                GameManager.Instance.RequestManager.GenerateRequest(sleepinessCrewRequestSO);
-                CrewRequestSO sleepinessRequest = GameManager.Instance.RequestManager.GetLastGeneratedRequest(sleepinessCrewRequestSO);
+                GameManager.Instance.RequestManager.GenerateRequest(sleepinessRequest);
                 sleepinessRequest.IsFromCrewMember = true;
                 sleepinessRequest.CrewMemberName = crewName;
-                sleepinessCrewRequestSO.originCrewMemberConsumption = this;
+                sleepinessRequest.originCrewMemberConsumption = this;
             }
-
             yield return new WaitForSeconds(hourTime);
         }
     }
