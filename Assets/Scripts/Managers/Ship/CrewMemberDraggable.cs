@@ -35,13 +35,10 @@ public class CrewMemberDraggable : MonoBehaviour
         get
         {
             if (GameManager.IsGameOver) return false;
-            Ray ray = mainCamera.ScreenPointToRay(currentScreenPosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                return hit.transform == transform;
-            }
-            return false;
+            Vector3 minScreen = mainCamera.WorldToScreenPoint(rend.bounds.min);
+            Vector3 maxScreen = mainCamera.WorldToScreenPoint(rend.bounds.max);
+            Rect screenRect = new Rect(minScreen.x, minScreen.y, maxScreen.x - minScreen.x, maxScreen.y - minScreen.y);
+            return screenRect.Contains(currentScreenPosition);
         }
     }
 
@@ -65,7 +62,7 @@ public class CrewMemberDraggable : MonoBehaviour
 
         isDragging = true;
         currentlyDragging = this;
-
+        rend.sortingOrder = 10;
         offset = transform.position - WorldPosition;
         Cursor.visible = false;
         HighlightValidDropZones();
@@ -81,22 +78,68 @@ public class CrewMemberDraggable : MonoBehaviour
     {
         if (!isDragging) return;
 
+        rend.sortingOrder = 0;
         isDragging = false;
         currentlyDragging = null;
         Cursor.visible = true;
 
         ResetAllDropZoneHighlights();
 
+        if (GameManager.Instance.IsActivePause)
+        {
+            GameObject detectedZone = DetectDropZoneUnderCrew();
+            currentTrigger = detectedZone;
+        }
+
         if (currentTrigger != null)
         {
-            SnapToTrigger();
+            CrewDropZone dropZone = currentTrigger.GetComponent<CrewDropZone>();
+            CrewMemberDraggable swapTarget = dropZone != null ? GetSwapTarget(dropZone) : null;
+
+            if (swapTarget != null)
+            {
+                DoSwap(swapTarget);
+            }
+            else
+            {
+                SnapToTrigger();
+            }
         }
         else
         {
             RevertToPreviousPosition();
         }
+    }
 
-        Debug.Log("Drag ended");
+    private GameObject DetectDropZoneUnderCrew()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(currentScreenPosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.CompareTag("DropZone"))
+            {
+                return hit.collider.gameObject;
+            }
+        }
+
+        float detectionRadius = 1.5f;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius);
+        GameObject closestZone = null;
+        float minDistance = Mathf.Infinity;
+        foreach (Collider col in colliders)
+        {
+            if (col.CompareTag("DropZone"))
+            {
+                float dist = Vector3.Distance(transform.position, col.transform.position);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    closestZone = col.gameObject;
+                }
+            }
+        }
+        return closestZone;
     }
 
     private void SnapToTrigger()
@@ -109,10 +152,33 @@ public class CrewMemberDraggable : MonoBehaviour
         }
 
         Collider zoneCollider = dropZone.GetComponent<Collider>();
-        if (zoneCollider != null && !zoneCollider.bounds.Contains(transform.position))
+        if (zoneCollider != null && !GameManager.Instance.IsActivePause && !zoneCollider.bounds.Contains(transform.position))
         {
             RevertToPreviousPosition();
             return;
+        }
+
+        if (dropZone == previousDropZone && !dropZone.isCrewQuarters)
+        {
+            Transform snapPoint = previousSnapPoint;
+            if (snapPoint == null)
+            {
+                snapPoint = dropZone.snapPoints.Count > 0 ? dropZone.snapPoints[0] : null;
+            }
+            if (snapPoint != null)
+            {
+                transform.position = snapPoint.position;
+                transform.SetParent(dropZone.transform);
+                previousSnapPoint = snapPoint;
+                currentTrigger = dropZone.gameObject;
+                dropZone.ResetZoneColor();
+                return;
+            }
+            else
+            {
+                RevertToPreviousPosition();
+                return;
+            }
         }
 
         if (dropZone.IsAvailable())
