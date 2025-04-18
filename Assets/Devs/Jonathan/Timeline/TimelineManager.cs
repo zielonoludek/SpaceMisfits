@@ -6,7 +6,7 @@ public class TimelineManager : MonoBehaviour
 {
     [Header("Timeline Settings")]
     public float pixelsPerDay = 100f; // How many pixels equal 1 in-game day
-    public float timeWindowDays  = 5f; // How many days ahead are visible on the timeline
+    public float timeWindowDays = 5f; // How many days ahead are visible on the timeline
 
 
     [Header("References")]
@@ -21,14 +21,27 @@ public class TimelineManager : MonoBehaviour
     private float currentStartTime;             // Time at the start (left) of the timeline window
     private List<GameObject> activeEventIcons = new List<GameObject>();
 
+    private GameObject playerArrivalIcon;
+
 
     void Start()
     {
         timeManager = GameManager.Instance.TimeManager;
         sectorManager = SectorManager.Instance;
+        sectorManager.OnETAUpdated += HandleETAUpdated;
 
         currentStartTime = timeManager.CurrentTime; // Timeline always starts at current time
         UpdateTimelineWidth();
+
+        Debug.Log("TimelineManager initialized with content: " + content.name);
+    }
+
+    private void OnDestroy()
+    {
+        if (sectorManager != null)
+        {
+            sectorManager.OnETAUpdated -= HandleETAUpdated;
+        }
     }
     void Update()
     {
@@ -60,18 +73,6 @@ public class TimelineManager : MonoBehaviour
 
         float currentTime = timeManager.CurrentTime;
         float endTime = currentTime + timeWindowDays;
-
-        // Example: Show player movement arrival as timeline event
-        if (sectorManager.IsPlayerMoving())
-        {
-            float arrivalTime = sectorManager.GetPlayerArrivalTime(); // SectorManager handles this
-            if (arrivalTime >= currentTime && arrivalTime <= endTime)
-            {
-                AddTimelineEvent(arrivalTime, "Arrival");
-            }
-        }
-
-        // TODO: Add crew requests or other events here
     }
 
     void AddTimelineEvent(float eventTime, string type)
@@ -93,5 +94,29 @@ public class TimelineManager : MonoBehaviour
             Destroy(go);
         }
         activeEventIcons.Clear();
+    }
+
+    private void HandleETAUpdated(float remaningSeconds)
+    {
+        float arivalTime = timeManager.CurrentTime + remaningSeconds;
+
+        float startTime = timeManager.CurrentTime;
+        float endTime = startTime + timeWindowDays;
+
+        if (arivalTime >= startTime && arivalTime <= endTime)
+        {
+            UpdatePlayerArivalIcon(arivalTime);
+        }
+    }
+
+    private void UpdatePlayerArivalIcon(float arivalTime)
+    {
+        if (playerArrivalIcon == null)
+        {
+            playerArrivalIcon = Instantiate(timelineEventPrefab, eventContainer);
+        }
+    RectTransform rt = playerArrivalIcon.GetComponent<RectTransform>();
+        float offsetFromStart = (arivalTime - currentStartTime) * pixelsPerDay;
+        rt.anchoredPosition = new Vector2(offsetFromStart, 0);
     }
 }
