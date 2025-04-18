@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static CrewRequestSO;
 
 public class RequestManager : MonoBehaviour
@@ -36,7 +38,6 @@ public class RequestManager : MonoBehaviour
         }
     }
 
-
     public void TryGenerateRequest()
     {
         float probability = CalculateRequestProbability();
@@ -65,6 +66,26 @@ public class RequestManager : MonoBehaviour
 
         GenerateRequest(selectedRequest);
     }
+    public void GenerateRequestByType(RequestOriginType type)
+    {
+        List<CrewMemberType> availableCrewTypes = GameManager.Instance.CrewManager.crewList
+            .Select(crewmate => crewmate.crewMemberType)
+            .ToList();
+        CrewRequestSO[] allRequests = availableRequests.ToArray();
+        List<CrewRequestSO> validRequests = allRequests
+            .Where(request => (request.specialMember == CrewMemberType.None || availableCrewTypes.Contains(request.specialMember)) &&
+                              !IsRequestAlreadyActive(request) && request.OriginType == type)
+        .ToList();
+
+        if (validRequests.Count == 0)
+        {
+            Debug.Log("Generating request failed - no available requests");
+            return;
+        }
+
+        CrewRequestSO selectedRequest = validRequests[Random.Range(0, validRequests.Count)];
+        GenerateRequest(selectedRequest);
+    }
 
     public void GenerateRequest(CrewRequestSO request)
     {
@@ -74,18 +95,13 @@ public class RequestManager : MonoBehaviour
         request.StartTime = GameManager.Instance.TimeManager.TotalTime;
         request.ExpirationTime = request.StartTime + request.TimeLimitInSeconds();
         
-
         GameManager.Instance.UIManager.CrewRequestUI.AssignRequestButton(request);
-        GetLastGeneratedRequest(request);
     }
 
     // get request generated in GenerateRequest
-    public CrewRequestSO GetLastGeneratedRequest(CrewRequestSO request)
+    public CrewRequestSO GetLastGeneratedRequest()
     {
-        {
-            return request;
-        }
-        
+        return activeRequests[activeRequests.Count - 1];
     }
 
     public void FulfillRequest(CrewRequestSO request)
@@ -169,6 +185,7 @@ public class RequestManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R)) TryGenerateRequest();
         CheckExpiredRequests();
+        UpdateActiveRequests();
     }
 
     private void CheckExpiredRequests()
@@ -179,8 +196,22 @@ public class RequestManager : MonoBehaviour
             CrewRequestSO request = activeRequests[i];
             if (request.ExpirationTime <= 0f) return;
             if (currentTime > request.ExpirationTime) FailRequest(request);
-
         }
+    }
+    private void UpdateActiveRequests()
+    {
+        foreach (var request in activeRequests)
+        {
+            if (request.FulfillmentCondition is MaintainThresholdCondition thresholdCondition)
+            {
+                if (GameManager.Instance.ResourceManager.TryGetResourceTypeFromRequestOrigin(request.Requirement, out EffectType effectType))
+                {
+                    int currentValue = GameManager.Instance.ResourceManager.GetResourceValue(effectType);
+                    thresholdCondition.UpdateCondition(currentValue);
+                }
+            }
+        }
+
     }
 
     public List<CrewRequestSO> GetActiveRequests()
